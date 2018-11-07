@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>dialog_login</class>
- <widget class="QDialog" name="dialog_login">
+ <class>dialog_main</class>
+ <widget class="QDialog" name="dialog_main">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1261</width>
+    <width>819</width>
     <height>908</height>
    </rect>
   </property>
@@ -21,111 +21,159 @@
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>441</width>
+     <width>651</width>
      <height>891</height>
     </rect>
    </property>
-   <property name="currentIndex">
-    <number>0</number>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
    </property>
-   <widget class="QWidget" name="tab">
+   <property name="currentIndex">
+    <number>4</number>
+   </property>
+   <widget class="QWidget" name="Ubersicht">
     <attribute name="title">
-     <string>Login</string>
+     <string>Übersicht</string>
     </attribute>
-    <widget class="QGroupBox" name="g_login">
+    <widget class="QFrame" name="frame">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>10</y>
-       <width>381</width>
-       <height>121</height>
+       <x>10</x>
+       <y>9</y>
+       <width>511</width>
+       <height>61</height>
       </rect>
      </property>
-     <property name="title">
-      <string/>
+     <property name="frameShape">
+      <enum>QFrame::StyledPanel</enum>
      </property>
-     <widget class="QWidget" name="layoutWidget">
+     <property name="frameShadow">
+      <enum>QFrame::Raised</enum>
+     </property>
+     <widget class="QWidget" name="">
       <property name="geometry">
        <rect>
-        <x>12</x>
-        <y>32</y>
-        <width>354</width>
-        <height>83</height>
+        <x>11</x>
+        <y>10</y>
+        <width>491</width>
+        <height>31</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
        <item row="0" column="0">
-        <widget class="QLabel" name="l_username">
+        <widget class="QLabel" name="label_2">
+         <property name="font">
+          <font>
+           <pointsize>12</pointsize>
+          </font>
+         </property>
          <property name="text">
-          <string>Benutzername</string>
+          <string>Zeige an:</string>
          </property>
         </widget>
        </item>
-       <item row="0" column="1" colspan="3">
-        <widget class="QLineEdit" name="login_t_username"/>
+       <item row="0" column="1">
+        <widget class="QTextEdit" name="tb_anzeige"/>
        </item>
-       <item row="1" column="0">
-        <widget class="QLabel" name="l_password">
-         <property name="text">
-          <string>Passwort</string>
-         </property>
-        </widget>
-       </item>
-       <item row="1" column="1" colspan="3">
-        <widget class="QLineEdit" name="login_t_password">
-         <property name="inputMethodHints">
-          <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
-         </property>
-         <property name="echoMode">
-          <enum>QLineEdit::PasswordEchoOnEdit</enum>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="1">
-        <spacer name="horizontalSpacer_3">
-         <property name="orientation">
-          <enum>Qt::Horizontal</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>17</width>
-           <height>20</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
-       <item row="2" column="2">
-        <widget class="QPushButton" name="login_b_login">
-         <property name="text">
-          <string>Anmelden</string>
-         </property>
-         <property name="default">
-          <bool>true</bool>
-         </property>
-        </widget>
-       </item>
-       <item row="2" column="3">
+       <item row="0" column="3">
         <spacer name="horizontalSpacer_2">
          <property name="orientation">
           <enum>Qt::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>
-           <width>148</width>
+           <width>40</width>
            <height>20</height>
           </size>
          </property>
         </spacer>
        </item>
+       <item row="0" column="2">
+        <widget class="QPushButton" name="b_search_places">
+         <property name="text">
+          <string>S</string>
+         </property>
+         <property name="iconSize">
+          <size>
+           <width>16</width>
+           <height>16</height>
+          </size>
+         </property>
+        </widget>
+       </item>
       </layout>
      </widget>
     </widget>
+    <widget class="QGroupBox" name="groupBox">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>511</width>
+       <height>501</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Übersicht</string>
+     </property>
+    </widget>
    </widget>
-   <widget class="QWidget" name="tab_2">
+   <widget class="QWidget" name="tab">
+    <attribute name="title">
+     <string>Geräte</string>
+    </attribute>
+    <widget class="QGroupBox" name="g_device_scan">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>10</y>
+       <width>511</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Gerät einscannen</string>
+     </property>
+     <widget class="QPushButton" name="_2_b_scan">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>151</width>
+        <height>31</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Gerät einscannen</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="Gerateverwaltung">
+    <attribute name="title">
+     <string>Geräteverwaltung</string>
+    </attribute>
+    <widget class="QGroupBox" name="g_device_create">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>20</y>
+       <width>491</width>
+       <height>151</height>
+      </rect>
+     </property>
+     <property name="title">
+      <string>Gerät anlegen</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="Benutzerverwaltung">
     <attribute name="title">
      <string>Benutzerverwaltung</string>
     </attribute>
-    <widget class="QGroupBox" name="g_create">
+    <widget class="QGroupBox" name="g_user_create">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -275,7 +323,7 @@
         </widget>
        </item>
        <item row="2" column="1">
-        <widget class="QPushButton" name="change_b_save_2">
+        <widget class="QPushButton" name="change_b_reset">
          <property name="text">
           <string>Zurücksetzen</string>
          </property>
@@ -297,7 +345,7 @@
       </layout>
      </widget>
     </widget>
-    <widget class="QGroupBox" name="g_change">
+    <widget class="QGroupBox" name="g_user_change">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -420,26 +468,93 @@
      </widget>
     </widget>
    </widget>
+   <widget class="QWidget" name="tab_2">
+    <attribute name="title">
+     <string>Herstellerverwaltung</string>
+    </attribute>
+   </widget>
   </widget>
-  <widget class="QPushButton" name="b_user_login">
+  <widget class="QStackedWidget" name="stackedWidget">
    <property name="geometry">
     <rect>
-     <x>490</x>
-     <y>140</y>
-     <width>80</width>
-     <height>23</height>
+     <x>670</x>
+     <y>0</y>
+     <width>141</width>
+     <height>91</height>
     </rect>
    </property>
-   <property name="text">
-    <string>Login</string>
+   <property name="currentIndex">
+    <number>1</number>
    </property>
+   <widget class="QWidget" name="page">
+    <widget class="QCommandLinkButton" name="b_user_logout">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>30</y>
+       <width>164</width>
+       <height>33</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <family>Segoe UI</family>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Ausloggen</string>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>15</width>
+       <height>15</height>
+      </size>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>21</x>
+       <y>20</y>
+       <width>101</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Benutzername</string>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_2">
+    <widget class="QPushButton" name="b_user_login">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>32</y>
+       <width>101</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>11</pointsize>
+      </font>
+     </property>
+     <property name="text">
+      <string>Login</string>
+     </property>
+    </widget>
+   </widget>
   </widget>
  </widget>
  <tabstops>
   <tabstop>tabWidget</tabstop>
-  <tabstop>login_t_username</tabstop>
-  <tabstop>login_t_password</tabstop>
-  <tabstop>login_b_login</tabstop>
   <tabstop>create_t_username</tabstop>
   <tabstop>create_t_password</tabstop>
   <tabstop>create_t_password_2</tabstop>
@@ -451,7 +566,7 @@
   <tabstop>change_b_save</tabstop>
   <tabstop>reset_t_username</tabstop>
   <tabstop>lineEdit</tabstop>
-  <tabstop>change_b_save_2</tabstop>
+  <tabstop>change_b_reset</tabstop>
  </tabstops>
  <resources/>
  <connections/>
