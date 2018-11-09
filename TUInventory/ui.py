@@ -21,11 +21,25 @@ class MainDialog(QtWidgets.QDialog):
         super().__init__(parent)
         self.ui = uic.loadUi("main.ui", self)
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
+        self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
+        self.ui.b_home_1.clicked.connect(self.b_home_1_click)
+        self.ui.b_user_change.clicked.connect(self.b_user_change_click)
     
     def b_user_login_click(self):
         global dialog_login
         dialog_login.exec() # show dialog_login as modal dialog => blocks controll of main
         self.hide()
+        self.ui.log_in_out.setCurrentIndex(0)
+
+    def b_user_logout_click(self):
+        self.ui.log_in_out.setCurrentIndex(1)
+
+    def b_home_1_click(self):
+        self.ui.stackedMain.setCurrentIndex(0)
+        self.ui.tabWidget.setCurrentIndex(0)
+
+    def b_user_change_click(self):
+        self.ui.stackedMain.setCurrentIndex(1)
 
 class LoginDialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
