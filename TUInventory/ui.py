@@ -17,13 +17,60 @@ def absolute_path(relative_path):
 
 class MainDialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
-        path = absolute_path("main.ui")
+        path = absolute_path("main_horizontal.ui")
         super().__init__(parent)
-        self.ui = uic.loadUi("main.ui", self)
+        self.ui = uic.loadUi("main_horizontal.ui", self)
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
-        self.ui.b_user_change.clicked.connect(self.b_user_change_click)
+
+        self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
+        self.ui.b_tab_2.clicked.connect(self.b_tab_2_click)
+        self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
+        self.ui.b_tab_4.clicked.connect(self.b_tab_4_click)
+
+##
+        self.ui.line_1.show()
+        self.ui.line_2.hide()
+        self.ui.line_3.hide()
+        self.ui.line_4.hide()
+
+    def b_home_1_click(self):
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.line_1.show()
+        self.ui.line_2.hide()
+        self.ui.line_3.hide()
+        self.ui.line_4.hide()
+
+    def b_tab_1_click(self):
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.line_1.show()
+        self.ui.line_2.hide()
+        self.ui.line_3.hide()
+        self.ui.line_4.hide()
+
+    def b_tab_2_click(self):
+        self.ui.stackedWidget.setCurrentIndex(3)
+        self.ui.line_1.hide()
+        self.ui.line_2.show()
+        self.ui.line_3.hide()
+        self.ui.line_4.hide()
+
+    def b_tab_3_click(self):
+        self.ui.stackedWidget.setCurrentIndex(1)
+        self.ui.line_1.hide()
+        self.ui.line_2.hide()
+        self.ui.line_3.show()
+        self.ui.line_4.hide()
+
+    def b_tab_4_click(self):
+        self.ui.stackedWidget.setCurrentIndex(2)
+        self.ui.line_1.hide()
+        self.ui.line_2.hide()
+        self.ui.line_3.hide()
+        self.ui.line_4.show()
+##    
+    
     
     def b_user_login_click(self):
         global dialog_login
@@ -34,12 +81,6 @@ class MainDialog(QtWidgets.QDialog):
     def b_user_logout_click(self):
         self.ui.log_in_out.setCurrentIndex(1)
 
-    def b_home_1_click(self):
-        self.ui.stackedMain.setCurrentIndex(0)
-        self.ui.tabWidget.setCurrentIndex(0)
-
-    def b_user_change_click(self):
-        self.ui.stackedMain.setCurrentIndex(1)
 
 class LoginDialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
