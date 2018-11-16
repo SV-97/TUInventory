@@ -264,3 +264,6 @@ __pycache__/
 # virtual environments
 *venv*
 .key
+
+# Databases
+.db
