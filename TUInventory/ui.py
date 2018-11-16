@@ -8,7 +8,6 @@ from PyQt5.QtGui import QPainter, QColor, QPen
 from PyQt5.QtGui import QIcon
 from PyQt5.QtCore import Qt
 
-import adapters
 from classes import User
 
 connection_users = sqlite3.connect("tuinventory.db")
@@ -166,4 +165,3 @@ dialog_login = LoginDialog()
 dialog_main.show() # show dialog_main as modeless dialog => return control back immediately
 
 sys.exit(app.exec_())
-
