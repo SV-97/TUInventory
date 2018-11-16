@@ -266,4 +266,4 @@ __pycache__/
 *.key
 
 # Databases
-*.db
+**/*.db
