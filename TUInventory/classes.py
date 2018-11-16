@@ -3,13 +3,14 @@ import re
 from secrets import randbits
 
 import sqlalchemy
-from sqlalchemy import Column, Integer, LargeBinary, String
+from sqlalchemy import Boolean, Column, Integer, LargeBinary, String
 from sqlalchemy.ext.declarative import declarative_base
 import sqlalchemy.orm as orm
 
 Base = declarative_base()
 
-engine = sqlalchemy.create_engine('sqlite:///:memory:', echo=True)
+engine = sqlalchemy.create_engine("sqlite:///:memory:", echo=False)
+# engine = sqlalchemy.create_engine("sqlite:///test.db", echo=False)
 
 class BigInt(sqlalchemy.types.TypeDecorator):
     """SQLAlchemy datatype for dealing with ints that potentially overflow a basic SQL Integer"""
@@ -51,8 +52,35 @@ class ContextSession():
                     return True
         return ContextSession
 
+class Producer():
+    """Represents a producer of articles"""
+    _tablename = "producers"
+    def __init__(self, name, uid=None):
+        self.uid = uid
+        self.name = name
+
+class Article():
+    """Represents an article"""
+    _tablename = "articles"
+    def __init__(self, name, producer=None, uid=None):
+        self.uid = uid
+        self.name = name
+        self.producer = producer
+
+class Device():
+    """Represents an article"""
+    _tablename = "devices"
+    def __init__(self, article=None, uid=None):
+        self.uid = uid
+        self.article = article
+
 class PhoneNumber():
-    __slots__ = ("raw_string", "match", "country_code", "area_code", "subscriber_number", "extension", "pattern")
+    __tablename__ = "phone_numbers"
+    raw_string = Column(String)
+    country_code = Column(String)
+    area_code = Column(String)
+    subscriber_number = Column(String)
+    extension = Column(String)
     pattern = r"(((\+\d{1,3})|(0)) ?([1-9]+) )?(\d+ ?)+(-\d+)?"
     def __init__(self, raw_string):
         """Get a Phone Number from raw input string
@@ -80,7 +108,7 @@ class PhoneNumber():
         return re.sub(r"\D", "", string)
     def _extract_country_code(self):
         country_code = self.match.group(2)
-        if "+" in country_code:
+        if country_code and "+" in country_code:
             return self._whitespacekiller(country_code)
         else:
             return "049"
@@ -92,15 +120,31 @@ class PhoneNumber():
         return self._whitespacekiller(subscriber_number)
     def _extract_extension(self):
         extension = self.match.group(7)
+        extension = "" if not extension else extension
         return self._whitespacekiller(extension)
     def __str__(self):
         """Build string of the telephone number based on DIN 5008
         """
         extension = f"-{self.extension}" if self.extension else ""
-        return "f+{self.country_code} {self.area_code} {self.subscriber_number}{extension}"
+        return f"+{self.country_code} {self.area_code} {self.subscriber_number}{extension}"
+    def __format__(self, format_spec):
+        return f"{str(self):{format_spec}}"
+    
+class Location(Base):
+    """Represents a physical location where a Device or User may be located"""
+    __tablename__ = "locations"
+    uid = Column(Integer, primary_key=True)
+    name = Column(String, unique=True)
+    # users = orm.relationship("User", backref="location")
+    def __init__(self, name="", uid=None):
+        self.name = name
+        self.uid = uid
 
 class User(Base):
-    """Represents a user of the application"""
+    """Represents a user of the application
+    ToDo:
+        - Phonenumber relationship(they seem to be working as of now but aren't even in the database(?))
+    """
     __tablename__ = "users"
     uid = Column(Integer, primary_key=True)
     e_mail = Column(String, unique=True)
@@ -108,17 +152,18 @@ class User(Base):
     salt = Column(BigInt)
     name = Column(String)
     surname = Column(String)
-    location = Column(Integer)
-    phone_nr = Column(String)
-    def __init__(self, e_mail, password, name, surname, location, phone_nr, uid=None, salt=None):
+    is_admin = Column(Boolean)
+    location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
+    location = orm.relationship("Location", backref=orm.backref("users", uselist=False))
+    def __init__(self, e_mail, password, name, surname, phone_nr, uid=None, salt=None):
         self.uid = uid
         self.e_mail = e_mail.lower()
         self.salt = salt if salt else randbits(256)
         self.name = name.lower()
         self.surname = surname.lower()
-        self.location = location
         self.phone_nr = PhoneNumber(phone_nr)
         self.password = self.hash(password)
+        self.is_admin = False
     def hash(self, password):
         """Hash a string with pbkdf2
         The salt is XORd with the e_mail to get the final salt
@@ -128,12 +173,6 @@ class User(Base):
             salt=str(int.from_bytes(self.e_mail.encode(), byteorder="big") ^ self.salt).encode(), 
             iterations=9600)
 
-class Location(Base):
-    """Represents a physical location where a Device or User may be located"""
-    __tablename__ = "locations"
-    uid = Column(Integer, primary_key=True)
-    name = Column(String, unique=True)
-    
 class Responsibility(Base):
     """Represents a responsibility a User has for a Device"""
     __tablename__ = "responsibilities"
@@ -142,23 +181,33 @@ class Responsibility(Base):
     location_uid = Column(Integer, primary_key=True)
     
 Base.metadata.create_all(bind=engine) # Database initialized
+if __name__ == "__main__":
+    location1 = Location("Gebäude 23")
+    location2 = Location("Büro")
+    user1 = User(e_mail="Schokoladenkönig@googlemail.com", password="12345ibimsdaspasswort", name="Schoko", surname="König", phone_nr="123456")
+    user2 = User(e_mail="Oladenkönig@googlemail.com", password="12msdassort", name="Schoko", surname="Künig", phone_nr="654321")
+    user1.location = location1
+    user2.location = location2
+    Session = orm.sessionmaker(bind=engine)
+    session = Session()
 
-user1 = User(e_mail="Schokoladenkönig@googlemail.com", password="12345ibimsdaspasswort", name="Schoko", surname="König", location=5, phone_nr="123456")
-user2 = User(e_mail="Oladenkönig@googlemail.com", password="12msdassort", name="Schoko", surname="Künig", location=45, phone_nr="654321")
+    session.add(user1)
+    session.add(user2)
+    session.add(location1)
+    session.add(location2)
 
-Session = orm.sessionmaker(bind=engine)
-session = Session()
+    del user1
+    del user2
 
-session.add(user1)
-session.add(user2)
+    try:
+        print(user1.name)
+    except Exception:
+        print("no user1")
+    users = session.query(User).all()
 
-users = session.query(User).filter_by(name="Schoko").all()
+    print("printing")
+    for user in users:
+        print(f"{user.uid:>5}:   {user.e_mail:>40} | {user.phone_nr:<20} | {user.location.name}")
 
-for user in users:
-    print(f"{user.uid:>5}:   {user.e_mail}")
-    print(user.salt)
-    print(user.salt+1)
-
-session.commit()
-session.close()
-
+    session.commit()
+    session.close()
