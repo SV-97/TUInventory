@@ -1,0 +1,1196 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language ngerman
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command bibtex8
+\index_command default
+\float_placement H
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize a4paper
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\rightmargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+rmdefault}{phv} % Arial
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+sfdefault}{phv} % Arial
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+TUI - Test- und Integrationssystem für SCADA-Software
+\end_layout
+
+\begin_layout Author
+von Stefan Volz & Yannis Köhler
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace 40pheight%
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Graphics
+	filename Bilder/Logo.png
+	scale 60
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename Bilder/TUI_Logo.png
+	scale 70
+
+\end_inset
+
+
+\begin_inset space \quad{}
+\end_inset
+
+
+\begin_inset Graphics
+	filename Bilder/Schullogo.png
+	scale 25
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section*
+Abkürzungsverzeichnis
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Abk.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Beschreibung
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Digital Input
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Digital Output
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IPC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Industrie-PC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+KW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kalenderwoche
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CV
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Computer Vision
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PBKDF2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Password-Based Key Derivation Function 2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PEP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Python Enhancement Proposal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SCADA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Supervisory Control and Data Acquisition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SV
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stefan Volz
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User Interface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+YK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yannis Köhler
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Einführung
+\end_layout
+
+\begin_layout Section
+Die Firma Padcon
+\end_layout
+
+\begin_layout Standard
+Die Firma Padcon GmbH, ein Tochterunternehmen von INNOGY, ist ein weltweit
+ agierendes IT-Unternehmen mit Sitz in Kitzingen.
+ Zu ihren Produkten gehören SCADA-Systeme zur Überwachung von Groß-Photovoltaika
+nlagen.
+ Besonders nennenswert ist der „Pavagada Solar Park“ in Indien, welcher,
+ nach Bauabschluss, mit knapp 2GW die aktuell größte Photovoltaikanlage
+ der Welt darstellt.
+\end_layout
+
+\begin_layout Section
+Aufgabenstellung
+\end_layout
+
+\begin_layout Standard
+Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
+ werden.
+ Dies umfasst die Dimensionierung und Installation von vier sogenannten
+ Testplätzen in einem dafür vorgesehenen Raum.
+ Hierfür muss auch eine neue Unterverteilung gebaut werden.
+ An den Testplätzen wird man verschiedene Hardware wie IPC‘s, Router, Switches,
+ etc.
+ testen können.
+ Ebenfalls sollen neue Versionen der firmeneigenen SCADA-Software, welche
+ die Photovoltaik-Anlagen überwacht und Daten ausliest/aufzeichnet, getestet
+ werden können, bevor diese an den Kunden ausgeliefert werden.
+ Desweiteren soll eine Inventarsoftware erstellt werden, welche ein Einscannen
+ von Barcodes ermöglicht und somit eine schnelle Zuordnung von Geräten zu
+ Testplatz und zugehörigem Verantwortlichen zulässt.
+ [sv]
+\end_layout
+
+\begin_layout Part
+Test und Integrationsraum
+\end_layout
+
+\begin_layout Standard
+avbasdasdasd
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+TUInventory
+\end_layout
+
+\begin_layout Section
+Python 3
+\end_layout
+
+\begin_layout Subsection
+Begriffsdefinitionen
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Begriff
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Immutabel / immutable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Unveränderbar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kontext Manager / Context Manger
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Klasse die __enter__ und __exit__ implementiert.
+ Erlaubt es Objekte auch im Fehlerfall sauber zu deinitialisieren
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lazy evaluation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Die Auswertung eines Ausdrucks erfolgt nur soweit sie gerade nötig ist.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Magic Method
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eine i.d.R.
+ implizit aufgerufene Methode, welche einer Klasse besondere Fähigkeiten
+ gibt
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Python3"
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mutabel / mutable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Veränderbar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Greyedout
+status open
+
+\begin_layout Plain Layout
+https://rszalski.github.io/magicmethods/ - __init__ ist nicht alleiniger Konstrukt
+or, es wird auch immer erst __new__ aufgerufen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eine Besonderheit Pythons ist, dass alles, sei es Klasse, Instanz oder Funktion,
+ ein Objekt ist.
+ Dies bringt eine extreme Flexibilität mit sich.
+\end_layout
+
+\begin_layout Standard
+Die Definitionen der Begriffe 
+\emph on
+Funktion
+\emph default
+ und 
+\emph on
+Methode
+\emph default
+ sind in Python anders als man es eventuell aus anderen Programmiersprachen
+ kennt, daher seien sie hier kurz erläutert:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+kein decorator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+@classmethod
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+@staticmethod
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Klasse
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+function
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bound method
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+function
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Instanz
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bound method
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+bound method
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+function
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Neben den 
+\emph on
+bound methods 
+\emph default
+gab es außerdem noch die sogenannten 
+\emph on
+unbound methods
+\emph default
+, die einer methode entsprechen welche ursprünglich zu einer Klasse gehört
+ hat und somit eine Instanz dieser als ersten Parameter erwartet
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PythonDocDescriptorGuide"
+
+\end_inset
+
+.
+ Jedoch wurde dieses Konzept mit Python 3.0 verworfen; was früher eine 
+\emph on
+unbound method
+\emph default
+ war ist nun ebenfalls eine 
+\emph on
+function
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PythonDocWhatsNewPython3"
+
+\end_inset
+
+.
+
+\emph default
+ Neben Methoden und Funktionen ist auch auch möglich andere Objekte in Python
+ aufrufbar zu machen, hierzu müssen sie die magic method 
+\emph on
+__call__
+\emph default
+ implementieren.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/Funktionstypen.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Die verschiedenen Funktionstypen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Beziehungen herstellen
+\end_layout
+
+\begin_layout Subsection
+Grundprinzip
+\end_layout
+
+\begin_layout Standard
+In SQLAlchemy werden Beziehungen zwischen Tables mittels der 
+\emph on
+relationship
+\emph default
+ Methode hergestellt.
+ Die Variante für die wir uns entschieden haben nutzt hierbei 
+\emph on
+backref
+\emph default
+:
+\end_layout
+
+\begin_layout Standard
+
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/1-zu-n.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Beispiel einer 1-zu-n Beziehung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es wird also in einer Klasse lediglich ein Fremdschlüssel festgelegt.
+ In der anderen Klasse wird das 
+\emph on
+relationship
+\emph default
+ gesetzt.
+ Dieses 
+\emph on
+relationship
+\emph default
+ stellt hierbei bei jeder Instanz von 
+\emph on
+Parent
+\emph default
+ eine Liste aller 
+\emph on
+Children
+\emph default
+-Instanzen zur Verfügung.
+ Umgekehrt legt 
+\emph on
+backref
+\emph default
+ bei 
+\emph on
+Children
+\emph default
+ den Member 
+\emph on
+parent
+\emph default
+ an welcher auf die zugehörige Parent-Instanz verweist.
+ Hier gilt zu beachten, dass es egal ist auf welcher Seite der Beziehung
+ der Fremdschlüssel hinterlegt ist.
+\end_layout
+
+\begin_layout Standard
+Erwähnenswert ist außerdem, dass das erste Argument von 
+\emph on
+relationship
+\emph default
+ nicht die Klasse 
+\emph on
+Child
+\emph default
+, sondern ein String, der ihren Namen enthält, ist.
+ Dies ermöglicht es Beziehungen anzulegen, ohne das die Partnerklasse bereits
+ angelegt wurde bzw.
+ bekannt ist, was das Arbeiten wesentlich komfortabler macht.
+\end_layout
+
+\begin_layout Subsection
+1-zu-1 Beziehung
+\end_layout
+
+\begin_layout Standard
+Es lassen sich mit SQLAlchemy jedoch nicht nur 1-zu-n Beziehungen anlegen.
+ Durch Erweiterung der 
+\emph on
+relationship
+\emph default
+-Methode mit dem 
+\emph on
+uselist
+\emph default
+ Parameter auf folgende Weise lässt sich an beiden Seiten des relationships
+ eine Einzelinstanz hinterlegen.
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/1-zu-1.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Beispiel einer 1-zu-1 Beziehung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Implementierung
+\end_layout
+
+\begin_layout Subsection
+Automatisches Abmelden
+\end_layout
+
+\begin_layout Standard
+Bei einem zenralen System, dass mehreren Nutzern zugänglich ist, ist es
+ wünschenswert wenn ein Nutzer automatisch abgemeldet wird sobald er eine
+ bestimmte Zeit untätig ist.
+ Dies beugt Missbrauch vor.
+ Hierzu wurde die Klasse 
+\emph on
+Timeout
+\emph default
+ geschrieben.
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Timeout
+\emph default
+ ermöglicht es einen Thread zu öffnen, welcher im Hintergrund mit einer
+ bestimmten Abtastrate prüft ob die eingestellte Zeit bereits verstrichen
+ ist.
+ Da es mit dieser Funktionalität an sich nur ein Timer wäre, implementiert
+ die Klasse weiterhin die Methode 
+\emph on
+reset
+\emph default
+ um den internen Timer immer dann zurückzusetzen, wenn ein bestimmtes Event
+ aufgetreten ist.
+ Jede 
+\emph on
+Timeout
+\emph default
+-Instanz erhält außerdem ein aufrufbares Objekt und eine Liste mit positionellen
+ Argumenten.
+ Beim timeout wird diese Methode mit den übergebenen Argumenten ausgeführt
+ und das Attribut 
+\emph on
+timed_out
+\emph default
+ auf 
+\emph on
+True
+\emph default
+ gesetzt.
+\end_layout
+
+\begin_layout Standard
+Da die Klasse Timeout auf paralleler Programmierung basiert sind hier einige
+ Punkte zu beachten.
+ So wird auf 
+\emph on
+timer
+\emph default
+ sowohl von außerhalb, über 
+\emph on
+reset
+\emph default
+, wie auch von innerhalb zugegriffen.
+ Die Punkte an denen diese Zugriffe stattfinden bezeichnet man als 
+\emph on
+Critical Sections
+\emph default
+, hier kann es zu sog.
+ 
+\emph on
+Race Conditions
+\emph default
+ kommen
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Python3"
+
+\end_inset
+
+.
+ Dies ist der Fall wenn ein Thread gerade auf die Variable zugreift(z.B.
+ liest) und dann der andere Thread die Kontrolle erhält und die Variable
+ überschreibt und führt dazu dass der lesende Thread einen falschen Wert
+ erhält.
+ Um dieses Problem vorzubeugen existiert die Klasse 
+\emph on
+Lock
+\emph default
+ des Moduls 
+\emph on
+threading.
+
+\emph default
+ Mithilfe dieser lassen sich Stellen, die nicht Parallel verarbeitet werden
+ dürfen, abriegeln.
+ Dabei nimmt sich der Thread, welcher zuerst seine 
+\emph on
+Critical Section
+\emph default
+ erreicht den 
+\emph on
+lock
+\emph default
+, welcher als Kontextmanager fungiert(intern werden die Methoden lock.acquire
+ und lock.release aufgerufen), Zur Parallelisierung wurde ein Thread einem
+ Prozess gegenüber bevorzugt da der overhead hier kleiner ist, es ist also
+ weniger kostspielig einen neuen Thread zu öffnen.
+ immutabler Datentyp (int) gewählt werden.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "Literaturverzeichnis"
+options "alphadin"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

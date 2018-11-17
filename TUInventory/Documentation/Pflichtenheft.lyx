@@ -1,0 +1,706 @@
+#LyX 2.2 created this file. For more info see http://www.lyx.org/
+\lyxformat 508
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\use_default_options true
+\maintain_unincluded_children false
+\language ngerman
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 2.5cm
+\rightmargin 2.5cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language german
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+rmdefault}{phv} % Arial
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+sfdefault}{phv} % Arial
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Title
+Pflichtenheft
+\end_layout
+
+\begin_layout Title
+TUI - Test- und Integrationssystem für SCADA-Software
+\end_layout
+
+\begin_layout Author
+Stefan Volz & Yannis Köhler
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Abkürzungsverzeichnis
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Abk.
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Beschreibung
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Digital Input
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Digital Output
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+IPC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Industrie-PC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+KW
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kalenderwoche
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CV
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Computer Vision
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PBKDF2
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Password-Based Key Derivation Function 2
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PEP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Python Enhancement Proposal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SCADA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Supervisory Control and Data Acquisition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SV
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Stefan Volz
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+UI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+User Interface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+YK
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Yannis Köhler
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Die Firma Padcon
+\end_layout
+
+\begin_layout Standard
+Die Firma Padcon GmbH, ein Tochterunternehmen von INNOGY, ist ein weltweit
+ agierendes IT-Unternehmen mit Sitz in Kitzingen.
+ Zu ihren Produkten gehören SCADA-Systeme zur Überwachung von Groß-Photovoltaika
+nlagen.
+ Besonders nennenswert ist der „Pavagada Solar Park“ in Indien, welcher,
+ nach Bauabschluss, mit knapp 2GW die aktuell größte Photovoltaikanlage
+ der Welt darstellt.
+\end_layout
+
+\begin_layout Section
+Aufgabenstellung
+\end_layout
+
+\begin_layout Standard
+Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
+ werden.
+ Dies umfasst die Dimensionierung und Installation von vier sogenannten
+ Testplätzen in einem dafür vorgesehenen Raum.
+ Hierfür muss auch eine neue Unterverteilung gebaut werden.
+ An den Testplätzen wird man verschiedene Hardware wie IPC‘s, Router, Switches,
+ etc.
+ testen können.
+ Ebenfalls sollen neue Versionen der firmeneigenen SCADA-Software, welche
+ die Photovoltaik-Anlagen überwacht und Daten ausliest/aufzeichnet, getestet
+ werden können, bevor diese an den Kunden ausgeliefert werden.
+ Desweiteren soll eine Inventarsoftware erstellt werden, welche ein Einscannen
+ von Barcodes ermöglicht und somit eine schnelle Zuordnung von Geräten zu
+ Testplatz und zugehörigem Verantwortlichen zulässt.
+ [sv]
+\end_layout
+
+\begin_layout Section
+Ist-Zustand
+\end_layout
+
+\begin_layout Standard
+Aktuell befindet sich ein kleiner Test-Aufbau im Hauptbüro der IT-Abteilung.
+ Dieser ist jedoch nur für Softwaretests gedacht und darf wegen andauernder
+ Tests nicht verändert werden.
+ Hier ist also keinerlei Modularität gegeben.
+ Da dieser Aufbau nur übergangsweise gebaut wurde, sollen neue Testplätze
+ errichtet werden, die den aktuellen Normen entsprechen und ein sicheres
+ Arbeiten gewährleisten.
+\end_layout
+
+\begin_layout Section
+Anforderungen
+\end_layout
+
+\begin_layout Subsection
+Musskriterien
+\end_layout
+
+\begin_layout Standard
+Die einzelnen Testplätze sollen über mehrere Spannungsebenen (verschiedene
+ Schutzkleinspannungen und Netzspannung) verfügen, am Firmennetzwerk und
+ an einem rauminternen Netzwerk angeschlossen sein.
+ Alle Testplätze sollen unabhängig voneinander abgesichert sein.
+\end_layout
+
+\begin_layout Subsection
+Wunschkriterien
+\end_layout
+
+\begin_layout Standard
+Es soll die Möglichkeit bestehen, die Steckdosen über Netzwerk zu schalten,
+ sodass z.B.
+ ein simulierter Stromausfall geplant werden kann und niemand vor Ort sein
+ muss.
+ Es soll außerdem die Möglichkeit bestehen, Geräte (wie z.B.
+ IPCs, Switches etc.) über einen Barcode zu identifizieren und die zugehörigen
+ Informationen einzulesen und in einer SQL Datenbank abzulegen.
+ [sv]
+\end_layout
+
+\begin_layout Section
+Umsetzung
+\end_layout
+
+\begin_layout Subsection
+Hardware
+\end_layout
+
+\begin_layout Subsubsection
+Verteiler
+\end_layout
+
+\begin_layout Standard
+Als Verteiler kommt ein Schaltschrank der Firma Rittal zum Einsatz.
+ Diese sind Standardmaterial der Firma Padcon.
+ In diesem werden, als Schutzeinrichtungen (Personenschutz, Brandschutz,
+ Leitungsschutz) und Lasttrennschalter, Geräte der Firma Siemens eingesetzt.
+ Eine Überwachung dieser erfolgt mittels Hilfskontakten und einem Moxa DI-Modul
+ Typ ioLogik E1210, welches den aktuellen Zustand der Schutzeinrichtungen
+ im Firmennetzwerk verfügbar macht.
+ Ein weiteres Moxa (Typ ioLogik E1211) ermöglicht es, Steckdosen außerhalb
+ des Verteilers über Relais der Fa.
+ Finder zu schalten und hält noch ausreichend viele Kontakte für eventuelle
+ Nachrüstungen bereit.
+ Der Betrieb der Moxas durch die Firma Padcon stellt kein Problem dar, da
+ diese bereits vielfach firmenintern im Einsatz sind.
+ Weitere Überwachungskreise binden außerdem die Kleinspannungsnetzteile
+ der Testplätze mit ins Firmennetz ein.
+ Hier werden Kleinspannungsschaltnetzteile der CP-E Serie von ABB eingesetzt.
+ Diese sind gängige Geräte auf den Anlagen des Auftraggebers.
+ Im Bereich der Klemmen werden, wie bei der Fa.
+ Padcon üblich, Reihenklemmen von Phönix eingesetzt.
+\end_layout
+
+\begin_layout Subsubsection
+Der Raum
+\end_layout
+
+\begin_layout Standard
+Im Raum wird auf eine Installation in Brüstungskanälen gesetzt.
+ In diesen sitzen Schukosteckdosen und Netzwerkdosen zur Versorgung der
+ einzelnen Testplätze und des Serverschranks.
+ Als Leitungen kommen NYM-J 3x2.5mm2 für Netzspannungskreise, Cat.
+ 7 Duplex Netzwerkleitungen aus Bestand des Auftraggebers und ÖLFLEX 5x1,5mm2
+ für die Kleinspannungsverteilung zum Einsatz.
+\end_layout
+
+\begin_layout Subsection
+Software
+\end_layout
+
+\begin_layout Subsubsection
+Sofwareumgebung
+\end_layout
+
+\begin_layout Standard
+Als Hauptprogrammiersprache für das Inventarsystem wird Python3 verwendet.
+ Hier wird die Erkennung der Barcodes über den ZBar Wrapper pyzbar reaslisiert.
+ Das Interface zur Kamera erfolgt mittels OpenCV und dessen Python Wrapper.
+ Die Daten werden in einer SQLite3 Datenbank hinterlegt.
+ Die Formatierung des Python Codes erfolgt basierend auf PEP 8 mit Docstrings
+ nach PEP 257.
+ Da noch nicht gesagt werden kann, ob das System, auf dem die Anwendung
+ ausgeliefert wird, ein Windows- oder ein UNIX-System ist, wird die Anwendung
+ darauf ausgelegt, auf beiden Plattformen zu funktionieren.
+ Es wurde der Wunsch geäußert, die Anwendung später im Bereich der Ausbildung
+ für Informatiker für Anwendungsentwicklung einzusetzen und hier weiterzuentwick
+eln bzw.
+ in andere Systeme einzubinden.
+ Daher wird die Kern-Funktionalität des Barcode-Lesens als command-line
+ utility implementiert und die komplette Anwendung möglichst modular gestaltet.
+\end_layout
+
+\begin_layout Subsubsection
+Datenbankmodell
+\end_layout
+
+\begin_layout Standard
+Die Datenbank stellt folgende Entitäten dar:
+\end_layout
+
+\begin_layout Itemize
+Physische Geräte
+\end_layout
+
+\begin_layout Itemize
+Artikel
+\end_layout
+
+\begin_layout Itemize
+Hersteller
+\end_layout
+
+\begin_layout Itemize
+Lokalitäten
+\end_layout
+
+\begin_layout Itemize
+Mitarbeiter
+\end_layout
+
+\begin_layout Subsubsection
+Benutzeroberfläche
+\end_layout
+
+\begin_layout Standard
+Es wird eine Benutzeroberfläche erstellt, in der es möglich ist abzufragen,
+ welcher Mitarbeiter aktuell die Verantwortung für welches Gerät innehält
+ und wo sich dieses Gerät befindet.
+ Um eine Manipulation der Zugehörigkeit eines Gerätes durch Dritte vorzubeugen,
+ ist das Setzen einer Verantwortlichkeitsbeziehung nur durch die Person
+ möglich, welche die Verantwortung übertragen bekommt.
+ Zu diesem Zweck wird eine einfache Benutzerverwaltung realisiert.
+ Da es sich hierbei nicht um ein Hochsicherheitssystem handelt, ist es ausreiche
+nd, die Passwörter zu hashen und diese lokal abzuspeichern.
+ Hierfür wird der PBKDF2-Algorithmus eingesetzt.
+\end_layout
+
+\begin_layout Section
+Meilensteine und Termine
+\end_layout
+
+\begin_layout Enumerate
+Planung der Raumaufteilung (KW 39) 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Position der Unterverteilung, der Testplätze, des Serverschranks und der
+ Klimaanlage wurden abschließend festgelegt.
+ 
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Planung der Testplätze und Unterverteilung(KW 42)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Alle Anforderungen an die Testplätze wurden aufgenommen und daraus ein Stromlauf
+plan mit allen benötigten Geräten für den Schaltschrank erstellt.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Mechanischer und elektrischer Aufbau der Unterverteilung (KW 44) 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Alle Geräte wurden im Schaltschrank montiert und bis zu den Klemmen verkabelt.
+ Der Schaltschrank wurde an seiner endgültigen Position aufgehängt.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Fertigstellen des Pflichtenhefts (KW 45) 
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Das Pflichtenheft wurde fertiggestellt und zur Bewertung abgegeben.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Inbetriebnahme des Serverschranks an der Unterverteilung (KW 46)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Der bereits in Betrieb genommene Serverschrank wird nun durch die neue Untervert
+eilung versorgt.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Installationsarbeiten Testplätze abgeschlossen (KW 50)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Die restlichen Installationsarbeiten, wie Steckdosen und Lichtschalter sind
+ erledigt, alle Netzwerkdosen sind am Patchfeld im Serverschrank angeschlossen
+ und verpatcht.
+\end_layout
+
+\begin_layout Description
+2019
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Alle Module der Software fertiggestellt (KW1)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Die Grundfunktionalität des Barcode-Lesens ist gegeben.
+ Eine Setupdatei zum Initialisieren der Datenbank ist geschrieben.
+ Die Grundlegende UI ist erstellt.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Zusammenführung der Module (KW 10)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Die verschiedenen Module UI, Datenbank und Barcode-Reader sind verknüpft.
+ Steckdosen sind über Web-Interface schaltbar.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Abschließen der Dokumentation (02.04.19)
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+Die Dokumentation ist vollendet und wurde zur Bewertung abgegeben.
+\end_layout
+
+\end_deeper
+\end_body
+\end_document
