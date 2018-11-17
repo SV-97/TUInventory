@@ -3,9 +3,10 @@ import re
 from secrets import randbits
 
 import sqlalchemy
-from sqlalchemy import Boolean, Column, Integer, LargeBinary, String
+from sqlalchemy import Boolean, Column, Float, Integer, LargeBinary, String
 from sqlalchemy.ext.declarative import declarative_base
-import sqlalchemy.orm as orm
+
+orm = sqlalchemy.orm
 
 Base = declarative_base()
 
@@ -52,29 +53,43 @@ class ContextSession():
                     return True
         return ContextSession
 
-class Producer():
+class Producer(Base):
     """Represents a producer of articles"""
-    _tablename = "producers"
+    __tablename__ = "producers"
+    uid = Column(Integer, primary_key=True)
+    name = Column(String)
+    articles = orm.relationship("Article", backref="producer")
     def __init__(self, name, uid=None):
         self.uid = uid
         self.name = name
 
-class Article():
+class Article(Base):
     """Represents an article"""
-    _tablename = "articles"
+    __tablename__ = "articles"
+    uid = Column(Integer, primary_key=True)
+    name = Column(String)
+    producer_uid = Column(Integer, sqlalchemy.ForeignKey("producers.uid"))
+    last_price = Column(Float(asdecimal=True))
+    devices = orm.relationship("Device", backref="article")
     def __init__(self, name, producer=None, uid=None):
         self.uid = uid
         self.name = name
         self.producer = producer
 
-class Device():
+class Device(Base):
     """Represents an article"""
-    _tablename = "devices"
-    def __init__(self, article=None, uid=None):
+    __tablename__ = "devices"
+    uid = Column(Integer, primary_key=True)
+    article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
+    name = Column(String)
+    code = Column(String)
+    location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
+    responsibilities = orm.relationship("Responsibility", backref="device")
+    def __init__(self, code=None, uid=None):
         self.uid = uid
-        self.article = article
+        self.code = code
 
-class PhoneNumber():
+class PhoneNumber(): #ToDo: Doesn't inherit from Base as of now!
     __tablename__ = "phone_numbers"
     raw_string = Column(String)
     country_code = Column(String)
@@ -135,7 +150,8 @@ class Location(Base):
     __tablename__ = "locations"
     uid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
-    # users = orm.relationship("User", backref="location")
+    devices = orm.relationship("Device", backref=orm.backref("location", uselist=False))
+    responsibilities = orm.relationship("Responsibility", backref="location")
     def __init__(self, name="", uid=None):
         self.name = name
         self.uid = uid
@@ -143,7 +159,7 @@ class Location(Base):
 class User(Base):
     """Represents a user of the application
     ToDo:
-        - Phonenumber relationship(they seem to be working as of now but aren't even in the database(?))
+        - PhoneNumber relationship(they seem to be working as of now but aren't even in the database(?))
     """
     __tablename__ = "users"
     uid = Column(Integer, primary_key=True)
@@ -155,6 +171,7 @@ class User(Base):
     is_admin = Column(Boolean)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
     location = orm.relationship("Location", backref=orm.backref("users", uselist=False))
+    responsibilities = orm.relationship("Responsibility", backref="user")
     def __init__(self, e_mail, password, name, surname, phone_nr, uid=None, salt=None):
         self.uid = uid
         self.e_mail = e_mail.lower()
@@ -176,9 +193,9 @@ class User(Base):
 class Responsibility(Base):
     """Represents a responsibility a User has for a Device"""
     __tablename__ = "responsibilities"
-    device_uid = Column(Integer, primary_key=True)
-    user_uid = Column(Integer, primary_key=True)
-    location_uid = Column(Integer, primary_key=True)
+    device_uid = Column(Integer, sqlalchemy.ForeignKey("devices.uid"), primary_key=True)
+    user_uid = Column(Integer, sqlalchemy.ForeignKey("users.uid"), primary_key=True)
+    location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"), primary_key=True)
     
 Base.metadata.create_all(bind=engine) # Database initialized
 if __name__ == "__main__":
@@ -188,26 +205,70 @@ if __name__ == "__main__":
     user2 = User(e_mail="Oladenkönig@googlemail.com", password="12msdassort", name="Schoko", surname="Künig", phone_nr="654321")
     user1.location = location1
     user2.location = location2
+
+    producer1 = Producer("Die Schokoladenfabrik")
+    producer2 = Producer("Intel")
+    article1 = Article("25kg Schokoblock")
+    article2 = Article("Kein 25kg Schokoblock")
+    article3 = Article("Das Schokoding")
+    article1.producer = producer1
+    article2.producer = producer2
+    article3.producer = producer1
+    device1 = Device("12345")
+    device1.article = article1
+    device1.location = location1
+    device2 = Device("98765")
+    article1.devices.append(device2)
+    device2.location = location2
+    resp1 = Responsibility()
+    resp1.user = user1
+    resp1.location = location2
+    resp1.device = device1
+
     Session = orm.sessionmaker(bind=engine)
     session = Session()
 
-    session.add(user1)
-    session.add(user2)
     session.add(location1)
     session.add(location2)
+    session.add(user1)
+    session.add(user2)
+    session.add(article1)
+    session.add(article2)
+    session.add(article3)
+    session.add(producer1)
+    session.add(producer2)
+    session.add(resp1)
 
+    print("-"*30)
+    print(f"{article1.producer.name} hat folgende Artikel")
+    for art in producer1.articles:
+        print(f"{' '*5}{art.name}")
+        print(f"{' '*10}Instanzen dieses Artikels sind:")
+        for device in art.devices:
+            print(f"{device.code:>20} gelagert in {device.location.name:<20}")
+    print("-"*30)
+    
     del user1
     del user2
+    del location1
+    del location2
 
     try:
         print(user1.name)
     except Exception:
-        print("no user1")
-    users = session.query(User).all()
+        print("There's no user1")
+    print("-"*30)
 
-    print("printing")
+    users = session.query(User).all()
+    locations = session.query()
+
     for user in users:
         print(f"{user.uid:>5}:   {user.e_mail:>40} | {user.phone_nr:<20} | {user.location.name}")
+    print("-"*30)
+    print("Known responsibilities for these users are:")
+    for user in users:
+        for resp in user.responsibilities:
+            print(f"{resp.user.name:^15}|{resp.device.code:^15}|{resp.location.name:^15}")
 
     session.commit()
     session.close()
