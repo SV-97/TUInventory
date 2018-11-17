@@ -3,19 +3,15 @@ import sys
 import pathlib
 import sqlite3
 
-from PyQt5 import QtWidgets, uic
-from PyQt5.QtGui import QPainter, QColor, QPen
-from PyQt5.QtGui import QIcon
+from PyQt5 import uic, QtWidgets
+from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
 from PyQt5.QtCore import Qt
-
-from classes import User
 
 connection_users = sqlite3.connect("tuinventory.db")
 
 def absolute_path(relative_path):
     path = pathlib.Path(os.path.dirname(__file__))
     return path / relative_path
-
 
 class MainDialog(QtWidgets.QDialog):
 
