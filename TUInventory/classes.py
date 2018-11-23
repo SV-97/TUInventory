@@ -9,9 +9,9 @@ from sqlalchemy.ext.declarative import declarative_base
 orm = sqlalchemy.orm
 
 Base = declarative_base()
-
-with open("TUInventory/test.db", "w") as f:
-    f.flush()
+if __name__ == "__main__":
+    with open("TUInventory/test.db", "w") as f:
+        f.flush()
 engine = sqlalchemy.create_engine("sqlite:///TUInventory/test.db", echo=False)
 # engine = sqlalchemy.create_engine("sqlite:///:memory:", echo=False)
 
