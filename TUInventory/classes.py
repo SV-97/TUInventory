@@ -113,19 +113,20 @@ class PhoneNumber(Base):
             config to set locale (subscriber number prefix and country code)
         """
         self.raw_string = raw_string
+        if not self.raw_string:
+            self.country_code = ""
+            self.area_code = ""
+            self.subscriber_number = ""
+            self.extension = ""
+            self.match = None
+            return
         self.match = re.match(self.pattern, self.raw_string)
         if not self.match:
-            raise self.NoNumberFoundWarning(self.raw_string)
+            raise self.NoNumberFoundWarning(raw_string)
         self.country_code = self._extract_country_code()
         self.area_code = self._extract_area_code()
         self.subscriber_number = self._extract_subscriber_number()
         self.extension = self._extract_extension()
-
-    class NoNumberFoundWarning(Warning):
-        def __init__(self, raw_string):
-            super().__init__(self)
-            self.args[0] = f"Unable to find phone number in raw_string"
-            self.args[1] = raw_string
 
     @staticmethod
     def _whitespacekiller(string):
@@ -161,6 +162,11 @@ class PhoneNumber(Base):
     def __format__(self, format_spec):
         return f"{str(self):{format_spec}}"
 
+    class NoNumberFoundWarning(Warning):
+        def __init__(self, raw_string):
+            self.raw_string = raw_string
+        def __str__(self):
+            return f'No telephonenumber was found in: "{self.raw_string}"'
 
 class Location(Base):
     """Represents a physical location where a Device or User may be located"""
