@@ -61,38 +61,47 @@ def logout():
     """Log user out of application"""
     pass
 
+
 class Timeout(threading.Thread):
-    def __init__(self, timeout, resolution, function, args=[]):
+    def __init__(self, timeout, function, args=[]):
         """Timer that runs in background and executes a function if it's not refreshed
         Args:
             function: function that is executed once time runs out
-            resolution: time in seconds that between timeout checks
             timeout: time in seconds after which the timeout executes the function
             args: arguments for function
         """
         super().__init__()
         self.timeout = timeout
-        self.timer = 0
-        self.resolution = resolution
         self.function = function
         self.args = args
         self.lock = threading.Lock()
         self.timed_out = False
+        self.reset()
+
+    def _refresh_timer(self):
+        with self.lock:
+            return self.timeout - (time() - self.last_interaction_timestamp)
+
+    timer = property(fget=_refresh_timer)
 
     def reset(self):
         """Reset the internal timer"""
-        self.timer = 0
+        with self.lock:
+            if not self.timed_out:
+                self.is_reset = True
+                self.last_interaction_timestamp = time()
 
     def run(self):
-        t1 = time()
-        if self.timer > self.timeout:
-            self.timed_out = True
-            self.function(*self.args)
-        else:
-            t2 = time()
-            sleep(self.resolution - (t2 - t1))
-            self.timer += self.resolution
-            self.run()
+        with self.lock:
+            if self.is_reset:
+                self.is_reset = False           
+            else:
+                self.timed_out = True
+                self.function(*self.args)
+                return
+            difference_to_timeout = self.timeout - (time() - self.last_interaction_timestamp)
+        sleep(difference_to_timeout)
+        self.run() 
 
 if __name__ == "__main__":
 
