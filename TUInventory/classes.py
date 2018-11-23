@@ -28,35 +28,33 @@ class BigInt(sqlalchemy.types.TypeDecorator):
         return int(value)
 
 
-class ContextSession():
-    """Factory for contextmanagers for Session objects"""
-    @classmethod
-    def setup(self, engine):
-        """"Initialize a ContextSession class
-        Args:
-            engine (sqlalchemy.engine.base.Engine): Engine that's bound to the sessionmaker
-        Example:
-            engine = sqlalchemy.create_engine('sqlite:///:memory:')
-            CSession = ContextSession(engine)
-            with CSession() as session:
-                session.add(user1)
-                session.add(user2)
-        """
-        class ContextSession():
-            _engine = engine
-            _Session = orm.sessionmaker(bind=engine)
-            def __enter__(self):
-                self.session = self._Session()
-                return self.session
-            def __exit__(self, exc_type, exc_value, traceback):
-                if exc_value or exc_type or traceback:
-                    self.session.rollback()
-                    return False
-                else:
-                    self.session.commit()
-                    self.session.close()
-                    return True
-        return ContextSession
+def setup_context_session(engine):
+    """Factory for contextmanagers for Session objects
+    Initialize a ContextSession class
+    Args:
+        engine (sqlalchemy.engine.base.Engine): Engine that's bound to the sessionmaker
+    Example:
+        engine = sqlalchemy.create_engine('sqlite:///:memory:')
+        CSession = setup_context_session(engine)
+        with CSession() as session:
+            session.add(user1)
+            session.add(user2)
+    """
+    class ContextSession():
+        _engine = engine
+        _Session = orm.sessionmaker(bind=engine)
+        def __enter__(self):
+            self.session = self._Session()
+            return self.session
+        def __exit__(self, exc_type, exc_value, traceback):
+            if exc_value or exc_type or traceback:
+                self.session.rollback()
+                return False
+            else:
+                self.session.commit()
+                self.session.close()
+                return True
+    return ContextSession
 
 
 class Producer(Base):
