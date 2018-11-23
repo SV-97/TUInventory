@@ -122,7 +122,7 @@ if __name__ == "__main__":
         sleep(delta_t)
     timeout.join()
     reset_thread.join()
-    """"
+    """
 
     with CSession() as session:
         user = login("schokoladenkönig@googlemail.com", "12345ibimsdaspasswort")
