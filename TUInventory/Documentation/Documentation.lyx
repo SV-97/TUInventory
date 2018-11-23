@@ -550,7 +550,7 @@ Unveränderbar
 \begin_inset Text
 
 \begin_layout Plain Layout
-Kontext Manager / Context Manger
+Kontext Manager / Context Manager
 \end_layout
 
 \end_inset
@@ -1070,9 +1070,9 @@ Automatisches Abmelden
 \end_layout
 
 \begin_layout Standard
-Bei einem zenralen System, dass mehreren Nutzern zugänglich ist, ist es
- wünschenswert wenn ein Nutzer automatisch abgemeldet wird sobald er eine
- bestimmte Zeit untätig ist.
+Bei einem zenralen System, das mehreren Nutzern zugänglich ist, ist es wünschens
+wert wenn ein Nutzer automatisch abgemeldet wird sobald er eine bestimmte
+ Zeit untätig ist.
  Dies beugt Missbrauch vor.
  Hierzu wurde die Klasse 
 \emph on
@@ -1116,7 +1116,7 @@ True
 
 \begin_layout Standard
 Da die Klasse Timeout auf paralleler Programmierung basiert sind hier einige
- Punkte zu beachten.
+ Besonderheiten zu beachten.
  So wird auf 
 \emph on
 timer
@@ -1157,7 +1157,8 @@ threading.
 
 \emph default
  Mithilfe dieser lassen sich Stellen, die nicht Parallel verarbeitet werden
- dürfen, abriegeln.
+ dürfen, abriegeln (vgl.
+ Mutex).
  Dabei nimmt sich der Thread, welcher zuerst seine 
 \emph on
 Critical Section
