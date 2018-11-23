@@ -194,23 +194,27 @@ class User(Base):
     location = orm.relationship("Location", backref=orm.backref("users", uselist=False))
     responsibilities = orm.relationship("Responsibility", backref="user")
     phonenumber = orm.relationship("PhoneNumber", backref="user", uselist=False)
-    def __init__(self, e_mail, password, name=None, surname=None, phonenumber=None, uid=None, salt=None):
+    def __init__(self, e_mail, password, name="", surname="", phonenumber="", uid=None, salt=None):
         self.uid = uid
         self.e_mail = e_mail.lower()
         self.salt = salt if salt else randbits(256)
         self.name = name.lower()
         self.surname = surname.lower()
-        self.phonenumber = PhoneNumber(phonenumber)
-        self.password = self.hash(password)
+        if isinstance(phonenumber, PhoneNumber):
+            self.phonenumber = phonenumber
+        else:
+            self.phonenumber = PhoneNumber(phonenumber)
+        self.hash(password)
         self.is_admin = False
 
     def hash(self, password):
         """Hash a string with pbkdf2
         The salt is XORd with the e_mail to get the final salt
         """
-        return hashlib.pbkdf2_hmac(hash_name="sha512", 
+        salt = str(int.from_bytes(self.e_mail.encode(), byteorder="big") ^ self.salt).encode()
+        self.password = hashlib.pbkdf2_hmac(hash_name="sha512", 
             password=password.encode(), 
-            salt=str(int.from_bytes(self.e_mail.encode(), byteorder="big") ^ self.salt).encode(), 
+            salt=salt, 
             iterations=9600)
 
 
