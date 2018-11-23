@@ -6,7 +6,7 @@ import sqlalchemy
 import classes
 
 Session = sqlalchemy.orm.sessionmaker(bind=classes.engine)
-CSession = classes.ContextSession.setup(classes.engine)
+CSession = classes.setup_context_session(classes.engine)
 
 def save_to_db(instance):
     """Save instance to it's corresponding table
@@ -40,22 +40,25 @@ def create_admin():
     save_to_db(new_admin)
     return new_admin
 
-def login():
+def login(e_mail, password):
     """Log user into application"""
-    e_mail = ""
-    password = ""
-    user_at_gate = classes.User(e_mail, password)
     try:
-        with CSession() as session:
-            user = session.query(classes.User).filter_by(e_mail == user_at_gate.e_mail).first()
-    except Exception as e: #user not found exception
+        user = session.query(classes.User).filter_by(e_mail=e_mail).first()
+        user_at_gate = classes.User(e_mail, password, salt=user.salt)
+        if user_at_gate.password == user.password:
+            toggle_admin_tools(user.is_admin)
+            update_user_dependant(user)
+            """for key, value in user.__dict__.items():
+                if key in user_at_gate.__dict__:
+                    user_at_gate.__dict__[key] = value
+            return user_at_gate"""
+            return user
+        else:
+            return None
+    except ValueError as e: #user not found exception
+        print("error")
         pass # show error message
-    if user_at_gate.password == user.password:
-        toggle_admin_tools(user.is_admin)
-        update_user_dependant(user)
-        return user
-    else:
-        return None
+
 
 def logout():
     """Log user out of application"""
@@ -103,19 +106,24 @@ class Timeout(threading.Thread):
         sleep(difference_to_timeout)
         self.run() 
 
+
 if __name__ == "__main__":
-
-    timeout = Timeout(timeout=10, resolution=2, function=print, args=["timed out"])
+    """
+    timeout = Timeout(timeout=10, function=print, args=["timed out"])
     timeout.start()
-
     reset_thread = threading.Thread(target=lambda: timeout.reset() if input() else None) # function for testing - reset on input
     reset_thread.start()
     t = 0
-    delta_t = 3
+    delta_t = 1
     while not timeout.timed_out:
         print(f"Not timed out yet - {t:.2f} seconds passed")
+        print(timeout.timer)
         t += delta_t
-        print(f"internal timer is at {timeout.timer:.2f}s")
         sleep(delta_t)
     timeout.join()
     reset_thread.join()
+    """"
+
+    with CSession() as session:
+        user = login("schokoladenkönig@googlemail.com", "12345ibimsdaspasswort")
+        print(user.e_mail)
