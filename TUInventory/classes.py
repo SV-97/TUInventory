@@ -18,7 +18,7 @@ engine = sqlalchemy.create_engine("sqlite:///TUInventory/test.db", echo=False)
 
 class BigInt(sqlalchemy.types.TypeDecorator):
     """SQLAlchemy datatype for dealing with ints that potentially overflow a basic SQL Integer"""
-    impl = sqlalchemy.types.Integer
+    impl = sqlalchemy.types.String
     def process_bind_param(self, value, dialect):
         """Gets called when writing to db"""
         return str(value)
