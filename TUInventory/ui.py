@@ -2,6 +2,7 @@ import os
 import sys
 import pathlib
 import sqlite3
+import styling
 
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
@@ -12,6 +13,7 @@ connection_users = sqlite3.connect("tuinventory.db")
 def absolute_path(relative_path):
     path = pathlib.Path(os.path.dirname(__file__))
     return path / relative_path
+
 
 class MainDialog(QtWidgets.QDialog):
 
@@ -29,12 +31,14 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
         self.ui.b_tab_4.clicked.connect(self.b_tab_4_click)
         self.ui.b_tab_5.clicked.connect(self.b_tab_5_click)
+        self.ui.b_tui_bottom.clicked.connect(self.b_tui_bottom_click)
 
     #*# set Colors
         self.setAutoFillBackground(True)                    # background / white
         p = self.palette()
         p.setColor(self.backgroundRole(), Qt.white)
         self.setPalette(p)
+
 
         palette1 = self.line_1.palette()                    # tab 1 / blue
         role1 = self.line_1.backgroundRole()
@@ -65,9 +69,36 @@ class MainDialog(QtWidgets.QDialog):
         palette5.setColor(role5, QColor('blue'))
         self.ui.line_5.setPalette(palette5)
         self.ui.line_5.setAutoFillBackground(True)
+
+        palette6 = self.line_6.palette()                    # line_bottom / blue
+        role6 = self.line_6.backgroundRole()
+        palette6.setColor(role6, QColor('blue'))
+        self.ui.line_6.setPalette(palette6)
+        self.ui.line_6.setAutoFillBackground(True)
+
+        #palette7 = self.line_7.palette()                   # line_top / blue
+        #role7 = self.line_7.backgroundRole()
+        #palette7.setColor(role7, QColor('blue'))
+        #self.ui.line_7.setPalette(palette7)
+        #self.ui.line_7.setAutoFillBackground(True)
+
+        palette8 = self.b_tui_bottom.palette()              # button_bottom / blue
+        role8 = self.b_tui_bottom.backgroundRole()
+        palette8.setColor(role8, QColor('blue'))
+        self.ui.b_tui_bottom.setPalette(palette8)
+        self.ui.b_tui_bottom.setAutoFillBackground(True)
+
+        #palette9 = self.b_home_1.palette()                 # ist noch hässlich, muss überarbeitet werden
+        #role9 = self.b_home_1.backgroundRole()
+        #palette9.setColor(role9, QColor('blue'))
+        #self.ui.b_home_1.setPalette(palette9)
+        #self.ui.b_home_1.setAutoFillBackground(True)
+        #self.b_home_1.setStyleSheet("color: white")
     #/#
 
+
     #*# show tabs
+        self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
         self.ui.line_3.hide()
@@ -75,6 +106,14 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.hide()
 
     def b_home_1_click(self):                       # home
+        self.ui.stackedWidget.setCurrentIndex(0)
+        self.ui.line_1.show()
+        self.ui.line_2.hide()
+        self.ui.line_3.hide()
+        self.ui.line_4.hide()
+        self.ui.line_5.hide()
+
+    def b_tui_bottom_click(self):                       # home
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
@@ -91,7 +130,7 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.hide()
 
     def b_tab_2_click(self):                        # tab 2
-        self.ui.stackedWidget.setCurrentIndex(3)
+        self.ui.stackedWidget.setCurrentIndex(1)
         self.ui.line_1.hide()
         self.ui.line_2.show()
         self.ui.line_3.hide()
@@ -99,7 +138,7 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.hide()
 
     def b_tab_3_click(self):                        # tab 3
-        self.ui.stackedWidget.setCurrentIndex(1)
+        self.ui.stackedWidget.setCurrentIndex(2)
         self.ui.line_1.hide()
         self.ui.line_2.hide()
         self.ui.line_3.show()
@@ -107,7 +146,7 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.hide()
 
     def b_tab_4_click(self):                        # tab 4
-        self.ui.stackedWidget.setCurrentIndex(2)
+        self.ui.stackedWidget.setCurrentIndex(3)
         self.ui.line_1.hide()
         self.ui.line_2.hide()
         self.ui.line_3.hide()
@@ -115,7 +154,7 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.hide()
 
     def b_tab_5_click(self):                        # tab 5
-        # self.ui.stackedWidget.setCurrentIndex(4)
+        self.ui.stackedWidget.setCurrentIndex(4)
         self.ui.line_1.hide()
         self.ui.line_2.hide()
         self.ui.line_3.hide()
