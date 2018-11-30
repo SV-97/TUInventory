@@ -168,6 +168,7 @@ class PhoneNumber(Base):
         def __str__(self):
             return f'No telephonenumber was found in: "{self.raw_string}"'
 
+
 class Location(Base):
     """Represents a physical location where a Device or User may be located"""
     __tablename__ = "locations"
