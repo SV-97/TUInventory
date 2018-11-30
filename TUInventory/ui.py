@@ -20,7 +20,7 @@ class MainDialog(QtWidgets.QDialog):
     def __init__(self, parent=None):
         path = absolute_path("main_horizontal.ui")
         super().__init__(parent)
-        self.ui = uic.loadUi("main_horizontal.ui", self)
+        self.ui = uic.loadUi(path, self)
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
