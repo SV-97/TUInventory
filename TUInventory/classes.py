@@ -1,6 +1,8 @@
 import hashlib
 import re
 from secrets import randbits
+import threading
+from time import sleep, time
 
 import sqlalchemy
 from sqlalchemy import Boolean, Column, Float, Integer, LargeBinary, String
@@ -229,8 +231,66 @@ class Responsibility(Base):
 
 Base.metadata.create_all(bind=engine) # Database initialized
 
+
+class Timeout(threading.Thread):
+    def __init__(self, timeout, function, args=[]):
+        """Timer that runs in background and executes a function if it's not refreshed
+        Args:
+            function: function that is executed once time runs out
+            timeout: time in seconds after which the timeout executes the function
+            args: arguments for function
+        """
+        super().__init__()
+        self.timeout = timeout
+        self.function = function
+        self.args = args
+        self.lock = threading.Lock()
+        self.timed_out = False
+        self.reset()
+
+    def _refresh_timer(self):
+        with self.lock:
+            return self.timeout - (time() - self.last_interaction_timestamp)
+
+    timer = property(fget=_refresh_timer)
+
+    def reset(self):
+        """Reset the internal timer"""
+        with self.lock:
+            if not self.timed_out:
+                self.is_reset = True
+                self.last_interaction_timestamp = time()
+
+    def run(self):
+        with self.lock:
+            if self.is_reset:
+                self.is_reset = False           
+            else:
+                self.timed_out = True
+                self.function(*self.args)
+                return
+            difference_to_timeout = self.timeout - (time() - self.last_interaction_timestamp)
+        sleep(difference_to_timeout)
+        self.run() 
+
 if __name__ == "__main__":
     """Tests"""
+    """ Timer Test
+    timeout = Timeout(timeout=10, function=print, args=["timed out"])
+    timeout.start()
+    reset_thread = threading.Thread(target=lambda: timeout.reset() if input() else None) # function for testing - reset on input
+    reset_thread.start()
+    t = 0
+    delta_t = 1
+    while not timeout.timed_out:
+        print(f"Not timed out yet - {t:.2f} seconds passed")
+        print(timeout.timer)
+        t += delta_t
+        sleep(delta_t)
+    timeout.join()
+    reset_thread.join()
+    """
+
     location1 = Location("Gebäude 23")
     location2 = Location("Büro")
     user1 = User(e_mail="Schokoladenkönig@googlemail.com", password="12345ibimsdaspasswort", name="Schoko", surname="König", phonenumber="123456")
