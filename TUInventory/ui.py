@@ -196,11 +196,24 @@ class MainDialog(QtWidgets.QDialog):
     def b_user_login_click(self):
         LoginDialog(self).exec() # show dialog_login as modal dialog => blocks controll of main
         self.update_user_dependant()
-        print(self.logged_in_user)
+        if self.logged_in_user:
+            print(f"Logged in as {self.logged_in_user}")
+            self.timeout = classes.Timeout(5, self.timed_out)
+            self.timeout.start()
 
     def b_user_logout_click(self):
         self.logged_in_user = None # may want slots.logout if that does something eventually
         self.update_user_dependant()
+        del self.timeout
+
+    def timed_out(self):
+        self.b_user_logout_click()
+        messagebox = QtWidgets.QMessageBox()
+        messagebox.setIcon(QtWidgets.QMessageBox.Information)
+        messagebox.setWindowTitle("Automatisch ausgeloggt")
+        messagebox.setText("Sie wurden wegen Inaktivität automatisch ausgeloggt!")
+        messagebox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        messagebox.exec_()
 
     def update_user_dependant(self):
         if self.logged_in_user:
@@ -209,6 +222,13 @@ class MainDialog(QtWidgets.QDialog):
         else:
             self.ui.log_in_out.setCurrentIndex(1)
             self.label.setText("")
+
+    def mousePressEvent(self, QMouseEvent):
+        pass
+    
+    def mouseMoveEvent(self, QMouseEvent):
+        if "timeout" in self.__dict__:
+            self.timeout.reset()
 
 class LoginDialog(QtWidgets.QDialog):
     
