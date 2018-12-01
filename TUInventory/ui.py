@@ -25,6 +25,7 @@ class MainDialog(QtWidgets.QDialog):
         self.ui = uic.loadUi(path, self)
         self.logged_in_user = None
         self.set_tree()
+
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
@@ -166,7 +167,7 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.show()
     #/#    
 
-    def set_tree(self):
+    def set_tree(self): # toDo make tree scrollable if it gets too big
         with CSession() as session:
             responsibilities = session.query(classes.Responsibility).all()
             for resp in responsibilities:
