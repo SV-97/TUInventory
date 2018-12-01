@@ -304,43 +304,96 @@ if __name__ == "__main__":
 
     location1 = Location("Gebäude 23")
     location2 = Location("Büro")
-    user1 = User(e_mail="Schokoladenkönig@googlemail.com", password="12345ibimsdaspasswort", name="Schoko", surname="König", phonenumber="123456")
-    user2 = User(e_mail="Ololadenkönig@googlemail.com", password="12msdassort", name="Schoko", surname="Künig", phonenumber="654321")
-    user1.location = location1
+    location3 = Location("Lager")
+    user1 = User(e_mail="Schokoladenkönig@googlemail.com", password="123", name="Karl", surname="König", phonenumber="123456")
+    user2 = User(e_mail="hey@ho.com", password="passwort", name="Bob", surname="Künig", phonenumber="654321")
+    user3 = User(e_mail="Mail@mail.com", password="456", name="Bob", surname="Künig", phonenumber="21")
+    user4 = User(e_mail="Testo@web.de", password="456", name="testo", surname="Testington", phonenumber="621")
+    user5 = User(e_mail="Jack@web.de", password="1234", name="Jack", surname="von Teststadt", phonenumber="+49045 1123")
+    user6 = User(e_mail="mymail@gmail.com", password="abc", name="Billy", surname="Bob", phonenumber="651")
+    user1.location = location2
     user2.location = location2
+    user3.location = location2
+    user4.location = location2
+    user5.location = location2
+    user6.location = location3
 
     producer1 = Producer("Die Schokoladenfabrik")
     producer2 = Producer("Intel")
     article1 = Article("25kg Schokoblock")
     article2 = Article("Kein 25kg Schokoblock")
     article3 = Article("Das Schokoding")
+    article4 = Article("i7 4790k")
     article1.producer = producer1
-    article2.producer = producer2
+    article2.producer = producer1
     article3.producer = producer1
-    device1 = Device("12345")
+    article4.producer = producer2
+
+    device1 = Device("1")
     device1.article = article1
     device1.location = location1
-    device2 = Device("98765")
+
+    device2 = Device("2")
     article1.devices.append(device2)
     device2.location = location2
+
+    device3 = Device("3")
+    device3.article = article1
+    device3.location = location3
+
+    device4 = Device("4")
+    device4.article = article4
+    device4.location = location3
+
+    device5 = Device("5")
+    device5.article = article4
+    device5.location = location3
+
+    device6 = Device("6")
+    device6.article = article3
+    device6.location = location1
+
     resp1 = Responsibility()
     resp1.user = user1
     resp1.location = location2
     resp1.device = device1
+
+    resp2 = Responsibility()
+    resp2.user = user2
+    resp2.location = location3
+    resp2.device = device2
+    
+    resp3 = Responsibility()
+    resp3.user = user5
+    resp3.location = location1
+    resp3.device = device3
+
+    resp4 = Responsibility()
+    resp4.user = user5
+    resp4.location = location1
+    resp4.device = device4
+    
+    resp5 = Responsibility()
+    resp5.user = user3
+    resp5.location = location2
+    resp5.device = device5
+    
+    resp6 = Responsibility()
+    resp6.user = user3
+    resp6.location = location1
+    resp6.device = device6
 
     Session = orm.sessionmaker(bind=engine)
     session = Session()
 
     session.add(location1)
     session.add(location2)
-    session.add(user1)
-    session.add(user2)
-    session.add(article1)
-    session.add(article2)
-    session.add(article3)
-    session.add(producer1)
-    session.add(producer2)
-    session.add(resp1)
+    session.add(location3)
+    session.add_all([user1, user2, user3, user4, user5, user6])
+    session.add_all([producer1, producer2])
+    session.add_all([article1, article2, article3, article4])
+    session.add_all([device1, device2, device3, device4, device5, device6])
+    session.add_all([resp1, resp2, resp3, resp4, resp5, resp6])
 
     print("-"*30)
     print(f"{article1.producer.name} hat folgende Artikel")
