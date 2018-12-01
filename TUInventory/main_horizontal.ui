@@ -227,16 +227,6 @@
      <property name="title">
       <string>Übersicht</string>
      </property>
-     <widget class="QListView" name="lv_1">
-      <property name="geometry">
-       <rect>
-        <x>15</x>
-        <y>51</y>
-        <width>821</width>
-        <height>321</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QListWidget" name="lw_1">
       <property name="geometry">
        <rect>
@@ -257,7 +247,7 @@
        </rect>
       </property>
       <property name="text">
-       <string>QListView:</string>
+       <string>QListWidget:</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_11">
@@ -272,6 +262,45 @@
       <property name="text">
        <string>QListWidget:</string>
       </property>
+     </widget>
+     <widget class="QTreeWidget" name="treeWidget">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>50</y>
+        <width>831</width>
+        <height>331</height>
+       </rect>
+      </property>
+      <property name="alternatingRowColors">
+       <bool>true</bool>
+      </property>
+      <property name="rootIsDecorated">
+       <bool>true</bool>
+      </property>
+      <property name="animated">
+       <bool>false</bool>
+      </property>
+      <property name="headerHidden">
+       <bool>false</bool>
+      </property>
+      <property name="columnCount">
+       <number>1</number>
+      </property>
+      <attribute name="headerVisible">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="headerShowSortIndicator" stdset="0">
+       <bool>false</bool>
+      </attribute>
+      <attribute name="headerStretchLastSection">
+       <bool>true</bool>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>Location</string>
+       </property>
+      </column>
      </widget>
     </widget>
     <widget class="QFrame" name="frame">
@@ -295,7 +324,7 @@
         <x>11</x>
         <y>10</y>
         <width>501</width>
-        <height>41</height>
+        <height>72</height>
        </rect>
       </property>
       <layout class="QGridLayout" name="gridLayout">
