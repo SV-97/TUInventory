@@ -14,7 +14,7 @@
    </rect>
   </property>
   <property name="mouseTracking">
-   <bool>false</bool>
+   <bool>true</bool>
   </property>
   <property name="windowTitle">
    <string>TUInventory</string>
@@ -212,7 +212,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>0</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page_5">
     <widget class="QGroupBox" name="groupBox">
@@ -288,7 +288,7 @@
        <number>1</number>
       </property>
       <attribute name="headerVisible">
-       <bool>true</bool>
+       <bool>false</bool>
       </attribute>
       <attribute name="headerShowSortIndicator" stdset="0">
        <bool>false</bool>
@@ -379,8 +379,8 @@
       <rect>
        <x>20</x>
        <y>20</y>
-       <width>511</width>
-       <height>151</height>
+       <width>851</width>
+       <height>751</height>
       </rect>
      </property>
      <property name="title">
@@ -399,6 +399,18 @@
        <string>Gerät einscannen</string>
       </property>
      </widget>
+     <widget class="QGraphicsView" name="graphicsView">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>831</width>
+        <height>711</height>
+       </rect>
+      </property>
+     </widget>
+     <zorder>graphicsView</zorder>
+     <zorder>_2_b_scan</zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="page_7">
