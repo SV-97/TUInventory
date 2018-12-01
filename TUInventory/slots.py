@@ -19,7 +19,7 @@ def toggle_admin_tools(is_admin):
     pass # hide and show widgets depending on admin_status
 
 def update_user_dependant(user):
-    pass # update elements that hold user-sensitive data like a name on display
+    pass 
 
 def create_user():
     e_mail = ""
