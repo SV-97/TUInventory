@@ -67,7 +67,7 @@ class Producer(Base):
     articles = orm.relationship("Article", backref="producer")
     def __init__(self, name, uid=None):
         self.uid = uid
-        self.name = name
+        self.name = name.title()
 
 
 class Article(Base):
@@ -89,13 +89,16 @@ class Device(Base):
     __tablename__ = "devices"
     uid = Column(Integer, primary_key=True)
     article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
-    name = Column(String)
+    name = Column(String) # not currently used
     code = Column(String)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
     responsibilities = orm.relationship("Responsibility", backref="device")
     def __init__(self, code=None, uid=None):
         self.uid = uid
         self.code = code
+    
+    def __str__(self):
+        return f"{self.article.name} mit ID {self.uid}"
 
 
 class PhoneNumber(Base):
@@ -179,8 +182,11 @@ class Location(Base):
     devices = orm.relationship("Device", backref=orm.backref("location", uselist=False))
     responsibilities = orm.relationship("Responsibility", backref="location")
     def __init__(self, name="", uid=None):
-        self.name = name
+        self.name = name.title()
         self.uid = uid
+
+    def __str__(self):
+        return self.name
 
 
 class User(Base):
@@ -201,8 +207,8 @@ class User(Base):
         self.uid = uid
         self.e_mail = e_mail.lower()
         self.salt = salt if salt else randbits(256)
-        self.name = name.lower()
-        self.surname = surname.lower()
+        self.name = name.title()
+        self.surname = surname.title()
         if isinstance(phonenumber, PhoneNumber):
             self.phonenumber = phonenumber
         else:
@@ -220,6 +226,9 @@ class User(Base):
             salt=salt, 
             iterations=9600)
 
+    def __str__(self):
+        return f"{self.name} {self.surname}"
+
 
 class Responsibility(Base):
     """Represents a responsibility a User has for a Device"""
@@ -227,7 +236,9 @@ class Responsibility(Base):
     device_uid = Column(Integer, sqlalchemy.ForeignKey("devices.uid"), primary_key=True)
     user_uid = Column(Integer, sqlalchemy.ForeignKey("users.uid"), primary_key=True)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"), primary_key=True)
-    
+    def __str__(self):
+        return f"{self.user} is responsible for device {self.device} at {self.location}"
+
 
 Base.metadata.create_all(bind=engine) # Database initialized
 
