@@ -501,7 +501,7 @@ Begriffsdefinitionen
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="6" columns="2">
+<lyxtabular version="3" rows="7" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -616,7 +616,7 @@ key "Python3"
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -625,11 +625,32 @@ Mutabel / mutable
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Veränderbar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mutex
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gegenseitig ausschließend (von engl.
+ mutual exclusion)
 \end_layout
 
 \end_inset
@@ -899,7 +920,7 @@ Die verschiedenen Funktionstypen
 \end_layout
 
 \begin_layout Section
-Beziehungen herstellen
+Beziehungen herstellen in SQLAlchemy
 \end_layout
 
 \begin_layout Subsection
@@ -1192,6 +1213,267 @@ Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt
  Außerdem ist der Datenaustausch zwischen Threads immens einfacher verglichen
  mit Prozessen, in unserem Fall können wir einfach ein Attribut der Klasse
  dafür benutzen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+PyQt5
+\end_layout
+
+\begin_layout Subsection
+Darstellen der Verantwortlichkeiten als Baumstruktur
+\end_layout
+
+\begin_layout Standard
+Aufgrund von guter Übersichtlichkeit haben wir uns dazu entschieden die
+ Verantwortlichkeiten als Baumstruktur darzustellen.
+ PyQt5 stellt hierzu die Widgets QTreeView und QTreeWidget zur Verfügung,
+ wobei QTreeView ein Model-View-Architektur- und QTreeWidget ein Item-basierende
+s Widget ist.
+ Die MV-Architektur die PyQt über einige, teils abstrakte, Klassen bietet,
+ ist dabei eine Variante der generell bekannten Model-View-Controller-Architektu
+r wobei der Controller mit dem View kombiniert wurde.
+ Desweiteren wurde in PyQt der Delegate hinzugefügt, der managed, wie Daten
+ im View gerendert werden und wie geänderte Daten der UI im Model abgelegt
+ werden.
+\end_layout
+
+\begin_layout Standard
+Da im Fall von TUInventory nicht gewünscht ist, dass Daten direkt im Baum
+ geändert werden können und die Darstellung der Daten nur an dieser Stelle
+ erfolgt musste aufgrund von Kosten-Nutzen Aspekten vorerst die Item-basierte
+ Variante des 
+\emph on
+QTreeWidget
+\emph default
+ vorgezogen werden.
+ Das befüllen dieses Widgets erfolgt in der Methode 
+\emph on
+set_tree
+\emph default
+ der Klasse 
+\emph on
+MainDialog
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+Zu Beginn wird hier über den bereits erläuterten Session-Context-Manager
+ eine neue Datenbank-Session geöffnet in der wir nun alle 
+\emph on
+Responsibilit
+\emph default
+ies abfragen können.
+ Über diese wird nun iteriert, wobei in jeder Iteration für Ort, Benutzer
+ und Gerät jeweils zuerst ein 
+\emph on
+QTreeWidgetItem
+\emph default
+ erzeugt wird.
+ Dieses wird zum Einfügen in den Baum benötigt.
+ Nun wird nach einem Siebprinzip nacheinander ermittelt ob sich der Ort,
+ Benutzer und das Gerät bereits im Baum befinden, wenn nicht werden die
+ Fehlenden Komponenten eingefügt.
+ Dieser Prozess ist im folgenden Struktogramm dargestellt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Bilder/Responsibility-Baum-Sieb-Struktorgramm.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Struktogramm nach Nassi-Shneiderman zum Responsibility-Baum-Sieb 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In diesem Teil des Programms, werden oftmals Generator-Expressions und List-Comp
+rehensions verwendet, daher sei im Folgenden kurz erläutert wann sich für
+ welche entschieden wurde.
+\end_layout
+
+\begin_layout Standard
+Der folgende Programmausschnitt zeigt einen Ausschnitt der interaktiven
+ Konsole.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/Generator-Expression_vs_List-Comprehension.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vergleich von Generator-Expressions und List-Comprehensions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Zu Beginn wird hier die Funktion 
+\emph on
+getsizeof
+\emph default
+ der Standartlibrary 
+\emph on
+sys
+\emph default
+ importiert, die es erlaubt die Größe einer Instanz in Bytes zu ermitteln.
+ Nun wird zunächst über eine List-Comprehension eine Liste mit den Zahlen
+ 0 bis 9 definiert.
+ Anschließend werden die selben Zahlen mit einer Generator-Expression hinterlegt.
+ 
+\end_layout
+
+\begin_layout Standard
+Vergleicht man hier die Größe der beiden Instanzen wird klar, dass die Generator
+-Expression wesentlich kleiner ist.
+ Führt man nun einen Typvergleich der Instanzen durch sieht man, dass es
+ sich bei 
+\emph on
+a
+\emph default
+ um eine Liste und bei 
+\emph on
+b
+\emph default
+ um einen Generator handelt.
+ Damit lässt sich auch einfach der geringere Speicher-Footprint erklären:
+ bei einer List-Comprehension erfolgt die Auswertung sofort und somit liegt
+ die ganze Liste im Speicher.
+ Bei der Generator-Expression hingegen, wird erst zum Zeitpunkt der Auswertung
+ die Methode 
+\emph on
+__next__
+\emph default
+ der zugrundeliegenden Generatorinstanz aufgerufen, welche dann intern mittels
+ 
+\emph on
+yield
+\emph default
+ den nächsten Wert ausgibt.
+\end_layout
+
+\begin_layout Standard
+Jedoch kann man dennoch nicht immer Generatoren einsetzen, da diese einige
+ entscheidenden Nachteile haben.
+ So ist es nicht möglich, mittels Index auf die Elemente eines Generators
+ zuzugreifen.
+ Außerdem ist ein Generator nach einer 
+\begin_inset Quotes eld
+\end_inset
+
+Benutzung
+\begin_inset Quotes erd
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+aufgebraucht
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Dies kann man sehen, wenn man zweimal die Summen unserer beiden Instanzen
+ addiert.
+ Für die List-Comprehension wird hier korrekterweise 90 ausgegeben (
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+sum_{n=0}^{9} n = 45$
+\end_layout
+
+\end_inset
+
+), für die Generator-Expression jedoch nur 45, da sie beim zweiten Aufruf
+ 0 zurückgibt.
+ Hierzu sollte noch gesagt werden, dass wenn man einen Generator nicht über
+ eine Generator-Expression, sondern manuell als Klasse/Funktion implementiert
+ dies teilweise umgangen werden kann.
+\end_layout
+
+\begin_layout Standard
+Mit diesem Wissen ist nun auch leicht erklärbar wann welche der Strukturen
+ eingesetzt wurde:
+\end_layout
+
+\begin_layout Itemize
+Generator-Expression immer wenn sichergestellt ist, dass die Instanz nur
+ einmal iteriert werden muss
+\end_layout
+
+\begin_layout Itemize
+List-Comprehension immer dann, wenn die Instanz mehrfach iteriert, oder
+ 
+\begin_inset Quotes eld
+\end_inset
+
+abonniert
+\begin_inset Quotes erd
+\end_inset
+
+(von engl.
+ subscribe - also die [Index]-Notation) werden muss
 \end_layout
 
 \begin_layout Standard
