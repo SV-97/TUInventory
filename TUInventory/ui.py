@@ -176,7 +176,7 @@ class MainDialog(QtWidgets.QDialog):
                 device = QtWidgets.QTreeWidgetItem([str(resp.device)])
                 locations = [self.treeWidget.topLevelItem(i) for i in range(self.treeWidget.topLevelItemCount())] # has to be list-comprehension because used multiple times -> docu
                 tree_text = (item.text(0) for item in locations) # can be generator expression because single-use -> docu
-                if str(resp.location.name) not in tree_text: # if there's a device with the name of a location already displayed there's an issue
+                if str(resp.location.name) not in tree_text:
                     location.addChild(user)
                     user.addChild(device)
                     self.treeWidget.addTopLevelItem(location)
