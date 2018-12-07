@@ -1,5 +1,5 @@
-#LyX 2.2 created this file. For more info see http://www.lyx.org/
-\lyxformat 508
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
 \begin_document
 \begin_header
 \save_transient_properties true
@@ -21,6 +21,8 @@
 \font_osf false
 \font_sf_scale 100 100
 \font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -51,6 +53,7 @@
 \suppress_date false
 \justification true
 \use_refstyle 1
+\use_minted 0
 \index Index
 \shortcut idx
 \color #008000
@@ -61,7 +64,10 @@
 \tocdepth 3
 \paragraph_separation indent
 \paragraph_indentation default
-\quotes_language english
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
@@ -606,6 +612,7 @@ Eine i.d.R.
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Python3"
+literal "true"
 
 \end_inset
 
@@ -853,6 +860,7 @@ unbound methods
 \begin_inset CommandInset citation
 LatexCommand cite
 key "PythonDocDescriptorGuide"
+literal "true"
 
 \end_inset
 
@@ -867,6 +875,7 @@ function
 \begin_inset CommandInset citation
 LatexCommand cite
 key "PythonDocWhatsNewPython3"
+literal "true"
 
 \end_inset
 
@@ -1160,6 +1169,7 @@ Race Conditions
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Python3"
+literal "true"
 
 \end_inset
 
@@ -1279,9 +1289,65 @@ QTreeWidgetItem
  erzeugt wird.
  Dieses wird zum Einfügen in den Baum benötigt.
  Nun wird nach einem Siebprinzip nacheinander ermittelt ob sich der Ort,
- Benutzer und das Gerät bereits im Baum befinden, wenn nicht werden die
- Fehlenden Komponenten eingefügt.
- Dieser Prozess ist im folgenden Struktogramm dargestellt.
+ Benutzer und das Gerät bereits im Baum befinden.
+ Hierbei wird zuerst überprüft ob sich im Wurzelverzeichnis 
+\emph on
+root
+\emph default
+ des Baums die 
+\emph on
+Location
+\emph default
+ der aktuellen 
+\emph on
+Responsibility
+\emph default
+ befindet, sofern dies nicht der Fall ist wird die Location mit all ihren
+ untergeordneten Elementen eingefügt.
+ Falls die 
+\emph on
+Location
+\emph default
+ bereits als sog.
+ 
+\emph on
+TopLevelItem
+\emph default
+ im Baum befindet wird überprüft ob unter dieser 
+\emph on
+Location
+\emph default
+ bereits der 
+\emph on
+User
+\emph default
+ der aktuellen 
+\emph on
+Responsibility
+\emph default
+ befindet, sofern dies nicht der Fall ist wird der 
+\emph on
+User
+\emph default
+ unter seiner 
+\emph on
+Location
+\emph default
+ einsortiert und bekommt das aktuelle 
+\emph on
+Device
+\emph default
+ als Unterelement zugewiesen.
+ Sollte der 
+\emph on
+User
+\emph default
+ bereits vorhanden sein, wird analog zur 
+\emph on
+Location
+\emph default
+ weiterverfahren.
+ Dieser Prozess ist im folgenden Struktogramm dargestellt:
 \end_layout
 
 \begin_layout Standard
