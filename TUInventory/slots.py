@@ -40,6 +40,7 @@ def create_admin():
 
 def login(e_mail, password):
     """Log user into application"""
+    e_mail = e_mail.lower()
     with CSession() as session:
         try:
             user = session.query(classes.User).filter_by(e_mail=e_mail).first()
