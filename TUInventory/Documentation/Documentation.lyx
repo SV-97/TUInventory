@@ -180,7 +180,7 @@ Abkürzungsverzeichnis
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="12" columns="2">
+<lyxtabular version="3" rows="16" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -239,6 +239,26 @@ DO
 
 \begin_layout Plain Layout
 Digital Output
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+HMAC
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Keyed-Hash Message Authentication Code
 \end_layout
 
 \end_inset
@@ -309,6 +329,26 @@ Computer Vision
 \begin_inset Text
 
 \begin_layout Plain Layout
+OAEP
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Optimal Asymmetric Encryption Padding
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 PBKDF2
 \end_layout
 
@@ -349,6 +389,26 @@ Python Enhancement Proposal
 \begin_inset Text
 
 \begin_layout Plain Layout
+PKCS #1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Public-Key Cryptography Standards First Family
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 SCADA
 \end_layout
 
@@ -359,6 +419,26 @@ SCADA
 
 \begin_layout Plain Layout
 Supervisory Control and Data Acquisition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SHA
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Secure Hash Algorithm
 \end_layout
 
 \end_inset
@@ -507,7 +587,7 @@ Begriffsdefinitionen
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="7" columns="2">
+<lyxtabular version="3" rows="9" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -643,7 +723,7 @@ Veränderbar
 </cell>
 </row>
 <row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -652,12 +732,53 @@ Mutex
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Gegenseitig ausschließend (von engl.
  mutual exclusion)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pythonic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+idiomatisch im Bezug auf Python
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Salt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zufällige Zeichenfolge die in der Kryptografie u.A.
+ bei Hash-Funktionen eingesetzt wird um die Entropie der Eingabe zu erhöhen.
 \end_layout
 
 \end_inset
@@ -1091,8 +1212,998 @@ Beispiel einer 1-zu-1 Beziehung
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 Implementierung
+\end_layout
+
+\begin_layout Section
+Benutzerverwaltung
+\end_layout
+
+\begin_layout Standard
+Da es in der Anwendung unter Anderem darum geht, festzulegen wer für welche
+ Geräte verantwortlich ist, haben wir die Entscheidung getroffen, dass es
+ nicht möglich sein sollte die Verantwortlichkeiten eines anderen Mitarbeiters
+ bearbeiten zu können.
+ Dies erfordert ein Nutzersystem mit entsprechender Nutzerverwaltung.
+ Aufgrund dieser Nutzerverwaltung wurden wir mit dem Problem konfrontiert,
+ dass die Benutzer sich authentifizieren können müssen, hierfür wurde, klassisch
+erweise, ein Passwort-System gewählt.
+ Dies bringt das Problem der Passwortspeicherung mit sich, das, auch heute
+ noch, in vielen Systemen eine Schwachstelle für potentielle Angriffe Dritter
+ darstellt.
+ Während es sich bei diesem System nicht um eine wirklich Sicherheitskritische
+ Anwendung handelt, sollte eine Anwendung unserer Ansicht nach dennoch so
+ gestaltet sein, dass sie keine zu offensichtlichen Schwachstellen hat.
+ Ein weiteres Problem entsteht dadurch, dass eine SQL-Datenbank im Hintergrund
+ mit vom Nutzer zur Laufzeit eingegebenen Daten befüllt wird.
+ Dies könnte, wenn nicht richtig abgefangen zur SQL-Injection genutzt werden.
+ 
+\end_layout
+
+\begin_layout Subsection
+SQL
+\end_layout
+
+\begin_layout Standard
+Das zweite Problem lässt sich mit Python vergleichsweise leicht umgehen
+ indem man beim Nutzen von 
+\emph on
+sqlite3
+\emph default
+ die mitgelieferte ?-Syntax einsetzt, oder aber, wie wir das später näher
+ erläuterte SQLAlchemy nutzt, welches intern eine Validierung der Werte
+ durchführt, die es in seinen SQL-Befehlen nutzt.
+\end_layout
+
+\begin_layout Standard
+Um das Problem/Prinzip der SQL-Injection aufzuzeigen folgt hier ein kurzes
+ Beispiel.
+\end_layout
+
+\begin_layout Standard
+Gegeben sei eine sehr einfache Datenbank die Nutzer mit Namen speichert:
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Graphics
+	filename Beispielprogramme/SQL-Injection/DB.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wobei es möglich sein soll neue Nutzer über eine Kommandozeileneingabe des
+ Namens hinzuzufügen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/SQL-Injection/SQL-Injection.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Beispiel von SQL-Injection
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wird nun über die Kommandozeile als Name z.B.
+ '""); DROP TABLE users;--' eingegeben wird die Tabelle aller Nutzer gelöscht.
+ Korrekt umgesetzt ist das Ganze in 
+\emph on
+insert_user_secure
+\emph default
+ dargestellt, in diesem Fall wirft die selbe Eingabe einen Fehler und die
+ Datenbank wird nicht 
+\begin_inset Quotes eld
+\end_inset
+
+beschädigt
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Kryptografie
+\end_layout
+
+\begin_layout Standard
+Für die Passwörter gestaltet sich das Ganze nicht ganz so unkompliziert.
+ Aufgrund dessen dass der Quellcode offen ist und auch die Datenbank lokal
+ liegt ist es einem Angreifer ein Leichtes jede eventuelle einfache Verschlüssel
+ung zu umgehen.
+ Daher werden bei unserer Lösung die Passwörter garnicht gespeichert - stattdess
+en wird ein Hash-Algorithmus(zu Deutsch: Streuwertfunktion) eingesetzt und
+ dieser Hash gespeichert.
+ Ein Hash-Algorithmus ist eine Funktion welche, idealerweise, in eine Richtung
+ sehr schnell durchzuführen ist; in die Andere dagegen einen sehr hohen
+ Rechenaufwand benötigt.
+ Im Idealfall ist dieser Rechenaufwand so hoch, dass sich eine 
+\begin_inset Quotes eld
+\end_inset
+
+Einwegfunktion
+\begin_inset Quotes erd
+\end_inset
+
+ ergibt, die nicht umzukehren ist.
+ Ein klassisches Beispiel für einen simplen Hash-Algorithmus ist die einstellige
+ Quersumme, hier wird rekursiv die Quersumme einer Zahl gebildet, bis nurnoch
+ eine Stelle übrig ist.
+\end_layout
+
+\begin_layout Subsubsection
+Benutzer Anlegen
+\end_layout
+
+\begin_layout Standard
+Das genaue Verfahren ist im folgenden Diagramm ersichtlich, der zugehörige
+ Quellcode ist in der Klasse 
+\emph on
+User 
+\emph default
+als Methode 
+\emph on
+hash
+\emph default
+ zu finden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/User-Anlegen-Prozess.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Passwort-Speicher-Vorgang
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es werden also aus den vom Nutzer getätigten Eingaben der Benutzername und
+ das Passwort ausgewählt (bzw.
+ werden diese in der Instanz einer Nutzerklasse abgelegt und daraus wieder
+ abgerufen, dies wird allerdings später näher erläutert).
+ Außerdem wird eine kryptografisch starke (im Gegensatz zu den, nicht für
+ Kryptografieanwendungen geeigneten Zufallszahlen des normalen Pythonmoduls
+ 
+\emph on
+random
+\emph default
+) 256-Bit Zufallszahl generiert.
+ Diese stellt ein erstes Salt dar.
+ Im ersten Schritt wird nun die E-Mail-Adresse - ein String also - zu einer
+ Abfolge aus Bytes codiert, welche dann als Ganzzahl interpretiert wird.
+ Diese Zahl wird anschließend über ein logisches XOR mit dem generierten
+ Salt verknüpft und stellt unser finales Salt dar.
+ Die daraus resultierende Zahl, sowie das Passwort werden dann wieder zu
+ einer Folge aus Bytes konvertiert.
+ Im zweiten Schritt werden nun diese beiden 
+\emph on
+bytes
+\emph default
+-Instanzen über einen PBKDF2-Algorithmus miteinander verknüpft.
+ In unserem Fall nutzt dieser intern einen HMAC-, welcher wiederum einen
+ SHA-512-Algorithmus nutzt.
+ Dieser Hash-Vorgang wird nun 9600-mal durchgeführt.
+ Der daraus entstehende Hash ist unser 
+\begin_inset Quotes eld
+\end_inset
+
+Endergebnis
+\begin_inset Quotes erd
+\end_inset
+
+ und wird zusammen mit der Anfangs generierten Zufallszahl in der Datenbank
+ abgelegt.
+\end_layout
+
+\begin_layout Standard
+Der Hintergrund zu der vergleichsweise komplexen Erzeugung des finalen Salts
+ ist Folgender:
+\end_layout
+
+\begin_layout Itemize
+Wenn man kein Salt einsetzt haben zwei Nutzer in der Datenbank den selben
+ Hash, wenn sie das selbe Passwort haben, was einem Angreifer im Bereich
+ Social Engineering einen Angriffspunkt liefern würde (à la.: 
+\begin_inset Quotes eld
+\end_inset
+
+Was haben diese Nutzer gemeinsam, dass sie eventuell als Passwort nutzen
+ könnten
+\begin_inset Quotes erd
+\end_inset
+
+), bzw.
+ lässt auf ein gängiges Passwort schließen
+\end_layout
+
+\begin_layout Itemize
+Wenn man nur die Zufallszahl als Salt nutzt ist es theoretisch möglich,
+ dass zwei Nutzer die selbe Zufallszahl erhalten (Auch wenn diese Wahrscheinlich
+keit praktisch vernachlässigbar klein ist, bei 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$2^{256}$
+\end_layout
+
+\end_inset
+
+ Werten die die Zufallszahl annehmen kann und einer zu erwartenden Nutzerzahl
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+leq$
+\end_layout
+
+\end_inset
+
+ 50) was im selben Problem wie der zuvor genannte Punkt münden würde
+\end_layout
+
+\begin_layout Itemize
+Wenn man nur den Benutzernamen als Salt einsetzt läuft man Gefahr, dass
+ ein Nutzer einen sehr kurzen Benutzernamen wählt, wodurch ein vergleichsweise
+ schnelles Durchprobieren/Brute-Forcen durch alle Salts möglich ist
+\end_layout
+
+\begin_layout Itemize
+Durch die XOR-Verknüpfung von Nutzername und Zufallszahl hat man somit ein
+ für jeden Nutzer garantiert einzigartiges Salt.
+ Ein Angreifer kann dadurch eine Bruteforce Attacke nur für einen einzigen
+ Nutzer auf einmal ausführen
+\end_layout
+
+\begin_layout Subsubsection
+Benutzer Anmelden
+\end_layout
+
+\begin_layout Standard
+Beim Anmeldevorgang wird grundsätzlich der selbe Vorgang wie beim Erzeugen
+ eines Nutzers durchgeführt, nur das hier aus der Datenbank abgefragt, anstatt
+ gespeichert wird.
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/User-Anmelden-Prozess.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Anmelde-Vorgang
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Der Nutzer gibt also wieder seine Daten ein.
+ Anhand des Nutzernamens wird nun geprüft ob ein solcher Nutzer in der Datenbank
+ vorhanden ist - wenn ja wird dieser ausgelesen.
+ Nun wird mit dem ausgelesenen Salt analog zum Passwort-speicher-Vorgang
+ ein Hash erzeugt.
+ Stimmt dieser Hash mit dem des Nutzers aus der Datenbank überein wird der
+ Benutzer eingeloggt.
+\end_layout
+
+\begin_layout Subsubsection
+Benutzer hat sein Passwort vergessen
+\end_layout
+
+\begin_layout Standard
+Wenn man ein System errichtet, bei dem ein Nutzer sich ein Passwort merken
+ muss, ist die Wahrscheinlichkeit groß, dass er dieses vergisst.
+ Daher gibt es einen Prozess um das Passwort eines Nutzers zurücksetzen
+ zu können.
+ Da die Anwendung grundsätzlich offline laufen können sollte (nicht zuletzt
+ aus sicherheitstechnischen Aspekten) wurde hier nicht die Variante des
+ Rücksetzens per E-Mail-Token gewählt - stattdessen gibt es einen (oder
+ auch mehrere) Admin-User die dem Nutzer ein automatisch generiertes Passwort
+ zuweisen können, sodass er sich Anmelden und selbst ein neues eingeben
+ kann.
+ Dieser Prozess lässt sich wie folgt visualisieren:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/User-PW-Reset.png
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Rücksetzen eines Benutzerpassworts
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es wird also zunächst, über eine Nutzereingabe, der gewünschte User aus
+ der Datenbank ausgelesen.
+ Parallel dazu wird aus einer vordefinierten Zeichenfolge eine Auswahl von
+ 15 Zeichen getroffen.
+ Diese Stellen das neue Passwort dar und werden in der UI angezeigt.
+ Bei der Zeichenfolge aus der das Passwort generiert wird, wurde darauf
+ geachtet dass jedes Zeichen klar lesbar ist.
+ So wurden 
+\begin_inset Quotes eld
+\end_inset
+
+O
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+0
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+I
+\begin_inset Quotes erd
+\end_inset
+
+ und 
+\begin_inset Quotes eld
+\end_inset
+
+l
+\begin_inset Quotes erd
+\end_inset
+
+ ausgenommen da diese nicht immer klar zu unterscheiden bzw.
+ leicht zu verwechseln sind.
+ Abseits davon besteht die Zeichenfolge aus dem ganzen Alphabet in Groß-
+ und Kleinschreibung, den Ziffern und einigen Sonderzeichen - insgesamt
+ stehen somit 77 Zeichen zur Verfügung.
+\end_layout
+
+\begin_layout Subsubsection
+Mathematische Betrachtung der Passwort-Generation
+\end_layout
+
+\begin_layout Standard
+Definiert man 
+\emph on
+n
+\emph default
+ als die Anzahl an verfügbaren Zeichen und 
+\emph on
+k
+\emph default
+ als Länge des Passwortes lässt sich die Anzahl an mögliche Passwörtern
+ mit der Funktion 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f(n,k) := n^k$
+\end_layout
+
+\end_inset
+
+ darstellen.
+ Möchte man nun wissen ob es effizienter ist weitere Zeichen hinzuzufügen
+ oder das Passwort zu verlängern kann man dies über eine Betrachtung der
+ beiden Differentiale
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$$f_1(n,k) := 
+\backslash
+frac {
+\backslash
+partial f}{
+\backslash
+partial n} = n^k 
+\backslash
+cdot ln(n)$$
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+und 
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$$f_2(n,k) := 
+\backslash
+frac {
+\backslash
+partial f}{
+\backslash
+partial k} = k 
+\backslash
+cdot n^{k-1}$$
+\end_layout
+
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout Standard
+herausfinden, welche die Änderungsraten von 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f(n,k)$
+\end_layout
+
+\end_inset
+
+ bei Änderung eines der beiden Parametern darstellen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Passwort-Varianten-Graph_1_cropped.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vergleich von 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_1$
+\end_layout
+
+\end_inset
+
+ und 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_2$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hier wurden die beiden Funktionen für einen Wert von 5 für den Parameter
+ welcher statisch gehalten wird (n bei 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_1$
+\end_layout
+
+\end_inset
+
+ und k bei 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_2$
+\end_layout
+
+\end_inset
+
+; dargestellt durch i), und einem Bereich von 0 bis 20 des dynamischen Parameter
+s geplottet.
+ Dieser Graph zeigt, dass 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_1$
+\end_layout
+
+\end_inset
+
+ sehr viel rasanter ansteigt als 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_2$
+\end_layout
+
+\end_inset
+
+.
+ Es gilt also dass eine Änderung von k, der Länge des Passworts also, einer
+ Erhöhung von n vorzuziehen ist.
+ Diese ist auch einfacher zu Erhöhen da die Passwortlänge theoretisch keine
+ Obergrenze hat, die Tasten einer Tastatur hingegen sind begrenzt.
+ Da das Passwort allerdings von Menschen eingegeben wird etc., ist es erstrebensw
+ert die so gering wie möglich (und so lang wie nötig) zu halten.
+\end_layout
+
+\begin_layout Standard
+Jedoch gibt es auch Bereiche in denen eine Erhöhung von n Sinn machen würde(sieh
+e Schnittpunkte der Graphen), daher sollte man eine allgemeinere Darstellung
+ wählen.
+ Verallgemeinert, sodass kein Parameter statisch gehalten wird lässt sich
+ die Funktion folgenderweise darstellen:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Passwort-Varianten-Graph_2_cropped.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Heatmap aus 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_1$
+\end_layout
+
+\end_inset
+
+ und 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_2$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wenn man eine neue Funktion 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_3(f_1, f_2)$
+\end_layout
+
+\end_inset
+
+ als 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_3 := f_1 - f_2 = 
+\backslash
+frac {
+\backslash
+partial f}{
+\backslash
+partial k} - 
+\backslash
+frac {
+\backslash
+partial f}{
+\backslash
+partial n}$ 
+\end_layout
+
+\end_inset
+
+ definiert, und bei dieser alle Werte > 0 in schwarz, die Anderen in weiß
+ darstellt, so hat man eine Karte die angibt ob bei einer bestimmten Koordinate
+ die Erhöhung von k oder n die effizientere Wahl ist um das generierte Passwort
+ sicherer zu machen.
+ Die Grenze zwischen den weißen und schwarzen Bereichen stellt die Nullstellen
+ von 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_3$
+\end_layout
+
+\end_inset
+
+ dar.
+ Setzt mal also 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_3 = 0$
+\end_layout
+
+\end_inset
+
+ und löst dieses beispielsweise nach k auf ergibt sich 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$k(n) = n 
+\backslash
+cdot ln(n)$
+\end_layout
+
+\end_inset
+
+, was ein einfacheres Überprüfen der Koordinaten zulässt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Passwort-Varianten-Graph_3_cropped.png
+	scale 40
+	clip
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$k(n)$
+\end_layout
+
+\end_inset
+
+ aus 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_3$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hier gilt, dass bei einem Punkt unterhalb der Kurve der Wert von 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_3$
+\end_layout
+
+\end_inset
+
+ positiv ist, wohingegen er unterhalb negativ ist.
+ Daraus folgt, dass oberhalb der Kurve 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f_1$
+\end_layout
+
+\end_inset
+
+ überwiegt, also die Rate der Änderung von k größer der von n ist.
+\end_layout
+
+\begin_layout Standard
+Basierend auf diesen Daten bzw.
+ Feststellungen wurde also der Zeichensatz um einige Zeichen erweitert.
+ Es stehen nun 84 anstatt 77 Zeichen zur Verfügung, also 7 Zeichen mehr.
+ Diese 7 Zeichen mehr geben bei gleicher Passwortlänge von 15 Zeichen 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$84^15-77^15 
+\backslash
+approx 7,31 
+\backslash
+cdot 10^28 - 1.98 
+\backslash
+cdot 10^28 = 5.33 
+\backslash
+cdot 10^28$
+\end_layout
+
+\end_inset
+
+ mehr Möglichkeiten.
+ Oder anders ausgedrückt ist die Sicherheit des Passworts um den Faktor
+ 3,69 erhöht worden.
+\end_layout
+
+\begin_layout Subsubsection
+Admin hat sein Passwort vergessen
+\end_layout
+
+\begin_layout Standard
+Jedoch kann es natürlich auch vorkommen, dass ein Admin sein Passwort vergisst
+ - auch für so einen Fall steht ein Prozess zur Verfügung.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Admin-PW-Reset.png
+	scale 50
+	clip
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Verifizierung zum Rücksetzen eines Admin-Passworts 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wenn ein Admin sein Passwort zurücksetzen möchte, so erfordert dies eine
+ weitere Sicherheitsstufe.
+ Diese wird über eine asymmetrische Verschlüsselung mittels RSA, bzw.
+ PKCS #1-OAEP realisiert.
+ Das Verfahren läuft dabei wie folgt ab:
+\end_layout
+
+\begin_layout Itemize
+Lokal ist ein Public-Key hinterlegt
+\end_layout
+
+\begin_layout Itemize
+Mit diesem wird ein arbiträrer Wert (In der Implementierung ist 
+\begin_inset Quotes eld
+\end_inset
+
+True
+\begin_inset Quotes erd
+\end_inset
+
+ gewählt) verschlüsselt
+\end_layout
+
+\begin_layout Itemize
+Anschließend wird probiert dieser Wert mit einem vom Nutzer gegebenen Schlüssel
+ zu entschlüsseln
+\end_layout
+
+\begin_layout Itemize
+Ist dies erfolgreich, wird ein neues Schlüsselpaar erzeugt und sowohl Public-
+ wie auch Private-Key überschrieben - dies hat zur Folge, dass jedes Schlüsselpa
+ar nur einmal gültig ist - so können andere Admins kontrollieren ob ein
+ Admin kürzlich sein Passwort zurückgesetzt hat
+\end_layout
+
+\begin_layout Itemize
+Ab hier wird der normale Passwort-Rücksetz-Vorgang eines Users eingeleitet
+\end_layout
+
+\begin_layout Standard
+Es ist so vorgesehen, dass ein Admin (bzw.
+ Superadmin - je nachdem wer Zugang zum Private-Key erhält) den Schlüssel
+ auf einem USB-Stick o.Ä.
+ ablegt und diesen im Bedarfsfall einsteckt.
 \end_layout
 
 \begin_layout Subsection
@@ -1142,6 +2253,24 @@ timed_out
 True
 \emph default
  gesetzt.
+ Bei den Argumenten ist zu beachten, dass 
+\emph on
+args
+\emph default
+ standartmäßig auf None gesetzt wird, zur Laufzeit des Konstruktors allerdings
+ mit einer leeren Liste ersetzt wird wenn dieser Standartwert vorhanden
+ ist.
+ Dies hat den Hintergrund, dass es generell eine schlechte Idee ist eine
+ leere Liste als Standartwert festzulegen, Standartwerte nicht beim Aufrufen
+ einer Methode (oder Funktion oder Sonstigem), sondern sobald das zugehörige
+ 
+\emph on
+def 
+\emph default
+ausgeführt wird evaluiert werden.
+ Bei immutablen Datentypen ist dies kein Problem - bei mutablen allerdings
+ wird so stets die selbe Instanz intern verwendet was dazu führt, dass eine
+ Änderung der Daten in einem Funktionsaufruf, alle anderen mit beeinflusst.
 \end_layout
 
 \begin_layout Standard
@@ -1357,6 +2486,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Bilder/Responsibility-Baum-Sieb-Struktorgramm.png
 	scale 75
@@ -1540,6 +2670,33 @@ abonniert
 
 (von engl.
  subscribe - also die [Index]-Notation) werden muss
+\end_layout
+
+\begin_layout Subsection
+Fazit
+\end_layout
+
+\begin_layout Standard
+Es kann gesagt werden, dass PyQt(5) gegenüber anderen GUI-Paketen, wie z.B.
+ tkinter aus der Python Standartbibliothek, klare Vorzüge hat.
+ So ist der Code plattformunabhängig, die Bedienelemente sehen ansprechend
+ aus und es ist einfach, auch größere Anwendungen noch gut zu strukturieren.
+ Jedoch muss auch gesagt werden, dass PyQt5 teils nicht wirklich 
+\begin_inset Quotes eld
+\end_inset
+
+pythonic
+\begin_inset Quotes erd
+\end_inset
+
+ ist; so werden z.B.
+ die Texte vieler Bedienelemente nicht über eine 
+\emph on
+property
+\emph default
+/Zuweisung sondern über eine setText-Methode geändert.
+ Da Qt eigentlich aus dem C++ Bereich kommt ist dies verständlich, hätte
+ im Wrapper jedoch geändert werden sollen.
 \end_layout
 
 \begin_layout Standard
