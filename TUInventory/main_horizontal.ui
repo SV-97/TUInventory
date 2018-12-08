@@ -212,7 +212,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>1</number>
+    <number>2</number>
    </property>
    <widget class="QWidget" name="page_5">
     <widget class="QGroupBox" name="groupBox">
@@ -227,47 +227,11 @@
      <property name="title">
       <string>Übersicht</string>
      </property>
-     <widget class="QListWidget" name="lw_1">
-      <property name="geometry">
-       <rect>
-        <x>15</x>
-        <y>401</y>
-        <width>821</width>
-        <height>321</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_10">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>30</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>QListWidget:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_11">
-      <property name="geometry">
-       <rect>
-        <x>20</x>
-        <y>380</y>
-        <width>71</width>
-        <height>16</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>QListWidget:</string>
-      </property>
-     </widget>
      <widget class="QTreeWidget" name="treeWidget">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>50</y>
+        <y>30</y>
         <width>831</width>
         <height>331</height>
        </rect>
@@ -282,7 +246,7 @@
        <bool>false</bool>
       </property>
       <property name="headerHidden">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="columnCount">
        <number>1</number>
@@ -759,7 +723,7 @@
          <x>31</x>
          <y>31</y>
          <width>611</width>
-         <height>237</height>
+         <height>291</height>
         </rect>
        </property>
        <layout class="QFormLayout" name="formLayout">
@@ -817,7 +781,7 @@
            <string>Die Email wird später als Benutzername verwendet</string>
           </property>
           <property name="text">
-           <string>Email:</string>
+           <string>Email/Benutzername:</string>
           </property>
          </widget>
         </item>
@@ -832,17 +796,29 @@
            </font>
           </property>
           <property name="text">
-           <string>Email bestätigen:</string>
+           <string>Passwort:</string>
           </property>
          </widget>
         </item>
-        <item row="4" column="1">
-         <widget class="QLineEdit" name="lineEdit_5"/>
-        </item>
         <item row="5" column="0">
          <widget class="QLabel" name="label_8">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
           <property name="text">
-           <string>(Die Email wird später als Benutzername verwendet.)</string>
+           <string>Passwort bestätigen:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="5" column="1">
+         <widget class="QLineEdit" name="t_password">
+          <property name="inputMethodHints">
+           <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::PasswordEchoOnEdit</enum>
           </property>
          </widget>
         </item>
@@ -873,6 +849,45 @@
         </item>
         <item row="7" column="1">
          <widget class="QLineEdit" name="lineEdit_6"/>
+        </item>
+        <item row="8" column="0">
+         <widget class="QLabel" name="label_12">
+          <property name="font">
+           <font>
+            <pointsize>12</pointsize>
+           </font>
+          </property>
+          <property name="text">
+           <string>Arbeitsplatz:</string>
+          </property>
+         </widget>
+        </item>
+        <item row="8" column="1">
+         <widget class="QComboBox" name="comboBox"/>
+        </item>
+        <item row="9" column="0">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>Anlegen</string>
+          </property>
+         </widget>
+        </item>
+        <item row="9" column="1">
+         <widget class="QCheckBox" name="checkBox">
+          <property name="text">
+           <string>isAdmin</string>
+          </property>
+         </widget>
+        </item>
+        <item row="4" column="1">
+         <widget class="QLineEdit" name="t_password_2">
+          <property name="inputMethodHints">
+           <set>Qt::ImhNoAutoUppercase|Qt::ImhNoPredictiveText|Qt::ImhSensitiveData</set>
+          </property>
+          <property name="echoMode">
+           <enum>QLineEdit::PasswordEchoOnEdit</enum>
+          </property>
+         </widget>
         </item>
        </layout>
       </widget>
