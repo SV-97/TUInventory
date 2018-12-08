@@ -248,7 +248,7 @@ Base.metadata.create_all(bind=engine) # Database initialized
 
 
 class Timeout(threading.Thread):
-    def __init__(self, timeout, function, args=[]):
+    def __init__(self, timeout, function, args=None):
         """Timer that runs in background and executes a function if it's not refreshed
         Args:
             function: function that is executed once time runs out
@@ -256,6 +256,8 @@ class Timeout(threading.Thread):
             args: arguments for function
         """
         super().__init__()
+        if args is None:
+            args = []
         self.timeout = timeout
         self.function = function
         self.args = args
