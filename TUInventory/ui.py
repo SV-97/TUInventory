@@ -219,6 +219,10 @@ class MainDialog(QtWidgets.QDialog):
         if self.logged_in_user:
             self.ui.log_in_out.setCurrentIndex(0)
             self.label.setText(str(self.logged_in_user).title())
+            if self.logged_in_user.is_admin:
+                self.checkBox.visible = True
+            else:
+                self.checkBox.visible = False 
         else:
             self.ui.log_in_out.setCurrentIndex(1)
             self.label.setText("")
@@ -229,6 +233,27 @@ class MainDialog(QtWidgets.QDialog):
     def mouseMoveEvent(self, QMouseEvent):
         if "timeout" in self.__dict__:
             self.timeout.reset()
+
+    def new_user(self): # not linked yet
+        if "" in (box.text for box in [self.lineEdit_2, self.lineEdit_3, self.lineEdit_4, self.lineEdit_5, self.lineEdit_6]) or self.comboBox.currentText() == "": # change to final names
+            # show message that user needs to fill all boxes
+            return
+        
+        args = [None for i in range(6)]
+        user = slots.create_user(*args) # add textboxes once names are final and remove args
+        if self.checkBox.isChecked():
+            slots.create_admin(user)
+        # show message that creation was successful
+
+    def reset_password(self):
+        """Set new password and salt for user, push it to db and show it in UI"""
+        with CSession() as session:    
+            # check if admin is logged in(though this dialog shouldn't show if no admin is logged in)
+            # query user from db via name
+            user = None
+            new_password = slots.reset_password(user)
+        # display password
+    
 
 class LoginDialog(QtWidgets.QDialog):
     
