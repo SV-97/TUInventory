@@ -206,7 +206,7 @@ class User(Base):
     def __init__(self, e_mail, password, name="", surname="", phonenumber="", uid=None, salt=None):
         self.uid = uid
         self.e_mail = e_mail.lower()
-        self.salt = salt if salt else randbits(256)
+        self.salt = salt if salt else self.new_salt()
         self.name = name.title()
         self.surname = surname.title()
         if isinstance(phonenumber, PhoneNumber):
@@ -215,6 +215,10 @@ class User(Base):
             self.phonenumber = PhoneNumber(phonenumber)
         self.hash(password)
         self.is_admin = False
+
+    @staticmethod
+    def new_salt():
+        return randbits(256) 
 
     def hash(self, password):
         """Hash a string with pbkdf2
