@@ -45,8 +45,7 @@ def login(e_mail, password):
         try:
             user = session.query(classes.User).filter_by(e_mail=e_mail).first()
             user_at_gate = classes.User(e_mail, password, salt=user.salt)
-            if user_at_gate.password == user.password:
-                toggle_admin_tools(user.is_admin)
+            if compare_digest(user_at_gate.password, user.password):
                 update_user_dependant(user)
                 session.expunge(user)
                 return user
