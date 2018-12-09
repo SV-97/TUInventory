@@ -1664,6 +1664,15 @@ l
  Abseits davon besteht die Zeichenfolge aus dem ganzen Alphabet in Groß-
  und Kleinschreibung, den Ziffern und einigen Sonderzeichen - insgesamt
  stehen somit 77 Zeichen zur Verfügung.
+ Hier kam die Frage auf ob es klüger wäre zu versuchen mehr Zeichen hinzuzufügen
+, oder aber ein längeres Passwort zu wählen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1686,7 +1695,7 @@ status open
 
 \begin_layout Plain Layout
 
-$f(n,k) := n^k$
+$$f(n,k) := n^k$$
 \end_layout
 
 \end_inset
@@ -1709,9 +1718,9 @@ frac {
 \backslash
 partial f}{
 \backslash
-partial n} = n^k 
+partial n} = k 
 \backslash
-cdot ln(n)$$
+cdot n^{k-1}$$
 \end_layout
 
 \end_inset
@@ -1735,9 +1744,9 @@ frac {
 \backslash
 partial f}{
 \backslash
-partial k} = k 
+partial k} = n^k 
 \backslash
-cdot n^{k-1}$$
+cdot ln(n)$$
 \end_layout
 
 \end_inset
@@ -1814,8 +1823,8 @@ $f_2$
 \end_layout
 
 \begin_layout Standard
-Hier wurden die beiden Funktionen für einen Wert von 5 für den Parameter
- welcher statisch gehalten wird (n bei 
+Hier wurden die beiden Funktionen für die Werte 5, 10 und 15 für den Parameter
+ welcher statisch gehalten wird (k bei 
 \begin_inset ERT
 status open
 
@@ -1826,7 +1835,7 @@ $f_1$
 
 \end_inset
 
- und k bei 
+ und n bei 
 \begin_inset ERT
 status open
 
@@ -1839,7 +1848,7 @@ $f_2$
 
 ; dargestellt durch i), und einem Bereich von 0 bis 20 des dynamischen Parameter
 s geplottet.
- Dieser Graph zeigt, dass 
+ Wie man sieht gibt es sowohl Bereiche in denen 
 \begin_inset ERT
 status open
 
@@ -1850,7 +1859,7 @@ $f_1$
 
 \end_inset
 
- sehr viel rasanter ansteigt als 
+, wie auch welche in denen 
 \begin_inset ERT
 status open
 
@@ -1861,19 +1870,8 @@ $f_2$
 
 \end_inset
 
-.
- Es gilt also dass eine Änderung von k, der Länge des Passworts also, einer
- Erhöhung von n vorzuziehen ist.
- Diese ist auch einfacher zu Erhöhen da die Passwortlänge theoretisch keine
- Obergrenze hat, die Tasten einer Tastatur hingegen sind begrenzt.
- Da das Passwort allerdings von Menschen eingegeben wird etc., ist es erstrebensw
-ert die so gering wie möglich (und so lang wie nötig) zu halten.
-\end_layout
-
-\begin_layout Standard
-Jedoch gibt es auch Bereiche in denen eine Erhöhung von n Sinn machen würde(sieh
-e Schnittpunkte der Graphen), daher sollte man eine allgemeinere Darstellung
- wählen.
+ effizienter(sprich größer) ist (siehe Schnittpunkte der Graphen).
+ Daher sollte man eine allgemeinere Darstellung wählen.
  Verallgemeinert, sodass kein Parameter statisch gehalten wird lässt sich
  die Funktion folgenderweise darstellen:
 \end_layout
@@ -1949,19 +1947,23 @@ status open
 
 \begin_layout Plain Layout
 
-$f_3 := f_1 - f_2 = 
+$$f_3(n, k) := f_1 - f_2 = 
 \backslash
 frac {
 \backslash
 partial f}{
 \backslash
-partial k} - 
+partial n} - 
 \backslash
 frac {
 \backslash
 partial f}{
 \backslash
-partial n}$ 
+partial k} = k 
+\backslash
+cdot n^{k-1} - n^k 
+\backslash
+cdot ln(n)$$
 \end_layout
 
 \end_inset
@@ -2000,14 +2002,14 @@ status open
 
 \begin_layout Plain Layout
 
-$k(n) = n 
+$$k(n) = n 
 \backslash
-cdot ln(n)$
+cdot ln(n),$$
 \end_layout
 
 \end_inset
 
-, was ein einfacheres Überprüfen der Koordinaten zulässt.
+ was ein einfacheres Überprüfen der Koordinaten zulässt.
 \end_layout
 
 \begin_layout Standard
@@ -2116,6 +2118,11 @@ cdot 10^28$
  mehr Möglichkeiten.
  Oder anders ausgedrückt ist die Sicherheit des Passworts um den Faktor
  3,69 erhöht worden.
+\end_layout
+
+\begin_layout Standard
+Im Retrospekt ist zu erkennen, dass hierbei eine Funktion für die Schnittpunkte
+ der beiden partiellen Differentiale gebildet wurde.
 \end_layout
 
 \begin_layout Subsubsection
