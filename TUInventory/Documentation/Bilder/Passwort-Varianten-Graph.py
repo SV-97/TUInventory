@@ -14,20 +14,34 @@ plt.ylabel("n - Anzahl an verfügbaren Zeichen")
 plt.legend()
 plt.grid()
 plt.show()
+####
+
+k = np.vectorize(lambda n: n*np.log(n))
+n = np.linspace(0, 100, 250)
+k = k(n)
+
+plt.plot(n, k, label=r"$k = n \cdot ln(n)$")
+plt.plot((77,), (15,), "o", label="Aktueller Stand")
+plt.plot((84,), (15,), "o", label="Neuer Stand")
+plt.ylabel("k - Länge des Passworts")
+plt.xlabel("n - Anzahl an verfügbaren Zeichen")
+plt.legend()
+plt.grid()
+plt.show()
 
 ####
 
 k = np.linspace(0, 20, 10000)[1:]
 n = np.linspace(0, 20, 10000)[1:]
 
-range_ = [5]
+range_ = [5, 10, 15]
 for i, j in enumerate(range_):
-    df_dk = np.vectorize(lambda k, n=j: k*n**(k-1))(k)
-    df_dn = np.vectorize(lambda n, k=j: n**k*np.log(n))(n)
+    df_dn = np.vectorize(lambda n, k=j,: k*n**(k-1))(k)
+    df_dk = np.vectorize(lambda k, n=j: n**k*np.log(n))(n)
 
     plt.subplot(len(range_), 1, i+1).set_title(f"i = {j}")
-    plt.semilogy(k, df_dk, label=r"$f_1 = \frac {\partial f} {\partial k} = k \cdot n ^{k-1} $")
-    plt.semilogy(k, df_dn, label=r"$f_2 = \frac {\partial f} {\partial n} = n^k \cdot ln(n)$")
+    plt.semilogy(k, df_dn, label=r"$f_1 = \frac {\partial f} {\partial n} = k \cdot n ^{k-1} $")
+    plt.semilogy(k, df_dk, label=r"$f_2 = \frac {\partial f} {\partial k} = n^k \cdot ln(n)$")
     plt.xlabel("k/n")
     plt.ylabel(r"$f_1(k) / f_2(n)$")
     plt.grid()
