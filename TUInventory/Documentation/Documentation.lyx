@@ -180,7 +180,7 @@ Abkürzungsverzeichnis
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="16" columns="2">
+<lyxtabular version="3" rows="21" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -199,6 +199,26 @@ Abk.
 
 \begin_layout Plain Layout
 Beschreibung
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+API
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Application Programming Interface
 \end_layout
 
 \end_inset
@@ -239,6 +259,46 @@ DO
 
 \begin_layout Plain Layout
 Digital Output
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ERD
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Entity-Relationship Diagramm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ERM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Entity-Relationship Modell
 \end_layout
 
 \end_inset
@@ -349,6 +409,26 @@ Optimal Asymmetric Encryption Padding
 \begin_inset Text
 
 \begin_layout Plain Layout
+ORM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Object Relational Mapper
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 PBKDF2
 \end_layout
 
@@ -399,6 +479,26 @@ PKCS #1
 
 \begin_layout Plain Layout
 Public-Key Cryptography Standards First Family
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+PSF
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Python Software Foundation
 \end_layout
 
 \end_inset
@@ -522,6 +622,11 @@ Yannis Köhler
 Einführung
 \end_layout
 
+\begin_layout Standard
+Sämtliche Diagramme, Bilder, etc.
+ sind, sofern nicht anders angegeben, selbst erstellt.
+\end_layout
+
 \begin_layout Section
 Die Firma Padcon
 \end_layout
@@ -578,19 +683,16 @@ TUInventory
 \end_layout
 
 \begin_layout Section
-Python 3
-\end_layout
-
-\begin_layout Subsection
 Begriffsdefinitionen
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="9" columns="2">
+<lyxtabular version="3" rows="13" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
-<column alignment="center" valignment="top">
+<column alignment="center" valignment="middle" width="50page%">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
 \begin_inset Text
@@ -616,12 +718,86 @@ Definition
 \begin_inset Text
 
 \begin_layout Plain Layout
+Duck-Typing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Der Typ einer Instanz wird dadurch beschrieben/festgelegt welche Member
+ sie besitzt (Von: 
+\begin_inset Quotes eld
+\end_inset
+
+If it looks like a duck, swims like a duck, and quacks like a duck, then
+ it probably is a duck.
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dynamisch Typisiert
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Typüberprüfung zur Laufzeit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Function Decorator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Funktionsdefinition mit @decorator vorgestellt - Stellt im Prinzip eine
+ Definition der Funktion f da, der ein f = decorator(f) nachgestellt ist.
+ Hierbei wird eine Funktion i.d.R.
+ um weitere Funktionalität (z.B.
+ ein Cache oder die Möglichkeit Vektoren zu verarbeiten) erweitert
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 Immutabel / immutable
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -641,12 +817,13 @@ Kontext Manager / Context Manager
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Klasse, die __enter__ und __exit__ implementiert.
- Erlaubt es Objekte auch im Fehlerfall sauber zu schließen.
+ Erlaubt es Objekte auch im Fehlerfall sauber zu deinitialisieren, bzw.
+ zu schließen.
 \end_layout
 
 \end_inset
@@ -662,7 +839,7 @@ Lazy evaluation
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -682,7 +859,7 @@ Magic Method
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -712,7 +889,7 @@ Mutabel / mutable
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -732,7 +909,7 @@ Mutex
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -748,16 +925,38 @@ Gegenseitig ausschließend (von engl.
 \begin_inset Text
 
 \begin_layout Plain Layout
+ORM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Programmiertechnik um Daten zwischen inkompatiblen Typsystemen (hier Datenbank
+ in SQLite3 und Python) zu konvertieren und somit eine virtuelle Objektdatenbank
+ zu schaffen
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 Pythonic
 \end_layout
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
-idiomatisch im Bezug auf Python
+Idiomatisch im Bezug auf Python
 \end_layout
 
 \end_inset
@@ -792,6 +991,49 @@ Zufällige Zeichenfolge die in der Kryptografie u.A.
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Python 3
+\end_layout
+
+\begin_layout Standard
+Bei Python 3 handelt es sich um eine universell einsetzbare, plattformübergreife
+nde, dynamisch typisierte Hochsprache, welche in verschiedensten implementierung
+en als Open Source Projekt entwickelt wird.
+ Ursprünglich wurde sie von Guido van Rossum 1991 entwickelt, mit dem Ziel
+ eine möglichst lesbare und dennoch mächtige Programmiersprache zu schaffen.
+ Auf der Website der PSF steht dazu: 
+\begin_inset Quotes eld
+\end_inset
+
+Python is a programming language that lets you work quickly and integrate
+ systems more effectively.
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://www.python.org/
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Funktionen und Methoden in Python
+\end_layout
+
+\begin_layout Standard
 \begin_inset Note Greyedout
 status open
 
@@ -821,7 +1063,52 @@ Funktion
 Methode
 \emph default
  sind in Python anders als man es eventuell aus anderen Programmiersprachen
- kennt, daher seien sie hier kurz erläutert:
+ kennt, daher seien sie hier kurz erläutert
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Neben den 
+\emph on
+bound methods 
+\emph default
+gab es außerdem noch die sogenannten 
+\emph on
+unbound methods
+\emph default
+, die einer Methode entsprechen welche ursprünglich zu einer Klasse gehört
+ hat und somit eine Instanz dieser als ersten Parameter erwartet
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PythonDocDescriptorGuide"
+literal "true"
+
+\end_inset
+
+, allerdings von der Klasse losgelöst wurde.
+ Jedoch wurde dieses Konzept mit Python 3.0 verworfen; was früher eine 
+\emph on
+unbound method
+\emph default
+ war ist nun ebenfalls eine 
+\emph on
+function
+\begin_inset CommandInset citation
+LatexCommand cite
+key "PythonDocWhatsNewPython3"
+literal "true"
+
+\end_inset
+
+.
+
+\emph default
+ 
+\end_layout
+
+\end_inset
+
+:
 \end_layout
 
 \begin_layout Standard
@@ -968,43 +1255,12 @@ function
 \end_layout
 
 \begin_layout Standard
-Neben den 
+Neben Methoden und Funktionen ist auch auch möglich andere Objekte in Python
+ aufrufbar zu machen, hierzu müssen sie die 
 \emph on
-bound methods 
+magic method
 \emph default
-gab es außerdem noch die sogenannten 
-\emph on
-unbound methods
-\emph default
-, die einer methode entsprechen welche ursprünglich zu einer Klasse gehört
- hat und somit eine Instanz dieser als ersten Parameter erwartet
-\begin_inset CommandInset citation
-LatexCommand cite
-key "PythonDocDescriptorGuide"
-literal "true"
-
-\end_inset
-
-.
- Jedoch wurde dieses Konzept mit Python 3.0 verworfen; was früher eine 
-\emph on
-unbound method
-\emph default
- war ist nun ebenfalls eine 
-\emph on
-function
-\begin_inset CommandInset citation
-LatexCommand cite
-key "PythonDocWhatsNewPython3"
-literal "true"
-
-\end_inset
-
-.
-
-\emph default
- Neben Methoden und Funktionen ist auch auch möglich andere Objekte in Python
- aufrufbar zu machen, hierzu müssen sie die magic method 
+ 
 \emph on
 __call__
 \emph default
@@ -1050,11 +1306,147 @@ Die verschiedenen Funktionstypen
 \end_layout
 
 \begin_layout Section
-Beziehungen herstellen in SQLAlchemy
+SQLAlchemy
+\end_layout
+
+\begin_layout Standard
+Bei SQLAlchemy handelt es sich um ein Open-Source SQL Toolkit und einen
+ objektrelationalen Mapper für Python.
+\end_layout
+
+\begin_layout Standard
+Lesenswert im Bezug auf die Grundidee, bzw.
+ Architekturentscheidungen von SQLAlchemy ist hierzu, das von Michael Bayer,
+ dem/einem Entwickler von SQLALchemy, in 
+\emph on
+The Architecture of Open Source Applications (Volume 2)
+\emph default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+key "OpenSourceArchitect"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ veröffentlichte Kapitel über SQLAlchemy.
+ Hieraus geht hervor, dass SQLAlchemy so entworfen wurde, dass man bei der
+ Entwicklung damit gewillt sein muss, die relationalen Strukturen seiner
+ Daten zu bedenken, die Implementierung dieser jedoch durch eine High-Level
+ Schnittstelle erfolgen sollte.
+ Dieser Abstraktionslayer ermöglicht es SQLAlchemy mit den verschiedensten
+ Datenbanken (SQLite, PostgreSQL, Oracle,...) zu arbeiten, ohne große (wenn
+ überhaupt) Änderungen am Code vorzunehmen.
+ Diese verschiedenen Implementierungen werden alle über die selbe High-Level
+ API angesprochen und im SQLAlchemy-Jargon 
+\begin_inset Quotes eld
+\end_inset
+
+dialect
+\begin_inset Quotes erd
+\end_inset
+
+ genannt.
+ Ein weiteres grundsätzliches Merkmal, das nicht verschwiegen werden sollte
+ ist, dass SQLAlchemy grob in ein Core-Modul und ein darauf aufsetzendes
+ ORM-Modul aufgeteilt werden kann.
+ Viele Firmen bauen auf dem Core basierend einen eigenen ORM auf.
 \end_layout
 
 \begin_layout Subsection
-Grundprinzip
+Das Datenbankmodell
+\end_layout
+
+\begin_layout Standard
+Das mit SQLAlchemy umgesetzte Datenbankmodell wurde zunächst wie folgt geplant:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/ERD.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Entity-Relationship Diagramm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es sollte also Artikel Geräte geben, deren Standort verfolgt wird, und die
+ immer einen Mitarbeiter zugewiesen haben der für sie verantwortlich ist.
+ Um eine einfachere Pflege der Datenbank zu ermöglichen wurden der Artikel
+ eines Geräts sowie dessen Hersteller ausgekapselt (3.
+ Normalform).
+ Auf Basis dieses ERM wurden Klassen wie folgt erstellt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/UML.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+UML-Diagramm
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Beziehungen herstellen in SQLAlchemy
+\end_layout
+
+\begin_layout Subsubsection
+Grundprinzip und 1-zu-n Beziehungen
 \end_layout
 
 \begin_layout Standard
@@ -1160,7 +1552,7 @@ Child
  bekannt ist, was das Arbeiten wesentlich komfortabler macht.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 1-zu-1 Beziehung
 \end_layout
 
