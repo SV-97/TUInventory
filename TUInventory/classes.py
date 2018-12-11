@@ -240,6 +240,10 @@ class Responsibility(Base):
     device_uid = Column(Integer, sqlalchemy.ForeignKey("devices.uid"), primary_key=True)
     user_uid = Column(Integer, sqlalchemy.ForeignKey("users.uid"), primary_key=True)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"), primary_key=True)
+    def __init__(self, device=None, user=None, location=None):
+        self.device = device
+        self.user = user
+        self.location = location
     def __str__(self):
         return f"{self.user} is responsible for device {self.device} at {self.location}"
 
