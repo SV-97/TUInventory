@@ -1,11 +1,14 @@
+import logging
 import sys
 
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
 from PyQt5.QtCore import Qt
 
-import ui
 from barcodereader import VideoStream
+import logger
+import ui
+
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
@@ -14,7 +17,7 @@ if __name__ == "__main__":
 
     videostream = VideoStream()
     # videostream.start()
-
+    
     dialog_main.show() # show dialog_main as modeless dialog => return control back immediately
 
     """
