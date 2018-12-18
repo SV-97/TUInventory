@@ -159,8 +159,7 @@ class PhoneNumber(Base):
         return self._whitespacekiller(extension)
 
     def __str__(self):
-        """Build string of the telephone number based on DIN 5008
-        """
+        """Build string of the telephone number based on DIN 5008"""
         extension = f"-{self.extension}" if self.extension else ""
         return f"+{self.country_code} {self.area_code} {self.subscriber_number}{extension}"
 
