@@ -180,7 +180,7 @@ Abkürzungsverzeichnis
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="21" columns="2">
+<lyxtabular version="3" rows="24" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -239,6 +239,26 @@ DI
 
 \begin_layout Plain Layout
 Digital Input
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+DLR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dynamic Language Runtime
 \end_layout
 
 \end_inset
@@ -339,6 +359,26 @@ IPC
 
 \begin_layout Plain Layout
 Industrie-PC
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+JVM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Java Virtual Machine
 \end_layout
 
 \end_inset
@@ -579,6 +619,26 @@ UI
 
 \begin_layout Plain Layout
 User Interface
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+VM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Virtual Machine / Virtuelle Maschine
 \end_layout
 
 \end_inset
@@ -1021,7 +1081,43 @@ Python is a programming language that lets you work quickly and integrate
 status open
 
 \begin_layout Plain Layout
-https://www.python.org/
+\begin_inset CommandInset citation
+LatexCommand cite
+after "18.12.18 - 16:32 Uhr"
+key "PSF"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In der Standartimplementierung CPython wird der Quellcode zuerst in einen
+ Bytecode kompiliert welcher dann von einer in C geschriebenen VM interpretiert
+ wird, andere bekannte Implementierungen sind z.B.
+ PyPy (Interpreter in RPython, Vorteil: sehr viel schneller als CPython),
+ Jython (Ausführung mittels JVM, Vorteil: Interoperabilität mit Java) oder
+ IronPython (Ausführung mittels DLR - also .NET, Vorteil: Interoperabilität
+ mit .NET und Integration in Visual Studio).
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "18.12.18 - 17:08 Uhr"
+key "PyInterps"
+literal "false"
+
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -1031,20 +1127,6 @@ https://www.python.org/
 
 \begin_layout Subsection
 Funktionen und Methoden in Python
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Greyedout
-status open
-
-\begin_layout Plain Layout
-https://rszalski.github.io/magicmethods/ - __init__ ist nicht alleiniger Konstrukt
-or, es wird auch immer erst __new__ aufgerufen
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -1077,9 +1159,10 @@ gab es außerdem noch die sogenannten
 unbound methods
 \emph default
 , die einer Methode entsprechen welche ursprünglich zu einer Klasse gehört
- hat und somit eine Instanz dieser als ersten Parameter erwartet
+ hat und somit eine Instanz dieser als ersten Parameter erwartet 
 \begin_inset CommandInset citation
 LatexCommand cite
+after "18.12.18 - 17:24 Uhr"
 key "PythonDocDescriptorGuide"
 literal "true"
 
@@ -1092,14 +1175,19 @@ unbound method
 \emph default
  war ist nun ebenfalls eine 
 \emph on
-function
+function 
+\emph default
+
 \begin_inset CommandInset citation
 LatexCommand cite
+after "18.12.18 - 17:23 Uhr"
 key "PythonDocWhatsNewPython3"
 literal "true"
 
 \end_inset
 
+
+\emph on
 .
 
 \emph default
@@ -1305,6 +1393,165 @@ Die verschiedenen Funktionstypen
 
 \end_layout
 
+\begin_layout Subsection
+Format
+\end_layout
+
+\begin_layout Standard
+Ein Grundsatz der Quellcodeformatierung ist, dass Code wesentlich öfter
+ gelesen als geschrieben wird.
+ Dementsprechend sollte hier mit großer Vorsicht und einer gut durchdachten
+ Systematik vorgegangen werden.
+ In Python gibt es als grundlegende Quelle, wie man seinen Code gut lesbar
+ und idiomatisch schreibt und formatiert z.B.
+ das 
+\begin_inset Quotes eld
+\end_inset
+
+Zen of Python
+\begin_inset Quotes erd
+\end_inset
+
+, welches in Python über 
+\emph on
+import this
+\emph default
+ eingesehen werden kann (und als PEP 20 zu finden ist), oder aber die Python
+ Enhancement Proposals PEP 8 und PEP 254.
+\end_layout
+
+\begin_layout Standard
+PEP 8 trägt hier den Titel 
+\begin_inset Quotes eld
+\end_inset
+
+Style Guide for Python Code
+\begin_inset Quotes erd
+\end_inset
+
+ und umfasst alle Formatfragen von generellem Codelayout, über Kommentare
+ bis hin zu Namensgebungskonventionen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "18.12.18 - 16:17 Uhr"
+key "PEP8"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ PEP 257 hingegen beschäftigt sich mit den sogenannten Docstrings und deren
+ Format 
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "18.12.18 - 16:17 Uhr"
+key "PEP257"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Docstrings sind eine Form von Inline-Dokumentation die z.B.
+ die Schnittstelle und Funktion einer Methode beschreiben.
+ Sie werden vom Python-Interpreter berücksichtigt und sind dann unter dem
+ Magic Member 
+\emph on
+__doc__
+\emph default
+ zu finden.
+ Über Docstrings könnte man aus dem Quellcode auch automatisch die Dokumentation
+ generieren lassen, dies ist in unserem Fall jedoch nicht gewünscht da die
+ Dokumentation im Rahmen dieser Arbeit stattfindet.
+ Als weitere Referenz für das genutzte Format galten ein von Google veröffentlic
+htes Dokument
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "18.12.18 - 17:36 Uhr"
+key "GoogleStyleGuide"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, sowie der Talk 
+\begin_inset Quotes eld
+\end_inset
+
+Beyond PEP 8 -- Best practices for beautiful intelligible code
+\begin_inset Quotes erd
+\end_inset
+
+ von Raymond Hettinger, einem der Core Developer von CPython
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "18.12.18 - 17:40 Uhr"
+key "BeyondPEP8"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Abschließend ist es jedoch klug, bei all diesen Formatforschriften nochmal
+ Bezug auf den Anfang von PEP 8 zu nehmen: 
+\begin_inset Quotes eld
+\end_inset
+
+A Foolish Consistency is the Hobgoblin of Little Minds
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Siehe PEP8 Fußnote
+\end_layout
+
+\end_inset
+
+ - man sollte also wissen, wann es die bessere Entscheidung ist mit den
+ Vorschriften zu brechen.
+\end_layout
+
 \begin_layout Section
 SQLAlchemy
 \end_layout
@@ -1328,6 +1575,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
+after "18.12.18 - 17:26 Uhr"
 key "OpenSourceArchitect"
 literal "false"
 
@@ -1613,6 +1861,117 @@ Beispiel einer 1-zu-1 Beziehung
 
 \begin_layout Section
 Implementierung
+\end_layout
+
+\begin_layout Subsection
+Logging
+\end_layout
+
+\begin_layout Standard
+Beim Logging werden an interessanten Punkten(Datenbankinteraktion, Nutzeranmeldu
+ng, Fehler etc.) in der Anwendung, Nachrichten in eine Datei geschrieben.
+ Die Implementierung erfolgte mittels des 
+\emph on
+logging
+\emph default
+-Moduls aus Pythons Standartbibliothek.
+ Dieses wurde so konfiguriert, dass die geschriebenen Datensätze folgende
+ Informationen enthalten:
+\end_layout
+
+\begin_layout Itemize
+Zeitstempel nach ISO 8601 im Format YYYY-MM-DDThh:mm:ss
+\end_layout
+
+\begin_layout Itemize
+Logtyp (Fehler, Debugnachricht, Information, Kritischer Fehler o.ä)
+\end_layout
+
+\begin_layout Itemize
+Dateiname
+\end_layout
+
+\begin_layout Itemize
+Funktionsname aus dem der Log kommt
+\end_layout
+
+\begin_layout Itemize
+Nachricht
+\end_layout
+
+\begin_layout Standard
+Somit sollte es im Fehlerfall möglich sein, leicht herauszufinden wo eine
+ Fehlerquelle liegt.
+ Der Aufbau eines Log-Datensatzes ist dabei so, dass rechts die am meisten
+ relevante und links die am wenigsten relevante Information liegt, und jeder
+ Abschnitt eine konstante Breite aufweist.
+ Eine Beispieldatei könnte dann so aussehen:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Logger-Beispiel.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Log-Datei Beispiel
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es ist zu sehen, dass sich die Datei Spaltenweise gut lesen lässt und leicht
+ zurückverfolgbar ist woher eine Nachricht stammt.
+ Bei Nachricht 1 und 3 ist ein 
+\emph on
+<module>
+\emph default
+ im Funktionsslot zu sehen; dies bedeutet, dass die Nachricht nicht aus
+ einer Unterfunktion sondern vom Modul selbst stammt.
+ Die beiden Nachrichten aus 
+\emph on
+main
+\emph default
+ hingegen kamen aus den Funktionen 
+\emph on
+test
+\emph default
+ und 
+\emph on
+info
+\emph default
+.
+ Ebenfalls zu sehen ist, dass der Leitgedanke, des von rechts nach links
+ absteigend relevanten Informationslevels sich sehr gut mit ISO 8601 kombinieren
+ lässt, da die Sekunden die wohl wichtigste Information der Zeit darstellen.
+ Auf die Darstellung der Millisekunden (bzw.
+ ggf.
+ Microsekunden etc.) wurde verzichtet, da der Nutzer die Anwendung eher im
+ Sekundentakt bedient und sich somit die Zeile nicht unnötig überlädt.
+ Aus dem selben Grund wäre es denkbar auf die Jahreszahl zu verzichten.
 \end_layout
 
 \begin_layout Section
@@ -2016,9 +2375,9 @@ Es wird also zunächst, über eine Nutzereingabe, der gewünschte User aus
  der Datenbank ausgelesen.
  Parallel dazu wird aus einer vordefinierten Zeichenfolge eine Auswahl von
  15 Zeichen getroffen.
- Diese Stellen das neue Passwort dar und werden in der UI angezeigt.
- Bei der Zeichenfolge aus der das Passwort generiert wird, wurde darauf
- geachtet dass jedes Zeichen klar lesbar ist.
+ Diese stellen das neue Passwort dar und werden in der UI angezeigt.
+ Bei der Zeichenfolge aus der das Passwort generiert wird, wird darauf geachtet
+ dass jedes Zeichen klar lesbar ist.
  So wurden 
 \begin_inset Quotes eld
 \end_inset
@@ -2056,8 +2415,8 @@ l
  Abseits davon besteht die Zeichenfolge aus dem ganzen Alphabet in Groß-
  und Kleinschreibung, den Ziffern und einigen Sonderzeichen - insgesamt
  stehen somit 77 Zeichen zur Verfügung.
- Hier kam die Frage auf ob es klüger wäre zu versuchen mehr Zeichen hinzuzufügen
-, oder aber ein längeres Passwort zu wählen.
+ Es stellt sich die Frage ob es klüger ist mehr Zeichen hinzuzufügen, oder
+ aber ein längeres Passwort zu wählen.
 \end_layout
 
 \begin_layout Standard
@@ -2095,7 +2454,7 @@ $$f(n,k) := n^k$$
  darstellen.
  Möchte man nun wissen ob es effizienter ist weitere Zeichen hinzuzufügen
  oder das Passwort zu verlängern kann man dies über eine Betrachtung der
- beiden Differentiale
+ beiden Ableitungen
 \end_layout
 
 \begin_layout Standard
@@ -2147,7 +2506,8 @@ cdot ln(n)$$
 \end_layout
 
 \begin_layout Standard
-herausfinden, welche die Änderungsraten von 
+herausfinden.
+ Diese beschreiben die Änderungsraten von 
 \begin_inset ERT
 status open
 
@@ -2158,7 +2518,7 @@ $f(n,k)$
 
 \end_inset
 
- bei Änderung eines der beiden Parametern darstellen.
+ bei Änderung eines der beiden Parameter.
 \end_layout
 
 \begin_layout Standard
@@ -2238,8 +2598,8 @@ $f_2$
 
 \end_inset
 
-; dargestellt durch i), und einem Bereich von 0 bis 20 des dynamischen Parameter
-s geplottet.
+; dargestellt durch i), und in einem Bereich von 0 bis 20 des dynamischen
+ Parameters geplottet.
  Wie man sieht gibt es sowohl Bereiche in denen 
 \begin_inset ERT
 status open
@@ -2328,7 +2688,7 @@ status open
 
 \begin_layout Plain Layout
 
-$f_3(f_1, f_2)$
+$f_3(n, k)$
 \end_layout
 
 \end_inset
@@ -2458,7 +2818,7 @@ $f_3$
 \end_layout
 
 \begin_layout Standard
-Hier gilt, dass bei einem Punkt unterhalb der Kurve der Wert von 
+Hier gilt, dass bei einem Punkt oberhalb der Kurve der Wert von 
 \begin_inset ERT
 status open
 
@@ -2494,15 +2854,15 @@ status open
 
 \begin_layout Plain Layout
 
-$84^15-77^15 
+$84^{15}-77^{15} 
 \backslash
 approx 7,31 
 \backslash
-cdot 10^28 - 1.98 
+cdot 10^{28} - 1.98 
 \backslash
-cdot 10^28 = 5.33 
+cdot 10^{28} = 5.33 
 \backslash
-cdot 10^28$
+cdot 10^{28}$
 \end_layout
 
 \end_inset
@@ -2514,7 +2874,7 @@ cdot 10^28$
 
 \begin_layout Standard
 Im Retrospekt ist zu erkennen, dass hierbei eine Funktion für die Schnittpunkte
- der beiden partiellen Differentiale gebildet wurde.
+ der beiden partiellen Ableitungen gebildet wurde.
 \end_layout
 
 \begin_layout Subsubsection
