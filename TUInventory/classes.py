@@ -295,18 +295,20 @@ class Timeout(threading.Thread):
 
 if __name__ == "__main__":
     """Tests"""
-    """ Timer Test
+    """Timer Test
     timeout = Timeout(timeout=10, function=print, args=["timed out"])
     timeout.start()
     reset_thread = threading.Thread(target=lambda: timeout.reset() if input() else None) # function for testing - reset on input
     reset_thread.start()
     t = 0
     delta_t = 1
+    t1 = time()
     while not timeout.timed_out:
         print(f"Not timed out yet - {t:.2f} seconds passed")
         print(timeout.timer)
         t += delta_t
         sleep(delta_t)
+    print(time() - t1)
     timeout.join()
     reset_thread.join()
     """
