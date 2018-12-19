@@ -925,9 +925,10 @@ Magic Method
 \begin_layout Plain Layout
 Eine i.d.R.
  implizit aufgerufene Methode, welche einer Klasse besondere Fähigkeiten
- gibt
+ verleiht
 \begin_inset CommandInset citation
 LatexCommand cite
+after "S. XX"
 key "Python3"
 literal "true"
 
@@ -1123,6 +1124,11 @@ literal "false"
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Alle Ausführungen dieser Arbeit beziehen sich, sofern nicht anders angegeben,
+ auf CPython in Version 3.7.
 \end_layout
 
 \begin_layout Subsection
