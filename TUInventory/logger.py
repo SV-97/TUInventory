@@ -1,12 +1,14 @@
 import logging
 
-from ui import absolute_path
+from utils import absolute_path
 
-logging.basicConfig(
-    filename=absolute_path("protocol.log"), 
-    level=logging.INFO,
-    style="{",
-    format='{asctime} [{levelname:8}] from {module:>15}.{funcName:12} "{message}" ',
+handler = logging.FileHandler(filename=absolute_path("protocol.log"))
+formatter = logging.Formatter(
+    fmt='{asctime} [{levelname:8}] from {module:>15}.{funcName:12} "{message}"', 
+    style="{", 
     datefmt="%Y-%m-%dT%H:%m:%S")
 
-logging.error("testerror")
+handler.setFormatter(formatter)
+logger = logging.getLogger()
+logger.addHandler(handler)
+logger.setLevel(logging.INFO)
