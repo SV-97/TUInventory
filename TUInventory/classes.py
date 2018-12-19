@@ -8,10 +8,13 @@ import sqlalchemy
 from sqlalchemy import Boolean, Column, Float, Integer, LargeBinary, String
 from sqlalchemy.ext.declarative import declarative_base
 
+from logger import logger
+
 orm = sqlalchemy.orm
 
 Base = declarative_base()
 if __name__ == "__main__":
+    logger.info("Database cleared")
     with open("TUInventory/test.db", "w") as f:
         f.flush()
 engine = sqlalchemy.create_engine("sqlite:///TUInventory/test.db", echo=False)
@@ -248,7 +251,7 @@ class Responsibility(Base):
 
 
 Base.metadata.create_all(bind=engine) # Database initialized
-
+logger.info("Database initialized, tables verified")
 
 class Timeout(threading.Thread):
     def __init__(self, timeout, function, args=None):
