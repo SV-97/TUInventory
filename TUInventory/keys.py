@@ -1,7 +1,6 @@
-from Crypto.Cipher import PKCS1_OAEP
-from Crypto.PublicKey import RSA
+from Cryptodome.Cipher import PKCS1_OAEP
+from Cryptodome.PublicKey import RSA
 from pathlib import Path
-
 
 def generate_key(path_public, path_private):
     """Generate new RSA key-pair and save it to the given paths
