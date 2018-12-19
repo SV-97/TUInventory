@@ -1,6 +1,4 @@
-import os
 import sys
-import pathlib
 import styling
 
 from PyQt5 import uic, QtWidgets
@@ -9,13 +7,9 @@ from PyQt5.QtCore import Qt
 
 import classes
 import slots
+from utils import absolute_path
 
 CSession = classes.setup_context_session(classes.engine)
-
-def absolute_path(relative_path):
-    path = pathlib.Path(os.path.dirname(__file__))
-    return path / relative_path
-
 
 class MainDialog(QtWidgets.QDialog):
 
