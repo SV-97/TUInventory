@@ -86,4 +86,11 @@
   url    = {https://www.youtube.com/watch?v=wf-BqAjZb8M},
 }
 
+@Manual{ThinkConcurrent,
+  title  = {Thinking about Concurrency},
+  author = {Raymond Hettinger},
+  year   = {2016},
+  url    = {https://youtu.be/Bv25Dwe84g0},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
