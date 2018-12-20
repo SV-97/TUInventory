@@ -181,7 +181,7 @@ class Location(Base):
     __tablename__ = "locations"
     uid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
-    devices = orm.relationship("Device", backref=orm.backref("location", uselist=False))
+    #devices = orm.relationship("Device", backref=orm.backref("location", uselist=False))
     responsibilities = orm.relationship("Responsibility", backref="location")
     def __init__(self, name="", uid=None):
         self.name = name.title()
