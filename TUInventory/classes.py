@@ -94,7 +94,7 @@ class Device(Base):
     article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
     name = Column(String) # not currently used
     code = Column(String)
-    location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
+    #location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
     responsibilities = orm.relationship("Responsibility", backref="device")
     def __init__(self, code=None, uid=None):
         self.uid = uid
