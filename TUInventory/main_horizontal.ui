@@ -212,7 +212,7 @@
     </rect>
    </property>
    <property name="currentIndex">
-    <number>2</number>
+    <number>1</number>
    </property>
    <widget class="QWidget" name="page_5">
     <widget class="QGroupBox" name="groupBox">
@@ -363,18 +363,34 @@
        <string>Gerät einscannen</string>
       </property>
      </widget>
-     <widget class="QGraphicsView" name="graphicsView">
+     <widget class="QLabel" name="videoFeed">
       <property name="geometry">
        <rect>
         <x>10</x>
-        <y>30</y>
+        <y>70</y>
         <width>831</width>
-        <height>711</height>
+        <height>671</height>
        </rect>
       </property>
+      <property name="frameShape">
+       <enum>QFrame::Box</enum>
+      </property>
+      <property name="frameShadow">
+       <enum>QFrame::Plain</enum>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>pictures/padcon_logo.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="margin">
+       <number>0</number>
+      </property>
      </widget>
-     <zorder>graphicsView</zorder>
-     <zorder>_2_b_scan</zorder>
     </widget>
    </widget>
    <widget class="QWidget" name="page_7">
