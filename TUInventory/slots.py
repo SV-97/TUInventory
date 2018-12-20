@@ -5,7 +5,7 @@ import sqlalchemy
 
 import classes
 import keys
-from logger import Logger
+from logger import logger
 
 # Session = sqlalchemy.orm.sessionmaker(bind=classes.engine)
 CSession = classes.setup_context_session(classes.engine)
@@ -42,7 +42,7 @@ def login(e_mail, password):
             if compare_digest(user_at_gate.password, user.password):
                 update_user_dependant(user)
                 session.expunge(user)
-                logger.info(f"Successfully logged in as {e_mail}")
+                logger.info(f"Successfully logged in as {user.uid}")
                 return user
             else:
                 logger.info(f"Attempted login with wrong password for user {e_mail}")
