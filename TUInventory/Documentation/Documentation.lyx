@@ -1665,7 +1665,46 @@ Vorwort und Übersicht über die Anwendung
 
 \begin_layout Standard
 Da TUInventory an manchen Stellen stark auf Multithreading setzt sei hier
- eine Grafik vorgestellt die Kontroll- und Informationsfluss visualisiert:
+ eine Grafik vorangestellt die Kontroll- (solider Pfeil) und Informationsfluss
+ (gestrichelter Pfeil) visualisiert:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Thread-Übersicht.png
+	width 70page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Übersicht über Verhältnisse von Threads zueinander
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -2837,7 +2876,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Passwort-Varianten-Graph_1_cropped.png
-	scale 40
+	scale 35
 
 \end_inset
 
