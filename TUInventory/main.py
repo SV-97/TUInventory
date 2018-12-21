@@ -12,7 +12,7 @@ from barcodereader import LazyVideoStream, VideoStream
 from logger import logger
 import ui
 
-class VideoStreamToUISync(Thread):
+class VideoStreamUISync(Thread):
     def __init__(self, canvas, videostream):
         """Class to tie a LazyVideoStream to some canvas in Qt
         Args:
@@ -54,7 +54,7 @@ if __name__ == "__main__":
 
     videostream = LazyVideoStream()
     videostream.start()
-    video_ui_sync = VideoStreamToUISync(dialog_main.ui.videoFeed, videostream)
+    video_ui_sync = VideoStreamUISync(dialog_main.ui.videoFeed, videostream)
     video_ui_sync.start()
     
     dialog_main.show() # show dialog_main as modeless dialog => return control back immediately
