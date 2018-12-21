@@ -11,6 +11,7 @@ from utils import absolute_path
 
 CSession = classes.setup_context_session(classes.engine)
 
+
 class MainDialog(QtWidgets.QDialog):
 
     def __init__(self, parent=None):
