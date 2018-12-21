@@ -117,6 +117,8 @@ class LazyVideoStream(threading.Thread):
         self._frame = np.zeros((1, 1))
         self.request_queue = queue.Queue()
         self.frame_queue = queue.Queue()
+        with self.camera:
+            pass
 
     def _set_mirror(self, mirror):
         with self.gp_lock:
@@ -179,12 +181,6 @@ class LazyVideoStream(threading.Thread):
                 self.request_queue.task_done()
 
 
-class CantOpenCameraException(Exception):
-    def __init__(self, camera_id):
-        super().__init__(self)
-        self.text = f"Unable to open Camera {camera_id}"
-
-
 class Camera():
     """Context Manager for video streams"""
     def __init__(self, camera_id=0):
@@ -193,7 +189,7 @@ class Camera():
     def __enter__(self):
         self.camera = cv2.VideoCapture(self.camera_id)
         if not self.camera.isOpened():
-            raise CantOpenCameraException(self.camera_id)
+            raise IOError(f"Failed to open camera {self.camera_id}")
         while not self.camera.read()[0]:
             pass
         return self.camera

@@ -1,5 +1,12 @@
-from Cryptodome.Cipher import PKCS1_OAEP
-from Cryptodome.PublicKey import RSA
+try:
+    from Cryptodome.Cipher import PKCS1_OAEP
+    from Cryptodome.PublicKey import RSA
+except ImportError as e:
+    try:
+        from Crypto.Cipher import PKCS1_OAEP
+        from Crypto.PublicKey import RSA
+    except ImportError as err:
+        raise err
 from pathlib import Path
 
 def generate_key(path_public, path_private):
