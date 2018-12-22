@@ -22,6 +22,6 @@ if __name__=="__main__":
             self.uid = uid
             self.code = code
             self.article = article
-    article = TestArticle("Der Schokopanzer")
+    article = TestArticle("Article")
     device = TestDevice(10, "", article)
     generate_qr(device)
