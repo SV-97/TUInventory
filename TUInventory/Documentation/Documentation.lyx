@@ -1707,6 +1707,221 @@ status open
 
 \end_layout
 
+\begin_layout Standard
+Desweiteren sei eine Übersicht über alle Module und deren Klassen, sowie
+ Top-Level-Functions und module-level Instanzen gegeben:
+\end_layout
+
+\begin_layout Description
+barcodereader.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+VideoStream class, thread
+\end_layout
+
+\begin_layout Description
+LazyVideoStream class, thread
+\end_layout
+
+\begin_layout Description
+Camera class
+\end_layout
+
+\end_deeper
+\begin_layout Description
+classes.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+BigInt class
+\end_layout
+
+\begin_layout Description
+setup_context_session method
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+ContextSession class
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Producer class
+\end_layout
+
+\begin_layout Description
+Article class
+\end_layout
+
+\begin_layout Description
+Device class
+\end_layout
+
+\begin_layout Description
+PhoneNumber class
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+NoNumberFoundWarning class
+\end_layout
+
+\end_deeper
+\begin_layout Description
+Location class
+\end_layout
+
+\begin_layout Description
+User class
+\end_layout
+
+\begin_layout Description
+Responsibility class
+\end_layout
+
+\begin_layout Description
+Timeout class, thread
+\end_layout
+
+\end_deeper
+\begin_layout Description
+keys.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+generate_key method
+\end_layout
+
+\begin_layout Description
+read_keys method
+\end_layout
+
+\end_deeper
+\begin_layout Description
+logger.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+logger RootLogger instance
+\end_layout
+
+\end_deeper
+\begin_layout Description
+main.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+VideoStreamUISync class, thread
+\end_layout
+
+\begin_layout Description
+main method
+\end_layout
+
+\end_deeper
+\begin_layout Description
+qr_generator.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+generate_qr method
+\end_layout
+
+\end_deeper
+\begin_layout Description
+slots.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+save_to_db method
+\end_layout
+
+\begin_layout Description
+update_user_dependant method
+\end_layout
+
+\begin_layout Description
+create_user method
+\end_layout
+
+\begin_layout Description
+create_admin method
+\end_layout
+
+\begin_layout Description
+login method
+\end_layout
+
+\begin_layout Description
+logout method
+\end_layout
+
+\begin_layout Description
+create_device method
+\end_layout
+
+\begin_layout Description
+create_location method
+\end_layout
+
+\begin_layout Description
+create_producer method
+\end_layout
+
+\begin_layout Description
+generate_password method
+\end_layout
+
+\begin_layout Description
+reset_password method
+\end_layout
+
+\begin_layout Description
+reset_admin_password method
+\end_layout
+
+\end_deeper
+\begin_layout Description
+ui.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+MainDialog class
+\end_layout
+
+\begin_layout Description
+LoginDialog class
+\end_layout
+
+\end_deeper
+\begin_layout Description
+utils.py
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+absolute_path method
+\end_layout
+
+\begin_layout Description
+_ParallelPrint class, thread
+\end_layout
+
+\begin_layout Description
+parallel_print put method of _ParallelPrint instance
+\end_layout
+
+\end_deeper
 \begin_layout Section
 SQLAlchemy
 \end_layout
@@ -1763,6 +1978,8 @@ dialect
  ist, dass SQLAlchemy grob in ein Core-Modul und ein darauf aufsetzendes
  ORM-Modul aufgeteilt werden kann.
  Viele Firmen bauen auf dem Core basierend einen eigenen ORM auf.
+ Die Details dieser Struktur sind der umfangreichen SQLAlchemy Dokumentation
+ zu entnehmen.
 \end_layout
 
 \begin_layout Subsection
@@ -1810,7 +2027,14 @@ Es sollte also Artikel Geräte geben, deren Standort verfolgt wird, und die
  Um eine einfachere Pflege der Datenbank zu ermöglichen wurden der Artikel
  eines Geräts sowie dessen Hersteller ausgekapselt (3.
  Normalform).
- Auf Basis dieses ERM wurden Klassen wie folgt erstellt:
+\end_layout
+
+\begin_layout Subsection
+Implementierung des Datenbankmodells
+\end_layout
+
+\begin_layout Standard
+Auf Basis dieses ERM wurden Klassen wie folgt erstellt:
 \end_layout
 
 \begin_layout Standard
@@ -1842,6 +2066,76 @@ UML-Diagramm
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Diese Klassen erben alle von einer abstrakten Basisklasse Base, die von
+ SQLAlchemy bereitgestellt wird und besitzen jeweils einen eigenen Datenbank
+ Table.
+ Auch die Beziehungen der Klassen werden auf Basis des Quellcodes automatisch
+ von SQLAlchemy erzeugt.
+ Auf die hier gezeigte 
+\emph on
+PhoneNumber
+\emph default
+ Klasse wird im Abschnitt 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Die-Klasse-TelephoneNumber"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ noch im Detail eingegangen.
+\end_layout
+
+\begin_layout Subsection
+Benutzerdefinierte Datentypen
+\end_layout
+
+\begin_layout Standard
+Ähnlich normaler Datenbankinterfaces - BigInt - String da große zahl für
+ salt
+\end_layout
+
+\begin_layout Standard
+Da SQLAlchemy im Hintergrund eine tatsächliche SQL Datenbank einsetzt ist
+ es natürlich an die Datentypen dieser gebunden, daher ist es hier, ähnlich
+ einer traditionellen DBAPI, nötig Adapter zu schreiben um eigene Datentypen
+ ablegen zu können.
+ Konkret geht es darum, das 
+\emph on
+salt
+\emph default
+ eines Nutzers in der Datenbank zu speichern.
+ Das Salt ist eine sehr große Zahl.
+ Daher wird ein eigener Datentyp benötigt welcher den Python-seitigen Wert
+ beim Speichern in die Datenbank zu einem String konvertiert, und beim Abrufen
+ die umgekehrte Umwandlung durchführt.
+ SQLAlchemy stellt hierzu die abstrakte Klasse TypeDecorator zur Verfügung,
+ von dieser leiten wir eine Klasse 
+\emph on
+BigInt
+\emph default
+ ab.
+ Als Klassenvariable legen wir über 
+\emph on
+impl
+\emph default
+ fest, dass die Datenbankseitige Implementierung als string erfolgt, die
+ beiden Methoden 
+\emph on
+process_bind_param 
+\emph default
+und
+\emph on
+ process_result_value
+\emph default
+ nehmen die Umwandlung vor.
+ Es ist auch möglich je nach dialect der Datenbank verschieden umzuwandeln,
+ dies ist hier allerdings nicht nötig.
 \end_layout
 
 \begin_layout Subsection
@@ -2005,6 +2299,347 @@ Beispiel einer 1-zu-1 Beziehung
 \end_inset
 
 
+\end_layout
+
+\begin_layout Standard
+Prinzipiell ist es auch möglich n-zu-n Beziehungen herzustellen, dies war
+ bei uns jedoch nicht nötig und wird daher nicht aufgeführt.
+\end_layout
+
+\begin_layout Subsection
+Arbeiten mit SQLAlchemy
+\end_layout
+
+\begin_layout Standard
+Beim Arbeiten mit SQLAlchemy gibt es ein sehr prominentes Konstrukt: 
+\emph on
+Session
+\emph default
+s
+\end_layout
+
+\begin_layout Standard
+Über diese erfolgt die komplette Interaktion mit der Datenbank, sie erledigt
+ im Hintergrund jedoch auch Dinge wie 
+\begin_inset Quotes eld
+\end_inset
+
+State-Management
+\begin_inset Quotes erd
+\end_inset
+
+ (Konsistenzstatus zwischen Objekt und Datenbank), was später noch eine
+ wichtige Rolle spielt.
+ Eine Session wird zunächst an eine 
+\emph on
+Engine
+\emph default
+ angebunden, diese Engine verwaltet z.B.
+ den bereits erwähnten Dialect und stellt das Interface zur DBAPI und damit
+ auch zur Datenbank dar.
+ Über ihre Lebenszeit kann man einer Session Objekte manuell oder über Abfragen
+ hinzufügen sie entfernen und Änderungen an der Datenbank vornehmen.
+ Oftmals, so auch in unserem Fall, gibt es jedoch viele Stellen von denen
+ aus auf eine Session zugegriffen werden muss, da stellt man sich natürlich
+ die Frage wann man denn eine neue Session aufmacht und schließt etc..
+ Hierzu steht in der Dokumentation von SQLAlchemy: 
+\begin_inset Quotes eld
+\end_inset
+
+When do I construct a Session, when do I commit it, and when do I close
+ it? [...] Make sure you have a clear notion of where transactions begin and
+ end, and keep transactions short, meaning, they end at the series of a
+ sequence of operations, instead of being held open indefinitely.
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "22.12.18 - 16:41 Uhr"
+key "SessionBasics"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Dies und der Fakt, dass eine Engine steht ordnungsgemäß initialisiert und
+ deinitialisiert werden muss führt uns daher ein weiteres Mal zu einem Kontext-M
+anager.
+ Dieser Kontextmanager verfügt über die Engine zu der alle Sessions verbunden
+ werden sowie einen sog.
+ 
+\emph on
+sessionmaker
+\emph default
+.
+ Dieser Sessionmaker kümmert sich um die Konfiguration der erzeugten Sessions.
+ Da es jedoch potentiell wünschenswert ist mehrere Datenbanken zu haben
+ (z.B.
+ lokale Datenbank für Geräte und remote Datenbank für Nutzerdaten), wurde
+ im Hinblick auf Zukunftssicherheit und Maintainability eine Variante gewählt
+ die es erlaubt mehrere Kontext Manager für Sessions auf verschiedenen engines
+ zu haben.
+ Damit steht eine Fabrikmethode (
+\emph on
+setup_context_session
+\emph default
+)zur Verfügung der eine engine übergeben wird und die den Kontext Manager
+ als Klasse zurückgibt.
+ Die zurückgegebene Klasse kümmert sich dann um eventuelle Rollbacks im
+ Fehlerfall etc..
+ Es ist wichtig zu beachten, dass Methoden die im Hintergrund zu INSERT,
+ DELETE oder UPDATE evaluiert werden erst beim Aufrufen der Methoden 
+\emph on
+flush
+\emph default
+ oder 
+\emph on
+commit
+\emph default
+ der Session tatsächlich geschrieben werden, sofern kein 
+\emph on
+autocommit
+\emph default
+ eingestellt ist.
+\end_layout
+
+\begin_layout Subsubsection
+Neue Einträge in der Datenbank vornehmen
+\end_layout
+
+\begin_layout Standard
+Nachdem die Vorarbeit mit Sessions und Klassen geleistet ist, ist es nun
+ sehr einfach neue Einträge in der Datenbank vorzunehmen.
+ Das folgende Beispielprogramm zeigt wie einige bereits erzeugte Objekte
+ in der Datenbank abgelegt werden.
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/In_DB_schreiben.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Objekte in Datenbank ablegen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Wie zu sehen ist, können sehr komfortabel entweder einzelne Objekte oder
+ eine ganze Reihe von ihnen auf einmal geschrieben werden.
+ Commits, Rollbacks etc.
+ werden automatisch im Hintergrund gehandled.
+\end_layout
+
+\begin_layout Subsubsection
+Abfragen
+\end_layout
+
+\begin_layout Standard
+Abfragen können auf zwei verschiedene Wege erfolgen:
+\end_layout
+
+\begin_layout Itemize
+direkt über SQL Querys
+\end_layout
+
+\begin_layout Itemize
+über die 
+\emph on
+query-
+\emph default
+Methode einer 
+\emph on
+Session
+\emph default
+ Instanz
+\end_layout
+
+\begin_layout Standard
+Bei TUInventory wurde ausschließlich der objektorientiert Abfrageansatz
+ eingesetzt.
+ Als Beispiel dient hier die Abfrage (wenn auch nicht in finaler Version)
+ die im Zusammenhang des Einloggen eines Users auftritt:
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/Abfrage.py"
+lstparams "language=Python,breakautoindent=true"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Abfrage aus Datenbank anhand eines tatsächlichen Beispiels
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die wichtigen Punkte sind hier die Zeilen 6 und 10.
+ In Zeile 6 wird über die 
+\emph on
+query
+\emph default
+-Methode eine Abfrage auf dem Table der 
+\emph on
+User
+\emph default
+ vorgenommen.
+ Das Ergebnis dieser Abfrage wird anschließend mittels 
+\emph on
+filter_by
+\emph default
+ anhand der Spalte 
+\emph on
+e_mail
+\emph default
+ in der Datenbank mit der übergebenen E-mail Adresse gefiltert.
+ Dies gibt uns ein 
+\emph on
+Query
+\emph default
+ Objekt.
+ Da die Spalte 
+\emph on
+e_mail
+\emph default
+ mit 
+\emph on
+unique
+\emph default
+ gekennzeichnet ist, sollte nur ein Objekt abgefragt worden sein, dieses
+ erhalten wir mit 
+\emph on
+first
+\emph default
+.
+ Nun wird dieses Objekt verarbeitet bis zu Zeile 10, hier wird die Methode
+ 
+\emph on
+expunge
+\emph default
+, zu deutsch auslöschen der Session genutzt um das Objekt von der Session
+ zu trennen, sodass es auch ausserhalb von ihr Gültigkeit hat.
+ Ein Grund wieso dies nötig ist, ist die Tatsache dass SQLAlchemy hier,
+ wie auch in vielen anderen Bereichen sehr lazy ist (sieh 
+\emph on
+Lazy Evaluation
+\emph default
+).
+ Tatsächlich fragt es nämlich nicht direkt das ganze Objekt ab, sondern
+ erstmal nur das Attribut e_mail, da dieses gerade gebraucht wird.
+ Im Verlauf bis Zeile 10 werden noch 
+\emph on
+salt
+\emph default
+ und 
+\emph on
+password
+\emph default
+ just-in-time abgefragt und damit der Klasse hinzugefügt.
+ Wenn die Instanz jedoch mit 
+\emph on
+expunge
+\emph default
+ von der Session getrennt wird erfolgt eine Abfrage aller restlichen Attribute,
+ sodass das Objekt vollständig ist.
+ Wer mit SQL vertraut ist hat sicherlich bereits erkannt, dass die Methoden
+ die selben Namen wie einige Operationen in SQL tragen.
+ Analog stehen auch zu weiteren SQL Operationen Methoden bereit um komplexere
+ Abfragen zu lösen.
+\end_layout
+
+\begin_layout Subsubsection
+Aktualisieren und Löschen einer Instanz
+\end_layout
+
+\begin_layout Standard
+Möchte man eine Instanz in der Datenbank ändern, ist dies ebenfalls mit
+ einer Session einfach umzusetzen.
+ So muss man lediglich die Instanz in einer Session verfügbar machen (entweder
+ sie ist ohnehin schon darin oder wird über eine Abfrage ermittelt), seine
+ Änderungen vornehmen und den Kontext der aktuellen 
+\emph on
+ContextSession
+\emph default
+ verlassen, bzw.
+ die Methode 
+\emph on
+commit der Session aufrufen
+\emph default
+.
+ Im Fall der Löschung ist es möglich eine Instanz über die Methode 
+\emph on
+delete
+\emph default
+ der Session als gelöscht zu markieren, tatsächlich ist sie aber nicht direkt
+ gelöscht sondern auch hier erst sobald der Kontext verlassen wird oder
+ 
+\emph on
+flush
+\emph default
+ oder 
+\emph on
+commit
+\emph default
+ aufgerufen wird.
 \end_layout
 
 \begin_layout Standard
@@ -3465,6 +4100,393 @@ Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt
  dafür benutzen.
 \end_layout
 
+\begin_layout Subsection
+
+\emph on
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Die-Klasse-TelephoneNumber"
+
+\end_inset
+
+
+\emph default
+Die Klasse 
+\emph on
+TelephoneNumber
+\end_layout
+
+\begin_layout Standard
+Beim Ablegen einer Nutzereingabe in einer Datenbank ist es ratsam diese
+ Eingabe in irgendeiner Art und Weise zu standardisieren, sodass bei einer
+ anderen Eingabe die jedoch die selben Informationen enthält erkannt wird,
+ dass der Nutzer das selbe meint.
+ Bei einer E-Mail Adresse oder einem Namen z.B.
+ ist das eine sehr einfache Aufgabe, so kann man hier einfach die Übergebene
+ Zeichenkette komplett in Kleinbuchstaben umwandeln.
+ Bei einer Telefonnummer hingegen ist diese Standartisierung eine nontriviale
+ Aufgabe, da ein Nutzer eine Telefonnummber beispielsweise mit Länderkennzahl,
+ Vorwahl, Durchwahl oder auch einfach nur als lokale Nummer eingeben könnte.
+ Daher wird die Nutzereingabe intern umformatiert und eventuell fehlende
+ Angaben (wie z.B.
+ eine Fehlende Länderkennzahl) extrapoliert, sodass jedesmal eine volle
+ Nummer zur Verfügung steht.
+ Sieht man sich die Norm DIN 5008 an, dann besteht eine vollständige Nummer
+ aus Länderkennzahl (country-code), Vorwahl (area-code), Rufnummer (subscriber
+ number) und Nebenstellennummer bzw.
+ Durchwahl (extension)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "22.12.18 - 18:02 Uhr"
+key "Wiki_Rufnummer"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Es gilt in der Nutzereingabe ein Muster zu erkennen, anhand dessen sich
+ feststellen lässt welche Teile der Nummer er angegeben hat und wie diese
+ lauten.
+ Hierbei handelt es sich um ein Paradebeispiel für Pattern-Recognition (dt.
+ Mustererkennung) mittels regular expression (dt.
+ regulärer Ausdruck, kurz Regex).
+ Diese kann man in Python mit dem Modul 
+\emph on
+re
+\emph default
+ der Standartbibliothek nutzen.
+ Zunächst wird also ein Muster entwickelt, dass die einzelnen Teile erkennt.
+ Der Muster-String ist:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+r"(((
+\backslash
++
+\backslash
+d{1,3})|(0)) ?([1-9]+) )?(
+\backslash
+d+ ?)+(-
+\backslash
+d+)?"
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace defskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Was zunächst wie eine Kette aus unzusammenhängenden Zeichen aussieht, symbolisie
+rt alle syntaktischen Kombinationen die ein Nutzer zur Eingabe wählen kann,
+ um dem System zu erlauben die Telefonnummer korrekt zu erkennen.
+ Der präfix 
+\emph on
+r
+\emph default
+ vor dem String gibt an, dass es sich um einen raw-String handelt - ein
+ String ohne standart Escape-Sequenzen wir 
+\backslash
+n etc.
+ also.
+\end_layout
+
+\begin_layout Standard
+Eine Regex ist über die runden Klammern in Gruppen unterteilt die jeweils
+ eine Aufgabe unternehmen.
+ Zu Beginn werden also drei Gruppen eröffnet, diese sind mit der Reihenfolge
+ ihrer öffnenden Klammer nach als erste, zweite und dritte Gruppe benannt.
+ Gruppe 3 enthält damit erste Unterpattern.
+ Hierarchisch dargestellt ließe sich die Regex so aufbauen (Syntax in Anlehnung
+ an XML):
+\end_layout
+
+\begin_layout Description
+Pattern
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Gruppe_1
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Gruppe_2
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+Gruppe_3
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+
+\backslash
++ steht für das Literal +
+\end_layout
+
+\begin_layout Description
+
+\backslash
+d steht für eine beliebige Zahl zwischen 0 und 9
+\end_layout
+
+\begin_layout Description
+{1,3} steht dafür, dass der vorhergehende Ausdruck mindestens einmal und
+ maximal 3 mal vorkommen darf
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Gruppe_3
+\end_layout
+
+\begin_layout Description
+| stellt ein logisches ODER zwischen Gruppen oder Ausdrücken dar
+\end_layout
+
+\begin_layout Description
+Gruppe_4
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+0 steht für das Literal 0
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Gruppe_4
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Gruppe_2
+\end_layout
+
+\begin_layout Description
+Leerzeichen steht für den String 
+\begin_inset Quotes eld
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+, also ein einzelnes Leerzeichen
+\end_layout
+
+\begin_layout Description
+? steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
+ nicht öfter vorkommt; mit den bisherigen Gruppen lässt sich also feststellen,
+ ob eine Eingabe mit Länderkennzahl oder eine Vorwahl mit beginnender 0
+ gewählt wurde oder keins von beidem vorhanden ist.
+ Es kann auch sein dass eine Leerstelle zwischen Länderkennzahl/ führender
+ Null und dem Rest der Nummer steht
+\end_layout
+
+\begin_layout Description
+Gruppe_5
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+[1-9] steht für eine beliebige Zahl zwischen 1 und 9
+\end_layout
+
+\begin_layout Description
++ steht dafür, dass der vorhergehende Ausdruck mindestens einmal, möglicherweise
+ jedoch beliebig oft vorkommt
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Gruppe_5
+\end_layout
+
+\begin_layout Description
+Leerzeichen steht für den String 
+\begin_inset Quotes eld
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+, also ein einzelnes Leerzeichen
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Gruppe_1
+\end_layout
+
+\begin_layout Description
+? steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
+ nicht öfter vorkommt; mit den bisherigen Gruppen lässt sich feststellen
+ ob eine Vorwahl angegeben wurde.
+\end_layout
+
+\begin_layout Description
+Gruppe_6
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+
+\backslash
+d steht für eine beliebige Zahl zwischen 0 und 9
+\end_layout
+
+\begin_layout Description
++ steht dafür, dass der vorhergehende Ausdruck mindestens einmal, möglicherweise
+ jedoch beliebig oft vorkommt
+\end_layout
+
+\begin_layout Description
+Leerzeichen steht für den String 
+\begin_inset Quotes eld
+\end_inset
+
+ 
+\begin_inset Quotes eld
+\end_inset
+
+, also ein einzelnes Leerzeichen
+\end_layout
+
+\begin_layout Description
+? steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
+ nicht öfter vorkommt
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Gruppe_6
+\end_layout
+
+\begin_layout Description
++ steht dafür, dass der vorhergehende Ausdruck mindestens einmal, möglicherweise
+ jedoch beliebig oft vorkommt; bisher lässt sich feststellen ob eine Vorwahl
+ gegeben wurde und ob eine Rufnummer vorhanden ist
+\end_layout
+
+\begin_layout Description
+Gruppe_7
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+- steht für das Literal -
+\end_layout
+
+\begin_layout Description
+
+\backslash
+d steht für eine beliebige Zahl zwischen 0 und 9
+\end_layout
+
+\begin_layout Description
++ steht dafür, dass der vorhergehende Ausdruck mindestens einmal, möglicherweise
+ jedoch beliebig oft vorkommt
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Gruppe_7
+\end_layout
+
+\begin_layout Description
+? steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
+ nicht öfter vorkommt; Hiermit wird geprüft ob eine Durchwahl angegeben
+ wurde
+\end_layout
+
+\end_deeper
+\begin_layout Description
+/Pattern
+\end_layout
+
+\begin_layout Standard
+Dieses Pattern ist als Klassenvariable der Klasse TelephoneNumber hinterlegt.
+ Wird nun TelephoneNumber instanziiert, so wird über 
+\emph on
+re.match
+\emph default
+ zunächst ermittelt ob im übergebenen String - also der Nutzereingabe -
+ eine Telefonnummer ist die auf das Pattern passt.
+ Sofern dies nicht der Fall ist wird ein Fehler geworfen.
+ Andernfalls werden die einzelnen Gruppen ausgewertet und als Attribute
+ der Instanz hinterlegt.
+ So ist der Ländercode beispielsweise durch Gruppe 2 vertreten.
+ Es wird überprüft ob Gruppe zwei ein + enthält, wenn dies der Fall ist
+ wird der 
+\emph on
+_whitespacekiller
+\emph default
+ aufgerufen, eine statische Methode die alle Zeichen die keine Zahlen sind
+ aus der Kette entfernt (hier kommt eine weitere Regex zum Einsatz, diese
+ ist jedoch so trivial, dass auf eine Erklärung verzichtet wird).
+ Sofern kein + vorhanden ist wird direkt 049 zurückgegeben da davon ausgegangen
+ werden kann, dass es sich in diesem Fall um eine deutsche Nummer handelt.
+ Ähnlichen Verfahren folgend werden dann die Gruppen 5, 6 und 7 für Vorwahl,
+ Rufnummer und Durchwahl ausgewertet.
+\end_layout
+
+\begin_layout Standard
+Desweiteren implementiert die Klasse die Magic Mehods 
+\emph on
+__str__ 
+\emph default
+und 
+\emph on
+__format__
+\emph default
+ welche ermöglichen eine Instanz als String zu evaluieren.
+ Hierbei wird die Telefonnummer als vollständige DIN 5008-konforme Nummer
+ zurückgegeben.
+ Über 
+\emph on
+__format__
+\emph default
+ ist es möglich den die Instanz direkt in f-Strings o.Ä.
+ einzubinden und die bekannten Formatspecifier für Strings zu nutzen.
+\end_layout
+
+\begin_layout Standard
+Die Klasse besitzt ausserdem eine von 
+\emph on
+Warning
+\emph default
+ abgeleitete Klasse die sie emmitiert wenn sie keine Nummer finden kann.
+\end_layout
+
+\begin_layout Standard
+Durch diese ausgefeilte Implementierung des Telefonnummernextrahierens kann
+ der Nutzer seine Telefonnummer, wenn er denn möchte, auch in einem Satz
+ verpacken o.ä., sie sollte dennoch Fehlerfrei erkannt werden.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -3474,6 +4496,22 @@ Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt
 
 \begin_layout Section
 PyQt5
+\end_layout
+
+\begin_layout Standard
+Bei PyQt5 handelt es sich um ein GUI-Toolkit und Framework für Python.
+ Grundsätzlich handelt es sich um einen Wrapper des Qt (lies 
+\begin_inset Quotes eld
+\end_inset
+
+cute
+\begin_inset Quotes erd
+\end_inset
+
+, oftmals jedoch auch Q-T(englisch)) Frameworks für C++.
+ Was Qt und PyQt seine Attraktivität, auch im professionellen, Bereich verleiht,
+ ist vor Allem, dass eine Qt Anwendung grundsätzlich Cross-Platform ist
+ und dabei auf allen Plattformen konsistent gut aussieht.
 \end_layout
 
 \begin_layout Subsection
@@ -3805,7 +4843,11 @@ pythonic
 \emph on
 property
 \emph default
-/Zuweisung sondern über eine setText-Methode geändert.
+/Zuweisung sondern über eine 
+\emph on
+setText
+\emph default
+-Methode geändert.
  Da Qt eigentlich aus dem C++ Bereich kommt ist dies verständlich, hätte
  im Wrapper jedoch geändert werden sollen.
 \end_layout
