@@ -6,6 +6,7 @@ from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
 from PyQt5.QtCore import Qt
 
 import classes
+from logger import logger
 import slots
 from utils import absolute_path
 
@@ -192,7 +193,7 @@ class MainDialog(QtWidgets.QDialog):
         LoginDialog(self).exec() # show dialog_login as modal dialog => blocks controll of main
         self.update_user_dependant()
         if self.logged_in_user:
-            print(f"Logged in as {self.logged_in_user}")
+            logger.info(f"Logged in as {self.logged_in_user}")
             self.timeout = classes.Timeout(5, self.timed_out)
             self.timeout.start()
 
