@@ -93,4 +93,15 @@
   url    = {https://youtu.be/Bv25Dwe84g0},
 }
 
+@Manual{SessionBasics,
+  title  = {Session Basics},
+  author = {SQLAlchemy},
+  url    = {https://docs.sqlalchemy.org/en/latest/orm/session_basics.html},
+}
+
+@Manual{WikiRufnummer,
+  title = {Rufnummer},
+  url   = {https://de.wikipedia.org/wiki/Rufnummer},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
