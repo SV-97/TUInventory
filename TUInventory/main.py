@@ -12,6 +12,9 @@ from PyQt5.QtCore import Qt
 from barcodereader import LazyVideoStream, VideoStream
 from logger import logger
 import ui
+from utils import absolute_path
+
+
 
 class VideoStreamUISync(Thread):
     def __init__(self, canvas, videostream):
@@ -47,11 +50,9 @@ class VideoStreamUISync(Thread):
                 self.barcodes.update(found_codes)
             cv2.waitKey(1)
 
-
-if __name__ == "__main__":
+def main():
     app = QtWidgets.QApplication(sys.argv)
     dialog_main = ui.MainDialog()
-    dialog_login = ui.LoginDialog()
     
     try:
         videostream = LazyVideoStream()
@@ -63,15 +64,14 @@ if __name__ == "__main__":
     except IOError as e:
         logger.error(str(e))
 
-    dialog_main.show() # show dialog_main as modeless dialog => return control back immediately
-        
-    """
-    if counter:
-        code = 
-        if code[1] > 20:
-            print(code[0])
-            cv2.destroyWindow(window)
-            sleep(5)
-            return"""
+    dialog_main.show()
 
     sys.exit(app.exec_())
+
+
+if __name__ == "__main__":
+    """ Profiling via terminal
+    import cProfile
+    cProfile.run("main()", sort=absolute_path("time"))
+    """
+    main()
