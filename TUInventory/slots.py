@@ -48,7 +48,6 @@ def login(e_mail, password):
                 logger.info(f"Attempted login with wrong password for user {e_mail}")
                 return None
         except ValueError as e: #user not found exception
-            print(e)
             logger.info(f"Attempted login from unknown user {e_mail}")
             pass # show error message
 
@@ -75,7 +74,6 @@ def generate_password(len_=15):
     without = list("O0Il")
     pw_chars = alphabet + digits + "!,;.-_+-*()[]{}$%=?€#'~ß§&"
     pw_chars = "".join((letter for letter in pw_chars if letter not in without))
-    print(len(pw_chars))
     pw = "".join((choice(pw_chars) for i in range(len_)))
     return pw
 
