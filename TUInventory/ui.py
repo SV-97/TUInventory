@@ -1,5 +1,6 @@
+"""PyQt5 UI classes and linking to slots"""
+
 import sys
-import styling
 
 from PyQt5 import uic, QtWidgets
 from PyQt5.QtGui import QColor, QIcon, QPainter, QPen

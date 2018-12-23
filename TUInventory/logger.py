@@ -1,3 +1,5 @@
+"""logging interface for consistent formatting"""
+
 import logging
 
 from utils import absolute_path
@@ -12,3 +14,6 @@ handler.setFormatter(formatter)
 logger = logging.getLogger()
 logger.addHandler(handler)
 logger.setLevel(logging.INFO)
+
+del handler
+del formatter

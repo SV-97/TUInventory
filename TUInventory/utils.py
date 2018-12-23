@@ -1,3 +1,5 @@
+"""General utilities independet of the other modules"""
+
 import pathlib
 import os
 from queue import Queue

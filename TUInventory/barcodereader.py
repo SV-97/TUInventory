@@ -1,3 +1,5 @@
+"""Allows opening a camera feed and finding barcodes in it"""
+
 from collections import Counter
 from time import sleep
 from sys import stderr
@@ -10,9 +12,17 @@ from pyzbar import pyzbar
 
 from utils import parallel_print
 
+
 class VideoStream(threading.Thread):
-    """Class for reading barcodes of all kinds from a video feed and marking them in the image"""
+    """Class for reading barcodes of all kinds from a video feed and marking them in the image
+    Be sure you can't use the LazyVideoStream instead!
+    """
     def __init__(self, target_resolution=None, camera_id=0):
+        """
+        Args:
+            target_resolution: Tuple of (width, height) to set the final resolution of the frames
+            camera_id: The id of the camera that's to be used (if your system only has one it's zero)
+        """
         super().__init__()
         self.camera = Camera(camera_id)
         self.camera_id = camera_id
@@ -21,7 +31,7 @@ class VideoStream(threading.Thread):
         self._abort = False
         self.frame_lock = threading.Lock()
         self.gp_lock = threading.Lock()
-        self._target_resolution = target_resolution # (width, height)
+        self._target_resolution = target_resolution
         self._frame = np.zeros((1, 1))
 
     def _set_frame(self, frame):
@@ -106,7 +116,26 @@ class VideoStream(threading.Thread):
 
 
 class LazyVideoStream(threading.Thread):
-    """Class for reading barcodes of all kinds from a video feed and marking them in the image"""
+    """Class for reading barcodes of all kinds from a video feed and marking them in the image
+    This Lazy implementation only processes frames on demand
+    
+        Args:
+            target_resolution: Tuple of (width, height) to set the final resolution of the frames
+            camera_id: The id of the camera that's to be used (if your system only has one it's zero)
+        
+        Attributes:
+            camera: Instance of Camera with for given camera_id
+            camera_id: Given camera_id
+            _mirror: Set to True to mirror the frame
+            gp_lock: general purpose lock for property access
+            _target_resolution: Tuple of (width, height) to set the final resolution of the frames
+            request_queue: Queue that's used to request a frame, request by putting True
+            frame_queue: Queue that answer frames get pushed into
+        
+        Properties:
+            mirror: gp_lock locked _mirror
+            target_resolution: gp_lock locked _target_resolution
+    """
     def __init__(self, target_resolution=None, camera_id=0):
         super().__init__()
         self.camera = Camera(camera_id)
@@ -114,7 +143,6 @@ class LazyVideoStream(threading.Thread):
         self._mirror = False
         self.gp_lock = threading.Lock()
         self._target_resolution = target_resolution # (width, height)
-        self._frame = np.zeros((1, 1))
         self.request_queue = queue.Queue()
         self.frame_queue = queue.Queue()
         with self.camera:
@@ -142,17 +170,27 @@ class LazyVideoStream(threading.Thread):
     @staticmethod
     def rect_transformation(x, y, width, height):
         """Transform rectangle of type "origin + size" to "two-point"
-        Args:
-            x (int): x coordinate of origin
-            y (int): y coordinate of origin
-            width (int): width of rectangle
-            height (int): height of rectangle
-        Returns:
-            Tuple of tuple of int with x-y-coordinate pairs for both points
+
+            Args:
+                x (int): x coordinate of origin
+                y (int): y coordinate of origin
+                width (int): width of rectangle
+                height (int): height of rectangle
+
+            Returns: 
+                Tuple of tuple of int with x-y-coordinate pairs for both points
         """
         return ((x, y), (x + width, y + height))
 
     def find_and_mark_barcodes(self, frame):
+        """Find barcodes in given frame
+
+            Args:
+                frame: Frame that barcodes should be detected in
+
+            Returns: 
+                Tuple of (frame where barcodes are marked, list of all found codes in frame)
+        """
         barcodes = pyzbar.decode(frame)
         found_codes = []
         for barcode in barcodes:
@@ -168,7 +206,12 @@ class LazyVideoStream(threading.Thread):
             cv2.putText(frame, "{}({})".format(*barcode_information), (x, y-10), cv2.FONT_HERSHEY_PLAIN, 1, (0, 0, 255), 1)
         return frame, found_codes
 
+    def request(self):
+        """Convenience function to abstract the request_queue from the user"""
+        self.request_queue.put(True)
+
     def run(self):
+        """Start connection to camera and answer requests"""
         with self.camera as camera:
             while True:
                 self.request_queue.get()
