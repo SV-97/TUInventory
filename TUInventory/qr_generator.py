@@ -1,8 +1,10 @@
-import qrcode
-import qrcode.image.svg
+"""Handles QR-Code generation"""
 
-# https://pypi.org/project/qrcode/
+import qrcode
+import qrcode.image.svg as svg
+
 def generate_qr(device):
+    """Generate the QR-Code for a given device and store it locally as svg"""
     qr = qrcode.QRCode(version=None, 
         error_correction=qrcode.constants.ERROR_CORRECT_H, 
         box_size=20,
@@ -10,7 +12,7 @@ def generate_qr(device):
     code = f"{device.uid} {device.article.name}"
     qr.add_data(code)
     qr.make(fit=True) # autosize according to data
-    img = qr.make_image(image_factory=qrcode.image.svg.SvgPathFillImage)
+    img = qr.make_image(image_factory=svg.SvgPathFillImage)
     img.save(f"{device.uid}_{device.article.name}.svg")
 
 if __name__=="__main__":
