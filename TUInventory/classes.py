@@ -296,6 +296,51 @@ class Timeout(threading.Thread):
         sleep(difference_to_timeout)
         self.run() 
 
+
+class VideoStreamUISync(Thread):
+    """Class to tie a LazyVideoStream to some canvas in Qt
+        Args:
+            canvas: canvas has to be able to take pixmaps/implement setPixmap
+            videostream: Instance of LazyVideoStream that supplies the frames
+            barcodes: Counter that holds all found barcodes USE barcode_lock WHEN ACCESSING!
+            barcode_lock: Lock for barcodes
+    """
+    def __init__(self, canvas, videostream):
+        super().__init__()
+        self.canvas = canvas
+        self.videostream = videostream
+        self.daemon = True
+        self.barcodes = Counter()
+        self.barcode_lock = Lock()
+
+    @staticmethod
+    def _matrice_to_QPixmap(frame):
+        """Convert cv2/numpy matrice to a Qt QPixmap"""
+        height, width, channel = frame.shape
+        image = QImage(frame.data, width, height, 3 * width, QImage.Format_RGB888)
+        return QPixmap(image)
+
+    def get_most_common(self):
+        """Get barcode with highest occurence"""
+        with self.barcode_lock:
+            return self.barcodes.most_common(1)[0]
+
+    def reset_counter(self):
+        with self.barcode_lock:
+            self.barcodes = Counter()
+
+    def run(self):
+        """Start synchronization"""
+        while True:
+            self.videostream.request_queue.put(True)
+            frame, found_codes = self.videostream.frame_queue.get()
+            pixmap = self._matrice_to_QPixmap(frame)
+            self.canvas.setPixmap(pixmap)
+            if found_codes:
+                self.barcodes.update(found_codes)
+            cv2.waitKey(1)
+
+
 if __name__ == "__main__":
     """Tests"""
     """Timer Test
