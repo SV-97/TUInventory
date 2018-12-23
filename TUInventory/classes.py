@@ -1,23 +1,35 @@
+"""All classes of the database connection reside here
+This also handles database initialization
+"""
+
+from collections import Counter
 import hashlib
 import re
 from secrets import randbits
-import threading
+from threading import Lock, Thread
 from time import sleep, time
 
+import cv2
 import sqlalchemy
 from sqlalchemy import Boolean, Column, Float, Integer, LargeBinary, String
 from sqlalchemy.ext.declarative import declarative_base
+from PyQt5.QtGui import QImage, QPixmap
 
 from logger import logger
+from utils import absolute_path
 
 orm = sqlalchemy.orm
 
 Base = declarative_base()
 if __name__ == "__main__":
-    logger.info("Database cleared")
-    with open("TUInventory/test.db", "w") as f:
+    print("")
+    if not input("Warning! Do you really want to delete the database and write some example data to it? [y/N]: ") in ("y", "Y"):
+        exit()
+    print("")
+    logger.info("Database cleared! This was authorized via a prompt")
+    with open(absolute_path("test.db"), "w") as f:
         f.flush()
-engine = sqlalchemy.create_engine("sqlite:///TUInventory/test.db", echo=False)
+engine = sqlalchemy.create_engine(f"sqlite:///{absolute_path('test.db')}", echo=False)
 # engine = sqlalchemy.create_engine("sqlite:///:memory:", echo=False)
 
 
@@ -36,14 +48,16 @@ class BigInt(sqlalchemy.types.TypeDecorator):
 def setup_context_session(engine):
     """Factory for contextmanagers for Session objects
     Initialize a ContextSession class
-    Args:
-        engine (sqlalchemy.engine.base.Engine): Engine that's bound to the sessionmaker
-    Example:
-        engine = sqlalchemy.create_engine('sqlite:///:memory:')
-        CSession = setup_context_session(engine)
-        with CSession() as session:
-            session.add(user1)
-            session.add(user2)
+
+        Args:
+            engine (sqlalchemy.engine.base.Engine): Engine that's bound to the sessionmaker
+
+        Example:
+            engine = sqlalchemy.create_engine('sqlite:///:memory:')
+            CSession = setup_context_session(engine)
+            with CSession() as session:
+                session.add(user1)
+                session.add(user2)
     """
     class ContextSession():
         _engine = engine
@@ -88,7 +102,7 @@ class Article(Base):
 
 
 class Device(Base):
-    """Represents an article"""
+    """Represents a device"""
     __tablename__ = "devices"
     uid = Column(Integer, primary_key=True)
     article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
@@ -105,6 +119,16 @@ class Device(Base):
 
 
 class PhoneNumber(Base):
+    """Get a Phone Number from raw input string
+    PhoneNumber can also be stored in database table
+
+        Args:
+            raw_string (str): String that holds the number
+
+        To do:
+            - config to set locale (subscriber number prefix and country code)
+                probably not possible due to precision limitations of system-locale
+    """
     __tablename__ = "phone_numbers"
     user_uid = Column(Integer, sqlalchemy.ForeignKey("users.uid"), primary_key=True)
     raw_string = Column(String)
@@ -114,12 +138,6 @@ class PhoneNumber(Base):
     extension = Column(String)
     pattern = r"(((\+\d{1,3})|(0)) ?([1-9]+) )?(\d+ ?)+(-\d+)?"
     def __init__(self, raw_string):
-        """Get a Phone Number from raw input string
-        Args:
-            raw_string (str): String that holds the number
-        To do:
-            config to set locale (subscriber number prefix and country code)
-        """
         self.raw_string = raw_string
         if not self.raw_string:
             self.country_code = ""
@@ -177,7 +195,7 @@ class PhoneNumber(Base):
 
 
 class Location(Base):
-    """Represents a physical location where a Device or User may be located"""
+    """Represents a physical location where a Device or User (or Responsibility) may be located"""
     __tablename__ = "locations"
     uid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
@@ -220,14 +238,15 @@ class User(Base):
 
     @staticmethod
     def new_salt():
-        return randbits(256) 
+        return randbits(256)
 
     def hash(self, password):
         """Hash a string with pbkdf2
         The salt is XORd with the e_mail to get the final salt
         """
         salt = str(int.from_bytes(self.e_mail.encode(), byteorder="big") ^ self.salt).encode()
-        self.password = hashlib.pbkdf2_hmac(hash_name="sha512", 
+        self.password = hashlib.pbkdf2_hmac(
+            hash_name="sha512", 
             password=password.encode(), 
             salt=salt, 
             iterations=9600)
@@ -242,10 +261,12 @@ class Responsibility(Base):
     device_uid = Column(Integer, sqlalchemy.ForeignKey("devices.uid"), primary_key=True)
     user_uid = Column(Integer, sqlalchemy.ForeignKey("users.uid"), primary_key=True)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"), primary_key=True)
+    
     def __init__(self, device=None, user=None, location=None):
         self.device = device
         self.user = user
         self.location = location
+    
     def __str__(self):
         return f"{self.user} is responsible for device {self.device} at {self.location}"
 
@@ -253,21 +274,38 @@ class Responsibility(Base):
 Base.metadata.create_all(bind=engine) # Database initialized
 logger.info("Database initialized, tables verified")
 
-class Timeout(threading.Thread):
-    def __init__(self, timeout, function, args=None):
-        """Timer that runs in background and executes a function if it's not refreshed
+
+class Timeout(Thread):
+    """Timer that runs in background and executes a function if it's not refreshed
+    Important: This is different from the threading.Timer class in that it can provide
+    arguments to a function as well as allows reseting the timer, rather than canceling
+    completely.
+
         Args:
             function: function that is executed once time runs out
             timeout: time in seconds after which the timeout executes the function
             args: arguments for function
-        """
+
+        Attributes:
+            timeout: time in seconds afters which the timer times out
+            function: function to be executed once time runs out
+            args: arguments for function
+            lock: mutex for various attributes
+            timed_out: boolean presenting wether the timer timed out
+            last_interaction_timestamp: unix timestamp of last refresh/initialization
+        
+        Properties:
+            timer: 
+    """
+
+    def __init__(self, timeout, function, args=None):
         super().__init__()
         if args is None:
             args = []
         self.timeout = timeout
         self.function = function
         self.args = args
-        self.lock = threading.Lock()
+        self.lock = Lock()
         self.timed_out = False
         self.reset()
 
@@ -285,6 +323,7 @@ class Timeout(threading.Thread):
                 self.last_interaction_timestamp = time()
 
     def run(self):
+        """Start the timer"""
         with self.lock:
             if self.is_reset:
                 self.is_reset = False           
@@ -364,7 +403,7 @@ if __name__ == "__main__":
     location1 = Location("Gebäude 23")
     location2 = Location("Büro")
     location3 = Location("Lager")
-    user1 = User(e_mail="Schokoladenkönig@googlemail.com", password="123", name="Karl", surname="König", phonenumber="123456")
+    user1 = User(e_mail="Karl@googlemail.com", password="123", name="Karl", surname="König", phonenumber="123456")
     user2 = User(e_mail="hey@ho.com", password="passwort", name="Bob", surname="Künig", phonenumber="654321")
     user3 = User(e_mail="Mail@mail.com", password="456", name="Bob", surname="Künig", phonenumber="21")
     user4 = User(e_mail="Testo@web.de", password="456", name="testo", surname="Testington", phonenumber="621")
@@ -377,11 +416,11 @@ if __name__ == "__main__":
     user5.location = location2
     user6.location = location3
 
-    producer1 = Producer("Die Schokoladenfabrik")
+    producer1 = Producer("Padcon")
     producer2 = Producer("Intel")
-    article1 = Article("25kg Schokoblock")
-    article2 = Article("Kein 25kg Schokoblock")
-    article3 = Article("Das Schokoding")
+    article1 = Article("Prusa Mk3")
+    article2 = Article("Kopierpapier")
+    article3 = Article("Laptop 123")
     article4 = Article("i7 4790k")
     article1.producer = producer1
     article2.producer = producer1
@@ -411,6 +450,14 @@ if __name__ == "__main__":
     device6 = Device("6")
     device6.article = article3
     device6.location = location1
+
+    device7 = Device("7")
+    device7.article = article2
+    device7.location = location1
+
+    device8 = Device("8")
+    device8.article = article1
+    device8.location = location2
 
     resp1 = Responsibility()
     resp1.user = user1
@@ -442,6 +489,16 @@ if __name__ == "__main__":
     resp6.location = location1
     resp6.device = device6
 
+    resp7 = Responsibility()
+    resp7.user = user1
+    resp7.location = location1
+    resp7.device = device7
+
+    resp8 = Responsibility()
+    resp8.user = user1
+    resp8.location = location1
+    resp8.device = device8
+
     Session = orm.sessionmaker(bind=engine)
     session = Session()
 
@@ -451,8 +508,8 @@ if __name__ == "__main__":
     session.add_all([user1, user2, user3, user4, user5, user6])
     session.add_all([producer1, producer2])
     session.add_all([article1, article2, article3, article4])
-    session.add_all([device1, device2, device3, device4, device5, device6])
-    session.add_all([resp1, resp2, resp3, resp4, resp5, resp6])
+    session.add_all([device1, device2, device3, device4, device5, device6, device7, device8])
+    session.add_all([resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8])
 
     print("-"*30)
     print(f"{article1.producer.name} hat folgende Artikel")
@@ -471,7 +528,7 @@ if __name__ == "__main__":
     try:
         print(user1.name)
     except Exception:
-        print("There's no user1")
+        print("There's no user1, this is wanted and good")
     print("-"*30)
 
     users = session.query(User).all()
