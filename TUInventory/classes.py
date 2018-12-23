@@ -512,12 +512,12 @@ if __name__ == "__main__":
     session.add_all([resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8])
 
     print("-"*30)
-    print(f"{article1.producer.name} hat folgende Artikel")
+    print(f"{article1.producer.name} produces the following articles")
     for art in producer1.articles:
         print(f"{' '*5}{art.name}")
-        print(f"{' '*10}Instanzen dieses Artikels sind:")
+        print(f"{' '*10}instances of these articles are:")
         for device in art.devices:
-            print(f"{device.code:>20} gelagert in {device.location.name:<20}")
+            print(f"{device.code:>20} stored at {device.location.name:<20}")
     print("-"*30)
     
     del user1
