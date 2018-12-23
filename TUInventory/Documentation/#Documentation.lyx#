@@ -5,6 +5,9 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage[latin1]{inputenc}
+\end_preamble
 \use_default_options true
 \begin_modules
 figs-within-sections
@@ -792,6 +795,7 @@ Einführung
 \begin_layout Standard
 Sämtliche Diagramme, Bilder, etc.
  sind, sofern nicht anders angegeben, selbst erstellt.
+ 
 \end_layout
 
 \begin_layout Section
