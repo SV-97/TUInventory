@@ -71,7 +71,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\listings_params "basicstyle={\ttfamily\small},language=Python,breaklines=true,prebreak={\mbox{{$\textbackslash$}\space}},postbreak={\mbox{{$\hookrightarrow$}\space}},numbers=left"
+\listings_params "basicstyle={\ttfamily\small},language=Python,breaklines=true,prebreak={\mbox{{$\textbackslash$}\space}},postbreak={\mbox{{$\hookrightarrow$}\space}},numbers=left,numberblanklines=true"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -5023,7 +5023,6 @@ barcodereader.py
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
 filename "/home/sv-97/GitHub/TUInventory/TUInventory/barcodereader.py"
-lstparams "breaklines=true,prebreak={\\mbox{{$\\textbackslash$}\\space}},postbreak={\\mbox{{$\\hookrightarrow$}\\space}},numbers=left"
 
 \end_inset
 
