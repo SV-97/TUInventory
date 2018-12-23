@@ -8,8 +8,8 @@
 \use_default_options true
 \maintain_unincluded_children false
 \language ngerman
-\language_package default
-\inputencoding auto
+\language_package auto
+\inputencoding default
 \fontencoding global
 \font_roman "default" "default"
 \font_sans "default" "default"
@@ -71,7 +71,7 @@
 \papercolumns 1
 \papersides 1
 \paperpagestyle default
-\listings_params "basicstyle={\ttfamily\small},language=Python,breaklines=true,prebreak={\mbox{{$\textbackslash$}\space}},postbreak={\mbox{{$\hookrightarrow$}\space}},numbers=left"
+\listings_params "basicstyle={\ttfamily\small},language=Python,breaklines=true,prebreak={\mbox{{$\textbackslash$}\space}},postbreak={\mbox{{$$}\space}}"
 \tracking_changes false
 \output_changes false
 \html_math_output 0
@@ -1795,7 +1795,8 @@ status open
 
 \begin_layout Standard
 Desweiteren sei eine Übersicht über alle Module und deren Klassen, sowie
- Top-Level-Functions und module-level Instanzen gegeben:
+ Top-Level-Functions und module-level Instanzen gegeben (siehe hierzu auch
+ die automatisch generierte Dokumentation im Anhang):
 \end_layout
 
 \begin_layout Description
@@ -2852,6 +2853,13 @@ info
 
 \begin_layout Subsection
 BarcodeReader
+\end_layout
+
+\begin_layout Standard
+Um Geräte identifizieren und markieren zu können wird für jedes Gerät ein
+ einzigartiger QR-Code erzeugt.
+ Um diese einzulesen wird OpenCV mit ZBar verwendet.
+ Die Funktionalität des Einlesens ist in der Klasse BarcodeReader gekapselt.
 \end_layout
 
 \begin_layout Standard
@@ -5010,11 +5018,32 @@ options "alphadin"
 
 \end_layout
 
-\begin_layout Part
-Anhang
+\begin_layout Standard
+\start_of_appendix
+
 \end_layout
 
-\begin_layout Section*
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstset{numbers=left, numberblanklines=true}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Quellcode
+\end_layout
+
+\begin_layout Subsection
 barcodereader.py
 \end_layout
 
@@ -5023,11 +5052,162 @@ barcodereader.py
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
 filename "/home/sv-97/GitHub/TUInventory/TUInventory/barcodereader.py"
-lstparams "breaklines=true,prebreak={\\mbox{{$\\textbackslash$}\\space}},postbreak={\\mbox{{$\\hookrightarrow$}\\space}},numbers=left"
 
 \end_inset
 
 
+\end_layout
+
+\begin_layout Subsection
+classes.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/classes.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+keys.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/keys.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+logger.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/logger.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+main.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/main.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+pydoc.sh
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/pydoc.sh"
+lstparams "language=bash"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+qr_generator.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/qr_generator.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+slots.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/slots.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+ui.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/ui.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+utils.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "/home/sv-97/GitHub/TUInventory/TUInventory/utils.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Automatisch generierte Dokumentation
+\end_layout
+
+\begin_layout Standard
+Als .html auf beiliegendem USB-Stick, alternativ über pydoc.sh aus dem Quellcode
+ zu generieren.
 \end_layout
 
 \begin_layout LyX-Code
