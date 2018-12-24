@@ -12,13 +12,13 @@ figs-within-sections
 \maintain_unincluded_children false
 \language ngerman
 \language_package auto
-\inputencoding default
+\inputencoding iso8859-2
 \fontencoding global
 \font_roman "default" "default"
-\font_sans "default" "default"
+\font_sans "helvet" "default"
 \font_typewriter "default" "default"
 \font_math "auto" "auto"
-\font_default_family default
+\font_default_family sfdefault
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
@@ -33,7 +33,7 @@ figs-within-sections
 \index_command default
 \float_placement H
 \paperfontsize 11
-\spacing single
+\spacing onehalf
 \use_hyperref false
 \papersize a4paper
 \use_geometry true
@@ -69,7 +69,7 @@ figs-within-sections
 \paragraph_indentation default
 \is_math_indent 0
 \math_numbering_side default
-\quotes_style english
+\quotes_style german
 \dynamic_quotes 0
 \papercolumns 1
 \papersides 1
@@ -90,7 +90,7 @@ status open
 
 \begin_layout Plain Layout
 
-
+%
 \backslash
 renewcommand{
 \backslash
@@ -99,7 +99,7 @@ rmdefault}{phv} % font to Arial
 
 \begin_layout Plain Layout
 
-
+%
 \backslash
 renewcommand{
 \backslash
@@ -792,6 +792,7 @@ Einführung
 \begin_layout Standard
 Sämtliche Diagramme, Bilder, etc.
  sind, sofern nicht anders angegeben, selbst erstellt.
+ 
 \end_layout
 
 \begin_layout Section
@@ -830,12 +831,29 @@ Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
  [sv]
 \end_layout
 
-\begin_layout Part
-Test und Integrationsraum
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-avbasdasdasd
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Test und Integrationsraum
 \end_layout
 
 \begin_layout Standard
@@ -845,8 +863,40 @@ avbasdasdasd
 
 \end_layout
 
+\begin_layout Section
+Abschnitt 1 Raum
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
 \begin_layout Part
 TUInventory
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -854,11 +904,12 @@ Begriffsdefinitionen
 \end_layout
 
 \begin_layout Standard
+\paragraph_spacing single
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="16" columns="2">
-<features tabularvalignment="middle">
-<column alignment="center" valignment="top">
+<lyxtabular version="3" rows="17" columns="2">
+<features islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="middle" width="50page%">
 <row>
 <cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
@@ -1140,11 +1191,59 @@ Pythonic
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
 Idiomatisch im Bezug auf Python
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Race-Condition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Im Falle einer Race-Condition ist das Ergebnis ist das Ergebnis einer Operation
+ nicht deterministisch, es wird beeinflusst durch äußere Gegebenheiten wie
+ z.B.
+ Prozessorlast
+\end_layout
+
+\begin_layout Plain Layout
+Der Name stammt von der Vorstellung, dass Signale wettlaufen um die Ausgabe
+ als erstes zu beeinflussen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "24.12.18 - 01:25 Uhr"
+key "Wiki_RaceCondition"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Probleme einer Race-Condition sind beispielsweise, dass sie oftmals verschwinde
+t wenn das Programm mittels Debugger betrachtet wird.
 \end_layout
 
 \end_inset
@@ -1630,6 +1729,13 @@ Style Guide for Python Code
 status open
 
 \begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fn:Fußnote"
+
+\end_inset
+
+
 \begin_inset CommandInset citation
 LatexCommand cite
 after "18.12.18 - 16:17 Uhr"
@@ -1739,7 +1845,17 @@ A Foolish Consistency is the Hobgoblin of Little Minds
 status open
 
 \begin_layout Plain Layout
-Siehe PEP8 Fußnote
+Siehe Fußnote 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fn:Fußnote"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ (PEP8)
 \end_layout
 
 \end_inset
@@ -4172,10 +4288,20 @@ Critical Sections
 Race Conditions
 \emph default
  kommen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
+after "S. 565"
 key "Python3"
 literal "true"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -4193,9 +4319,8 @@ Lock
 threading.
 
 \emph default
- Mithilfe dieser lassen sich Stellen, die nicht Parallel verarbeitet werden
- dürfen, abriegeln (vgl.
- Mutex).
+ Mithilfe dieser lassen sich Stellen, die nicht parallel verarbeitet werden
+ dürfen, abriegeln (siehe Mutex).
  Dabei nimmt sich der Thread, welcher zuerst seine 
 \emph on
 Critical Section
@@ -4204,7 +4329,7 @@ Critical Section
 \emph on
 lock
 \emph default
-, welcher als Kontextmanager fungiert(intern werden die Methoden lock.acquire
+, welcher als Kontextmanager fungiert (intern werden die Methoden lock.acquire
  und lock.release aufgerufen) und führt den Code im 
 \emph on
 with
@@ -4216,14 +4341,14 @@ Critical Section
 \emph default
  erreicht, erst dann wird er blockiert bis er selbst den 
 \emph on
-lock acquire
+lock 
 \emph default
-'n kann.
+akquirieren kann.
  
 \end_layout
 
 \begin_layout Standard
-Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt
+Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt,
  da der Overhead hier kleiner ist, es ist also weniger kostspielig einen
  neuen Thread zu öffnen.
  Außerdem ist der Datenaustausch zwischen Threads immens einfacher verglichen
@@ -4237,7 +4362,16 @@ sockets
 \emph on
 pickle
 \emph default
- oder temporäre Dateien (Asynchroner Dateizugriff) zurückgegriffen werden.
+ oder temporäre Dateien (Asynchroner Dateizugriff) zurückgegriffen werden
+ (alternativ gibt es auch im Modul 
+\emph on
+multiprocessing
+\emph default
+ eine Klasse für 
+\emph on
+atomic-message-queues
+\emph default
+).
 \end_layout
 
 \begin_layout Standard
@@ -4842,7 +4976,37 @@ Der folgende Programmausschnitt zeigt einen Ausschnitt der interaktiven
 \end_layout
 
 \begin_layout Standard
-A
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/Generator-Expression_vs_List-Comprehension.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gegenüberstellung Generator Expression und List Comprehension
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -4987,6 +5151,592 @@ setText
 -Methode geändert.
  Da Qt eigentlich aus dem C++ Bereich kommt ist dies verständlich, hätte
  im Wrapper jedoch geändert werden sollen.
+\end_layout
+
+\begin_layout Section
+Optimierung
+\end_layout
+
+\begin_layout Standard
+Nachdem das Backend vollständig implementiert und größtenteils verknüpft
+ ist, wird nach potentiellen Optimierungsstellen gesucht.
+ Hierzu wird das Modul 
+\emph on
+cProfile
+\emph default
+ eingesetzt.
+\end_layout
+
+\begin_layout Subsection
+mouseMoveEvent
+\end_layout
+
+\begin_layout Standard
+Beim Betrachten der Zeiten und Aufrufshäufigkeiten nach einer 
+\begin_inset Quotes gld
+\end_inset
+
+Session
+\begin_inset Quotes grd
+\end_inset
+
+ des Programms kann man z.B.
+ sehen, dass sehr häufig das 
+\emph on
+mouseMoveEvent
+\emph default
+ des Hauptfensters aufgerufen wird.
+ Diese Aufrufshäufigkeit lässt sich nicht optimieren
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Außer durch ein anderes Event, wie z.B.
+ Überprüfung ob der Nutzer noch aktiv die UI bedient und Elemente anklickt
+\end_layout
+
+\end_inset
+
+, da das Event genutzt wird, um zu Überprüfen ob der Nutzer noch aktiv ist
+ oder eventuell ausgeloggt werden sollte.
+ Der Code der dies übernimmt ist sehr klein und nimmt auch nach einer mehrminüti
+gen Session nur einige Millisekunden in Anspruch, dennoch wird hier eine
+ Optimierung angestrebt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/Timeout-reset_1.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ursprünglicher Timeout reset
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Es wird zu jedem 
+\emph on
+mouseMoveEvent
+\emph default
+ überprüft ob aktuell ein timer aktiv ist, wenn dies der Fall ist wird er
+ zurückgesetzt.
+ Diese Überprüfung ist notwendig, da andernfalls eine Exception geworfen
+ wird, wenn die Klasse aktuell keine Instanz besitzt die über die Methode
+ 
+\emph on
+reset 
+\emph default
+verfügt.
+ Außerdem ist ein Beispiel des Dictionaries einer 
+\emph on
+MainDialog-Instanz
+\emph default
+ abgebildet, wie es zum Zeitpunkt eines 
+\emph on
+mouseMoveEvents
+\emph default
+ aussehen könnte.
+ Wie zu sehen ist, ist dieses Dictionary nicht unbedeutend klein (ca.
+ 100 Elemente) was jedoch kein Problem darstellt da ein Dictionary-Lookup
+ i.d.R.
+ eine Zeitkomplexität von O(1) (im Worstcase O(n), bei vielen Hash-Kollisionen
+ etc.) besitzt.
+ Dennoch gibt es hier eventuell eine effizientere Variante: die Funktion
+ 
+\emph on
+hasattr
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/Timeout-reset_2.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Alternativer Timeout reset
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ein Blick in den Python Sourcecode zeigt, dass diese in C implementiert
+ ist
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://github.com/python/cpython/blob/master/Python/bltinmodule.c
+\end_layout
+
+\end_inset
+
+, was einen Geschwindigkeitsschub in Aussicht stellt.
+ Dies wird jedoch dadurch relativiert, dass auch Dictionaries in C implementiert
+ sind
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://github.com/python/cpython/blob/master/Objects/dictobject.c
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Daher wird ein statistischer Versuch heranzgezogen um zu sehen ob eine Variante
+ schneller ist als die Andere:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/hasattr_vs_dict-lookup_cropped.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Vergleich von dict lookup und hasattr (jeweiliger Durchschnitt der Versuchsreihe
+ in Legende)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da hier zu sehen ist, dass beide Varianten praktisch gleich sind könnte
+ man hier bereits eine Entscheidung treffen, es wird jedoch noch das letzte
+ Werkzeug herangezogen um die Varianten zu vergleichen: Bytecode
+\end_layout
+
+\begin_layout Standard
+Wie Eingangs erwähnt wurde ist Bytecode das Zwischenkompilat welches tatsächlich
+ vom Interpreter verwertet wird.
+ Zugriff auf den Bytecode bekommt man entweder über das 
+\emph on
+__pycache__
+\emph default
+ oder den 
+\emph on
+__code__
+\emph default
+ Member.
+\end_layout
+
+\begin_layout Standard
+Das Modul 
+\emph on
+dis
+\emph default
+ erlaubt es diesen Bytecode in menschenlesbarar Form darzustellen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/hasattr_vs_dict-lookup_2.py"
+lstparams "language=Python,numbers=left"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Bytecode zu beiden Varianten erzeugen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/hasattr_vs_dict-lookup_2_output.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Bytecode zu beiden Varianten
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bytecode liest sich wie folgt(Spalten von links nach rechts aufsteigend
+ nummeriert)
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "24.12.18 - 20:27 Uhr"
+key "dis"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+:
+\end_layout
+
+\begin_layout Enumerate
+Zeilennummer des Quellcodes
+\end_layout
+
+\begin_layout Enumerate
+Hier nicht vorhanden (Aktuelle Anweisung beim schrittweisen Ausführen)
+\end_layout
+
+\begin_layout Enumerate
+Mögliches Sprungziel markiert mit >>
+\end_layout
+
+\begin_layout Enumerate
+Adresse der Anweisung
+\end_layout
+
+\begin_layout Enumerate
+Anweisungsname
+\end_layout
+
+\begin_layout Enumerate
+Anweisungsparameter
+\end_layout
+
+\begin_layout Enumerate
+Interpretation der Parameter in Klammern
+\end_layout
+
+\begin_layout Standard
+Um den Sprung in beiden Varianten direkt zu Anfang zu erklären: Wenn das
+ 
+\emph on
+if
+\emph default
+ als 
+\emph on
+False
+\emph default
+ evaluiert gibt die Funktion ein 
+\emph on
+None
+\emph default
+ zurück.
+\end_layout
+
+\begin_layout Standard
+Ebenso können vorab die Zeilen 30 und 35 erklärt und gleichzeitig eine Einführun
+g in Bytecode gegeben werden
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Einige Aspekte sind hier zum besseren Verständnis vereinfacht dargestellt
+ (z.B.
+ werden eigentlich 
+\emph on
+frame
+\emph default
+-Objekte auf die Stacks gelegt)
+\end_layout
+
+\end_inset
+
+, da sie bei beiden gleich sind:
+\end_layout
+
+\begin_layout Itemize
+Es wird zuerst die Globale 
+\emph on
+a
+\emph default
+ auf den 
+\emph on
+Evaluation-Stack
+\emph default
+ (im Folgenden E-Stack)
+\emph on
+ 
+\emph default
+geladen
+\end_layout
+
+\begin_layout Itemize
+Anschließend wird das TOS(Top of Stack)-Element, also 
+\emph on
+a
+\emph default
+, mit der Anweisung 
+\emph on
+getattr(TOS, co_names[namei]) -> getattr(a, co_names[timeout])
+\emph default
+ ersetzt
+\end_layout
+
+\begin_layout Itemize
+Das selbe geschieht nun mit 
+\emph on
+reset
+\end_layout
+
+\begin_layout Itemize
+Nun liegt 
+\emph on
+reset
+\emph default
+ oben auf dem E-Stack und wird mit 0 positionellen Argumenten aufgerufen,
+ der Rückgabewert wird auf den E-Stack gepusht
+\end_layout
+
+\begin_layout Itemize
+Die folgende Anweisung gibt an, dass der Rückgabewert nicht weiter verwertet
+ und somit verworfen wird
+\end_layout
+
+\begin_layout Itemize
+Die letzen beiden Zeilen sind die bereits erklärten Anweisungen des impliziten
+ Funktions-return
+\end_layout
+
+\begin_layout Standard
+Die Abfolge für hasattr ist wie folgt (Alle Ladeanweisungen erfolgen auf
+ den E-Stack):
+\end_layout
+
+\begin_layout Itemize
+Laden der Globalen 
+\emph on
+hasattr
+\end_layout
+
+\begin_layout Itemize
+Laden der Globalen 
+\emph on
+a
+\end_layout
+
+\begin_layout Itemize
+Laden der Konstante 
+\emph on
+'timeout'
+\end_layout
+
+\begin_layout Itemize
+Aufruf einer Funktion mit zwei positionellen Argumenten, dies ist der Aufruf
+ von 
+\emph on
+hasattr
+\emph default
+ mit 
+\emph on
+a
+\emph default
+ und 
+\emph on
+'timeout'
+\end_layout
+
+\begin_layout Itemize
+Hier folgt der Sprung falls das TOS-Element 
+\emph on
+False
+\emph default
+ ist
+\end_layout
+
+\begin_layout Standard
+Wohingegen die Abfolge für den 
+\emph on
+dict-lookup
+\emph default
+ ist:
+\end_layout
+
+\begin_layout Itemize
+Laden der Konstante 
+\emph on
+'timeout'
+\end_layout
+
+\begin_layout Itemize
+Laden Globale 
+\emph on
+a
+\end_layout
+
+\begin_layout Itemize
+Laden des Attributs 
+\emph on
+__dict__
+\emph default
+ von 
+\emph on
+a
+\end_layout
+
+\begin_layout Itemize
+Vergleichsoperation 
+\emph on
+in
+\emph default
+ auf 
+\emph on
+__dict__
+\emph default
+ und 
+\emph on
+'timeout'
+\end_layout
+
+\begin_layout Itemize
+Hier folgt der Sprung falls das TOS-Element 
+\emph on
+False
+\emph default
+ ist
+\end_layout
+
+\begin_layout Standard
+Der Unterschied besteht also darin, dass eimal eine Globale mehr geladen
+ wird (globale Lookups können kostspielige Operationen sein) und ein Funktionsau
+fruf (generell auch eher kostspielig) stattfindet, wohingegen beim Anderen
+ mal ein Attribut abgerufen wird und eine Vergleichsoperation stattfindet.
+ Sieht man sich die Implementierung des Interpreters an
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+https://github.com/python/cpython/blob/master/Python/ceval.c 24.12.18 - 21:14
+ Uhr
+\end_layout
+
+\end_inset
+
+ sieht man, dass beide Varianten mittels Branch-Prediction optimiert werden.
+ In diesem Fall wird auch durch den Bytecode nicht klar, dass eine Variante
+ sehrviel schneller ist als eine Andere.
+\end_layout
+
+\begin_layout Standard
+Schließlich kann hier keine Optimierung erfolgen, dennoch wird der Code
+ dahingehend abgeändert, dass er 
+\emph on
+hasattr
+\emph default
+ einsetzt, da dies die leichter zu lesende und somit schlicht bessere Variante
+ ist.
 \end_layout
 
 \begin_layout Standard
