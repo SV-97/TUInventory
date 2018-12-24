@@ -279,7 +279,8 @@ class Timeout(Thread):
     """Timer that runs in background and executes a function if it's not refreshed
     Important: This is different from the threading.Timer class in that it can provide
     arguments to a function as well as allows reseting the timer, rather than canceling
-    completely.
+    completely. to cancel a Timeout set function to None, the thread will then close itself
+    down on the next lifecycle check.
 
         Args:
             function: function that is executed once time runs out
@@ -295,7 +296,7 @@ class Timeout(Thread):
             last_interaction_timestamp: unix timestamp of last refresh/initialization
         
         Properties:
-            timer: 
+            timer: Shows the time remaining until timeout
     """
 
     def __init__(self, timeout, function, args=None):
@@ -324,6 +325,9 @@ class Timeout(Thread):
 
     def run(self):
         """Start the timer"""
+        if self.function is None:
+            logger.debug("Timeout thread closed because function was None")
+            return
         with self.lock:
             if self.is_reset:
                 self.is_reset = False           
@@ -383,6 +387,7 @@ class VideoStreamUISync(Thread):
 if __name__ == "__main__":
     """Tests"""
     """Timer Test
+    import threading
     timeout = Timeout(timeout=10, function=print, args=["timed out"])
     timeout.start()
     reset_thread = threading.Thread(target=lambda: timeout.reset() if input() else None) # function for testing - reset on input

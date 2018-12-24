@@ -34,8 +34,8 @@ def main():
 
 
 if __name__ == "__main__":
-    """ Profiling via terminal
+    """# Profiling via terminal
     import cProfile
-    cProfile.run("main()", sort=absolute_path("time"))
+    cProfile.run("main()", sort="time")
     """
     main()

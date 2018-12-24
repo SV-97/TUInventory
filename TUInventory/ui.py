@@ -9,7 +9,7 @@ from PyQt5.QtCore import Qt
 import classes
 from logger import logger
 import slots
-from utils import absolute_path
+from utils import absolute_path, parallel_print
 
 CSession = classes.setup_context_session(classes.engine)
 
@@ -196,14 +196,18 @@ class MainDialog(QtWidgets.QDialog):
         if self.logged_in_user:
             logger.info(f"Logged in as {self.logged_in_user}")
             self.timeout = classes.Timeout(5, self.timed_out)
+            parallel_print("Created new timeout")
             self.timeout.start()
 
     def b_user_logout_click(self):
         self.logged_in_user = None # may want slots.logout if that does something eventually
         self.update_user_dependant()
+        parallel_print("Now deleting timeout")
+        self.timeout.function = None
         del self.timeout
 
     def timed_out(self):
+        logger.info(f"User {self.logged_in_user.uid} logged out due to inactivity")
         self.b_user_logout_click()
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
@@ -228,7 +232,7 @@ class MainDialog(QtWidgets.QDialog):
         pass
     
     def mouseMoveEvent(self, QMouseEvent):
-        if "timeout" in self.__dict__:
+        if hasattr(self, "timeout"):
             self.timeout.reset()
 
     def new_user(self): # not linked yet

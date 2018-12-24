@@ -7,8 +7,9 @@ import classes
 import keys
 from logger import logger
 
-# Session = sqlalchemy.orm.sessionmaker(bind=classes.engine)
+
 CSession = classes.setup_context_session(classes.engine)
+
 
 def save_to_db(instance):
     """Save instance to it's corresponding table
@@ -17,8 +18,10 @@ def save_to_db(instance):
     with CSession() as session:
         session.add(instance)
 
+
 def update_user_dependant(user):
     pass
+
 
 def create_user(e_mail, password, name, surname, location, phonenumber):
     new_user = classes.User(e_mail, password, name, surname, phonenumber)
@@ -26,11 +29,13 @@ def create_user(e_mail, password, name, surname, location, phonenumber):
     save_to_db(new_user)
     return new_user
 
+
 def create_admin(new_admin):
     """Create a new admin"""
     new_admin.is_admin = True
     save_to_db(new_admin)
     return new_admin
+
 
 def login(e_mail, password):
     """Log user into application"""
@@ -47,7 +52,7 @@ def login(e_mail, password):
             else:
                 logger.info(f"Attempted login with wrong password for user {e_mail}")
                 return None
-        except ValueError as e: #user not found exception
+        except (AttributeError, ValueError) as e: #user not found exception
             logger.info(f"Attempted login from unknown user {e_mail}")
             pass # show error message
 
@@ -56,17 +61,21 @@ def logout():
     """Log user out of application"""
     pass 
 
+
 def create_device(article):
     new_device = classes.Device()
     new_device.article = article
     save_to_db(new_device)
     return new_device
 
+
 def create_location():
     pass
 
+
 def create_producer():
     pass
+
 
 def generate_password(len_=15):
     """Generate an human readable password of given length"""
@@ -77,11 +86,13 @@ def generate_password(len_=15):
     pw = "".join((choice(pw_chars) for i in range(len_)))
     return pw
 
+
 def reset_password(user):
     user.salt = user.new_salt()
     password = generate_password()
     user.hash(password)
     return password
+
 
 def reset_admin_password(user, path_public, path_private):
     #catch error if invalid key or no public key
@@ -94,6 +105,7 @@ def reset_admin_password(user, path_public, path_private):
         return new_password
     else:
         return None
+
 
 if __name__ == "__main__":
     user = login("schokoladenkönig@googlemail.com", "12345ibimsdaspasswort")
