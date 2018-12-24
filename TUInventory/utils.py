@@ -11,10 +11,13 @@ def absolute_path(relative_path):
 
 class _ParallelPrint(Thread):
     print_ = Queue()
-
+    _created = False
     def __init__(self):
+        if self._created:
+            raise ResourceWarning(f"{self.__class__} should only be instantiated once!")
         super().__init__()
         self.daemon = True
+        self.__class__._created = True
 
     @classmethod
     def run(this):
@@ -22,6 +25,10 @@ class _ParallelPrint(Thread):
             val = this.print_.get()
             print(val)
             this.print_.task_done()
+
+    @classmethod
+    def __call__(this):
+        raise ResourceWarning(f"{this.__class__} should only be instantiated once!")
 
 
 _ParallelPrint = _ParallelPrint()
