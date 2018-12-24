@@ -907,7 +907,7 @@ Begriffsdefinitionen
 \paragraph_spacing single
 \align center
 \begin_inset Tabular
-<lyxtabular version="3" rows="17" columns="2">
+<lyxtabular version="3" rows="18" columns="2">
 <features islongtable="true" longtabularalignment="center">
 <column alignment="center" valignment="top" width="0pt">
 <column alignment="center" valignment="middle" width="50page%">
@@ -1265,6 +1265,32 @@ Salt
 \begin_layout Plain Layout
 Zufällige Zeichenfolge die in der Kryptografie u.A.
  bei Hash-Funktionen eingesetzt wird um die Entropie der Eingabe zu erhöhen.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Singleton
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ein Singleton ist ein Entwurfsmuster bei dem sichergestellt ist, dass nur
+ eine einzige Instanz einer Klasse existiert (z.B.
+ in Python 
+\emph on
+None
+\emph default
+)
 \end_layout
 
 \end_inset
@@ -2850,6 +2876,116 @@ commit
 
 \begin_layout Section
 Implementierung
+\end_layout
+
+\begin_layout Subsection
+Utilities
+\end_layout
+
+\begin_layout Standard
+Bei der Entwicklung wurde ein kleines Hilfsmodul geschrieben um einige Sachen
+ zu vereinfaches.
+ Dieses Hilfmodul ist nicht abhängig von einem der anderen Module.
+\end_layout
+
+\begin_layout Subsubsection
+Absolute Pfade
+\end_layout
+
+\begin_layout Standard
+Python bietet grundsätzlich die Möglichkeit an, mit relativen Pfaden zu
+ arbeiten.
+ Diese sind jedoch so umgesetzt, dass sie nicht relativ zur Quelldatei interpret
+iert werden, sondern stattdessen relativ zum Aufruf arbeiten.
+ Führe ich das Python Programm in der Konsole also von einem anderen Ordner
+ aus aus, so wird auf eine andere Datei zugegriffen.
+ Daher wurde eine Funktion entwickelt, die ermittelt wo sich die Quellcodedatei
+ befindet und ein 
+\emph on
+pathlib
+\emph default
+ Objekt zum übergebenen relativen Pfad zurückgibt.
+\end_layout
+
+\begin_layout Subsubsection
+Paralleles Printen
+\end_layout
+
+\begin_layout Standard
+Beim Debuggen ist es oftmals hilfreich sich kleinere Nachricht an Schlüsselpunkt
+en ausgeben zu lassen.
+ Da diese Nachrichten oftmals jedoch aus verschiedenen Threads kommen, kann
+ sich hier eine race-condition auf der Konsole abbilden, bei der mehrere
+ Nachrichten gleichzeitig ausgegeben werden, wodurch sie schwer zu verwerten
+ sind.
+ Daher wird ein Singleton-Thread geöffnet der über eine Queue Nachrichten
+ empfangen und auf der Konsole ausgeben kann.
+ Um eine sauberere Schnittstelle zu haben wird die 
+\emph on
+put
+\emph default
+-Methode seiner Queue von der modul-level-Referenz
+\emph on
+ parallel_print
+\emph default
+ gespiegelt über die dann aus allen Modulen sauber zugegriffen werden kann.
+ Die Umsetzung des Singletons ist so, dass es einem Anwender von außerhalb
+ des Moduls nicht möglich ist, eine weitere Instanz der Klasse 
+\emph on
+_ParallelPrint
+\emph default
+ zu erzeugen (Zumal das 
+\begin_inset Quotes gld
+\end_inset
+
+_
+\begin_inset Quotes grd
+\end_inset
+
+ im Namen nach Konvention angibt, dass es sich um eine Klasse handelt, die
+ in der API nicht aus Gründen der Nutzung von außen vorhanden ist
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Ein Nutzer kann eine mit 
+\begin_inset Quotes gld
+\end_inset
+
+_
+\begin_inset Quotes grd
+\end_inset
+
+-benannte Klasse/Methode/Instanz etc.
+ zwar dennoch verwenden, sollte dabei allerdings die internen Mechanismen
+ im Hinterkopf behalten und ist sogesagt im Fehlerfall auf sich alleine
+ gestellt
+\end_layout
+
+\end_inset
+
+) indem die Referenz von 
+\emph on
+_ParallelPrint
+\emph default
+ nichtmehr auf der Klasse sondern auf einer Instanz dieser liegt.
+ Probiert er nun eine Instanz zu erzeugen wird stattdessen die Magic Method
+ 
+\emph on
+__call__ 
+\emph default
+der Instanz aufgerufen welche eine Warning wirft.
+ Sofern ein Nutzer des Moduls zwischen Klassendefinition und Umleitung der
+ Referenz im Modulkörper selbst eine weitere Instanz erzeugen würde, könnten
+ zwei Instanzen erzeugt werden.
+ Um dies zu verhindern existiert eine Klassenvariable 
+\emph on
+_created
+\emph default
+ welche bei der ersten Instanziierung gesetzt wird, und bei jeder weiteren
+ eine Warnung hervorruft.
+ Sollte ein Nutzer diese Klassenvariable manuell zurücksetzen, liegt dies
+ außerhalb der zu erwartenden Nutzung und wird nichtmehr abgefangen.
 \end_layout
 
 \begin_layout Subsection
@@ -5350,7 +5486,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/hasattr_vs_dict-lookup_cropped.png
-	scale 75
+	scale 40
 
 \end_inset
 
@@ -5725,8 +5861,9 @@ https://github.com/python/cpython/blob/master/Python/ceval.c 24.12.18 - 21:14
 \end_inset
 
  sieht man, dass beide Varianten mittels Branch-Prediction optimiert werden.
- In diesem Fall wird auch durch den Bytecode nicht klar, dass eine Variante
- sehrviel schneller ist als eine Andere.
+ In diesem konkreten Fall wird auch durch den Bytecode nicht klar, dass
+ eine Variante generell schneller ist als eine Andere (was durch die Messung
+ unterstützt wird).
 \end_layout
 
 \begin_layout Standard
