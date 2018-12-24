@@ -196,25 +196,24 @@ class MainDialog(QtWidgets.QDialog):
         if self.logged_in_user:
             logger.info(f"Logged in as {self.logged_in_user}")
             self.timeout = classes.Timeout(5, self.timed_out)
-            parallel_print("Created new timeout")
             self.timeout.start()
 
     def b_user_logout_click(self):
         self.logged_in_user = None # may want slots.logout if that does something eventually
         self.update_user_dependant()
-        parallel_print("Now deleting timeout")
         self.timeout.function = None
         del self.timeout
 
     def timed_out(self):
         logger.info(f"User {self.logged_in_user.uid} logged out due to inactivity")
         self.b_user_logout_click()
+        """Crashes on windows for some reason, known Qt issue
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
         messagebox.setWindowTitle("Automatisch ausgeloggt")
         messagebox.setText("Sie wurden wegen Inaktivität automatisch ausgeloggt!")
         messagebox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        messagebox.exec_()
+        messagebox.exec_()"""
 
     def update_user_dependant(self):
         if self.logged_in_user:
