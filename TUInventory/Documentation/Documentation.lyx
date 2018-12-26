@@ -1061,7 +1061,7 @@ Kontext Manager / Context Manager
 \begin_layout Plain Layout
 Klasse, die __enter__ und __exit__ implementiert.
  Erlaubt es Objekte auch im Fehlerfall sauber zu deinitialisieren, bzw.
- zu schließen.
+ zu schließen (entspricht einem try-finally-Block).
 \end_layout
 
 \end_inset
