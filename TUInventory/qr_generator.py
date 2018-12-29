@@ -9,7 +9,7 @@ def generate_qr(device):
         error_correction=qrcode.constants.ERROR_CORRECT_H, 
         box_size=20,
         border=6)
-    code = f"{device.uid} {device.article.name}"
+    code = f"id={device.uid} name={device.article.name}"
     qr.add_data(code)
     qr.make(fit=True) # autosize according to data
     img = qr.make_image(image_factory=svg.SvgPathFillImage)

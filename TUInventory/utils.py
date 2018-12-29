@@ -6,10 +6,12 @@ from queue import Queue
 from threading import Thread
 
 def absolute_path(relative_path):
+    """Convert a path relative to the sourcefile to an absolute one"""
     path = pathlib.Path(os.path.dirname(__file__))
     return path / relative_path
 
 class _ParallelPrint(Thread):
+    """Provides a threadsafe print, instantiation below"""
     print_ = Queue()
     _created = False
     def __init__(self):

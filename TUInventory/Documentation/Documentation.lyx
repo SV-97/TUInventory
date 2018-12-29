@@ -1015,8 +1015,8 @@ Function Decorator
 \begin_inset Text
 
 \begin_layout Plain Layout
-Funktionsdefinition mit @decorator vorgestellt - Stellt im Prinzip eine
- Definition der Funktion f da, der ein f = decorator(f) nachgestellt ist.
+Ist Funktionsdefinition mit @decorator vorgestellt - Stellt im Prinzip eine
+ Definition der Funktion f dar, der ein f = decorator(f) nachgestellt ist.
  Hierbei wird eine Funktion i.d.R.
  um weitere Funktionalität (z.B.
  ein Cache oder die Möglichkeit Vektoren zu verarbeiten) erweitert
@@ -1104,11 +1104,20 @@ Magic Method
 Eine i.d.R.
  implizit aufgerufene Methode, welche einer Klasse besondere Fähigkeiten
  verleiht
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
 after "S. 369"
 key "Python3"
 literal "true"
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -3337,6 +3346,208 @@ LazyVideoStream
  Einer der Konsumenten könnte dieses Frame herausnehmen, der andere jedoch
  würde leer ausgehen; bei der Anfragen-Queue Variante hingegen würde er
  beide Anfragen mit einem Frame beantworten.
+\end_layout
+
+\begin_layout Subsection
+Datenbanksynchronisation
+\end_layout
+
+\begin_layout Standard
+Im Modul 
+\emph on
+slots
+\emph default
+ existieren Fabrikfunktionen für die meisten Entitätsklassen der Datenbank.
+ Um diese direkt bei ihrer Erzeugung mit der Datenbank zu synchronisieren,
+ wird die recht simple Funktion 
+\emph on
+save_to_db
+\emph default
+ implementiert.
+ Diese Funktion wird zunächst am Ende jeder Funktion, die eine neue Instanz
+ erzeugt, aufgerufen.
+ Dies ist zwar grundsätzlich nicht falsch, bedeutet jedoch, dass ein Programmier
+er, beim späteren Pflegen des Programms, sich eventuell nur die Funktionsschnitt
+stelle ansieht und dabei übersieht, dass die Instanz direkt synchronisiert
+ wird.
+ Daher wurde der 
+\emph on
+Function-Decorator synchronized
+\emph default
+ geschrieben, welcher direkt bei Funktionsdefinition klarmacht, dass diese
+ Funktion synchronisierte Instanzen erzeugt.
+\end_layout
+
+\begin_layout Standard
+Der Function-Decorator sei hier kurz erläutert:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/synchronized.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Definition des Function-Decorators
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ein Function-Decorator ist so aufgebaut, dass er mit der @-Syntax, die ihm
+ nachgestellte Funktion als ersten positionellen Parameter übergeben bekommt,
+ und diese mit seiner Rückgabe zum Definitionszeitpunkt der dekorierten
+ Funktion redefiniert.
+ In der Schnittstelle gibt es außerdem noch 
+\emph on
+decorated
+\emph default
+, ein standartmäßig mit 
+\emph on
+False
+\emph default
+ vorbelegtes Flag, dass später wichtig wird, sowie die Parameter 
+\emph on
+*args
+\emph default
+ und 
+\emph on
+**kwargs
+\emph default
+.
+ Diese Parameter haben eine besondere Bedeutung, welche sie nicht durch
+ ihren Namen, sondern durch die vorgestellten Asteriske erhalten (die Bezeichner
+ nach * und ** sind grundsätzlich egal, jedoch sind 
+\emph on
+args
+\emph default
+ und 
+\emph on
+kwargs
+\emph default
+ gängig für 
+\begin_inset Quotes gld
+\end_inset
+
+Durchreichungen
+\begin_inset Quotes grd
+\end_inset
+
+, da sie in diesem Funktionskontext keine weniger abstrakte Bedeutung haben);
+ 
+\emph on
+*args
+\emph default
+ ist ein Parameter, welcher stellvertretend für beliebig viele positionelle
+ Argumente steht - **kwargs hingegen steht für beliebig viele Schlüsselwortparam
+eter (daher der Name kwargs, von keyword arguments).
+ Im Funktionskörper stellen diese dann ein Tupel bzw.
+ ein Dictionary dar.
+\end_layout
+
+\begin_layout Standard
+Wird diese Funktion nun das erste mal aufgerufen, nämlich wenn die dekorierte
+ Funktion definiert wird, defaulted das 
+\emph on
+decorated
+\emph default
+-Flag auf 
+\emph on
+False
+\emph default
+, was zur Folge hat, dass der erste if-Block direkt betreten wird.
+ In diesem wird nun die Funktion definiert, welche bei späterem Aufruf der
+ Originalfunktion an Stelle dieser aufgerufen wird.
+ Die Funktion 
+\emph on
+partial
+\emph default
+ des Moduls 
+\emph on
+functools
+\emph default
+ der Standartbibliothek erlaubt die partielle Evaluation einer Funktion,
+ dabei übergibt man ihr zuerst die Funktion welche partiell-Evaluiert werden
+ soll, und anschließend alle Parameter welche sozusagen 
+\begin_inset Quotes gld
+\end_inset
+
+vorbelegt
+\begin_inset Quotes grd
+\end_inset
+
+ werden.
+ Hierbei sagen wir also, dass die zurückgegebene Funktion der Decorator
+ selbst ist, welcher bei jedem Aufruf die dekorierte Funktion übergeben
+ bekommt.
+ Desweiteren setzen wir das decorated-Flag auf True.
+\end_layout
+
+\begin_layout Standard
+Wird nun die dekorierte Funktion (in ihrem dekorierten Zustand) aufgerufen,
+ wird die Funktion 
+\emph on
+function
+\emph default
+ (also die dekorierte Funktion in undekoriertem Zustand) aufgerufen, wobei
+ als Parameter nach der Partiellevaluation nurnoch args und kwargs übrig
+ sind.
+ Hier wird beim Aufruf explizites 
+\emph on
+Tuple Unpacking
+\emph default
+ für 
+\emph on
+args
+\emph default
+ und
+\emph on
+ Dictionary Unpacking
+\emph default
+ durch die *- bzw.
+ **-Syntax eingesetzt, was dazu führt, dass die Originalfunktion effektiv
+ einen 
+\begin_inset Quotes gld
+\end_inset
+
+normalen
+\begin_inset Quotes grd
+\end_inset
+
+ Funktionsaufruf 
+\begin_inset Quotes gld
+\end_inset
+
+erlebt
+\begin_inset Quotes grd
+\end_inset
+
+.
+ Die dadurch erzeugte Instanz kann nun weiterverbeitet werden, bevor sie
+ an den ursprünglichen Funktionsaufruf zurückgegeben wird.
 \end_layout
 
 \begin_layout Section

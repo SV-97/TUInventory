@@ -1,3 +1,4 @@
+from functools import partial
 from secrets import choice, compare_digest
 from string import ascii_letters, digits
 
@@ -11,8 +12,19 @@ from logger import logger
 CSession = classes.setup_context_session(classes.engine)
 
 
+def synchronized(function, decorated=False, *args, **kwargs):
+    """Function-decorator to automatically add the instance a function returns to DB"""
+    if not decorated:
+        return partial(synchronized, function, True)
+    else:
+        instance = function(*args, **kwargs)
+        save_to_db(instance)
+        return instance
+
+
 def save_to_db(instance):
     """Save instance to it's corresponding table
+    Needs testing: May need to expunge instance after commit
     ToDo: Error handling if uid already exists
     """
     with CSession() as session:
@@ -23,17 +35,17 @@ def update_user_dependant(user):
     pass
 
 
+@synchronized
 def create_user(e_mail, password, name, surname, location, phonenumber):
     new_user = classes.User(e_mail, password, name, surname, phonenumber)
     new_user.location = location
-    save_to_db(new_user)
     return new_user
 
 
+@synchronized
 def create_admin(new_admin):
     """Create a new admin"""
     new_admin.is_admin = True
-    save_to_db(new_admin)
     return new_admin
 
 
@@ -62,6 +74,7 @@ def logout():
     pass 
 
 
+@synchronized
 def create_device(article):
     new_device = classes.Device()
     new_device.article = article
@@ -69,10 +82,12 @@ def create_device(article):
     return new_device
 
 
+@synchronized
 def create_location():
     pass
 
 
+@synchronized
 def create_producer():
     pass
 
