@@ -3370,7 +3370,7 @@ save_to_db
 er, beim späteren Pflegen des Programms, sich eventuell nur die Funktionsschnitt
 stelle ansieht und dabei übersieht, dass die Instanz direkt synchronisiert
  wird.
- Daher wurde der 
+ Daher wurde im Zuge des Refactoring der 
 \emph on
 Function-Decorator synchronized
 \emph default
@@ -4029,7 +4029,7 @@ $$f(n,k) := n^k$$
  darstellen.
  Möchte man nun wissen ob es effizienter ist weitere Zeichen hinzuzufügen
  oder das Passwort zu verlängern kann man dies über eine Betrachtung der
- beiden Ableitungen
+ beiden partiellen Ableitungen
 \end_layout
 
 \begin_layout Standard
