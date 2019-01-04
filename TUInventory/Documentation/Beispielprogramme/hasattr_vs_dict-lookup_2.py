@@ -14,9 +14,11 @@ class A():
         self.timeout = B()
         for i in range(100):
             setattr(self, f"{i}", i)
+
     def dict_lookup_(self):
         if "timeout" in self.__dict__:
             self.timeout.reset()
+            
     def hasattr_(self):
         if hasattr(self, "timeout"):
             self.timeout.reset()
