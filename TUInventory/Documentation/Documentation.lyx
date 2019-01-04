@@ -349,7 +349,7 @@ ERD
 \begin_inset Text
 
 \begin_layout Plain Layout
-Entity-Relationship Diagramm
+Entity-Relationship-Diagramm
 \end_layout
 
 \end_inset
@@ -369,7 +369,7 @@ ERM
 \begin_inset Text
 
 \begin_layout Plain Layout
-Entity-Relationship Modell
+Entity-Relationship-Modell
 \end_layout
 
 \end_inset
@@ -429,7 +429,7 @@ JIT
 \begin_inset Text
 
 \begin_layout Plain Layout
-Just-in-time (bei Bedarf)
+Just-in-time  (bei Bedarf)
 \end_layout
 
 \end_inset
@@ -792,7 +792,19 @@ Einführung
 \begin_layout Standard
 Sämtliche Diagramme, Bilder, etc.
  sind, sofern nicht anders angegeben, selbst erstellt.
- 
+ Programmlistings wurden teils notwendigerweise implizit mittels 
+\begin_inset Quotes gld
+\end_inset
+
+
+\backslash
+
+\begin_inset Quotes grd
+\end_inset
+
+ umgebrochen.
+ Dies ist zwar valide Python 3 Syntax, jedoch nicht in jedem Fall konform
+ zu gängigen Format-Konventionen.
 \end_layout
 
 \begin_layout Section
@@ -853,7 +865,7 @@ Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
 \end_layout
 
 \begin_layout Part
-Test und Integrationsraum
+Test- und Integrationsraum
 \end_layout
 
 \begin_layout Standard
@@ -946,7 +958,7 @@ Duck-Typing
 
 \begin_layout Plain Layout
 Der Typ einer Instanz wird dadurch beschrieben/festgelegt welche Member
- sie besitzt (Von eng.: 
+ sie besitzt  (Von eng.: 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1016,9 +1028,9 @@ Function Decorator
 
 \begin_layout Plain Layout
 Ist Funktionsdefinition mit @decorator vorgestellt - Stellt im Prinzip eine
- Definition der Funktion f dar, der ein f = decorator(f) nachgestellt ist.
+ Definition der Funktion f dar, der ein f = decorator (f) nachgestellt ist.
  Hierbei wird eine Funktion i.d.R.
- um weitere Funktionalität (z.B.
+ um weitere Funktionalität  (z.B.
  ein Cache oder die Möglichkeit Vektoren zu verarbeiten) erweitert
 \end_layout
 
@@ -1050,7 +1062,7 @@ Unveränderbar
 \begin_inset Text
 
 \begin_layout Plain Layout
-Kontext Manager / Context Manager
+Kontext-Manager / Context Manager
 \end_layout
 
 \end_inset
@@ -1061,7 +1073,7 @@ Kontext Manager / Context Manager
 \begin_layout Plain Layout
 Klasse, die __enter__ und __exit__ implementiert.
  Erlaubt es Objekte auch im Fehlerfall sauber zu deinitialisieren, bzw.
- zu schließen (entspricht einem try-finally-Block).
+ zu schließen  (entspricht einem try-finally-Block).
 \end_layout
 
 \end_inset
@@ -1161,7 +1173,7 @@ Mutex
 \begin_inset Text
 
 \begin_layout Plain Layout
-Gegenseitig ausschließend (von engl.
+Gegenseitig ausschließend  (von engl.
  mutual exclusion)
 \end_layout
 
@@ -1182,7 +1194,7 @@ ORM
 \begin_inset Text
 
 \begin_layout Plain Layout
-Programmiertechnik um Daten zwischen inkompatiblen Typsystemen (hier Datenbank
+Programmiertechnik um Daten zwischen inkompatiblen Typsystemen  (hier Datenbank
  in SQLite3 und Python) zu konvertieren und somit eine virtuelle Objektdatenbank
  zu schaffen
 \end_layout
@@ -1224,9 +1236,8 @@ Race-Condition
 \begin_inset Text
 
 \begin_layout Plain Layout
-Im Falle einer Race-Condition ist das Ergebnis ist das Ergebnis einer Operation
- nicht deterministisch, es wird beeinflusst durch äußere Gegebenheiten wie
- z.B.
+Im Falle einer Race-Condition ist das Ergebnis einer Operation nicht determinist
+isch, es wird beeinflusst durch äußere Gegebenheiten wie z.B.
  Prozessorlast
 \end_layout
 
@@ -1294,7 +1305,7 @@ Singleton
 
 \begin_layout Plain Layout
 Ein Singleton ist ein Entwurfsmuster bei dem sichergestellt ist, dass nur
- eine einzige Instanz einer Klasse existiert (z.B.
+ eine einzige Instanz einer Klasse existiert  (z.B.
  in Python 
 \emph on
 None
@@ -1319,9 +1330,9 @@ Thread
 \begin_inset Text
 
 \begin_layout Plain Layout
-(dt.: Faden, Strang) Threads sind im Grunde genommen leichtgewichtige Prozesse
- (Ein Prozess kann mehrere Threads besitzen).
- In CPython (erläutert in Abschnitt 
+ (dt.: Faden, Strang) Threads sind im Grunde genommen leichtgewichtige Prozesse
+  (Ein Prozess kann mehrere Threads besitzen).
+ In CPython  (erläutert in Abschnitt 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Python-3"
@@ -1331,7 +1342,7 @@ noprefix "false"
 
 \end_inset
 
-) ist der GIL (Global Interpreter Lock) zu beachten: Threads steigern hier
+) ist der GIL  (Global Interpreter Lock) zu beachten: Threads steigern hier
  nicht die Performance!
 \end_layout
 
@@ -1352,7 +1363,7 @@ Thread-Safe
 \begin_inset Text
 
 \begin_layout Plain Layout
-(dt.: Threadsicherheit) Mehrere Threads können gleichzeitig auf eine Komponente
+ (dt.: Threadsicherheit) Mehrere Threads können gleichzeitig auf eine Komponente
  zugreifen ohne sich gegenseitig zu behindern oder race-conditions auszulösen
 \end_layout
 
@@ -1380,14 +1391,14 @@ name "sec:Python-3"
 
 \end_inset
 
-Python3
+Python 3
 \end_layout
 
 \begin_layout Standard
 Bei Python 3 handelt es sich um eine universell einsetzbare, plattformübergreife
 nde, dynamisch typisierte Hochsprache, welche in verschiedensten Implementierung
 en als Open Source Projekt entwickelt wird.
- Ursprünglich wurde sie von Guido van Rossum 1991 entwickelt, mit dem Ziel
+ Ursprünglich wurde sie von Guido van Rossum 1991 mit dem Ziel entwickelt,
  eine möglichst lesbare und dennoch mächtige Programmiersprache zu schaffen.
  Auf der Website der PSF steht dazu: 
 \begin_inset Quotes eld
@@ -1420,13 +1431,14 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-In der Standartimplementierung CPython wird der Quellcode zuerst in einen
- Bytecode kompiliert welcher dann von einer in C geschriebenen VM interpretiert
- wird, andere bekannte Implementierungen sind z.B.
- PyPy (Interpreter in RPython, Vorteil: sehr viel schneller als CPython,
- JIT-Compiler), Jython (Ausführung mittels JVM, Vorteil: Interoperabilität
- mit JRE) oder IronPython (Ausführung mittels DLR - also .NET, Vorteil: Interoper
-abilität mit .NET bzw.
+In der Standardimplementierung CPython wird der Quellcode zuerst in einen
+ Bytecode kompiliert, welcher dann von einer in C geschriebenen VM interpretiert
+ wird.
+ Andere bekannte Implementierungen sind z.B.
+ PyPy  (Interpreter in RPython, Vorteil: sehr viel schneller als CPython,
+ JIT-Compiler), Jython  (Ausführung mittels JVM, Vorteil: Interoperabilität
+ mit JRE) oder IronPython  (Ausführung mittels DLR - also .NET, Vorteil:
+ Interoperabilität mit .NET bzw.
  der CLI und Integration in Visual Studio).
 \begin_inset Foot
 status open
@@ -1486,7 +1498,7 @@ gab es außerdem noch die sogenannten
 \emph on
 unbound methods
 \emph default
-, die einer Methode entsprechen welche ursprünglich zu einer Klasse gehört
+, die einer Methode entsprechen, welche ursprünglich zu einer Klasse gehört
  hat und somit eine Instanz dieser als ersten Parameter erwartet 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -1501,7 +1513,7 @@ literal "true"
 \emph on
 unbound method
 \emph default
- war ist nun ebenfalls eine 
+ war, ist nun ebenfalls eine 
 \emph on
 function 
 \emph default
@@ -1727,7 +1739,7 @@ Formatierung
 \end_layout
 
 \begin_layout Standard
-Ein Grundsatz der Quellcodeformatierung ist, dass Code wesentlich öfter
+Ein Grundsatz der Quellcodeformatierung ist, dass der Code wesentlich öfter
  gelesen als geschrieben wird.
  Dementsprechend sollte hier mit großer Vorsicht und einer gut durchdachten
  Systematik vorgegangen werden.
@@ -1745,7 +1757,7 @@ Zen of Python
 \emph on
 import this
 \emph default
- eingesehen werden kann (und als PEP 20 zu finden ist), oder aber die Python
+ eingesehen werden kann  (und als PEP 20 zu finden ist), oder aber die Python
  Enhancement Proposals PEP 8 und PEP 254.
 \end_layout
 
@@ -1758,7 +1770,7 @@ Style Guide for Python Code
 \begin_inset Quotes erd
 \end_inset
 
- und umfasst alle Formatfragen von generellem Codelayout, über Kommentare
+ und umfasst alle Formatfragen von generellem Codelayout über Kommentare
  bis hin zu Namensgebungskonventionen
 \begin_inset Foot
 status open
@@ -1805,8 +1817,8 @@ literal "false"
 \end_inset
 
 .
- Docstrings sind eine Form von Inline-Dokumentation die z.B.
- die Schnittstelle und Funktion einer Methode beschreiben.
+ Docstrings sind eine Form von Inline-Dokumentation, die z.B.
+ die Schnittstelle und Funktion einer Methode beschreibt.
  Sie werden vom Python-Interpreter berücksichtigt und sind dann unter dem
  Magic Member 
 \emph on
@@ -1814,9 +1826,9 @@ __doc__
 \emph default
  zu finden.
  Über Docstrings könnte man aus dem Quellcode auch automatisch die Dokumentation
- generieren lassen, dies ist in unserem Fall jedoch nicht gewünscht da die
- Dokumentation im Rahmen dieser Arbeit stattfindet (im Anhang sind sie dennoch
- zu finden ({modulname}.html)).
+ generieren lassen, dies ist in unserem Fall jedoch nicht gewünscht, da
+ die Dokumentation im Rahmen dieser Arbeit stattfindet  (im Anhang sind
+ sie dennoch zu finden  ({modulname}.html)).
  Als weitere Referenz für das genutzte Format galten ein von Google veröffentlic
 htes Dokument
 \begin_inset Foot
@@ -1890,7 +1902,7 @@ noprefix "false"
 
 \end_inset
 
- (PEP8)
+  (PEP8)
 \end_layout
 
 \end_inset
@@ -1904,9 +1916,9 @@ Vorwort und Übersicht über die Anwendung
 \end_layout
 
 \begin_layout Standard
-Da TUInventory an manchen Stellen stark auf Multithreading setzt sei hier
- eine Grafik vorangestellt die Kontroll- (solider Pfeil) und Informationsfluss
- (gestrichelter Pfeil) visualisiert:
+Da TUInventory an manchen Stellen stark auf Multithreading setzt, sei hier
+ eine Grafik vorangestellt, die Kontroll-  (solider Pfeil) und Informationsfluss
+  (gestrichelter Pfeil) visualisiert:
 \end_layout
 
 \begin_layout Standard
@@ -1949,7 +1961,7 @@ status open
 
 \begin_layout Standard
 Desweiteren sei eine Übersicht über alle Module und deren Klassen, sowie
- Top-Level-Functions und module-level Instanzen gegeben (siehe hierzu auch
+ Top-Level-Functions und Module-Level-Instanzen gegeben  (siehe hierzu auch
  die automatisch generierte Dokumentation im Anhang):
 \end_layout
 
@@ -2175,9 +2187,9 @@ Bei SQLAlchemy handelt es sich um ein Open-Source SQL Toolkit und einen
 \begin_layout Standard
 Lesenswert im Bezug auf die Grundidee, bzw.
  Architekturentscheidungen von SQLAlchemy ist hierzu, das von Michael Bayer,
- dem/einem Entwickler von SQLALchemy, in 
+ dem/einem Entwickler von SQLAlchemy, in 
 \emph on
-The Architecture of Open Source Applications (Volume 2)
+The Architecture of Open Source Applications  (Volume 2)
 \emph default
 
 \begin_inset Foot
@@ -2200,12 +2212,12 @@ literal "false"
  veröffentlichte Kapitel über SQLAlchemy.
  Hieraus geht hervor, dass SQLAlchemy so entworfen wurde, dass man bei der
  Entwicklung damit gewillt sein muss, die relationalen Strukturen seiner
- Daten zu bedenken, die Implementierung dieser jedoch durch eine High-Level
- Schnittstelle erfolgen sollte.
+ Daten zu bedenken, die Implementierung dieser jedoch durch eine High-Level-Schn
+ittstelle erfolgen sollte.
  Dieser Abstraktionslayer ermöglicht es SQLAlchemy mit den verschiedensten
- Datenbanken (SQLite, PostgreSQL, Oracle,...) zu arbeiten, ohne große (wenn
+ Datenbanken  (SQLite, PostgreSQL, Oracle,...) zu arbeiten, ohne große  (wenn
  überhaupt) Änderungen am Code vorzunehmen.
- Diese verschiedenen Implementierungen werden alle über die selbe High-Level
+ Diese verschiedenen Implementierungen werden alle über dieselbe High-Level
  API angesprochen und im SQLAlchemy-Jargon 
 \begin_inset Quotes eld
 \end_inset
@@ -2218,7 +2230,7 @@ dialect
  Ein weiteres grundsätzliches Merkmal ist, dass SQLAlchemy grob in ein Core-Modu
 l und ein darauf aufsetzendes ORM-Modul aufgeteilt werden kann.
  Viele Firmen bauen auf dem Core basierend einen eigenen ORM auf.
- Die Details dieser Struktur sind der umfangreichen SQLAlchemy Dokumentation
+ Die Details dieser Struktur sind der umfangreichen SQLAlchemy-Dokumentation
  zu entnehmen.
 \end_layout
 
@@ -2248,7 +2260,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Entity-Relationship Diagramm
+Entity-Relationship-Diagramm
 \end_layout
 
 \end_inset
@@ -2262,10 +2274,10 @@ Entity-Relationship Diagramm
 \end_layout
 
 \begin_layout Standard
-Es sollte also Geräte geben, deren Standort verfolgt wird, und die immer
- einen Mitarbeiter zugewiesen haben der für sie verantwortlich ist.
- Um eine einfachere Pflege der Datenbank zu ermöglichen wurden der Artikel
- eines Geräts sowie dessen Hersteller ausgekapselt (3.
+Es sollte also Geräte geben, deren Standort verfolgt wird und die immer
+ einen Mitarbeiter zugewiesen haben, der für sie verantwortlich ist.
+ Um eine einfachere Pflege der Datenbank zu ermöglichen, wurden der Artikel
+ eines Geräts sowie dessen Hersteller ausgekapselt  (3.
  Normalform).
 \end_layout
 
@@ -2309,9 +2321,12 @@ UML-Diagramm
 \end_layout
 
 \begin_layout Standard
-Diese Klassen erben alle von einer abstrakten Basisklasse Base, die von
- SQLAlchemy bereitgestellt wird und besitzen jeweils einen eigenen Datenbank
- Table.
+Diese Klassen erben alle von einer abstrakten Basisklasse 
+\emph on
+Base
+\emph default
+, die von SQLAlchemy bereitgestellt wird, und besitzen jeweils einen eigenen
+ Datenbank-Table.
  Auch die Beziehungen der Klassen werden auf Basis des Quellcodes automatisch
  von SQLAlchemy erzeugt.
 \end_layout
@@ -2321,21 +2336,24 @@ Benutzerdefinierte Datentypen
 \end_layout
 
 \begin_layout Standard
-Da SQLAlchemy im Hintergrund eine tatsächliche SQL Datenbank einsetzt ist
- es natürlich an die Datentypen dieser gebunden, daher ist es hier, ähnlich
- einer traditionellen DBAPI, nötig Adapter zu schreiben um eigene Datentypen
- ablegen zu können.
+Da SQLAlchemy im Hintergrund eine tatsächliche SQL-Datenbank einsetzt, ist
+ es natürlich an deren Datentypen gebunden.
+ Daher ist es hier, ähnlich einer traditionellen DBAPI, nötig, Adapter zu
+ schreiben, um eigene Datentypen ablegen zu können.
  Konkret geht es darum, das 
 \emph on
 salt
 \emph default
  eines Nutzers in der Datenbank zu speichern.
  Das Salt ist eine sehr große Zahl.
- Daher wird ein eigener Datentyp benötigt welcher den Python-seitigen Wert
- beim Speichern in die Datenbank zu einem String konvertiert, und beim Abrufen
+ Daher wird ein eigener Datentyp benötigt, welcher den Python-seitigen Wert
+ beim Speichern in die Datenbank zu einem String konvertiert und beim Abrufen
  die umgekehrte Umwandlung durchführt.
- SQLAlchemy stellt hierzu die abstrakte Klasse TypeDecorator zur Verfügung,
- von dieser leiten wir eine Klasse 
+ SQLAlchemy stellt hierzu die abstrakte Klasse 
+\emph on
+TypeDecorator
+\emph default
+ zur Verfügung, von dieser leiten wir eine Klasse 
 \emph on
 BigInt
 \emph default
@@ -2344,7 +2362,7 @@ BigInt
 \emph on
 impl
 \emph default
- fest, dass die Datenbankseitige Implementierung als string erfolgt, die
+ fest, dass die datenbankseitige Implementierung als string erfolgt, die
  beiden Methoden 
 \emph on
 process_bind_param 
@@ -2354,8 +2372,12 @@ und
  process_result_value
 \emph default
  nehmen die Umwandlung vor.
- Es ist auch möglich je nach dialect der Datenbank verschieden umzuwandeln,
- dies ist hier allerdings nicht nötig.
+ Es ist auch möglich, je nach 
+\emph on
+dialect
+\emph default
+ der Datenbank, verschieden umzuwandeln, dies ist hier allerdings nicht
+ nötig.
 \end_layout
 
 \begin_layout Subsection
@@ -2363,7 +2385,7 @@ Beziehungen herstellen in SQLAlchemy
 \end_layout
 
 \begin_layout Subsubsection
-Grundprinzip und 1-zu-n Beziehungen
+Grundprinzip und 1-zu-n-Beziehungen
 \end_layout
 
 \begin_layout Standard
@@ -2372,7 +2394,7 @@ In SQLAlchemy werden Beziehungen zwischen Tables mittels der
 relationship
 \emph default
  Methode hergestellt.
- Die Variante für die wir uns entschieden haben nutzt hierbei 
+ Die Variante, für die wir uns entschieden haben, nutzt hierbei 
 \emph on
 backref
 \emph default
@@ -2449,8 +2471,8 @@ Children
 \emph on
 parent
 \emph default
- an welcher auf die zugehörige Parent-Instanz verweist.
- Hier gilt zu beachten, dass es egal ist auf welcher Seite der Beziehung
+ an, welcher auf die zugehörige Parent-Instanz verweist.
+ Hier gilt zu beachten, dass es egal ist, auf welcher Seite der Beziehung
  der Fremdschlüssel hinterlegt ist.
 \end_layout
 
@@ -2464,26 +2486,26 @@ relationship
 Child
 \emph default
 , sondern ein String, der ihren Namen enthält.
- Dies ermöglicht es Beziehungen anzulegen, ohne das die Partnerklasse bereits
- angelegt wurde bzw.
+ Dies ermöglicht es, Beziehungen anzulegen, ohne dass, die Partnerklasse
+ bereits angelegt wurde bzw.
  bekannt ist, was das Arbeiten wesentlich komfortabler macht.
 \end_layout
 
 \begin_layout Subsubsection
-1-zu-1 Beziehung
+1-zu-1-Beziehung
 \end_layout
 
 \begin_layout Standard
-Es lassen sich mit SQLAlchemy jedoch nicht nur 1-zu-n Beziehungen anlegen.
+Es lassen sich mit SQLAlchemy jedoch nicht nur 1-zu-n-Beziehungen anlegen.
  Durch Erweiterung der 
 \emph on
 relationship
 \emph default
--Methode mit dem 
+ Methode mit dem 
 \emph on
 uselist
 \emph default
- Parameter auf folgende Weise lässt sich an beiden Seiten des relationships
+ Parameter lässt sich auf folgende Weise an beiden Seiten des relationships
  eine Einzelinstanz hinterlegen.
 \end_layout
 
@@ -2522,7 +2544,7 @@ Beispiel einer 1-zu-1 Beziehung
 \end_layout
 
 \begin_layout Standard
-Prinzipiell ist es auch möglich n-zu-n Beziehungen herzustellen, dies war
+Prinzipiell ist es auch möglich, n-zu-n Beziehungen-herzustellen, dies ist
  bei uns jedoch nicht nötig und wird daher nicht aufgeführt.
 \end_layout
 
@@ -2548,20 +2570,22 @@ State-Management
 \begin_inset Quotes erd
 \end_inset
 
- (Konsistenzstatus zwischen Objekt und Datenbank), was später noch eine
+  (Konsistenzstatus zwischen Objekt und Datenbank), was später noch eine
  wichtige Rolle spielt.
  Eine Session wird zunächst an eine 
 \emph on
 Engine
 \emph default
- angebunden, diese Engine verwaltet z.B.
+  (dt.
+ Datenbanktreiber) angebunden; diese Engine verwaltet z.B.
  den bereits erwähnten Dialect und stellt das Interface zur DBAPI und damit
  auch zur Datenbank dar.
  Über ihre Lebenszeit kann man einer Session Objekte manuell oder über Abfragen
- hinzufügen sie entfernen und Änderungen an der Datenbank vornehmen.
- Oftmals, so auch in unserem Fall, gibt es jedoch viele Stellen von denen
- aus auf eine Session zugegriffen werden muss, da stellt man sich natürlich
- die Frage wann man denn eine neue Session aufmacht und schließt etc..
+ hinzufügen, sie entfernen und Änderungen an der Datenbank vornehmen.
+ Oftmals, so auch in unserem Fall, gibt es jedoch viele Stellen, von denen
+ aus auf eine Session zugegriffen werden muss.
+ Da stellt man sich natürlich die Frage, wann man denn eine neue Session
+ aufmacht und schließt etc..
  Hierzu steht in der Dokumentation von SQLAlchemy:
 \begin_inset VSpace smallskip
 \end_inset
@@ -2609,33 +2633,36 @@ literal "false"
 \end_layout
 
 \begin_layout Standard
-Dies und der Fakt, dass eine Engine steht ordnungsgemäß initialisiert und
- deinitialisiert werden muss führt uns daher ein weiteres Mal zu einem Kontext-M
-anager.
- Dieser Kontextmanager verfügt über die Engine zu der alle Sessions verbunden
- werden sowie einen sog.
+Dies und der Fakt, dass eine Session stets ordnungsgemäß initialisiert und
+ deinitialisiert werden muss, führt uns daher ein weiteres Mal zu einem
+ Kontext-Manager.
+ Dieser Kontext-Manager verfügt über die Engine, zu der alle Sessions verbunden
+ werden, sowie einen sog.
  
 \emph on
 sessionmaker
 \emph default
 .
  Dieser Sessionmaker kümmert sich um die Konfiguration der erzeugten Sessions.
- Da es jedoch potentiell wünschenswert ist mehrere Datenbanken zu haben
- (z.B.
+ Da es jedoch potentiell wünschenswert ist, mehrere Datenbanken zu haben
+  (z.B.
  lokale Datenbank für Geräte und remote Datenbank für Nutzerdaten), wird
- im Hinblick auf Zukunftssicherheit und Maintainability eine Variante gewählt
- die es erlaubt mehrere Kontext Manager für Sessions auf verschiedenen engines
- zu haben.
- Damit steht eine Fabrikmethode (
+ im Hinblick auf Zukunftssicherheit und Maintainability, eine Variante gewählt,
+ die es erlaubt, mehrere Kontext-Manager für Sessions auf verschiedenen
+ Engines zu haben.
+ Damit steht eine Fabrikmethode  (
 \emph on
 setup_context_session
 \emph default
-) zur Verfügung der eine engine übergeben wird und die den Kontext Manager
+) zur Verfügung, der eine Engine übergeben wird und die den Kontext-Manager
  als Klasse zurückgibt.
  Die zurückgegebene Klasse kümmert sich dann um eventuelle Rollbacks im
  Fehlerfall etc..
- Es ist wichtig zu beachten, dass Methoden die im Hintergrund zu INSERT,
- DELETE oder UPDATE evaluiert werden erst beim Aufrufen der Methoden 
+ Es ist wichtig zu beachten, dass Methoden, die im Hintergrund zu 
+\emph on
+INSERT
+\emph default
+, DELETE oder UPDATE evaluiert werden, erst beim Aufrufen der Methoden 
 \emph on
 flush
 \emph default
@@ -2656,8 +2683,8 @@ Neue Einträge in der Datenbank vornehmen
 
 \begin_layout Standard
 Nachdem die Vorarbeit mit Sessions und Klassen geleistet ist, ist es nun
- sehr einfach neue Einträge in der Datenbank vorzunehmen.
- Das folgende Beispielprogramm zeigt wie einige bereits erzeugte Objekte
+ sehr einfach, neue Einträge in der Datenbank vorzunehmen.
+ Das folgende Beispielprogramm zeigt, wie einige bereits erzeugte Objekte
  in der Datenbank abgelegt werden.
 \end_layout
 
@@ -2707,7 +2734,7 @@ Abfragen
 \end_layout
 
 \begin_layout Standard
-Abfragen können auf zwei verschiedene Wege erfolgen:
+Abfragen können auf zwei verschiedenen Wegen erfolgen:
 \end_layout
 
 \begin_layout Itemize
@@ -2727,10 +2754,10 @@ Session
 \end_layout
 
 \begin_layout Standard
-Bei TUInventory wurde ausschließlich der objektorientiert Abfrageansatz
+Bei TUInventory wurde ausschließlich der objektorientierte Abfrageansatz
  eingesetzt.
- Als Beispiel dient hier die Abfrage (wenn auch nicht in finaler Version)
- die im Zusammenhang des Einloggen eines Users auftritt:
+ Als Beispiel dient hier die Abfrage  (wenn auch nicht in finaler Version),
+ die im Zusammenhang des Einloggens eines Users auftritt:
 \begin_inset Float algorithm
 wide false
 sideways false
@@ -2809,16 +2836,28 @@ first
 \emph on
 expunge
 \emph default
-, zu deutsch auslöschen der Session genutzt um das Objekt von der Session
+, zu deutsch auslöschen der Session genutzt, um das Objekt von der Session
  zu trennen, sodass es auch außerhalb von ihr seine Gültigkeit behält.
- Ein Grund wieso dies nötig ist, ist die Tatsache dass SQLAlchemy hier,
- wie auch in vielen anderen Bereichen sehr lazy ist (sieh 
+ Ein Grund, wieso dies nötig ist, ist die Tatsache, dass SQLAlchemy hier,
+ wie auch in vielen anderen Bereichen sehr 
+\begin_inset Quotes gld
+\end_inset
+
+lazy
+\begin_inset Quotes grd
+\end_inset
+
+ ist  (siehe 
 \emph on
 Lazy Evaluation
 \emph default
 ).
  Tatsächlich fragt es nämlich nicht direkt das ganze Objekt ab, sondern
- erstmal nur das Attribut e_mail, da dieses gerade gebraucht wird.
+ erstmal nur das Attribut 
+\emph on
+e_mail
+\emph default
+, da dieses gerade gebraucht wird.
  Im Verlauf bis Zeile 10 werden noch 
 \emph on
 salt
@@ -2832,10 +2871,10 @@ password
 \emph on
 expunge
 \emph default
- von der Session getrennt wird erfolgt eine Abfrage aller restlichen Attribute,
+ von der Session getrennt wird, erfolgt eine Abfrage aller restlichen Attribute,
  sodass das Objekt vollständig ist.
- Wer mit SQL vertraut ist hat sicherlich bereits erkannt, dass die Methoden
- die selben Namen wie einige Operationen in SQL tragen.
+ Wer mit SQL vertraut ist, hat sicherlich bereits erkannt, dass die Methoden
+ dieselben Namen wie einige Operationen in SQL tragen.
  Analog stehen auch zu weiteren SQL Operationen Methoden bereit, um komplexere
  Abfragen zu realisieren.
 \end_layout
@@ -2847,7 +2886,7 @@ Aktualisieren und Löschen einer Instanz
 \begin_layout Standard
 Möchte man eine Instanz in der Datenbank ändern, ist dies ebenfalls mit
  einer Session einfach umzusetzen.
- So muss man lediglich die Instanz in einer Session verfügbar machen (entweder
+ So muss man lediglich die Instanz in einer Session verfügbar machen  (entweder
  sie ist ohnehin schon darin oder wird über eine Abfrage ermittelt), seine
  Änderungen vornehmen und den Kontext der aktuellen 
 \emph on
@@ -2856,7 +2895,11 @@ ContextSession
  verlassen, bzw.
  die Methode 
 \emph on
-commit der Session aufrufen
+commit 
+\emph default
+der
+\emph on
+ Session aufrufen
 \emph default
 .
  Im Fall der Löschung ist es möglich eine Instanz über die Methode 
@@ -2864,7 +2907,7 @@ commit der Session aufrufen
 delete
 \emph default
  der Session als gelöscht zu markieren, tatsächlich ist sie aber nicht direkt
- gelöscht sondern auch hier erst sobald der Kontext verlassen wird oder
+ gelöscht, sondern auch hier erst, sobald der Kontext verlassen wird oder
  
 \emph on
 flush
@@ -2884,7 +2927,7 @@ commit
 \end_layout
 
 \begin_layout Section
-Implementierung
+Frameworkfreie Implementierung
 \end_layout
 
 \begin_layout Subsection
@@ -2892,8 +2935,8 @@ Utilities
 \end_layout
 
 \begin_layout Standard
-Bei der Entwicklung wurde ein kleines Hilfsmodul geschrieben um einige Sachen
- zu vereinfaches.
+Bei der Entwicklung wurde ein kleines Hilfsmodul geschrieben, um einige
+ Sachen zu vereinfachen.
  Dieses Hilfmodul ist nicht abhängig von einem der anderen Module.
 \end_layout
 
@@ -2908,12 +2951,18 @@ Python bietet grundsätzlich die Möglichkeit an, mit relativen Pfaden zu
 iert werden, sondern stattdessen relativ zum Aufruf arbeiten.
  Führe ich das Python Programm in der Konsole also von einem anderen Ordner
  aus aus, so wird auf eine andere Datei zugegriffen.
- Daher wurde eine Funktion entwickelt, die ermittelt wo sich die Quellcodedatei
+ Daher wurde eine Funktion entwickelt, die ermittelt, wo sich die Quellcodedatei
  befindet und ein 
 \emph on
 pathlib
 \emph default
  Objekt zum übergebenen relativen Pfad zurückgibt.
+ Die Pfad-Objekte des Moduls 
+\emph on
+pathlib
+\emph default
+ sind plattformunabhängig und sehr komfortabel in der Nutzung  (Beispielsweise:
+ Erweiterung mittels Verwendung des überladenen /-Operators).
 \end_layout
 
 \begin_layout Subsubsection
@@ -2921,29 +2970,29 @@ Paralleles Printen
 \end_layout
 
 \begin_layout Standard
-Beim Debuggen ist es oftmals hilfreich sich kleinere Nachricht an Schlüsselpunkt
-en ausgeben zu lassen.
+Beim Debuggen ist es oftmals hilfreich sich kleinere Nachrichten an Schlüsselpun
+kten ausgeben zu lassen.
  Da diese Nachrichten oftmals jedoch aus verschiedenen Threads kommen, kann
  sich hier eine race-condition auf der Konsole abbilden, bei der mehrere
- Nachrichten gleichzeitig ausgegeben werden, wodurch sie schwer zu verwerten
- sind.
- Daher wird ein Singleton-Thread geöffnet der über eine Queue Nachrichten
+ Nachrichten gleichzeitig ausgegeben werden, wodurch sie schwer bis garnicht
+ zu verwerten sind.
+ Daher wird ein Singleton-Thread geöffnet, der über eine Queue Nachrichten
  empfangen und auf der Konsole ausgeben kann.
- Um eine sauberere Schnittstelle zu haben wird die 
+ Um eine sauberere Schnittstelle zu haben, wird die 
 \emph on
 put
 \emph default
--Methode seiner Queue von der modul-level-Referenz
+-Methode seiner Queue von der Module-Level-Referenz
 \emph on
  parallel_print
 \emph default
- gespiegelt über die dann aus allen Modulen sauber zugegriffen werden kann.
+ gespiegelt, über die dann aus allen Modulen sauber zugegriffen werden kann.
  Die Umsetzung des Singletons ist so, dass es einem Anwender von außerhalb
  des Moduls nicht möglich ist, eine weitere Instanz der Klasse 
 \emph on
 _ParallelPrint
 \emph default
- zu erzeugen (Zumal das 
+ zu erzeugen  (Zumal das 
 \begin_inset Quotes gld
 \end_inset
 
@@ -2973,28 +3022,32 @@ _
 
 \end_inset
 
-) indem die Referenz von 
+), indem die Referenz von 
 \emph on
 _ParallelPrint
 \emph default
- nichtmehr auf der Klasse sondern auf einer Instanz dieser liegt.
- Probiert er nun eine Instanz zu erzeugen wird stattdessen die Magic Method
+ nicht mehr auf der Klasse, sondern auf einer Instanz dieser liegt.
+ Probiert er nun, eine Instanz zu erzeugen, wird stattdessen die Magic Method
  
 \emph on
 __call__ 
 \emph default
-der Instanz aufgerufen welche eine Warning wirft.
+der Instanz aufgerufen, welche eine 
+\emph on
+Warning
+\emph default
+ wirft.
  Sofern ein Nutzer des Moduls zwischen Klassendefinition und Umleitung der
  Referenz im Modulkörper selbst eine weitere Instanz erzeugen würde, könnten
  zwei Instanzen erzeugt werden.
- Um dies zu verhindern existiert eine Klassenvariable 
+ Um dies zu verhindern, existiert eine Klassenvariable 
 \emph on
 _created
 \emph default
- welche bei der ersten Instanziierung gesetzt wird, und bei jeder weiteren
+, welche bei der ersten Instanziierung gesetzt wird und bei jeder weiteren
  eine Warnung hervorruft.
  Sollte ein Nutzer diese Klassenvariable manuell zurücksetzen, liegt dies
- außerhalb der zu erwartenden Nutzung und wird nichtmehr abgefangen.
+ außerhalb der zu erwartenden Nutzung und wird nicht mehr abgefangen.
 \end_layout
 
 \begin_layout Subsection
@@ -3002,13 +3055,13 @@ Logging
 \end_layout
 
 \begin_layout Standard
-Beim Logging werden an interessanten Punkten(Datenbankinteraktion, Nutzeranmeldu
-ng, Fehler etc.) in der Anwendung, Nachrichten in eine Datei geschrieben.
- Die Implementierung erfolgte mittels des 
+Beim Logging werden an interessanten Punkten (Datenbankinteraktion, Nutzeranmeld
+ung, Fehler etc.) in der Anwendung, Nachrichten in eine Datei geschrieben.
+ Die Implementierung erfolgt mittels des 
 \emph on
 logging
 \emph default
--Moduls aus Pythons Standartbibliothek.
+-Moduls aus Pythons Standardbibliothek.
  Dieses wurde so konfiguriert, dass die geschriebenen Datensätze folgende
  Informationen enthalten:
 \end_layout
@@ -3018,7 +3071,7 @@ Zeitstempel nach ISO 8601 im Format YYYY-MM-DDThh:mm:ss
 \end_layout
 
 \begin_layout Itemize
-Logtyp (Fehler, Debugnachricht, Information, Kritischer Fehler o.ä)
+Logtyp  (Fehler, Debugnachricht, Information, kritischer Fehler o.ä.)
 \end_layout
 
 \begin_layout Itemize
@@ -3026,7 +3079,7 @@ Dateiname
 \end_layout
 
 \begin_layout Itemize
-Funktionsname aus dem der Log kommt
+Funktionsname, aus dem der Log kommt
 \end_layout
 
 \begin_layout Itemize
@@ -3034,10 +3087,10 @@ Nachricht
 \end_layout
 
 \begin_layout Standard
-Somit sollte es im Fehlerfall möglich sein, leicht herauszufinden wo eine
+Somit sollte es im Fehlerfall möglich sein, leicht herauszufinden, wo eine
  Fehlerquelle liegt.
  Der Aufbau eines Log-Datensatzes ist dabei so, dass rechts die am meisten
- relevante und links die am wenigsten relevante Information liegt, und jeder
+ relevante und links die am wenigsten relevante Information liegt und jeder
  Abschnitt eine konstante Breite aufweist.
  Eine Beispieldatei könnte dann so aussehen:
 \end_layout
@@ -3078,7 +3131,7 @@ Log-Datei Beispiel
 
 \begin_layout Standard
 Es ist zu sehen, dass sich die Datei Spaltenweise gut lesen lässt und leicht
- zurückverfolgbar ist woher eine Nachricht stammt.
+ zurückverfolgbar ist, woher eine Nachricht stammt.
  Bei Nachricht 1 und 3 ist ein 
 \emph on
 <module>
@@ -3101,28 +3154,40 @@ info
  Ebenfalls zu sehen ist, dass der Leitgedanke, des von rechts nach links
  absteigend relevanten Informationslevels sich sehr gut mit ISO 8601 kombinieren
  lässt, da die Sekunden die wohl wichtigste Information der Zeit darstellen.
- Auf die Darstellung der Millisekunden (bzw.
+ Auf die Darstellung der Millisekunden  (bzw.
  ggf.
  Microsekunden etc.) wurde verzichtet, da der Nutzer die Anwendung eher im
  Sekundentakt bedient und sich somit die Zeile nicht unnötig überlädt.
- Aus dem selben Grund wäre es denkbar auf die Jahreszahl zu verzichten.
+ Aus demselben Grund wäre es denkbar, auf die Jahreszahl zu verzichten.
 \end_layout
 
 \begin_layout Subsection
-BarcodeReader
+Barcode Reader - die Klassen VideoStream und LazyVideoStream
 \end_layout
 
 \begin_layout Standard
-Um Geräte identifizieren und markieren zu können wird für jedes Gerät ein
+Um Geräte identifizieren und markieren zu können, wird für jedes Gerät ein
  einzigartiger QR-Code erzeugt.
- Um diese einzulesen wird OpenCV mit ZBar verwendet.
- Die Funktionalität des Einlesens ist in der Klasse BarcodeReader gekapselt.
+ Um diese einzulesen, wird 
+\emph on
+OpenCV
+\emph default
+ mit 
+\emph on
+ZBar
+\emph default
+ verwendet.
+ Die Funktionalität des Einlesens ist im Modul 
+\emph on
+barcodereader
+\emph default
+ gekapselt.
 \end_layout
 
 \begin_layout Standard
-Der BarcodeReader wurde anfangs als Prozedur geschrieben.
- Als die Funktion gegeben war, wurde er in eine Klasse umgewandelt und für
- die später benötigte Parallelisierung vorbereitet
+Der Barcode Reader wird anfangs als Prozedur geschrieben.
+ Sobald die Funktion gegeben ist, wird er in eine Klasse umgewandelt und
+ für die später benötigte Parallelisierung vorbereitet
 \begin_inset Foot
 status open
 
@@ -3144,29 +3209,33 @@ noprefix "false"
 \end_inset
 
 .
- Dabei gab es grundsätzlich zwei Optionen:
+ Dabei gibt es grundsätzlich zwei Optionen:
 \end_layout
 
 \begin_layout Enumerate
 Die zuerst implementierte: Der Thread arbeitet im Polling-Betrieb und stellt
  kontinuierlich das aktuellste Frame an seiner Schnittstelle bereit.
- Hierbei wird auf Mutex gesetzt um Threadsicherheit zu gewährleisten.
+ Hierbei wird auf 
+\emph on
+Mutex
+\emph default
+ gesetzt um Threadsicherheit zu gewährleisten.
 \end_layout
 
 \begin_layout Enumerate
 Beim Thread kann ein Frame angefragt werden, er antwortet anschließend mit
  einem Frame - realisiert wird dieser Vorgang durch 
 \emph on
-Atomic-Message Queues
+Atomic-Message- Queues
 \emph default
 
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-Eine Erklärung dieser von Raymond Hettinger, der sie entwickelt/implementiert
- hat, gab es u.a.
- auf der PyCon Russia 2016
+Eine Erklärung dieser Konstrukte, von Raymond Hettinger, der sie entwickelt/impl
+ementiert hat, gab es u.a.
+ auf der PyCon Russia 2016 
 \begin_inset CommandInset citation
 LatexCommand cite
 after "20.12.18 - 23:03 Uhr"
@@ -3189,7 +3258,7 @@ Beide Varianten setzen dabei auf einen sog.
 \emph on
 Daemon-Thread
 \emph default
- - einen Thread der nach seinem Starten niemals mit seiner 
+ - einen Thread, der nach seinem Starten niemals mit seiner 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3197,16 +3266,16 @@ Aufgabe
 \begin_inset Quotes erd
 \end_inset
 
- fertig ist (es gibt immer wieder neue Frames zum auswerten).
+ fertig ist  (es gibt immer wieder neue Frames zum Auswerten).
 \end_layout
 
 \begin_layout Standard
 Die Vermutung beim Auswählen des Prozesses ist, dass die Polling-basierte
  Variante schneller, jedoch rechenintensiver ist.
- Demgegenüber steht die Queue-basierte Variante welche nur soviele Bilder
- wie nötig verarbeitet, jedoch nach Anfrage länger braucht um ein Bild zurückzug
-eben.
- Daher wurde mit einer einfachen Funktion eine statistische Gegenüberstellung
+ Demgegenüber steht die Queue-basierte Variante, welche nur so viele Bilder
+ wie nötig verarbeitet, jedoch nach Anfrage länger braucht, um ein Bild
+ zurückzugeben.
+ Daher wird mit einer einfachen Funktion eine statistische Gegenüberstellung
  der beiden Methoden durchgeführt.
  Die Funktion erhält hierbei einen Wert, inkrementiert diesen und meldet
  ihn zurück.
@@ -3263,18 +3332,19 @@ noprefix "false"
 
 \end_inset
 
- zu sehen ist, war die Ursprüngliche Vermutung korrekt.
+ zu sehen ist, war die ursprüngliche Vermutung korrekt.
  Polling bietet wesentlich bessere Response Times, da es nicht reagiert,
  sondern proaktiv die Schnittstelle aktualisiert.
- Was jedoch auch zu erkennen ist: Bis das Ergebnis erreicht war wurden bei
- der Queue-Variante lediglich die 20000 minimalen Lesezugriffe (Auf unseren
- use-case Übertragen also Aktualisierungen des Video-Feeds in der UI) durchgefüh
-rt - beim Polling fielen mehr als doppelt so viele Lesezugriffe statt (über
- mehrere Versuche ließ sich der tatsächliche Wert auf ~44e3 bis ~48e3 festmachen
-); es wurden konsekutiv merfach die gleichen Werte abgefragt.
+ Was jedoch auch zu erkennen ist: Bis das Ergebnis erreicht war, wurden
+ bei der Queue-Variante lediglich die 20000 minimalen Lesezugriffe  (Auf
+ unseren use-case Übertragen also Aktualisierungen des Video-Feeds in der
+ UI) durchgeführt - beim Polling fanden mehr als doppelt so viele Lesezugriffe
+ statt  (über mehrere Versuche ließ sich der tatsächliche Wert auf ~44e3
+ bis ~48e3 festmachen); es wurden konsekutiv mehrfach die gleichen Werte
+ abgefragt.
  Es liegt also bei mehr Rechenzeit kein tatsächlicher Informationszuwachs
  vor.
- Betrachtet man die beiden Verfahren als Signale und bildet deren SNR gilt:
+ Betrachtet man die beiden Verfahren als Signale und bildet deren SNR, gilt:
 \end_layout
 
 \begin_layout Standard
@@ -3314,7 +3384,7 @@ Bei diesen Zahlen ist selbstverständlich zu beachten, dass diese lediglich
 \end_layout
 
 \begin_layout Standard
-Generell ist es bei einer Echtzeit Kamera-Anwendung wünschenswert bessere
+Generell ist es bei einer Echtzeit-Kamera-Anwendung wünschenswert, bessere
  Response Times zu haben - im Praxisversuch zeigt sich jedoch, dass die
  Message Queues auf den Testgeräten ein flüssiges Bild liefern, daher wurde
  diese gewählt.
@@ -3324,8 +3394,8 @@ Generell ist es bei einer Echtzeit Kamera-Anwendung wünschenswert bessere
 \end_layout
 
 \begin_layout Standard
-In der konkreten Implementierung wurde zum Anfragen eines Frames eine Queue
- genutzt; es stellt sich die Frage wieso hierzu kein 
+In der konkreten Implementierung wird zum Anfragen eines Frames eine Queue
+ genutzt; es stellt sich die Frage, wieso hierzu kein 
 \emph on
 Event
 \emph default
@@ -3336,15 +3406,15 @@ LazyVideoStream
 \emph default
  zugreift, hätte ein Event genauso funktioniert, jedoch treten bei mehreren
  Consumern Probleme auf.
- Wenn beispielsweise ein Thread, der die Barcodes auswertet einen Frame
- anfragt, gleichzeitig allerdings die UI ein neues Frame zum Anzeigen anfragt
+ Wenn beispielsweise ein Thread, der die Barcodes auswertet, einen Frame
+ anfragt, gleichzeitig allerdings die UI ein neues Frame zum Anzeigen anfragt,
  würden beide das Event starten, was beide Male intern das gleiche Flag
- auf True setzt; im Kontrast würden könnten beide seperate Anfragen in der
- Request-Queue anlegen.
- Also würde der VideoStream auf das Event antworten indem er ein Frame in
- seine Antwort-Queue legt.
+ auf True setzt; im Kontrast könnten beide separate Anfragen in der Request-Queu
+e anlegen.
+ Also würde der VideoStream auf das Event antworten, indem er ein Frame
+ in seine Antwort-Queue legt.
  Einer der Konsumenten könnte dieses Frame herausnehmen, der andere jedoch
- würde leer ausgehen; bei der Anfragen-Queue Variante hingegen würde er
+ würde leer ausgehen; bei der Anfragen-Queue-Variante hingegen würde er
  beide Anfragen mit einem Frame beantworten.
 \end_layout
 
@@ -3418,18 +3488,18 @@ Definition des Function-Decorators
 
 \begin_layout Standard
 Ein Function-Decorator ist so aufgebaut, dass er mit der @-Syntax, die ihm
- nachgestellte Funktion als ersten positionellen Parameter übergeben bekommt,
+ nachgestellte Funktion als ersten positionellen Parameter übergeben bekommt
  und diese mit seiner Rückgabe zum Definitionszeitpunkt der dekorierten
  Funktion redefiniert.
  In der Schnittstelle gibt es außerdem noch 
 \emph on
 decorated
 \emph default
-, ein standartmäßig mit 
+, ein standardmäßig mit 
 \emph on
 False
 \emph default
- vorbelegtes Flag, dass später wichtig wird, sowie die Parameter 
+ vorbelegtes Flag, das später wichtig wird, sowie die Parameter 
 \emph on
 *args
 \emph default
@@ -3463,13 +3533,13 @@ Durchreichungen
 \emph default
  ist ein Parameter, welcher stellvertretend für beliebig viele positionelle
  Argumente steht - **kwargs hingegen steht für beliebig viele Schlüsselwortparam
-eter (daher der Name kwargs, von keyword arguments).
+eter  (daher der Name kwargs, von keyword arguments).
  Im Funktionskörper stellen diese dann ein Tupel bzw.
  ein Dictionary dar.
 \end_layout
 
 \begin_layout Standard
-Wird diese Funktion nun das erste mal aufgerufen, nämlich wenn die dekorierte
+Wird diese Funktion nun das erste Mal aufgerufen, nämlich wenn die dekorierte
  Funktion definiert wird, defaulted das 
 \emph on
 decorated
@@ -3489,9 +3559,9 @@ partial
 \emph on
 functools
 \emph default
- der Standartbibliothek erlaubt die partielle Evaluation einer Funktion,
- dabei übergibt man ihr zuerst die Funktion welche partiell-Evaluiert werden
- soll, und anschließend alle Parameter welche sozusagen 
+ der Standardbibliothek erlaubt die partielle Evaluation einer Funktion,
+ dabei übergibt man ihr zuerst die Funktion, welche partiell evaluiert werden
+ soll, und anschließend alle Parameter, welche sozusagen 
 \begin_inset Quotes gld
 \end_inset
 
@@ -3507,14 +3577,21 @@ vorbelegt
 \end_layout
 
 \begin_layout Standard
-Wird nun die dekorierte Funktion (in ihrem dekorierten Zustand) aufgerufen,
+Wird nun die dekorierte Funktion  (in ihrem dekorierten Zustand) aufgerufen,
  wird die Funktion 
 \emph on
 function
 \emph default
- (also die dekorierte Funktion in undekoriertem Zustand) aufgerufen, wobei
- als Parameter nach der Partiellevaluation nurnoch args und kwargs übrig
- sind.
+  (also die dekorierte Funktion in undekoriertem Zustand) aufgerufen, wobei
+ als Parameter nach der Partiellevaluation nur noch 
+\emph on
+args
+\emph default
+ und 
+\emph on
+kwargs
+\emph default
+ übrig sind.
  Hier wird beim Aufruf explizites 
 \emph on
 Tuple Unpacking
@@ -3555,9 +3632,9 @@ Benutzerverwaltung
 \end_layout
 
 \begin_layout Standard
-Da es in der Anwendung unter Anderem darum geht, festzulegen wer für welche
+Da es in der Anwendung unter anderem darum geht, festzulegen, wer für welche
  Geräte verantwortlich ist, haben wir die Entscheidung getroffen, dass es
- nicht möglich sein sollte die Verantwortlichkeiten eines anderen Mitarbeiters
+ nicht möglich sein sollte, die Verantwortlichkeiten eines anderen Mitarbeiters
  bearbeiten zu können.
  Dies erfordert ein Nutzersystem mit entsprechender Nutzerverwaltung.
  Aufgrund dieser Nutzerverwaltung wurden wir mit dem Problem konfrontiert,
@@ -3566,7 +3643,7 @@ erweise, ein Passwort-System gewählt.
  Dies bringt das Problem der Passwortspeicherung mit sich, das, auch heute
  noch, in vielen Systemen eine Schwachstelle für potentielle Angriffe Dritter
  darstellt.
- Während es sich bei diesem System nicht um eine wirklich Sicherheitskritische
+ Während es sich bei diesem System nicht um eine wirklich sicherheitskritische
  Anwendung handelt, sollte eine Anwendung unserer Ansicht nach dennoch so
  gestaltet sein, dass sie keine zu offensichtlichen Schwachstellen hat.
  Ein weiteres Problem entsteht dadurch, dass eine SQL-Datenbank im Hintergrund
@@ -3579,23 +3656,23 @@ SQL
 \end_layout
 
 \begin_layout Standard
-Das zweite Problem lässt sich mit Python vergleichsweise leicht umgehen
+Das zweite Problem lässt sich mit Python vergleichsweise leicht umgehen,
  indem man beim Nutzen von 
 \emph on
 sqlite3
 \emph default
- die mitgelieferte ?-Syntax einsetzt, oder aber, wie wir das bereits näher
+ die mitgelieferte ?-Syntax einsetzt, oder aber, wie wir, das bereits näher
  erläuterte SQLAlchemy nutzt, welches intern eine Validierung der Werte
  durchführt, die es in seinen SQL-Befehlen nutzt.
 \end_layout
 
 \begin_layout Standard
-Um das Problem/Prinzip der SQL-Injection aufzuzeigen folgt hier ein kurzes
+Um das Problem/Prinzip der SQL-Injection aufzuzeigen, folgt hier ein kurzes
  Beispiel.
 \end_layout
 
 \begin_layout Standard
-Gegeben sei eine sehr einfache Datenbank die Nutzer mit Namen speichert:
+Gegeben sei eine sehr einfache Datenbank, die Nutzer mit Namen speichert:
 \end_layout
 
 \begin_layout Standard
@@ -3650,21 +3727,14 @@ Beispiel von SQL-Injection
 
 \begin_layout Standard
 Wird nun über die Kommandozeile als Name z.B.
- '""); DROP TABLE users;--' eingegeben wird die Tabelle aller Nutzer gelöscht.
+ '""); DROP TABLE users;--' eingegeben, wird die Tabelle aller Nutzer gelöscht.
  Korrekt umgesetzt ist das Ganze in 
 \emph on
 insert_user_secure
 \emph default
- dargestellt, in diesem Fall wirft die selbe Eingabe einen Fehler und die
- Datenbank wird nicht 
-\begin_inset Quotes eld
-\end_inset
-
-beschädigt
-\begin_inset Quotes erd
-\end_inset
-
-.
+ dargestellt.
+ In diesem Fall wirft dieselbe Eingabe einen Fehler und die Datenbank wird
+ nicht kompromittiert.
 \end_layout
 
 \begin_layout Subsection
@@ -3673,14 +3743,14 @@ Kryptografie
 
 \begin_layout Standard
 Für die Passwörter gestaltet sich das Ganze nicht ganz so unkompliziert.
- Aufgrund dessen dass der Quellcode offen ist und auch die Datenbank lokal
- liegt ist es einem Angreifer ein Leichtes jede eventuelle einfache Verschlüssel
-ung zu umgehen.
- Daher werden bei unserer Lösung die Passwörter garnicht gespeichert - stattdess
-en wird ein Hash-Algorithmus(zu Deutsch: Streuwertfunktion) eingesetzt und
- dieser Hash gespeichert.
- Ein Hash-Algorithmus ist eine Funktion welche, idealerweise, in eine Richtung
- sehr schnell durchzuführen ist; in die Andere dagegen einen sehr hohen
+ Aufgrund dessen, dass der Quellcode offen ist und auch die Datenbank lokal
+ liegt, ist es einem Angreifer ein Leichtes, jede eventuelle einfache Verschlüss
+elung zu umgehen.
+ Daher werden bei unserer Lösung die Passwörter gar nicht gespeichert -
+ stattdessen wird ein Hash-Algorithmus (zu Deutsch: Streuwertfunktion) eingesetz
+t und dieser Hash gespeichert.
+ Ein Hash-Algorithmus ist eine Funktion, welche, idealerweise, in eine Richtung
+ sehr schnell durchzuführen ist, in die andere dagegen einen sehr hohen
  Rechenaufwand benötigt.
  Im Idealfall ist dieser Rechenaufwand so hoch, dass sich eine 
 \begin_inset Quotes eld
@@ -3692,12 +3762,12 @@ Einwegfunktion
 
  ergibt, die nicht umzukehren ist.
  Ein klassisches Beispiel für einen simplen Hash-Algorithmus ist die einstellige
- Quersumme, hier wird rekursiv die Quersumme einer Zahl gebildet, bis nurnoch
- eine Stelle übrig ist.
+ Quersumme, hier wird rekursiv die Quersumme einer Zahl gebildet, bis nur
+ noch eine Stelle übrig ist.
 \end_layout
 
 \begin_layout Subsubsection
-Benutzer Anlegen
+Benutzer anlegen
 \end_layout
 
 \begin_layout Standard
@@ -3746,10 +3816,10 @@ Passwort-Speicher-Vorgang
 
 \begin_layout Standard
 Es werden also aus den vom Nutzer getätigten Eingaben der Benutzername und
- das Passwort ausgewählt (bzw.
+ das Passwort ausgewählt  (bzw.
  werden diese in der Instanz einer Nutzerklasse abgelegt und daraus wieder
  abgerufen, dies wird allerdings später näher erläutert).
- Außerdem wird eine kryptografisch starke (im Gegensatz zu den, nicht für
+ Außerdem wird eine kryptografisch starke  (im Gegensatz zu den, nicht für
  Kryptografieanwendungen geeigneten Zufallszahlen des normalen Pythonmoduls
  
 \emph on
@@ -3761,7 +3831,7 @@ random
  Abfolge aus Bytes codiert, welche dann als Ganzzahl interpretiert wird.
  Diese Zahl wird anschließend über ein logisches XOR mit dem generierten
  Salt verknüpft und stellt unser finales Salt dar.
- Die daraus resultierende Zahl, sowie das Passwort werden dann wieder zu
+ Die daraus resultierende Zahl sowie das Passwort werden dann wieder zu
  einer Folge aus Bytes konvertiert.
  Im zweiten Schritt werden nun diese beiden 
 \emph on
@@ -3789,9 +3859,9 @@ Der Hintergrund zu der vergleichsweise komplexen Erzeugung des finalen Salts
 \end_layout
 
 \begin_layout Itemize
-Wenn man kein Salt einsetzt haben zwei Nutzer in der Datenbank den selben
- Hash, wenn sie das selbe Passwort haben, was einem Angreifer im Bereich
- Social Engineering einen Angriffspunkt liefern würde (à la.: 
+Wenn man kein Salt einsetzt, haben zwei Nutzer in der Datenbank denselben
+ Hash, wenn sie dasselbe Passwort haben, was einem Angreifer im Bereich
+ Social Engineering einen Angriffspunkt liefern würde  (à la.: 
 \begin_inset Quotes eld
 \end_inset
 
@@ -3801,12 +3871,12 @@ Was haben diese Nutzer gemeinsam, dass sie eventuell als Passwort nutzen
 \end_inset
 
 ), bzw.
- lässt auf ein gängiges Passwort schließen
+ lässt auf ein gängiges Passwort schließen.
 \end_layout
 
 \begin_layout Itemize
-Wenn man nur die Zufallszahl als Salt nutzt ist es theoretisch möglich,
- dass zwei Nutzer die selbe Zufallszahl erhalten (Auch wenn diese Wahrscheinlich
+Wenn man nur die Zufallszahl als Salt nutzt, ist es theoretisch möglich,
+ dass zwei Nutzer dieselbe Zufallszahl erhalten  (Auch wenn diese Wahrscheinlich
 keit praktisch vernachlässigbar klein ist, bei 
 \begin_inset ERT
 status open
@@ -3818,7 +3888,7 @@ $2^{256}$
 
 \end_inset
 
- Werten die die Zufallszahl annehmen kann und einer zu erwartenden Nutzerzahl
+ Werten, die die Zufallszahl annehmen kann und einer zu erwartenden Nutzerzahl
  
 \begin_inset ERT
 status open
@@ -3832,30 +3902,30 @@ leq$
 
 \end_inset
 
- 50) was im selben Problem wie der zuvor genannte Punkt münden würde
+ 50) was im selben Problem wie der zuvor genannte Punkt münden würde.
 \end_layout
 
 \begin_layout Itemize
 Wenn man nur den Benutzernamen als Salt einsetzt läuft man Gefahr, dass
  ein Nutzer einen sehr kurzen Benutzernamen wählt, wodurch ein vergleichsweise
- schnelles Durchprobieren/Brute-Forcen durch alle Salts möglich ist
+ schnelles Durchprobieren/ Brute-Forcen durch alle Salts möglich ist.
 \end_layout
 
 \begin_layout Itemize
 Durch die XOR-Verknüpfung von Nutzername und Zufallszahl hat man somit ein
  für jeden Nutzer garantiert einzigartiges Salt.
  Ein Angreifer kann dadurch eine Bruteforce Attacke nur für einen einzigen
- Nutzer auf einmal ausführen
+ Nutzer auf einmal ausführen.
 \end_layout
 
 \begin_layout Subsubsection
-Benutzer Anmelden
+Benutzer anmelden
 \end_layout
 
 \begin_layout Standard
-Beim Anmeldevorgang wird grundsätzlich der selbe Vorgang wie beim Erzeugen
- eines Nutzers durchgeführt, nur das hier aus der Datenbank abgefragt, anstatt
- gespeichert wird.
+Beim Anmeldevorgang wird grundsätzlich derselbe Vorgang wie beim Erzeugen
+ eines Nutzers durchgeführt, nur dass hier aus der Datenbank abgefragt,
+ anstatt gespeichert wird.
 \begin_inset Float figure
 wide false
 sideways false
@@ -3888,12 +3958,12 @@ Anmelde-Vorgang
 
 \begin_layout Standard
 Der Nutzer gibt also wieder seine Daten ein.
- Anhand des Nutzernamens wird nun geprüft ob ein solcher Nutzer in der Datenbank
- vorhanden ist - wenn ja wird dieser ausgelesen.
- Nun wird mit dem ausgelesenen Salt analog zum Passwort-speicher-Vorgang
+ Anhand des Nutzernamens wird nun geprüft, ob ein solcher Nutzer in der
+ Datenbank vorhanden ist - wenn ja, wird dieser ausgelesen.
+ Nun wird mit dem ausgelesenen Salt analog zum Passwort-Speicher-Vorgang
  ein Hash erzeugt.
- Stimmt dieser Hash mit dem des Nutzers aus der Datenbank überein wird der
- Benutzer eingeloggt.
+ Stimmt dieser Hash mit dem des Nutzers aus der Datenbank überein, wird
+ der Benutzer eingeloggt.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3903,13 +3973,13 @@ Benutzer hat sein Passwort vergessen
 \begin_layout Standard
 Wenn man ein System errichtet, bei dem ein Nutzer sich ein Passwort merken
  muss, ist die Wahrscheinlichkeit groß, dass er dieses vergisst.
- Daher gibt es einen Prozess um das Passwort eines Nutzers zurücksetzen
+ Daher gibt es einen Prozess, um das Passwort eines Nutzers zurücksetzen
  zu können.
- Da die Anwendung grundsätzlich offline laufen können sollte (nicht zuletzt
- aus sicherheitstechnischen Aspekten) wurde hier nicht die Variante des
- Rücksetzens per E-Mail-Token gewählt - stattdessen gibt es einen (oder
+ Da die Anwendung grundsätzlich offline laufen können sollte  (nicht zuletzt
+ aus sicherheitstechnischen Aspekten), wurde hier nicht die Variante des
+ Rücksetzens per E-Mail-Token gewählt - stattdessen gibt es einen  (oder
  auch mehrere) Admin-User die dem Nutzer ein automatisch generiertes Passwort
- zuweisen können, sodass er sich Anmelden und selbst ein neues eingeben
+ zuweisen können, sodass er sich anmelden und selbst ein neues eingeben
  kann.
  Dieser Prozess lässt sich wie folgt visualisieren:
 \end_layout
@@ -3951,8 +4021,8 @@ Es wird also zunächst, über eine Nutzereingabe, der gewünschte User aus
  Parallel dazu wird aus einer vordefinierten Zeichenfolge eine Auswahl von
  15 Zeichen getroffen.
  Diese stellen das neue Passwort dar und werden in der UI angezeigt.
- Bei der Zeichenfolge aus der das Passwort generiert wird, wird darauf geachtet
- dass jedes Zeichen klar lesbar ist.
+ Bei der Zeichenfolge, aus der das Passwort generiert wird, wird darauf
+ geachtet, dass jedes Zeichen klar lesbar ist.
  So wurden 
 \begin_inset Quotes eld
 \end_inset
@@ -3990,7 +4060,7 @@ l
  Abseits davon besteht die Zeichenfolge aus dem ganzen Alphabet in Groß-
  und Kleinschreibung, den Ziffern und einigen Sonderzeichen - insgesamt
  stehen somit 77 Zeichen zur Verfügung.
- Es stellt sich die Frage ob es klüger ist mehr Zeichen hinzuzufügen, oder
+ Es stellt sich die Frage, ob es klüger wäre mehr Zeichen hinzuzufügen oder
  aber ein längeres Passwort zu wählen.
 \end_layout
 
@@ -4014,21 +4084,21 @@ n
 \emph on
 k
 \emph default
- als Länge des Passwortes lässt sich die Anzahl an mögliche Passwörtern
+ als Länge des Passwortes lässt sich die Anzahl an möglichen Passwörtern
  mit der Funktion 
 \begin_inset ERT
 status open
 
 \begin_layout Plain Layout
 
-$$f(n,k) := n^k$$
+$$f (n,k) := n^k$$
 \end_layout
 
 \end_inset
 
  darstellen.
- Möchte man nun wissen ob es effizienter ist weitere Zeichen hinzuzufügen
- oder das Passwort zu verlängern kann man dies über eine Betrachtung der
+ Möchte man nun wissen, ob es effizienter ist, weitere Zeichen hinzuzufügen
+ oder das Passwort zu verlängern, kann man dies über eine Betrachtung der
  beiden partiellen Ableitungen
 \end_layout
 
@@ -4038,7 +4108,7 @@ status open
 
 \begin_layout Plain Layout
 
-$$f_1(n,k) := 
+$$f_1 (n,k) := 
 \backslash
 frac {
 \backslash
@@ -4064,7 +4134,7 @@ status open
 
 \begin_layout Plain Layout
 
-$$f_2(n,k) := 
+$$f_2 (n,k) := 
 \backslash
 frac {
 \backslash
@@ -4072,7 +4142,7 @@ partial f}{
 \backslash
 partial k} = n^k 
 \backslash
-cdot ln(n)$$
+cdot ln (n)$$
 \end_layout
 
 \end_inset
@@ -4088,7 +4158,7 @@ status open
 
 \begin_layout Plain Layout
 
-$f(n,k)$
+$f (n,k)$
 \end_layout
 
 \end_inset
@@ -4150,8 +4220,8 @@ $f_2$
 \end_layout
 
 \begin_layout Standard
-Hier wurden die beiden Funktionen für die Werte 5, 10 und 15 für den Parameter
- welcher statisch gehalten wird (k bei 
+Hier wurden die beiden Funktionen für die Werte 5, 10 und 15 für den Parameter,
+ welcher statisch gehalten wird  (k bei 
 \begin_inset ERT
 status open
 
@@ -4175,7 +4245,7 @@ $f_2$
 
 ; dargestellt durch i), und in einem Bereich von 0 bis 20 des dynamischen
  Parameters geplottet.
- Wie man sieht gibt es sowohl Bereiche in denen 
+ Wie man sieht, gibt es sowohl Bereiche, in denen 
 \begin_inset ERT
 status open
 
@@ -4186,7 +4256,7 @@ $f_1$
 
 \end_inset
 
-, wie auch welche in denen 
+, wie auch welche, in denen 
 \begin_inset ERT
 status open
 
@@ -4197,10 +4267,10 @@ $f_2$
 
 \end_inset
 
- effizienter(sprich größer) ist (siehe Schnittpunkte der Graphen).
+ effizienter (sprich größer) ist (siehe Schnittpunkte der Graphen).
  Daher sollte man eine allgemeinere Darstellung wählen.
- Verallgemeinert, sodass kein Parameter statisch gehalten wird lässt sich
- die Funktion folgenderweise darstellen:
+ Verallgemeinert, sodass kein Parameter statisch gehalten wird, lässt sich
+ die Funktion folgendermaßen darstellen:
 \end_layout
 
 \begin_layout Standard
@@ -4263,7 +4333,7 @@ status open
 
 \begin_layout Plain Layout
 
-$f_3(n, k)$
+$f_3 (n, k)$
 \end_layout
 
 \end_inset
@@ -4274,7 +4344,7 @@ status open
 
 \begin_layout Plain Layout
 
-$$f_3(n, k) := f_1 - f_2 = 
+$$f_3 (n, k) := f_1 - f_2 = 
 \backslash
 frac {
 \backslash
@@ -4290,15 +4360,15 @@ partial k} = k
 \backslash
 cdot n^{k-1} - n^k 
 \backslash
-cdot ln(n)$$
+cdot ln (n)$$
 \end_layout
 
 \end_inset
 
- definiert, und bei dieser alle Werte > 0 in schwarz, die Anderen in weiß
- darstellt, so hat man eine Karte die angibt ob bei einer bestimmten Koordinate
- die Erhöhung von k oder n die effizientere Wahl ist um das generierte Passwort
- sicherer zu machen.
+ definiert, und bei dieser alle Werte > 0 in Schwarz, die anderen in Weiß
+ darstellt, hat man eine Karte, die angibt, ob bei einer bestimmten Koordinate
+ die Erhöhung von k oder n die effizientere Wahl ist, um das generierte
+ Passwort sicherer zu machen.
  Die Grenze zwischen den weißen und schwarzen Bereichen stellt die Nullstellen
  von 
 \begin_inset ERT
@@ -4312,7 +4382,7 @@ $f_3$
 \end_inset
 
  dar.
- Setzt mal also 
+ Setzt man also 
 \begin_inset ERT
 status open
 
@@ -4329,9 +4399,9 @@ status open
 
 \begin_layout Plain Layout
 
-$$k(n) = n 
+$$k (n) = n 
 \backslash
-cdot ln(n),$$
+cdot ln (n),$$
 \end_layout
 
 \end_inset
@@ -4363,7 +4433,7 @@ status open
 
 \begin_layout Plain Layout
 
-$k(n)$
+$k (n)$
 \end_layout
 
 \end_inset
@@ -4457,7 +4527,7 @@ Admin hat sein Passwort vergessen
 \end_layout
 
 \begin_layout Standard
-Jedoch kann es natürlich auch vorkommen, dass ein Admin sein Passwort vergisst
+Allerdings kann es auch vorkommen, dass ein Admin sein Passwort vergisst
  - auch für so einen Fall steht ein Prozess zur Verfügung.
 \end_layout
 
@@ -4506,7 +4576,7 @@ Lokal ist ein Public-Key hinterlegt
 \end_layout
 
 \begin_layout Itemize
-Mit diesem wird ein arbiträrer Wert (In der Implementierung ist 
+Mit diesem wird ein arbiträrer Wert  (In der Implementierung ist 
 \begin_inset Quotes eld
 \end_inset
 
@@ -4518,14 +4588,14 @@ True
 \end_layout
 
 \begin_layout Itemize
-Anschließend wird probiert dieser Wert mit einem vom Nutzer gegebenen Schlüssel
+Anschließend wird probiert diesen Wert mit einem vom Nutzer gegebenen Schlüssel
  zu entschlüsseln
 \end_layout
 
 \begin_layout Itemize
 Ist dies erfolgreich, wird ein neues Schlüsselpaar erzeugt und sowohl Public-
  wie auch Private-Key überschrieben - dies hat zur Folge, dass jedes Schlüsselpa
-ar nur einmal gültig ist - so können andere Admins kontrollieren ob ein
+ar nur einmal gültig ist - so können andere Admins kontrollieren, ob ein
  Admin kürzlich sein Passwort zurückgesetzt hat
 \end_layout
 
@@ -4534,9 +4604,9 @@ Ab hier wird der normale Passwort-Rücksetz-Vorgang eines Users eingeleitet
 \end_layout
 
 \begin_layout Standard
-Es ist so vorgesehen, dass ein Admin (bzw.
- Superadmin - je nachdem wer Zugang zum Private-Key erhält) den Schlüssel
- auf einem USB-Stick o.Ä.
+Es ist so vorgesehen, dass ein Admin  (bzw.
+ Superadmin - je nachdem, wer Zugang zum Private-Key erhält) den Schlüssel
+ auf einem USB-Stick o.ä.
  ablegt und diesen im Bedarfsfall einsteckt.
 \end_layout
 
@@ -4547,13 +4617,13 @@ name "subsec:Automatisches-Abmelden"
 
 \end_inset
 
-Automatisches-Abmelden
+Automatisches Abmelden
 \end_layout
 
 \begin_layout Standard
-Bei einem zenralen System, das mehreren Nutzern zugänglich ist, ist es wünschens
-wert wenn ein Nutzer automatisch abgemeldet wird sobald er eine bestimmte
- Zeit untätig ist.
+Bei einem zentralen System, das mehreren Nutzern zugänglich ist, ist es
+ wünschenswert, wenn ein Nutzer automatisch abgemeldet wird, sobald er eine
+ bestimmte Zeit untätig ist.
  Dies beugt Missbrauch vor.
  Hierzu wurde die Klasse 
 \emph on
@@ -4567,15 +4637,15 @@ Timeout
 \emph on
 Timeout
 \emph default
- ermöglicht es einen Thread zu öffnen, welcher im Hintergrund mit einer
- bestimmten Abtastrate prüft ob die eingestellte Zeit bereits verstrichen
+ ermöglicht es, einen Thread zu öffnen, welcher im Hintergrund mit einer
+ bestimmten Abtastrate prüft, ob die eingestellte Zeit bereits verstrichen
  ist.
  Da es mit dieser Funktionalität an sich nur ein Timer wäre, implementiert
  die Klasse weiterhin die Methode 
 \emph on
 reset
 \emph default
- um den internen Timer immer dann zurückzusetzen, wenn ein bestimmtes Event
+, um den internen Timer immer dann zurückzusetzen, wenn ein bestimmtes Event
  aufgetreten ist.
  Jede 
 \emph on
@@ -4597,24 +4667,24 @@ True
 \emph on
 args
 \emph default
- standartmäßig auf None gesetzt wird, zur Laufzeit des Konstruktors allerdings
- mit einer leeren Liste ersetzt wird wenn dieser Standartwert vorhanden
+ standardmäßig auf None gesetzt wird, zur Laufzeit des Konstruktors allerdings
+ mit einer leeren Liste ersetzt wird, wenn dieser Standardwert vorhanden
  ist.
- Dies hat den Hintergrund, dass es generell eine schlechte Idee ist eine
- leere Liste als Standartwert festzulegen, Standartwerte nicht beim Aufrufen
- einer Methode (oder Funktion oder Sonstigem), sondern sobald das zugehörige
- 
+ Dies hat den Hintergrund, dass es generell eine schlechte Idee ist, eine
+ leere Liste als Standardwert festzulegen.
+ Standardwerte werden nämlich nicht beim Aufrufen einer Methode  (oder Funktion
+ oder Sonstigem), sondern sobald das zugehörige 
 \emph on
 def 
 \emph default
-ausgeführt wird evaluiert werden.
- Bei immutablen Datentypen ist dies kein Problem - bei mutablen allerdings
- wird so stets die selbe Instanz intern verwendet was dazu führt, dass eine
- Änderung der Daten in einem Funktionsaufruf, alle anderen mit beeinflusst.
+ausgeführt wird, evaluiert.
+ Bei immutablen Datentypen ist dies kein Problem, bei mutablen allerdings
+ wird so stets dieselbe Instanz intern verwendet, was dazu führt, dass eine
+ Änderung der Daten in einem Funktionsaufruf alle anderen mit beeinflusst.
 \end_layout
 
 \begin_layout Standard
-Da die Klasse Timeout auf paralleler Programmierung basiert sind hier einige
+Da die Klasse Timeout auf paralleler Programmierung basiert, sind hier einige
  Besonderheiten zu beachten.
  So wird auf 
 \emph on
@@ -4625,7 +4695,7 @@ timer
 reset
 \emph default
 , wie auch von innerhalb zugegriffen.
- Die Punkte an denen diese Zugriffe stattfinden bezeichnet man als 
+ Die Punkte, an denen diese Zugriffe stattfinden, bezeichnet man als 
 \emph on
 Critical Sections
 \emph default
@@ -4653,11 +4723,11 @@ literal "true"
 \end_inset
 
 .
- Dies ist der Fall wenn ein Thread gerade auf die Variable zugreift(z.B.
+ Dies ist der Fall, wenn ein Thread gerade auf die Variable zugreift (z.B.
  liest) und dann der andere Thread die Kontrolle erhält und die Variable
- überschreibt und führt dazu dass der lesende Thread einen falschen Wert
+ überschreibt und führt dazu, dass der lesende Thread einen falschen Wert
  erhält.
- Um dieses Problem vorzubeugen existiert die Klasse 
+ Um diesem Problem vorzubeugen existiert die Klasse 
 \emph on
 Lock
 \emph default
@@ -4667,16 +4737,16 @@ threading.
 
 \emph default
  Mithilfe dieser lassen sich Stellen, die nicht parallel verarbeitet werden
- dürfen, abriegeln (siehe Mutex).
+ dürfen, abriegeln  (siehe Mutex).
  Dabei nimmt sich der Thread, welcher zuerst seine 
 \emph on
 Critical Section
 \emph default
- erreicht den 
+ erreicht, den 
 \emph on
 lock
 \emph default
-, welcher als Kontextmanager fungiert (intern werden die Methoden lock.acquire
+, welcher als Kontext-Manager fungiert (intern werden die Methoden lock.acquire
  und lock.release aufgerufen) und führt den Code im 
 \emph on
 with
@@ -4686,7 +4756,7 @@ with
 \emph on
 Critical Section
 \emph default
- erreicht, erst dann wird er blockiert bis er selbst den 
+ erreicht, erst dann wird er blockiert, bis er selbst den 
 \emph on
 lock 
 \emph default
@@ -4699,9 +4769,9 @@ Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt,
  da der Overhead hier kleiner ist, es ist also weniger kostspielig einen
  neuen Thread zu öffnen.
  Außerdem ist der Datenaustausch zwischen Threads immens einfacher verglichen
- mit Prozessen, in unserem Fall können wir einfach Attribute der Klasse
- dafür benutzen; bei einem Prozess müsste hier auf Kommunikation mittels
- 
+ mit Prozessen.
+ In unserem Fall können wir einfach Attribute der Klasse dafür benutzen;
+ bei einem Prozess müsste hier auf Kommunikation mittels 
 \emph on
 sockets
 \emph default
@@ -4709,14 +4779,14 @@ sockets
 \emph on
 pickle
 \emph default
- oder temporäre Dateien (Asynchroner Dateizugriff) zurückgegriffen werden
- (alternativ gibt es auch im Modul 
+ oder temporäre Dateien zurückgegriffen werden (alternativ gibt es auch
+ im Modul 
 \emph on
 multiprocessing
 \emph default
  eine Klasse für 
 \emph on
-atomic-message-queues
+Atomic-Message Queues
 \emph default
 ).
 \end_layout
@@ -4732,20 +4802,21 @@ Timer
 threading
 \emph default
  gibt.
- Diese unterstützt jedoch weder Funktionsargumente, noch das Zurücksetzen
+ Diese unterstützt jedoch weder Funktionsargumente noch das Zurücksetzen
  des Timers, er kann lediglich gänzlich abgebrochen werden.
  Außerdem bietet 
 \emph on
 threading
 \emph default
- weitere Klassen, welche in der Implementierung von Timer genutzt hätten
+ weitere Klassen, welche in der Implementierung von Timer hätten genutzt
  werden können.
  So hätte man das Zurücksetzen beispielsweise mit einer 
 \emph on
 Event
 \emph default
--Instanz lösen können, da dies jedoch keinen weiteren Nutzen oder bessere
- Performance bringt wurde darauf verzichtet.
+-Instanz lösen können.
+ Da dies jedoch keinen weiteren Nutzen oder bessere Performance bringt wurde
+ darauf verzichtet.
 \end_layout
 
 \begin_layout Subsection
@@ -4767,22 +4838,22 @@ TelephoneNumber
 \begin_layout Standard
 Beim Ablegen einer Nutzereingabe in einer Datenbank ist es ratsam diese
  Eingabe in irgendeiner Art und Weise zu standardisieren, sodass bei einer
- anderen Eingabe die jedoch die selben Informationen enthält erkannt wird,
- dass der Nutzer das selbe meint.
- Bei einer E-Mail Adresse oder einem Namen z.B.
- ist das eine sehr einfache Aufgabe, so kann man hier einfach die Übergebene
+ anderen Eingabe die jedoch dieselben Informationen enthält, erkannt wird,
+ dass der Nutzer dasselbe meint.
+ Bei einer E-Mail-Adresse oder einem Namen z.B.
+ ist das eine sehr einfache Aufgabe, so kann man hier einfach die übergebene
  Zeichenkette komplett in Kleinbuchstaben umwandeln.
- Bei einer Telefonnummer hingegen ist diese Standartisierung eine nontriviale
- Aufgabe, da ein Nutzer eine Telefonnummber beispielsweise mit Länderkennzahl,
+ Bei einer Telefonnummer hingegen ist diese Standardisierung eine nontriviale
+ Aufgabe, da ein Nutzer eine Telefonnummer beispielsweise mit Länderkennzahl,
  Vorwahl, Durchwahl oder auch einfach nur als lokale Nummer eingeben könnte.
  Daher wird die Nutzereingabe intern umformatiert und eventuell fehlende
- Angaben (wie z.B.
- eine Fehlende Länderkennzahl) extrapoliert, sodass jedesmal eine volle
+ Angaben  (wie z.B.
+ eine fehlende Länderkennzahl) extrapoliert, sodass jedesmal eine volle
  Nummer zur Verfügung steht.
  Sieht man sich die Norm DIN 5008 an, dann besteht eine vollständige Nummer
- aus Länderkennzahl (country-code), Vorwahl (area-code), Rufnummer (subscriber
- number) und Nebenstellennummer bzw.
- Durchwahl (extension)
+ aus Länderkennzahl  (country-code), Vorwahl  (area-code), Rufnummer  (subscribe
+r number) und Nebenstellennummer bzw.
+ Durchwahl  (extension)
 \begin_inset Foot
 status open
 
@@ -4802,16 +4873,25 @@ literal "false"
 
 .
  Es gilt in der Nutzereingabe ein Muster zu erkennen, anhand dessen sich
- feststellen lässt welche Teile der Nummer er angegeben hat und wie diese
+ feststellen lässt, welche Teile der Nummer er angegeben hat und wie diese
  lauten.
- Hierbei handelt es sich um ein Paradebeispiel für Pattern-Recognition (dt.
- Mustererkennung) mittels regular expression (dt.
- regulärer Ausdruck, kurz Regex).
+ Hierbei handelt es sich um ein Paradebeispiel für Pattern-Recognition 
+ (dt.
+ Mustererkennung) mittels
+\emph on
+ regular expression
+\emph default
+ (dt.
+ regulärer Ausdruck, kurz 
+\emph on
+Regex
+\emph default
+).
  Diese kann man in Python mit dem Modul 
 \emph on
 re
 \emph default
- der Standartbibliothek nutzen.
+ der Standardbibliothek nutzen.
  Zunächst wird also ein Muster entwickelt, dass die einzelnen Teile erkennt.
  Der Muster-String ist:
 \end_layout
@@ -4824,13 +4904,13 @@ re
 \end_layout
 
 \begin_layout Standard
-r"(((
+r" ( ( (
 \backslash
 +
 \backslash
-d{1,3})|(0)) ?([1-9]+) )?(
+d{1,3})| (0)) ? ([1-9]+) )? (
 \backslash
-d+ ?)+(-
+d+ ?)+ (-
 \backslash
 d+)?"
 \end_layout
@@ -4845,25 +4925,25 @@ d+)?"
 \begin_layout Standard
 Was zunächst wie eine Kette aus unzusammenhängenden Zeichen aussieht, symbolisie
 rt alle syntaktischen Kombinationen die ein Nutzer zur Eingabe wählen kann,
- um dem System zu erlauben die Telefonnummer korrekt zu erkennen.
+ um dem System zu erlauben, die Telefonnummer korrekt zu erkennen.
  Der präfix 
 \emph on
 r
 \emph default
  vor dem String gibt an, dass es sich um einen raw-String handelt - ein
- String ohne standart Escape-Sequenzen wir 
+ String ohne standard Escape-Sequenzen wie 
 \backslash
 n etc.
  also.
 \end_layout
 
 \begin_layout Standard
-Eine Regex ist über die runden Klammern in Gruppen unterteilt die jeweils
+Eine Regex ist über die runden Klammern in Gruppen unterteilt, die jeweils
  eine Aufgabe unternehmen.
  Zu Beginn werden also drei Gruppen eröffnet, diese sind mit der Reihenfolge
  ihrer öffnenden Klammer nach als erste, zweite und dritte Gruppe benannt.
  Gruppe 3 enthält damit erste Unterpattern.
- Hierarchisch dargestellt ließe sich die Regex so aufbauen (Syntax in Anlehnung
+ Hierarchisch dargestellt ließe sich die Regex so aufbauen  (Syntax in Anlehnung
  an XML):
 \end_layout
 
@@ -4945,11 +5025,11 @@ Leerzeichen steht für den String
 \end_layout
 
 \begin_layout Description
-? steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
+? steht dafür, dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
  nicht öfter vorkommt; mit den bisherigen Gruppen lässt sich also feststellen,
  ob eine Eingabe mit Länderkennzahl oder eine Vorwahl mit beginnender 0
- gewählt wurde oder keins von beidem vorhanden ist.
- Es kann auch sein dass eine Leerstelle zwischen Länderkennzahl/ führender
+ gewählt wurde oder keine von beidem vorhanden ist.
+ Es kann auch sein, dass eine Leerstelle zwischen Länderkennzahl/ führender
  Null und dem Rest der Nummer steht
 \end_layout
 
@@ -4990,9 +5070,9 @@ Leerzeichen steht für den String
 \end_layout
 
 \begin_layout Description
-? steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
- nicht öfter vorkommt; mit den bisherigen Gruppen lässt sich feststellen
- ob eine Vorwahl angegeben wurde.
+? steht dafür, dass der vorhergehende Teil entweder 0- oder 1-mal, jedoch
+ nicht öfter vorkommt; mit den bisherigen Gruppen lässt sich feststellen,
+ ob eine Vorwahl angegeben wurde
 \end_layout
 
 \begin_layout Description
@@ -5035,7 +5115,7 @@ Leerzeichen steht für den String
 
 \begin_layout Description
 + steht dafür, dass der vorhergehende Ausdruck mindestens einmal, möglicherweise
- jedoch beliebig oft vorkommt; bisher lässt sich feststellen ob eine Vorwahl
+ jedoch beliebig oft vorkommt; bisher lässt sich feststellen, ob eine Vorwahl
  gegeben wurde und ob eine Rufnummer vorhanden ist
 \end_layout
 
@@ -5082,27 +5162,27 @@ Dieses Pattern ist als Klassenvariable der Klasse TelephoneNumber hinterlegt.
 re.match
 \emph default
  zunächst ermittelt ob im übergebenen String - also der Nutzereingabe -
- eine Telefonnummer ist die auf das Pattern passt.
- Sofern dies nicht der Fall ist wird ein Fehler geworfen.
+ eine Telefonnummer ist, die auf das Pattern passt.
+ Sofern dies nicht der Fall ist, wird ein Fehler geworfen.
  Andernfalls werden die einzelnen Gruppen ausgewertet und als Attribute
  der Instanz hinterlegt.
  So ist der Ländercode beispielsweise durch Gruppe 2 vertreten.
- Es wird überprüft ob Gruppe zwei ein + enthält, wenn dies der Fall ist
+ Es wird überprüft, ob Gruppe zwei ein + enthält, wenn dies der Fall ist,
  wird der 
 \emph on
 _whitespacekiller
 \emph default
- aufgerufen, eine statische Methode die alle Zeichen die keine Zahlen sind
- aus der Kette entfernt (hier kommt eine weitere Regex zum Einsatz, diese
+ aufgerufen, eine statische Methode die alle Zeichen die keine Zahlen sind,
+ aus der Kette entfernt  (hier kommt eine weitere Regex zum Einsatz, diese
  ist jedoch so trivial, dass auf eine Erklärung verzichtet wird).
- Sofern kein + vorhanden ist wird direkt 049 zurückgegeben da davon ausgegangen
- werden kann, dass es sich in diesem Fall um eine deutsche Nummer handelt.
+ Sofern kein + vorhanden ist, wird direkt 049 zurückgegeben, da davon ausgegange
+n werden kann, dass es sich in diesem Fall um eine deutsche Nummer handelt.
  Ähnlichen Verfahren folgend werden dann die Gruppen 5, 6 und 7 für Vorwahl,
  Rufnummer und Durchwahl ausgewertet.
 \end_layout
 
 \begin_layout Standard
-Desweiteren implementiert die Klasse die Magic Mehods 
+Desweiteren implementiert die Klasse die Magic Methods 
 \emph on
 __str__ 
 \emph default
@@ -5110,29 +5190,29 @@ und
 \emph on
 __format__
 \emph default
- welche ermöglichen eine Instanz als String zu evaluieren.
+, welche ermöglichen eine Instanz als String zu evaluieren.
  Hierbei wird die Telefonnummer als vollständige DIN 5008-konforme Nummer
  zurückgegeben.
  Über 
 \emph on
 __format__
 \emph default
- ist es möglich den die Instanz direkt in f-Strings o.Ä.
+ ist es möglich, die Instanz direkt in f-Strings o.Ä.
  einzubinden und die bekannten Formatspecifier für Strings zu nutzen.
 \end_layout
 
 \begin_layout Standard
-Die Klasse besitzt ausserdem eine von 
+Die Klasse besitzt außerdem eine von 
 \emph on
 Warning
 \emph default
- abgeleitete Klasse die sie emmitiert wenn sie keine Nummer finden kann.
+ abgeleitete Klasse, die sie emmitiert, wenn sie keine Nummer finden kann.
 \end_layout
 
 \begin_layout Standard
 Durch diese ausgefeilte Implementierung des Telefonnummernextrahierens kann
  der Nutzer seine Telefonnummer, wenn er denn möchte, auch in einem Satz
- verpacken o.ä., sie sollte dennoch Fehlerfrei erkannt werden.
+ verpacken o.ä., sie sollte dennoch fehlerfrei erkannt werden.
 \end_layout
 
 \begin_layout Standard
@@ -5148,7 +5228,7 @@ PyQt5
 
 \begin_layout Standard
 Bei PyQt5 handelt es sich um ein GUI-Toolkit und Framework für Python.
- Grundsätzlich handelt es sich um einen Wrapper des Qt (lies 
+ Grundsätzlich handelt es sich um einen Wrapper des Qt  (lies 
 \begin_inset Quotes eld
 \end_inset
 
@@ -5156,9 +5236,9 @@ cute
 \begin_inset Quotes erd
 \end_inset
 
-, oftmals jedoch auch Q-T(englisch)) Frameworks für C++.
+, oftmals jedoch auch Q-T (englisch)) Frameworks für C++.
  Was Qt und PyQt seine Attraktivität, auch im professionellen, Bereich verleiht,
- ist vor Allem, dass eine Qt Anwendung grundsätzlich Cross-Platform ist
+ ist vor allem, dass eine Qt-Anwendung grundsätzlich Cross-Platform ist
  und dabei auf allen Plattformen konsistent gut aussieht.
 \end_layout
 
@@ -5167,15 +5247,15 @@ Darstellen der Verantwortlichkeiten als Baumstruktur
 \end_layout
 
 \begin_layout Standard
-Aufgrund von guter Übersichtlichkeit haben wir uns dazu entschieden die
+Aufgrund von guter Übersichtlichkeit haben wir uns dazu entschlossen die
  Verantwortlichkeiten als Baumstruktur darzustellen.
  PyQt5 stellt hierzu die Widgets QTreeView und QTreeWidget zur Verfügung,
  wobei QTreeView ein Model-View-Architektur- und QTreeWidget ein Item-basierende
 s Widget ist.
  Die MV-Architektur die PyQt über einige, teils abstrakte, Klassen bietet,
  ist dabei eine Variante der generell bekannten Model-View-Controller-Architektu
-r wobei der Controller mit dem View kombiniert wurde.
- Desweiteren wurde in PyQt der Delegate hinzugefügt, der managed, wie Daten
+r, wobei der Controller mit dem View kombiniert wurde.
+ Desweiteren wurde in PyQt der Delegate hinzugefügt, der managt, wie Daten
  im View gerendert werden und wie geänderte Daten der UI im Model abgelegt
  werden.
 \end_layout
@@ -5183,13 +5263,13 @@ r wobei der Controller mit dem View kombiniert wurde.
 \begin_layout Standard
 Da im Fall von TUInventory nicht gewünscht ist, dass Daten direkt im Baum
  geändert werden können und die Darstellung der Daten nur an dieser Stelle
- erfolgt musste aufgrund von Kosten-Nutzen Aspekten vorerst die Item-basierte
+ erfolgt, musste aufgrund von Kosten-Nutzen-Aspekten vorerst die Item-basierte
  Variante des 
 \emph on
 QTreeWidget
 \emph default
  vorgezogen werden.
- Das befüllen dieses Widgets erfolgt in der Methode 
+ Das Befüllen dieses Widgets erfolgt in der Methode 
 \emph on
 set_tree
 \emph default
@@ -5202,7 +5282,7 @@ MainDialog
 
 \begin_layout Standard
 Zu Beginn wird hier über den bereits erläuterten Session-Context-Manager
- eine neue Datenbank-Session geöffnet in der wir nun alle 
+ eine neue Datenbank-Session geöffnet, in der wir nun alle 
 \emph on
 Responsibilit
 \emph default
@@ -5214,9 +5294,9 @@ QTreeWidgetItem
 \emph default
  erzeugt wird.
  Dieses wird zum Einfügen in den Baum benötigt.
- Nun wird nach einem Siebprinzip nacheinander ermittelt ob sich der Ort,
+ Nun wird nach einem Siebprinzip nacheinander ermittelt, ob sich der Ort,
  Benutzer und das Gerät bereits im Baum befinden.
- Hierbei wird zuerst überprüft ob sich im Wurzelverzeichnis 
+ Hierbei wird zuerst überprüft, ob sich im Wurzelverzeichnis 
 \emph on
 root
 \emph default
@@ -5228,9 +5308,10 @@ Location
 \emph on
 Responsibility
 \emph default
- befindet, sofern dies nicht der Fall ist wird die Location mit all ihren
- untergeordneten Elementen eingefügt.
- Falls die 
+ befindet.
+ Sofern dies nicht der Fall ist, wird die Location mit all ihren untergeordneten
+ Elementen eingefügt.
+ Falls sich die 
 \emph on
 Location
 \emph default
@@ -5239,7 +5320,7 @@ Location
 \emph on
 TopLevelItem
 \emph default
- im Baum befindet wird überprüft ob unter dieser 
+ im Baum befindet, wird überprüft, ob sich unter dieser 
 \emph on
 Location
 \emph default
@@ -5251,7 +5332,8 @@ User
 \emph on
 Responsibility
 \emph default
- befindet, sofern dies nicht der Fall ist wird der 
+ befindet.
+ Sofern dies nicht der Fall ist, wird der 
 \emph on
 User
 \emph default
@@ -5312,9 +5394,9 @@ Struktogramm nach Nassi-Shneiderman zum Responsibility-Baum-Sieb
 \end_layout
 
 \begin_layout Standard
-In diesem Teil des Programms, werden oftmals Generator-Expressions und List-Comp
-rehensions verwendet, daher sei im Folgenden kurz erläutert wann sich für
- welche entschieden wurde.
+In diesem Teil des Programms werden oftmals Generator-Expressions und List-Compr
+ehensions verwendet, daher sei im Folgenden kurz erläutert, wann man sich
+ für welche entscheidet.
 \end_layout
 
 \begin_layout Standard
@@ -5361,21 +5443,22 @@ Zu Beginn wird hier die Funktion
 \emph on
 getsizeof
 \emph default
- der Standartlibrary 
+ des Moduls 
 \emph on
 sys
 \emph default
- importiert, die es erlaubt die Größe einer Instanz in Bytes zu ermitteln.
+ der Standardlibrary importiert, die es erlaubt, die Größe einer Instanz
+ in Bytes zu ermitteln.
  Nun wird zunächst über eine List-Comprehension eine Liste mit den Zahlen
  0 bis 9 definiert.
- Anschließend werden die selben Zahlen mit einer Generator-Expression hinterlegt.
+ Anschließend werden dieselben Zahlen mit einer Generator-Expression hinterlegt.
  
 \end_layout
 
 \begin_layout Standard
-Vergleicht man hier die Größe der beiden Instanzen wird klar, dass die Generator
--Expression wesentlich kleiner ist.
- Führt man nun einen Typvergleich der Instanzen durch sieht man, dass es
+Vergleicht man hier die Größe der beiden Instanzen, wird klar, dass die
+ Generator-Expression wesentlich kleiner ist.
+ Führt man nun einen Typvergleich der Instanzen durch, sieht man, dass es
  sich bei 
 \emph on
 a
@@ -5386,9 +5469,9 @@ b
 \emph default
  um einen Generator handelt.
  Damit lässt sich auch einfach der geringere Speicher-Footprint erklären:
- bei einer List-Comprehension erfolgt die Auswertung sofort und somit liegt
+ Bei einer List-Comprehension erfolgt die Auswertung sofort und somit liegt
  die ganze Liste im Speicher.
- Bei der Generator-Expression hingegen, wird erst zum Zeitpunkt der Auswertung
+ Bei der Generator-Expression hingegen wird erst zum Zeitpunkt der Auswertung
  die Methode 
 \emph on
 __next__
@@ -5402,8 +5485,8 @@ yield
 \end_layout
 
 \begin_layout Standard
-Jedoch kann man dennoch nicht immer Generatoren einsetzen, da diese einige
- entscheidenden Nachteile haben.
+Jedoch kann man nicht immer Generatoren einsetzen, da diese einige entscheidende
+ Nachteile haben.
  So ist es nicht möglich, mittels Index auf die Elemente eines Generators
  zuzugreifen.
  Außerdem ist ein Generator nach einer 
@@ -5425,7 +5508,7 @@ aufgebraucht
 .
  Dies kann man sehen, wenn man zweimal die Summen unserer beiden Instanzen
  addiert.
- Für die List-Comprehension wird hier korrekterweise 90 ausgegeben (
+ Für die List-Comprehension wird hier korrekterweise 90 ausgegeben  (
 \begin_inset ERT
 status open
 
@@ -5440,33 +5523,25 @@ sum_{n=0}^{9} n = 45$
 
 ), für die Generator-Expression jedoch nur 45, da sie beim zweiten Aufruf
  0 zurückgibt.
- Hierzu sollte noch gesagt werden, dass wenn man einen Generator nicht über
- eine Generator-Expression, sondern manuell als Klasse/Funktion implementiert
- dies teilweise umgangen werden kann.
+ Hierzu sollte noch gesagt werden, dass, wenn man einen Generator nicht
+ über eine Generator-Expression, sondern manuell als Klasse/Funktion implementie
+rt, dies teilweise umgangen werden kann.
 \end_layout
 
 \begin_layout Standard
-Mit diesem Wissen ist nun auch leicht erklärbar wann welche der Strukturen
+Mit diesem Wissen ist nun auch leicht erklärbar, wann welche der Strukturen
  eingesetzt wurde:
 \end_layout
 
 \begin_layout Itemize
-Generator-Expression immer wenn sichergestellt ist, dass die Instanz nur
- einmal iteriert werden muss
+Generator-Expression immer, wenn sichergestellt ist, dass die Instanz nur
+ einmal iteriert werden muss.
 \end_layout
 
 \begin_layout Itemize
-List-Comprehension immer dann, wenn die Instanz mehrfach iteriert, oder
- 
-\begin_inset Quotes eld
-\end_inset
-
-abonniert
-\begin_inset Quotes erd
-\end_inset
-
-(von engl.
- subscribe - also die [Index]-Notation) werden muss
+List-Comprehension immer dann, wenn die Instanz mehrfach iteriert oder subscribe
+d (dt.
+ abonniert - also die [Index]-Notation) werden muss
 \end_layout
 
 \begin_layout Subsection
@@ -5474,8 +5549,9 @@ Fazit
 \end_layout
 
 \begin_layout Standard
-Es kann gesagt werden, dass PyQt(5) gegenüber anderen GUI-Paketen, wie z.B.
- tkinter aus der Python Standartbibliothek, klare Vorzüge hat.
+Es kann gesagt werden, dass PyQt (5) gegenüber anderen GUI-Paketen, wie
+ z.B.
+ tkinter aus der Python Standardbibliothek, klare Vorzüge hat.
  So ist der Code plattformunabhängig, die Bedienelemente sehen ansprechend
  aus und es ist einfach, auch größere Anwendungen noch gut zu strukturieren.
  Jedoch muss auch gesagt werden, dass PyQt5 teils nicht wirklich 
@@ -5496,7 +5572,7 @@ property
 setText
 \emph default
 -Methode geändert.
- Da Qt eigentlich aus dem C++ Bereich kommt ist dies verständlich, hätte
+ Da Qt eigentlich aus dem C++ Bereich kommt, ist dies verständlich, hätte
  im Wrapper jedoch geändert werden sollen.
 \end_layout
 
@@ -5519,7 +5595,7 @@ mouseMoveEvent
 \end_layout
 
 \begin_layout Standard
-Beim Betrachten der Zeiten und Aufrufshäufigkeiten nach einer 
+Beim Betrachten der Zeiten und Aufrufhäufigkeiten nach einer 
 \begin_inset Quotes gld
 \end_inset
 
@@ -5533,22 +5609,22 @@ Session
 mouseMoveEvent
 \emph default
  des Hauptfensters aufgerufen wird.
- Diese Aufrufshäufigkeit lässt sich nicht optimieren
+ Diese Aufrufhäufigkeit lässt sich nicht optimieren
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
 Außer durch ein anderes Event, wie z.B.
- Überprüfung ob der Nutzer noch aktiv die UI bedient und Elemente anklickt
+ Überprüfung, ob der Nutzer noch aktiv die UI bedient und Elemente anklickt
 \end_layout
 
 \end_inset
 
-, da das Event genutzt wird, um zu Überprüfen ob der Nutzer noch aktiv ist
- oder eventuell ausgeloggt werden sollte.
- Der Code der dies übernimmt ist sehr klein und nimmt auch nach einer mehrminüti
-gen Session nur einige Millisekunden in Anspruch, dennoch wird hier eine
- Optimierung angestrebt.
+, da das Event genutzt wird, um zu überprüfen, ob der Nutzer noch aktiv
+ ist oder eventuell ausgeloggt werden sollte.
+ Der Code, der dies übernimmt, ist sehr klein und nimmt auch nach einer
+ mehrminütigen Session nur einige Millisekunden in Anspruch, dennoch wird
+ hier eine Optimierung angestrebt.
 \end_layout
 
 \begin_layout Standard
@@ -5590,10 +5666,10 @@ Es wird zu jedem
 \emph on
 mouseMoveEvent
 \emph default
- überprüft ob aktuell ein timer aktiv ist, wenn dies der Fall ist wird er
- zurückgesetzt.
+ überprüft, ob aktuell ein Timer aktiv ist.
+ Wenn dies der Fall ist, wird er zurückgesetzt.
  Diese Überprüfung ist notwendig, da andernfalls eine Exception geworfen
- wird, wenn die Klasse aktuell keine Instanz besitzt die über die Methode
+ wird, wenn die Klasse aktuell keine Instanz besitzt, die über die Methode
  
 \emph on
 reset 
@@ -5608,10 +5684,10 @@ MainDialog-Instanz
 mouseMoveEvents
 \emph default
  aussehen könnte.
- Wie zu sehen ist, ist dieses Dictionary nicht unbedeutend klein (ca.
- 100 Elemente) was jedoch kein Problem darstellt da ein Dictionary-Lookup
+ Wie zu sehen ist, ist dieses Dictionary nicht unbedeutend klein  (ca.
+ 100 Elemente) was jedoch kein Problem darstellt, da ein Dictionary-Lookup
  i.d.R.
- eine Zeitkomplexität von O(1) (im Worstcase O(n), bei vielen Hash-Kollisionen
+ eine Zeitkomplexität von O(1)  (im worst case O(n), bei vielen Hash-Kollisionen
  etc.) besitzt.
  Dennoch gibt es hier eventuell eine effizientere Variante: die Funktion
  
@@ -5683,8 +5759,8 @@ https://github.com/python/cpython/blob/master/Objects/dictobject.c
 \end_layout
 
 \begin_layout Standard
-Daher wird ein statistischer Versuch heranzgezogen um zu sehen ob eine Variante
- schneller ist als die Andere:
+Daher wird ein statistischer Versuch herangezogen, um zu sehen, ob eine
+ Variante schneller ist als die andere:
 \end_layout
 
 \begin_layout Standard
@@ -5705,8 +5781,8 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Vergleich von dict lookup und hasattr (jeweiliger Durchschnitt der Versuchsreihe
- in Legende)
+Vergleich von dict lookup und hasattr  (jeweiliger Durchschnitt der Versuchsreih
+e in Legende)
 \end_layout
 
 \end_inset
@@ -5720,14 +5796,14 @@ Vergleich von dict lookup und hasattr (jeweiliger Durchschnitt der Versuchsreihe
 \end_layout
 
 \begin_layout Standard
-Da hier zu sehen ist, dass beide Varianten praktisch gleich sind könnte
+Da hier zu sehen ist, dass beide Varianten praktisch gleich sind, könnte
  man hier bereits eine Entscheidung treffen, es wird jedoch noch das letzte
- Werkzeug herangezogen um die Varianten zu vergleichen: Bytecode
+ Werkzeug herangezogen, um die Varianten zu vergleichen: Bytecode
 \end_layout
 
 \begin_layout Standard
-Wie Eingangs erwähnt wurde ist Bytecode das Zwischenkompilat welches tatsächlich
- vom Interpreter verwertet wird.
+Wie eingangs erwähnt wurde, ist Bytecode das Zwischenkompilat, welches tatsächli
+ch vom Interpreter verwertet wird.
  Zugriff auf den Bytecode bekommt man entweder über das 
 \emph on
 __pycache__
@@ -5744,7 +5820,7 @@ Das Modul
 \emph on
 dis
 \emph default
- erlaubt es diesen Bytecode in menschenlesbarar Form darzustellen.
+ erlaubt es, diesen Bytecode in menschenlesbarer Form darzustellen.
 \end_layout
 
 \begin_layout Standard
@@ -5816,7 +5892,7 @@ Bytecode zu beiden Varianten
 \end_layout
 
 \begin_layout Standard
-Bytecode liest sich wie folgt(Spalten von links nach rechts aufsteigend
+Bytecode liest sich wie folgt (Spalten von links nach rechts aufsteigend
  nummeriert)
 \begin_inset Foot
 status open
@@ -5843,7 +5919,7 @@ Zeilennummer des Quellcodes
 \end_layout
 
 \begin_layout Enumerate
-Hier nicht vorhanden (Aktuelle Anweisung beim schrittweisen Ausführen)
+Hier nicht vorhanden  (Aktuelle Anweisung beim schrittweisen Ausführen)
 \end_layout
 
 \begin_layout Enumerate
@@ -5876,7 +5952,7 @@ if
 \emph on
 False
 \emph default
- evaluiert gibt die Funktion ein 
+ evaluiert, gibt die Funktion ein 
 \emph on
 None
 \emph default
@@ -5891,7 +5967,7 @@ status open
 
 \begin_layout Plain Layout
 Einige Aspekte sind hier zum besseren Verständnis vereinfacht dargestellt
- (z.B.
+  (z.B.
  werden eigentlich 
 \emph on
 frame
@@ -5913,29 +5989,29 @@ a
 \emph on
 Evaluation-Stack
 \emph default
- (im Folgenden E-Stack)
+  (im Folgenden E-Stack)
 \emph on
  
 \emph default
-geladen
+geladen.
 \end_layout
 
 \begin_layout Itemize
-Anschließend wird das TOS(Top of Stack)-Element, also 
+Anschließend wird das TOS (Top of Stack)-Element, also 
 \emph on
 a
 \emph default
 , mit der Anweisung 
 \emph on
-getattr(TOS, co_names[namei]) -> getattr(a, co_names[timeout])
+getattr (TOS, co_names[namei]) -> getattr (a, co_names[timeout])
 \emph default
- ersetzt
+ ersetzt.
 \end_layout
 
 \begin_layout Itemize
-Das selbe geschieht nun mit 
+Dasselbe geschieht nun mit 
 \emph on
-reset
+reset.
 \end_layout
 
 \begin_layout Itemize
@@ -5944,21 +6020,21 @@ Nun liegt
 reset
 \emph default
  oben auf dem E-Stack und wird mit 0 positionellen Argumenten aufgerufen,
- der Rückgabewert wird auf den E-Stack gepusht
+ der Rückgabewert wird auf den E-Stack gepusht.
 \end_layout
 
 \begin_layout Itemize
 Die folgende Anweisung gibt an, dass der Rückgabewert nicht weiter verwertet
- und somit verworfen wird
+ und somit verworfen wird.
 \end_layout
 
 \begin_layout Itemize
 Die letzen beiden Zeilen sind die bereits erklärten Anweisungen des impliziten
- Funktions-return
+ Funktions-return.
 \end_layout
 
 \begin_layout Standard
-Die Abfolge für hasattr ist wie folgt (Alle Ladeanweisungen erfolgen auf
+Die Abfolge für hasattr ist wie folgt  (Alle Ladeanweisungen erfolgen auf
  den E-Stack):
 \end_layout
 
@@ -6000,7 +6076,7 @@ Hier folgt der Sprung falls das TOS-Element
 \emph on
 False
 \emph default
- ist
+ ist.
 \end_layout
 
 \begin_layout Standard
@@ -6052,28 +6128,28 @@ Hier folgt der Sprung falls das TOS-Element
 \emph on
 False
 \emph default
- ist
+ ist.
 \end_layout
 
 \begin_layout Standard
 Der Unterschied besteht also darin, dass eimal eine Globale mehr geladen
- wird (globale Lookups können kostspielige Operationen sein) und ein Funktionsau
-fruf (generell auch eher kostspielig) stattfindet, wohingegen beim Anderen
+ wird  (globale Lookups können kostspielige Operationen sein) und ein Funktionsa
+ufruf  (generell auch eher kostspielig) stattfindet, wohingegen beim Anderen
  mal ein Attribut abgerufen wird und eine Vergleichsoperation stattfindet.
  Sieht man sich die Implementierung des Interpreters an
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
-https://github.com/python/cpython/blob/master/Python/ceval.c 24.12.18 - 21:14
+https://github.com/python/cpython/blob/master/Python/ceval.c, 24.12.18 - 21:14
  Uhr
 \end_layout
 
 \end_inset
 
- sieht man, dass beide Varianten mittels Branch-Prediction optimiert werden.
+, sieht man, dass beide Varianten mittels Branch-Prediction optimiert werden.
  In diesem konkreten Fall wird auch durch den Bytecode nicht klar, dass
- eine Variante generell schneller ist als eine Andere (was durch die Messung
+ eine Variante generell schneller ist als eine andere  (was durch die Messung
  unterstützt wird).
 \end_layout
 
