@@ -50,7 +50,10 @@ def create_admin(new_admin):
 
 
 def login(e_mail, password):
-    """Log user into application"""
+    """Log user into application
+    Checks if there's a user of given name in the database,
+    if the given password is correct and returns the user if both is the case
+    """
     e_mail = e_mail.lower()
     with CSession() as session:
         try:
