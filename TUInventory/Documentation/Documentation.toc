@@ -1,0 +1,57 @@
+\babel@toc {ngerman}{}
+\contentsline {part}{I\hspace {1em}Einf\"uhrung}{1}
+\contentsline {section}{\numberline {1}Die Firma Padcon}{1}
+\contentsline {section}{\numberline {2}Aufgabenstellung}{1}
+\contentsline {part}{II\hspace {1em}Test- und Integrationsraum}{2}
+\contentsline {section}{\numberline {3}Abschnitt 1 Raum}{3}
+\contentsline {part}{III\hspace {1em}TUInventory}{4}
+\contentsline {section}{\numberline {4}Begriffsdefinitionen}{5}
+\contentsline {section}{\numberline {5}Python 3}{7}
+\contentsline {subsection}{\numberline {5.1}Funktionen und Methoden in Python}{7}
+\contentsline {subsection}{\numberline {5.2}Formatierung}{8}
+\contentsline {subsection}{\numberline {5.3}Vorwort und \"Ubersicht \"uber die Anwendung}{9}
+\contentsline {section}{\numberline {6}SQLAlchemy}{11}
+\contentsline {subsection}{\numberline {6.1}Das Datenbankmodell}{11}
+\contentsline {subsection}{\numberline {6.2}Implementierung des Datenbankmodells}{12}
+\contentsline {subsection}{\numberline {6.3}Benutzerdefinierte Datentypen}{13}
+\contentsline {subsection}{\numberline {6.4}Beziehungen herstellen in SQLAlchemy}{14}
+\contentsline {subsubsection}{\numberline {6.4.1}Grundprinzip und 1-zu-n-Beziehungen}{14}
+\contentsline {subsubsection}{\numberline {6.4.2}1-zu-1-Beziehung}{15}
+\contentsline {subsection}{\numberline {6.5}Arbeiten mit SQLAlchemy}{15}
+\contentsline {subsubsection}{\numberline {6.5.1}Neue Eintr\"age in der Datenbank vornehmen}{16}
+\contentsline {subsubsection}{\numberline {6.5.2}Abfragen}{17}
+\contentsline {subsubsection}{\numberline {6.5.3}Aktualisieren und L\"oschen einer Instanz}{18}
+\contentsline {section}{\numberline {7}Frameworkfreie Implementierung}{19}
+\contentsline {subsection}{\numberline {7.1}Utilities}{19}
+\contentsline {subsubsection}{\numberline {7.1.1}Absolute Pfade}{19}
+\contentsline {subsubsection}{\numberline {7.1.2}Paralleles Printen}{19}
+\contentsline {subsection}{\numberline {7.2}Logging}{20}
+\contentsline {subsection}{\numberline {7.3}Barcode Reader - die Klassen VideoStream und LazyVideoStream}{21}
+\contentsline {subsection}{\numberline {7.4}Datenbanksynchronisation}{23}
+\contentsline {section}{\numberline {8}Benutzerverwaltung}{24}
+\contentsline {subsection}{\numberline {8.1}SQL}{25}
+\contentsline {subsection}{\numberline {8.2}Kryptografie}{26}
+\contentsline {subsubsection}{\numberline {8.2.1}Benutzer anlegen}{26}
+\contentsline {subsubsection}{\numberline {8.2.2}Benutzer anmelden}{28}
+\contentsline {subsubsection}{\numberline {8.2.3}Benutzer hat sein Passwort vergessen}{29}
+\contentsline {subsubsection}{\numberline {8.2.4}Mathematische Betrachtung der Passwort-Generation}{31}
+\contentsline {subsubsection}{\numberline {8.2.5}Admin hat sein Passwort vergessen}{35}
+\contentsline {subsection}{\numberline {8.3}Automatisches Abmelden}{36}
+\contentsline {subsection}{\numberline {8.4}\emph {}Die Klasse \emph {TelephoneNumber}}{37}
+\contentsline {section}{\numberline {9}PyQt5}{41}
+\contentsline {subsection}{\numberline {9.1}Darstellen der Verantwortlichkeiten als Baumstruktur}{41}
+\contentsline {subsection}{\numberline {9.2}Fazit}{44}
+\contentsline {section}{\numberline {10}Optimierung}{44}
+\contentsline {subsection}{\numberline {10.1}mouseMoveEvent}{44}
+\contentsline {section}{\numberline {A}Quellcode}{51}
+\contentsline {subsection}{\numberline {A.1}barcodereader.py}{51}
+\contentsline {subsection}{\numberline {A.2}classes.py}{58}
+\contentsline {subsection}{\numberline {A.3}keys.py}{73}
+\contentsline {subsection}{\numberline {A.4}logger.py}{74}
+\contentsline {subsection}{\numberline {A.5}main.py}{75}
+\contentsline {subsection}{\numberline {A.6}pydoc.sh}{76}
+\contentsline {subsection}{\numberline {A.7}qr\_generator.py}{76}
+\contentsline {subsection}{\numberline {A.8}slots.py}{77}
+\contentsline {subsection}{\numberline {A.9}ui.py}{81}
+\contentsline {subsection}{\numberline {A.10}utils.py}{89}
+\contentsline {section}{\numberline {B}Automatisch generierte Dokumentation}{91}

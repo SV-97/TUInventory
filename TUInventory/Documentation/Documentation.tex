@@ -1,0 +1,1750 @@
+%% LyX 2.3.2 created this file.  For more info, see http://www.lyx.org/.
+%% Do not edit unless you really know what you are doing.
+\documentclass[11pt,ngerman]{article}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[T1]{fontenc}
+\usepackage[latin2]{inputenc}
+\usepackage[a4paper]{geometry}
+\geometry{verbose,lmargin=2.5cm,rmargin=2.5cm}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{setspace}
+\onehalfspacing
+
+\makeatletter
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% LyX specific LaTeX commands.
+%% Because html converters don't know tabularnewline
+\providecommand{\tabularnewline}{\\}
+\floatstyle{ruled}
+\newfloat{algorithm}{tbp}{loa}
+\providecommand{\algorithmname}{Algorithmus}
+\floatname{algorithm}{\protect\algorithmname}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Textclass specific LaTeX commands.
+\numberwithin{figure}{section}
+\newenvironment{lyxcode}
+	{\par\begin{list}{}{
+		\setlength{\rightmargin}{\leftmargin}
+		\setlength{\listparindent}{0pt}% needed for AMS classes
+		\raggedright
+		\setlength{\itemsep}{0pt}
+		\setlength{\parsep}{0pt}
+		\normalfont\ttfamily}%
+	 \item[]}
+	{\end{list}}
+
+\makeatother
+
+\usepackage{babel}
+\usepackage{listings}
+\lstset{basicstyle={\ttfamily\small},
+language=Python,
+breaklines=true,
+prebreak={\mbox{{$\textbackslash$}\space}},
+postbreak={\mbox{{$$}\space}}}
+\begin{document}
+%\renewcommand{\rmdefault}{phv} % font to Arial
+%\renewcommand{\sfdefault}{phv} % font to Arial
+\pagenumbering{gobble} % disable page numbering
+\title{TUI - Test- und Integrationssystem für SCADA-Software}
+\author{von Stefan Volz \& Yannis Köhler}
+
+\maketitle
+\vspace{0.4\paperheight}
+
+\includegraphics[scale=0.6]{Bilder/Logo}\quad{}\includegraphics[scale=0.7]{Bilder/TUI_Logo}\quad{}\includegraphics[scale=0.25]{Bilder/Schullogo}
+
+\newpage{}
+
+\tableofcontents{}\newpage{}
+
+\section*{Abkürzungsverzeichnis}
+
+\begin{tabular}{|c|c|}
+\hline 
+Abk. & Beschreibung\tabularnewline
+\hline 
+\hline 
+AMQ & Atomic Message Queue\tabularnewline
+\hline 
+API & Application Programming Interface\tabularnewline
+\hline 
+CLI & Common Language Infrastructure\tabularnewline
+\hline 
+DI & Digital Input\tabularnewline
+\hline 
+DLR & Dynamic Language Runtime\tabularnewline
+\hline 
+DO & Digital Output\tabularnewline
+\hline 
+ERD & Entity-Relationship-Diagramm\tabularnewline
+\hline 
+ERM & Entity-Relationship-Modell\tabularnewline
+\hline 
+HMAC & Keyed-Hash Message Authentication Code\tabularnewline
+\hline 
+IPC & Industrie-PC\tabularnewline
+\hline 
+JIT & Just-in-time  (bei Bedarf)\tabularnewline
+\hline 
+JRE & Java Runtime Environment\tabularnewline
+\hline 
+JVM & Java Virtual Machine\tabularnewline
+\hline 
+KW & Kalenderwoche\tabularnewline
+\hline 
+CV & Computer Vision\tabularnewline
+\hline 
+OAEP & Optimal Asymmetric Encryption Padding\tabularnewline
+\hline 
+ORM & Object Relational Mapper\tabularnewline
+\hline 
+PBKDF2 & Password-Based Key Derivation Function 2\tabularnewline
+\hline 
+PEP & Python Enhancement Proposal\tabularnewline
+\hline 
+PKCS \#1 & Public-Key Cryptography Standards First Family\tabularnewline
+\hline 
+PSF & Python Software Foundation\tabularnewline
+\hline 
+SCADA & Supervisory Control and Data Acquisition\tabularnewline
+\hline 
+SHA & Secure Hash Algorithm\tabularnewline
+\hline 
+SV & Stefan Volz\tabularnewline
+\hline 
+UI & User Interface\tabularnewline
+\hline 
+VM & Virtual Machine / Virtuelle Maschine\tabularnewline
+\hline 
+YK & Yannis Köhler\tabularnewline
+\hline 
+\end{tabular}
+
+\newpage{}
+
+\pagenumbering{arabic} % enable page numbering
+
+\part{Einführung}
+
+Sämtliche Diagramme, Bilder, etc. sind, sofern nicht anders angegeben,
+selbst erstellt. Programmlistings wurden teils notwendigerweise implizit
+mittels ,,\textbackslash `` umgebrochen. Dies ist zwar valide
+Python 3 Syntax, jedoch nicht in jedem Fall konform zu gängigen Format-Konventionen.
+
+\section{Die Firma Padcon}
+
+Die Firma Padcon GmbH, ein Tochterunternehmen des deutschen Netzbetreibers
+RWE, ist ein weltweit agierendes IT-Unternehmen mit Sitz in Kitzingen.
+Zu ihren Produkten gehören Systeme zur Überwachung von Groß-Photovoltaikanlagen.
+Diese fallen in die Kategorie der SCADA-Systeme. Besonders nennenswert
+ist der \quotedblbase Pavagada Solar Park\textquotedblleft{} in Indien,
+welcher, nach Bauabschluss, mit knapp 2GW die aktuell größte Photovoltaikanlage
+der Welt darstellt.
+
+\section{Aufgabenstellung}
+
+Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
+werden. Dies umfasst die Dimensionierung und Installation von vier
+sogenannten Testplätzen in einem dafür vorgesehenen Raum. Hierfür
+muss auch eine neue Unterverteilung gebaut werden. An den Testplätzen
+wird man verschiedene Hardware wie IPC\textquoteleft s, Router, Switches,
+etc. testen können. Ebenfalls sollen neue Versionen der firmeneigenen
+SCADA-Software, welche die Photovoltaik-Anlagen überwacht und Daten
+ausliest/aufzeichnet, getestet werden können, bevor diese an den Kunden
+ausgeliefert werden. Desweiteren soll eine Inventarsoftware erstellt
+werden, welche ein Einscannen von Barcodes ermöglicht und somit eine
+schnelle Zuordnung von Geräten zu Testplatz und zugehörigem Verantwortlichen
+zulässt. {[}sv{]}
+
+\newpage{}
+
+\bigskip{}
+
+\bigskip{}
+
+
+\part{Test- und Integrationsraum}
+
+\newpage{}
+
+\section{Abschnitt 1 Raum}
+
+\newpage{}
+
+\bigskip{}
+
+\bigskip{}
+
+
+\part{TUInventory}
+
+\newpage{}
+
+\section{Begriffsdefinitionen}
+\begin{singlespace}
+\begin{center}
+\begin{longtable}[c]{|c|>{\centering}m{0.5\paperwidth}|}
+\hline 
+Begriff & Definition\tabularnewline
+\hline 
+\hline 
+Duck-Typing & Der Typ einer Instanz wird dadurch beschrieben/festgelegt welche Member
+sie besitzt  (Von eng.: ``If it looks like a duck, swims like a duck,
+and quacks like a duck, then it probably is a duck.'')\tabularnewline
+\hline 
+Dynamisch Typisiert & Typüberprüfung zur Laufzeit\tabularnewline
+\hline 
+Frame & Einzelnes Bild einer Videosequenz, hier synonym für Bildmatrix eingesetzt\tabularnewline
+\hline 
+Function Decorator & Ist Funktionsdefinition mit @decorator vorgestellt - Stellt im Prinzip
+eine Definition der Funktion f dar, der ein f = decorator (f) nachgestellt
+ist. Hierbei wird eine Funktion i.d.R. um weitere Funktionalität  (z.B.
+ein Cache oder die Möglichkeit Vektoren zu verarbeiten) erweitert\tabularnewline
+\hline 
+Immutabel / immutable & Unveränderbar\tabularnewline
+\hline 
+Kontext-Manager / Context Manager & Klasse, die \_\_enter\_\_ und \_\_exit\_\_ implementiert. Erlaubt
+es Objekte auch im Fehlerfall sauber zu deinitialisieren, bzw. zu
+schließen  (entspricht einem try-finally-Block).\tabularnewline
+\hline 
+Lazy evaluation & Die Auswertung eines Ausdrucks erfolgt nur soweit sie gerade nötig
+ist.\tabularnewline
+\hline 
+Magic Method & Eine i.d.R. implizit aufgerufene Methode, welche einer Klasse besondere
+Fähigkeiten verleiht\footnote{\cite[S. 369]{Python3}}.\tabularnewline
+\hline 
+Mutabel / mutable & Veränderbar\tabularnewline
+\hline 
+Mutex & Gegenseitig ausschließend  (von engl. mutual exclusion)\tabularnewline
+\hline 
+ORM & Programmiertechnik um Daten zwischen inkompatiblen Typsystemen  (hier
+Datenbank in SQLite3 und Python) zu konvertieren und somit eine virtuelle
+Objektdatenbank zu schaffen\tabularnewline
+\hline 
+Pythonic & Idiomatisch im Bezug auf Python\tabularnewline
+\hline 
+Race-Condition & Im Falle einer Race-Condition ist das Ergebnis einer Operation nicht
+deterministisch, es wird beeinflusst durch äußere Gegebenheiten wie
+z.B. Prozessorlast
+
+Der Name stammt von der Vorstellung, dass Signale wettlaufen um die
+Ausgabe als erstes zu beeinflussen\footnote{\cite[24.12.18 - 01:25 Uhr]{Wiki_RaceCondition}}.
+Probleme einer Race-Condition sind beispielsweise, dass sie oftmals
+verschwindet wenn das Programm mittels Debugger betrachtet wird.\tabularnewline
+\hline 
+Salt & Zufällige Zeichenfolge die in der Kryptografie u.A. bei Hash-Funktionen
+eingesetzt wird um die Entropie der Eingabe zu erhöhen.\tabularnewline
+\hline 
+Singleton & Ein Singleton ist ein Entwurfsmuster bei dem sichergestellt ist, dass
+nur eine einzige Instanz einer Klasse existiert  (z.B. in Python \emph{None})\tabularnewline
+\hline 
+Thread &  (dt.: Faden, Strang) Threads sind im Grunde genommen leichtgewichtige
+Prozesse  (Ein Prozess kann mehrere Threads besitzen). In CPython
+ (erläutert in Abschnitt \ref{sec:Python-3}) ist der GIL  (Global
+Interpreter Lock) zu beachten: Threads steigern hier nicht die Performance!\tabularnewline
+\hline 
+Thread-Safe &  (dt.: Threadsicherheit) Mehrere Threads können gleichzeitig auf eine
+Komponente zugreifen ohne sich gegenseitig zu behindern oder race-conditions
+auszulösen\tabularnewline
+\hline 
+\end{longtable}
+\par\end{center}
+\end{singlespace}
+
+\newpage{}
+
+\section{\label{sec:Python-3}Python 3}
+
+Bei Python 3 handelt es sich um eine universell einsetzbare, plattformübergreifende,
+dynamisch typisierte Hochsprache, welche in verschiedensten Implementierungen
+als Open Source Projekt entwickelt wird. Ursprünglich wurde sie von
+Guido van Rossum 1991 mit dem Ziel entwickelt, eine möglichst lesbare
+und dennoch mächtige Programmiersprache zu schaffen. Auf der Website
+der PSF steht dazu: ``Python is a programming language that lets
+you work quickly and integrate systems more effectively.''\footnote{\cite[18.12.18 - 16:32 Uhr]{PSF}}
+
+In der Standardimplementierung CPython wird der Quellcode zuerst in
+einen Bytecode kompiliert, welcher dann von einer in C geschriebenen
+VM interpretiert wird. Andere bekannte Implementierungen sind z.B.
+PyPy  (Interpreter in RPython, Vorteil: sehr viel schneller als CPython,
+JIT-Compiler), Jython  (Ausführung mittels JVM, Vorteil: Interoperabilität
+mit JRE) oder IronPython  (Ausführung mittels DLR - also .NET, Vorteil:
+Interoperabilität mit .NET bzw. der CLI und Integration in Visual
+Studio).\footnote{\cite[18.12.18 - 17:08 Uhr]{PyInterps}}
+
+Alle Ausführungen dieser Arbeit beziehen sich, sofern nicht anders
+angegeben, auf CPython in Version 3.7.
+
+\subsection{Funktionen und Methoden in Python}
+
+Eine Besonderheit Pythons ist, dass alles, sei es Klasse, Instanz
+oder Funktion, ein Objekt ist. Dies bringt eine extreme Flexibilität
+mit sich.
+
+Die Definitionen der Begriffe \emph{Funktion} und \emph{Methode} sind
+in Python anders als man es eventuell aus anderen Programmiersprachen
+kennt, daher seien sie hier kurz erläutert\footnote{Neben den \emph{bound methods }gab es außerdem noch die sogenannten
+\emph{unbound methods}, die einer Methode entsprechen, welche ursprünglich
+zu einer Klasse gehört hat und somit eine Instanz dieser als ersten
+Parameter erwartet \cite[18.12.18 - 17:24 Uhr]{PythonDocDescriptorGuide},
+allerdings von der Klasse losgelöst wurde. Jedoch wurde dieses Konzept
+mit Python 3.0 verworfen; was früher eine \emph{unbound method} war,
+ist nun ebenfalls eine \emph{function }\cite[18.12.18 - 17:23 Uhr]{PythonDocWhatsNewPython3}\emph{.} }:
+
+\bigskip{}
+
+\begin{center}
+\begin{tabular}{|c||c|c|c|}
+\cline{2-4} \cline{3-4} \cline{4-4} 
+\multicolumn{1}{c|}{} & kein decorator & @classmethod & @staticmethod\tabularnewline
+\hline 
+Klasse & function & bound method & function\tabularnewline
+\hline 
+Instanz & bound method & bound method & function\tabularnewline
+\hline 
+\end{tabular}
+\par\end{center}
+
+\bigskip{}
+
+Neben Methoden und Funktionen ist auch auch möglich andere Objekte
+in Python aufrufbar zu machen, hierzu müssen sie die \emph{magic method}
+\emph{\_\_call\_\_} implementieren.
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/Funktionstypen.py}
+
+\caption{Die verschiedenen Funktionstypen}
+
+\end{algorithm}
+
+
+\subsection{Formatierung}
+
+Ein Grundsatz der Quellcodeformatierung ist, dass der Code wesentlich
+öfter gelesen als geschrieben wird. Dementsprechend sollte hier mit
+großer Vorsicht und einer gut durchdachten Systematik vorgegangen
+werden. In Python gibt es als grundlegende Quelle, wie man seinen
+Code gut lesbar und idiomatisch schreibt und formatiert z.B. das ``Zen
+of Python'', welches in Python über \emph{import this} eingesehen
+werden kann  (und als PEP 20 zu finden ist), oder aber die Python
+Enhancement Proposals PEP 8 und PEP 254.
+
+PEP 8 trägt hier den Titel ``Style Guide for Python Code'' und umfasst
+alle Formatfragen von generellem Codelayout über Kommentare bis hin
+zu Namensgebungskonventionen\footnote{\label{fn:Fu=0000DFnote}\cite[18.12.18 - 16:17 Uhr]{PEP8}}.
+PEP 257 hingegen beschäftigt sich mit den sogenannten Docstrings und
+deren Format \footnote{\cite[18.12.18 - 16:17 Uhr]{PEP257}}. Docstrings
+sind eine Form von Inline-Dokumentation, die z.B. die Schnittstelle
+und Funktion einer Methode beschreibt. Sie werden vom Python-Interpreter
+berücksichtigt und sind dann unter dem Magic Member \emph{\_\_doc\_\_}
+zu finden. Über Docstrings könnte man aus dem Quellcode auch automatisch
+die Dokumentation generieren lassen, dies ist in unserem Fall jedoch
+nicht gewünscht, da die Dokumentation im Rahmen dieser Arbeit stattfindet
+ (im Anhang sind sie dennoch zu finden  (\{modulname\}.html)). Als
+weitere Referenz für das genutzte Format galten ein von Google veröffentlichtes
+Dokument\footnote{\cite[18.12.18 - 17:36 Uhr]{GoogleStyleGuide}},
+sowie der Talk ``Beyond PEP 8 -{}- Best practices for beautiful intelligible
+code'' von Raymond Hettinger, einem der Core Developer von CPython\footnote{\cite[18.12.18 - 17:40 Uhr]{BeyondPEP8}}.
+
+Abschließend ist es jedoch ratsam, bei all diesen Formatforschriften
+nochmal Bezug auf den Anfang von PEP 8 zu nehmen: ``A Foolish Consistency
+is the Hobgoblin of Little Minds''\footnote{Siehe Fußnote \ref{fn:Fu=0000DFnote}  (PEP8)}
+- man sollte also wissen, wann es die bessere Entscheidung ist mit
+den Vorschriften zu brechen.
+
+\subsection{Vorwort und Übersicht über die Anwendung}
+
+\bigskip{}
+
+,,All computers are now parallel... Parallel programming \emph{is}
+programming.``
+
+- Michael McCool\footnote{\cite[, S. 1]{Rust}}
+
+\bigskip{}
+
+Wie die meisten modernen Anwendungen, setzt auch TUInventory an vielen
+Stellen auf Multithreading. Daher sei hier eine Grafik vorangestellt,
+die Kontroll-  (solider Pfeil) und Informationsfluss  (gestrichelter
+Pfeil) visualisiert:
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[width=0.7\paperwidth]{Bilder/Thread-Übersicht}
+\par\end{centering}
+\caption{Übersicht über Verhältnisse von Threads zueinander}
+
+\end{figure}
+
+Desweiteren sei eine Übersicht über alle Module und deren Klassen,
+sowie Top-Level-Functions und Module-Level-Instanzen gegeben  (siehe
+hierzu auch die automatisch generierte Dokumentation im Anhang):
+\begin{description}
+\item [{barcodereader.py}]~
+\begin{description}
+\item [{VideoStream}] class, thread
+\item [{LazyVideoStream}] class, thread
+\item [{Camera}] class
+\end{description}
+\item [{classes.py}]~
+\begin{description}
+\item [{BigInt}] class
+\item [{setup\_context\_session}] method
+\begin{description}
+\item [{ContextSession}] class
+\end{description}
+\item [{Producer}] class
+\item [{Article}] class
+\item [{Device}] class
+\item [{PhoneNumber}] class
+\begin{description}
+\item [{NoNumberFoundWarning}] class
+\end{description}
+\item [{Location}] class
+\item [{User}] class
+\item [{Responsibility}] class
+\item [{Timeout}] class, thread
+\end{description}
+\item [{keys.py}]~
+\begin{description}
+\item [{generate\_key}] method
+\item [{read\_keys}] method
+\end{description}
+\item [{logger.py}]~
+\begin{description}
+\item [{logger}] RootLogger instance
+\end{description}
+\item [{main.py}]~
+\begin{description}
+\item [{VideoStreamUISync}] class, thread
+\item [{main}] method
+\end{description}
+\item [{qr\_generator.py}]~
+\begin{description}
+\item [{generate\_qr}] method
+\end{description}
+\item [{slots.py}]~
+\begin{description}
+\item [{save\_to\_db}] method
+\item [{update\_user\_dependant}] method
+\item [{create\_user}] method
+\item [{create\_admin}] method
+\item [{login}] method
+\item [{logout}] method
+\item [{create\_device}] method
+\item [{create\_location}] method
+\item [{create\_producer}] method
+\item [{generate\_password}] method
+\item [{reset\_password}] method
+\item [{reset\_admin\_password}] method
+\end{description}
+\item [{ui.py}]~
+\begin{description}
+\item [{MainDialog}] class
+\item [{LoginDialog}] class
+\end{description}
+\item [{utils.py}]~
+\begin{description}
+\item [{absolute\_path}] method
+\item [{\_ParallelPrint}] class, thread
+\item [{parallel\_print}] put method of \_ParallelPrint instance
+\end{description}
+\end{description}
+
+\section{SQLAlchemy}
+
+Bei SQLAlchemy handelt es sich um ein Open-Source SQL Toolkit und
+einen objektrelationalen Mapper für Python.
+
+Lesenswert im Bezug auf die Grundidee, bzw. Architekturentscheidungen
+von SQLAlchemy ist hierzu, das von Michael Bayer, dem/einem Entwickler
+von SQLAlchemy, in \emph{The Architecture of Open Source Applications
+ (Volume 2)}\footnote{\cite[18.12.18 - 17:26 Uhr]{OpenSourceArchitect}}
+veröffentlichte Kapitel über SQLAlchemy. Hieraus geht hervor, dass
+SQLAlchemy so entworfen wurde, dass man bei der Entwicklung damit
+gewillt sein muss, die relationalen Strukturen seiner Daten zu bedenken,
+die Implementierung dieser jedoch durch eine High-Level-Schnittstelle
+erfolgen sollte. Dieser Abstraktionslayer ermöglicht es SQLAlchemy
+mit den verschiedensten Datenbanken  (SQLite, PostgreSQL, Oracle,...)
+zu arbeiten, ohne große  (wenn überhaupt) Änderungen am Code vorzunehmen.
+Diese verschiedenen Implementierungen werden alle über dieselbe High-Level
+API angesprochen und im SQLAlchemy-Jargon ``dialect'' genannt. Ein
+weiteres grundsätzliches Merkmal ist, dass SQLAlchemy grob in ein
+Core-Modul und ein darauf aufsetzendes ORM-Modul aufgeteilt werden
+kann. Viele Firmen bauen auf dem Core basierend einen eigenen ORM
+auf. Die Details dieser Struktur sind der umfangreichen SQLAlchemy-Dokumentation
+zu entnehmen.
+
+\subsection{Das Datenbankmodell}
+
+Das mit SQLAlchemy umgesetzte Datenbankmodell wurde zunächst wie folgt
+geplant:
+
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.75]{Bilder/ERD}\caption{Entity-Relationship-Diagramm}
+\end{figure}
+
+Es sollte also Geräte geben, deren Standort verfolgt wird und die
+immer einen Mitarbeiter zugewiesen haben, der für sie verantwortlich
+ist. Um eine einfachere Pflege der Datenbank zu ermöglichen, wurden
+der Artikel eines Geräts sowie dessen Hersteller ausgekapselt  (3.
+Normalform).
+
+\subsection{Implementierung des Datenbankmodells}
+
+Auf Basis dieses ERM wurden Klassen wie folgt erstellt:
+
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.75]{Bilder/UML}\caption{UML-Diagramm}
+\end{figure}
+
+Diese Klassen erben alle von einer abstrakten Basisklasse \emph{Base},
+die von SQLAlchemy bereitgestellt wird, und besitzen jeweils einen
+eigenen Datenbank-Table. Auch die Beziehungen der Klassen werden auf
+Basis des Quellcodes automatisch von SQLAlchemy erzeugt.
+
+\subsection{Benutzerdefinierte Datentypen}
+
+Da SQLAlchemy im Hintergrund eine tatsächliche SQL-Datenbank einsetzt,
+ist es natürlich an deren Datentypen gebunden. Daher ist es hier,
+ähnlich einer traditionellen DBAPI, nötig, Adapter zu schreiben, um
+eigene Datentypen ablegen zu können. Konkret geht es darum, das \emph{salt}
+eines Nutzers in der Datenbank zu speichern. Das Salt ist eine sehr
+große Zahl. Daher wird ein eigener Datentyp benötigt, welcher den
+Python-seitigen Wert beim Speichern in die Datenbank zu einem String
+konvertiert und beim Abrufen die umgekehrte Umwandlung durchführt.
+SQLAlchemy stellt hierzu die abstrakte Klasse \emph{TypeDecorator}
+zur Verfügung, von dieser leiten wir eine Klasse \emph{BigInt} ab.
+Als Klassenvariable legen wir über \emph{impl} fest, dass die datenbankseitige
+Implementierung als string erfolgt, die beiden Methoden \emph{process\_bind\_param
+}und\emph{ process\_result\_value} nehmen die Umwandlung vor. Es ist
+auch möglich, je nach \emph{dialect} der Datenbank, verschieden umzuwandeln,
+dies ist hier allerdings nicht nötig.
+
+\subsection{Beziehungen herstellen in SQLAlchemy}
+
+\subsubsection{Grundprinzip und 1-zu-n-Beziehungen}
+
+In SQLAlchemy werden Beziehungen zwischen Tables mittels der \emph{relationship}
+Methode hergestellt. Die Variante, für die wir uns entschieden haben,
+nutzt hierbei \emph{backref}:
+
+\begin{lyxcode}
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/1-zu-n.py}
+
+\caption{Beispiel einer 1-zu-n Beziehung}
+\end{algorithm}
+\end{lyxcode}
+Es wird also in einer Klasse lediglich ein Fremdschlüssel festgelegt.
+In der anderen Klasse wird das \emph{relationship} gesetzt. Dieses
+\emph{relationship} stellt hierbei bei jeder Instanz von \emph{Parent}
+eine Liste aller \emph{Children}-Instanzen zur Verfügung. Umgekehrt
+legt \emph{backref} bei \emph{Children} den Member \emph{parent} an,
+welcher auf die zugehörige Parent-Instanz verweist. Hier gilt zu beachten,
+dass es egal ist, auf welcher Seite der Beziehung der Fremdschlüssel
+hinterlegt ist.
+
+Außerdem ist das erste Argument von \emph{relationship} nicht die
+Klasse \emph{Child}, sondern ein String, der ihren Namen enthält.
+Dies ermöglicht es, Beziehungen anzulegen, ohne dass, die Partnerklasse
+bereits angelegt wurde bzw. bekannt ist, was das Arbeiten wesentlich
+komfortabler macht.
+
+\subsubsection{1-zu-1-Beziehung}
+
+Es lassen sich mit SQLAlchemy jedoch nicht nur 1-zu-n-Beziehungen
+anlegen. Durch Erweiterung der \emph{relationship} Methode mit dem
+\emph{uselist} Parameter lässt sich auf folgende Weise an beiden Seiten
+des relationships eine Einzelinstanz hinterlegen.
+\begin{lyxcode}
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/1-zu-1.py}
+
+\caption{Beispiel einer 1-zu-1 Beziehung}
+\end{algorithm}
+\end{lyxcode}
+Prinzipiell ist es auch möglich, n-zu-n Beziehungen-herzustellen,
+dies ist bei uns jedoch nicht nötig und wird daher nicht aufgeführt.
+
+\subsection{Arbeiten mit SQLAlchemy}
+
+Beim Arbeiten mit SQLAlchemy gibt es ein sehr prominentes Konstrukt:
+\emph{Session}s
+
+Über diese erfolgt die komplette Interaktion mit der Datenbank, sie
+erledigt im Hintergrund jedoch auch Dinge wie ``State-Management''
+ (Konsistenzstatus zwischen Objekt und Datenbank), was später noch
+eine wichtige Rolle spielt. Eine Session wird zunächst an eine \emph{Engine}
+ (dt. Datenbanktreiber) angebunden; diese Engine verwaltet z.B. den
+bereits erwähnten Dialect und stellt das Interface zur DBAPI und damit
+auch zur Datenbank dar. Über ihre Lebenszeit kann man einer Session
+Objekte manuell oder über Abfragen hinzufügen, sie entfernen und Änderungen
+an der Datenbank vornehmen. Oftmals, so auch in unserem Fall, gibt
+es jedoch viele Stellen, von denen aus auf eine Session zugegriffen
+werden muss. Da stellt man sich natürlich die Frage, wann man denn
+eine neue Session aufmacht und schließt etc.. Hierzu steht in der
+Dokumentation von SQLAlchemy:\smallskip{}
+
+``When do I construct a Session, when do I commit it, and when do
+I close it? {[}...{]} Make sure you have a clear notion of where transactions
+begin and end, and keep transactions short, meaning, they end at the
+series of a sequence of operations, instead of being held open indefinitely.''\footnote{\cite[22.12.18 - 16:41 Uhr]{SessionBasics}}
+
+\smallskip{}
+
+Dies und der Fakt, dass eine Session stets ordnungsgemäß initialisiert
+und deinitialisiert werden muss, führt uns daher ein weiteres Mal
+zu einem Kontext-Manager. Dieser Kontext-Manager verfügt über die
+Engine, zu der alle Sessions verbunden werden, sowie einen sog. \emph{sessionmaker}.
+Dieser Sessionmaker kümmert sich um die Konfiguration der erzeugten
+Sessions. Da es jedoch potentiell wünschenswert ist, mehrere Datenbanken
+zu haben  (z.B. lokale Datenbank für Geräte und remote Datenbank für
+Nutzerdaten), wird im Hinblick auf Zukunftssicherheit und Maintainability,
+eine Variante gewählt, die es erlaubt, mehrere Kontext-Manager für
+Sessions auf verschiedenen Engines zu haben. Damit steht eine Fabrikmethode
+ (\emph{setup\_context\_session}) zur Verfügung, der eine Engine übergeben
+wird und die den Kontext-Manager als Klasse zurückgibt. Die zurückgegebene
+Klasse kümmert sich dann um eventuelle Rollbacks im Fehlerfall etc..
+Es ist wichtig zu beachten, dass Methoden, die im Hintergrund zu \emph{INSERT},
+DELETE oder UPDATE evaluiert werden, erst beim Aufrufen der Methoden
+\emph{flush} oder \emph{commit} der Session tatsächlich geschrieben
+werden, sofern kein \emph{autocommit} eingestellt ist.
+
+\subsubsection{Neue Einträge in der Datenbank vornehmen}
+
+Nachdem die Vorarbeit mit Sessions und Klassen geleistet ist, ist
+es nun sehr einfach, neue Einträge in der Datenbank vorzunehmen. Das
+folgende Beispielprogramm zeigt, wie einige bereits erzeugte Objekte
+in der Datenbank abgelegt werden.
+\begin{lyxcode}
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/In_DB_schreiben.py}
+
+\caption{Objekte in Datenbank ablegen}
+\end{algorithm}
+\end{lyxcode}
+Wie zu sehen ist, können sehr komfortabel entweder einzelne Objekte
+oder eine ganze Reihe von ihnen auf einmal geschrieben werden. Commits,
+Rollbacks etc. werden automatisch im Hintergrund gehandled.
+
+\subsubsection{Abfragen}
+
+Abfragen können auf zwei verschiedenen Wegen erfolgen:
+\begin{itemize}
+\item direkt über SQL Querys
+\item über die \emph{query-}Methode einer \emph{Session} Instanz
+\end{itemize}
+Bei TUInventory wurde ausschließlich der objektorientierte Abfrageansatz
+eingesetzt. Als Beispiel dient hier die Abfrage  (wenn auch nicht
+in finaler Version), die im Zusammenhang des Einloggens eines Users
+auftritt:
+\begin{algorithm}[H]
+\begin{centering}
+\lstinputlisting[language=Python,breakautoindent=true]{Beispielprogramme/Abfrage.py}
+\par\end{centering}
+\caption{Abfrage aus Datenbank anhand eines tatsächlichen Beispiels}
+\end{algorithm}
+
+Die wichtigen Punkte sind hier die Zeilen 6 und 10. In Zeile 6 wird
+über die \emph{query}-Methode eine Abfrage auf dem Table der \emph{User}
+vorgenommen. Das Ergebnis dieser Abfrage wird anschließend mittels
+\emph{filter\_by} anhand der Spalte \emph{e\_mail} in der Datenbank
+mit der übergebenen E-mail Adresse gefiltert. Dies gibt uns ein \emph{Query}
+Objekt. Da die Spalte \emph{e\_mail} mit \emph{unique} gekennzeichnet
+ist, wird nur ein Objekt abgefragt, dieses erhalten wir mit \emph{first}.
+Nun wird dieses Objekt verarbeitet bis zu Zeile 10, hier wird die
+Methode \emph{expunge}, zu deutsch auslöschen der Session genutzt,
+um das Objekt von der Session zu trennen, sodass es auch außerhalb
+von ihr seine Gültigkeit behält. Ein Grund, wieso dies nötig ist,
+ist die Tatsache, dass SQLAlchemy hier, wie auch in vielen anderen
+Bereichen sehr ,,lazy`` ist  (siehe \emph{Lazy Evaluation}). Tatsächlich
+fragt es nämlich nicht direkt das ganze Objekt ab, sondern erstmal
+nur das Attribut \emph{e\_mail}, da dieses gerade gebraucht wird.
+Im Verlauf bis Zeile 10 werden noch \emph{salt} und \emph{password}
+just-in-time abgefragt und damit der Klasse hinzugefügt. Wenn die
+Instanz jedoch mit \emph{expunge} von der Session getrennt wird, erfolgt
+eine Abfrage aller restlichen Attribute, sodass das Objekt vollständig
+ist. Wer mit SQL vertraut ist, hat sicherlich bereits erkannt, dass
+die Methoden dieselben Namen wie einige Operationen in SQL tragen.
+Analog stehen auch zu weiteren SQL Operationen Methoden bereit, um
+komplexere Abfragen zu realisieren.
+
+\subsubsection{Aktualisieren und Löschen einer Instanz}
+
+Möchte man eine Instanz in der Datenbank ändern, ist dies ebenfalls
+mit einer Session einfach umzusetzen. So muss man lediglich die Instanz
+in einer Session verfügbar machen  (entweder sie ist ohnehin schon
+darin oder wird über eine Abfrage ermittelt), seine Änderungen vornehmen
+und den Kontext der aktuellen \emph{ContextSession} verlassen, bzw.
+die Methode \emph{commit }der\emph{ Session aufrufen}. Im Fall der
+Löschung ist es möglich eine Instanz über die Methode \emph{delete}
+der Session als gelöscht zu markieren, tatsächlich ist sie aber nicht
+direkt gelöscht, sondern auch hier erst, sobald der Kontext verlassen
+wird oder \emph{flush} oder \emph{commit} aufgerufen wird.
+
+\newpage{}
+
+\section{Frameworkfreie Implementierung}
+
+\subsection{Utilities}
+
+Bei der Entwicklung wurde ein kleines Hilfsmodul geschrieben, um einige
+Sachen zu vereinfachen. Dieses Hilfmodul ist nicht abhängig von einem
+der anderen Module.
+
+\subsubsection{Absolute Pfade}
+
+Python bietet grundsätzlich die Möglichkeit an, mit relativen Pfaden
+zu arbeiten. Diese sind jedoch so umgesetzt, dass sie nicht relativ
+zur Quelldatei interpretiert werden, sondern stattdessen relativ zum
+Aufruf arbeiten. Führe ich das Python Programm in der Konsole also
+von einem anderen Ordner aus aus, so wird auf eine andere Datei zugegriffen.
+Daher wurde eine Funktion entwickelt, die ermittelt, wo sich die Quellcodedatei
+befindet und ein \emph{pathlib} Objekt zum übergebenen relativen Pfad
+zurückgibt. Die Pfad-Objekte des Moduls \emph{pathlib} sind plattformunabhängig
+und sehr komfortabel in der Nutzung  (Beispielsweise: Erweiterung
+mittels Verwendung des überladenen /-Operators).
+
+\subsubsection{Paralleles Printen}
+
+Beim Debuggen ist es oftmals hilfreich sich kleinere Nachrichten an
+Schlüsselpunkten ausgeben zu lassen. Da diese Nachrichten oftmals
+jedoch aus verschiedenen Threads kommen, kann sich hier eine race-condition
+auf der Konsole abbilden, bei der mehrere Nachrichten gleichzeitig
+ausgegeben werden, wodurch sie schwer bis garnicht zu verwerten sind.
+Daher wird ein Singleton-Thread geöffnet, der über eine Queue Nachrichten
+empfangen und auf der Konsole ausgeben kann. Um eine sauberere Schnittstelle
+zu haben, wird die \emph{put}-Methode seiner Queue von der Module-Level-Referenz\emph{
+parallel\_print} gespiegelt, über die dann aus allen Modulen sauber
+zugegriffen werden kann. Die Umsetzung des Singletons ist so, dass
+es einem Anwender von außerhalb des Moduls nicht möglich ist, eine
+weitere Instanz der Klasse \emph{\_ParallelPrint} zu erzeugen  (Zumal
+das ,,\_`` im Namen nach Konvention angibt, dass es sich um eine
+Klasse handelt, die in der API nicht aus Gründen der Nutzung von außen
+vorhanden ist\footnote{Ein Nutzer kann eine mit ,,\_``-benannte Klasse/Methode/Instanz
+etc. zwar dennoch verwenden, sollte dabei allerdings die internen
+Mechanismen im Hinterkopf behalten und ist sogesagt im Fehlerfall
+auf sich alleine gestellt}), indem die Referenz von \emph{\_ParallelPrint} nicht mehr auf der
+Klasse, sondern auf einer Instanz dieser liegt. Probiert er nun, eine
+Instanz zu erzeugen, wird stattdessen die Magic Method \emph{\_\_call\_\_
+}der Instanz aufgerufen, welche eine \emph{Warning} wirft. Sofern
+ein Nutzer des Moduls zwischen Klassendefinition und Umleitung der
+Referenz im Modulkörper selbst eine weitere Instanz erzeugen würde,
+könnten zwei Instanzen erzeugt werden. Um dies zu verhindern, existiert
+eine Klassenvariable \emph{\_created}, welche bei der ersten Instanziierung
+gesetzt wird und bei jeder weiteren eine Warnung hervorruft. Sollte
+ein Nutzer diese Klassenvariable manuell zurücksetzen, liegt dies
+außerhalb der zu erwartenden Nutzung und wird nicht mehr abgefangen.
+
+\subsection{Logging}
+
+Beim Logging werden an interessanten Punkten (Datenbankinteraktion,
+Nutzeranmeldung, Fehler etc.) in der Anwendung, Nachrichten in eine
+Datei geschrieben. Die Implementierung erfolgt mittels des \emph{logging}-Moduls
+aus Pythons Standardbibliothek. Dieses wurde so konfiguriert, dass
+die geschriebenen Datensätze folgende Informationen enthalten:
+\begin{itemize}
+\item Zeitstempel nach ISO 8601 im Format YYYY-MM-DDThh:mm:ss
+\item Logtyp  (Fehler, Debugnachricht, Information, kritischer Fehler o.ä.)
+\item Dateiname
+\item Funktionsname, aus dem der Log kommt
+\item Nachricht
+\end{itemize}
+Somit sollte es im Fehlerfall möglich sein, leicht herauszufinden,
+wo eine Fehlerquelle liegt. Der Aufbau eines Log-Datensatzes ist dabei
+so, dass rechts die am meisten relevante und links die am wenigsten
+relevante Information liegt und jeder Abschnitt eine konstante Breite
+aufweist. Eine Beispieldatei könnte dann so aussehen:
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.5]{Bilder/Logger-Beispiel}
+\par\end{centering}
+\caption{Log-Datei Beispiel}
+\end{figure}
+
+Es ist zu sehen, dass sich die Datei Spaltenweise gut lesen lässt
+und leicht zurückverfolgbar ist, woher eine Nachricht stammt. Bei
+Nachricht 1 und 3 ist ein \emph{<module>} im Funktionsslot zu sehen;
+dies bedeutet, dass die Nachricht nicht aus einer Unterfunktion sondern
+vom Modul selbst stammt. Die beiden Nachrichten aus \emph{main} hingegen
+kamen aus den Funktionen \emph{test} und \emph{info}. Ebenfalls zu
+sehen ist, dass der Leitgedanke, des von rechts nach links absteigend
+relevanten Informationslevels sich sehr gut mit ISO 8601 kombinieren
+lässt, da die Sekunden die wohl wichtigste Information der Zeit darstellen.
+Auf die Darstellung der Millisekunden  (bzw. ggf. Microsekunden etc.)
+wurde verzichtet, da der Nutzer die Anwendung eher im Sekundentakt
+bedient und sich somit die Zeile nicht unnötig überlädt. Aus demselben
+Grund wäre es denkbar, auf die Jahreszahl zu verzichten.
+
+\subsection{Barcode Reader - die Klassen VideoStream und LazyVideoStream}
+
+Um Geräte identifizieren und markieren zu können, wird für jedes Gerät
+ein einzigartiger QR-Code erzeugt. Um diese einzulesen, wird \emph{OpenCV}
+mit \emph{ZBar} verwendet. Die Funktionalität des Einlesens ist im
+Modul \emph{barcodereader} gekapselt.
+
+Der Barcode Reader wird anfangs als Prozedur geschrieben. Sobald die
+Funktion gegeben ist, wird er in eine Klasse umgewandelt und für die
+später benötigte Parallelisierung vorbereitet\footnote{Eine genaue Erklärung einiger Prozesse des parallelen Programmierens
+erfolgt im Abschnitt \ref{subsec:Automatisches-Abmelden}}. Dabei gibt es grundsätzlich zwei Optionen:
+\begin{enumerate}
+\item Die zuerst implementierte: Der Thread arbeitet im Polling-Betrieb
+und stellt kontinuierlich das aktuellste Frame an seiner Schnittstelle
+bereit. Hierbei wird auf \emph{Mutex} gesetzt um Threadsicherheit
+zu gewährleisten.
+\item Beim Thread kann ein Frame angefragt werden, er antwortet anschließend
+mit einem Frame - realisiert wird dieser Vorgang durch \emph{Atomic-Message-
+Queues}\footnote{Eine Erklärung dieser Konstrukte, von Raymond Hettinger, der sie entwickelt/implementiert
+hat, gab es u.a. auf der PyCon Russia 2016 \cite[20.12.18 - 23:03 Uhr]{ThinkConcurrent}}, welche ein weiterer Weg zur Threadsicherheit sind.
+\end{enumerate}
+Beide Varianten setzen dabei auf einen sog. \emph{Daemon-Thread} -
+einen Thread, der nach seinem Starten niemals mit seiner ``Aufgabe''
+fertig ist  (es gibt immer wieder neue Frames zum Auswerten).
+
+Die Vermutung beim Auswählen des Prozesses ist, dass die Polling-basierte
+Variante schneller, jedoch rechenintensiver ist. Demgegenüber steht
+die Queue-basierte Variante, welche nur so viele Bilder wie nötig
+verarbeitet, jedoch nach Anfrage länger braucht, um ein Bild zurückzugeben.
+Daher wird mit einer einfachen Funktion eine statistische Gegenüberstellung
+der beiden Methoden durchgeführt. Die Funktion erhält hierbei einen
+Wert, inkrementiert diesen und meldet ihn zurück. Durchgeführt wurde
+dies für den Bereich {[}0:20e3{]}.
+
+\begin{figure}[H]
+\includegraphics[width=0.75\paperwidth]{Bilder/Polling_vs_Queues_cropped}
+
+\caption{\label{fig:Gegen=0000FCberstellung-von-Polling}Gegenüberstellung
+von Polling und Queues}
+\end{figure}
+
+Wie in Abbildung \ref{fig:Gegen=0000FCberstellung-von-Polling} zu
+sehen ist, war die ursprüngliche Vermutung korrekt. Polling bietet
+wesentlich bessere Response Times, da es nicht reagiert, sondern proaktiv
+die Schnittstelle aktualisiert. Was jedoch auch zu erkennen ist: Bis
+das Ergebnis erreicht war, wurden bei der Queue-Variante lediglich
+die 20000 minimalen Lesezugriffe  (Auf unseren use-case Übertragen
+also Aktualisierungen des Video-Feeds in der UI) durchgeführt - beim
+Polling fanden mehr als doppelt so viele Lesezugriffe statt  (über
+mehrere Versuche ließ sich der tatsächliche Wert auf \textasciitilde 44e3
+bis \textasciitilde 48e3 festmachen); es wurden konsekutiv mehrfach
+die gleichen Werte abgefragt. Es liegt also bei mehr Rechenzeit kein
+tatsächlicher Informationszuwachs vor. Betrachtet man die beiden Verfahren
+als Signale und bildet deren SNR, gilt:
+
+$$SNR_{AMQ} = 1 $$
+
+$$SNR_{Polling} \approx 0,5$$
+
+Bei diesen Zahlen ist selbstverständlich zu beachten, dass diese lediglich
+auf einer sample size von 1 beruhen und somit nur bedingt aussagekräftig
+sind.
+
+Generell ist es bei einer Echtzeit-Kamera-Anwendung wünschenswert,
+bessere Response Times zu haben - im Praxisversuch zeigt sich jedoch,
+dass die Message Queues auf den Testgeräten ein flüssiges Bild liefern,
+daher wurde diese gewählt. Jedoch steht auch die Klasse für Polling
+weiterhin bereit und ist wegen ihrer ähnlichen Schnittstelle, durch
+geringe Quellcodeänderung einzubinden oder alternativ für eine andere
+Anwendung einsetzbar.
+
+In der konkreten Implementierung wird zum Anfragen eines Frames eine
+Queue genutzt; es stellt sich die Frage, wieso hierzu kein \emph{Event}
+genutzt wurde. Solange lediglich ein Consumer auf den \emph{LazyVideoStream}
+zugreift, hätte ein Event genauso funktioniert, jedoch treten bei
+mehreren Consumern Probleme auf. Wenn beispielsweise ein Thread, der
+die Barcodes auswertet, einen Frame anfragt, gleichzeitig allerdings
+die UI ein neues Frame zum Anzeigen anfragt, würden beide das Event
+starten, was beide Male intern das gleiche Flag auf True setzt; im
+Kontrast könnten beide separate Anfragen in der Request-Queue anlegen.
+Also würde der VideoStream auf das Event antworten, indem er ein Frame
+in seine Antwort-Queue legt. Einer der Konsumenten könnte dieses Frame
+herausnehmen, der andere jedoch würde leer ausgehen; bei der Anfragen-Queue-Variante
+hingegen würde er beide Anfragen mit einem Frame beantworten.
+
+\subsection{Datenbanksynchronisation}
+
+Im Modul \emph{slots} existieren Fabrikfunktionen für die meisten
+Entitätsklassen der Datenbank. Um diese direkt bei ihrer Erzeugung
+mit der Datenbank zu synchronisieren, wird die recht simple Funktion
+\emph{save\_to\_db} implementiert. Diese Funktion wird zunächst am
+Ende jeder Funktion, die eine neue Instanz erzeugt, aufgerufen. Dies
+ist zwar grundsätzlich nicht falsch, bedeutet jedoch, dass ein Programmierer,
+beim späteren Pflegen des Programms, sich eventuell nur die Funktionsschnittstelle
+ansieht und dabei übersieht, dass die Instanz direkt synchronisiert
+wird. Daher wurde im Zuge des Refactoring der \emph{Function-Decorator
+synchronized} geschrieben, welcher direkt bei Funktionsdefinition
+klarmacht, dass diese Funktion synchronisierte Instanzen erzeugt.
+
+Der Function-Decorator sei hier kurz erläutert:
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/synchronized.py}
+
+\caption{Definition des Function-Decorators}
+\end{algorithm}
+
+Ein Function-Decorator ist so aufgebaut, dass er mit der @-Syntax,
+die ihm nachgestellte Funktion als ersten positionellen Parameter
+übergeben bekommt und diese mit seiner Rückgabe zum Definitionszeitpunkt
+der dekorierten Funktion redefiniert. In der Schnittstelle gibt es
+außerdem noch \emph{decorated}, ein standardmäßig mit \emph{False}
+vorbelegtes Flag, das später wichtig wird, sowie die Parameter \emph{{*}args}
+und \emph{{*}{*}kwargs}. Diese Parameter haben eine besondere Bedeutung,
+welche sie nicht durch ihren Namen, sondern durch die vorgestellten
+Asteriske erhalten (die Bezeichner nach {*} und {*}{*} sind grundsätzlich
+egal, jedoch sind \emph{args} und \emph{kwargs} gängig für ,,Durchreichungen``,
+da sie in diesem Funktionskontext keine weniger abstrakte Bedeutung
+haben); \emph{{*}args} ist ein Parameter, welcher stellvertretend
+für beliebig viele positionelle Argumente steht - {*}{*}kwargs hingegen
+steht für beliebig viele Schlüsselwortparameter  (daher der Name kwargs,
+von keyword arguments). Im Funktionskörper stellen diese dann ein
+Tupel bzw. ein Dictionary dar.
+
+Wird diese Funktion nun das erste Mal aufgerufen, nämlich wenn die
+dekorierte Funktion definiert wird, defaulted das \emph{decorated}-Flag
+auf \emph{False}, was zur Folge hat, dass der erste if-Block direkt
+betreten wird. In diesem wird nun die Funktion definiert, welche bei
+späterem Aufruf der Originalfunktion an Stelle dieser aufgerufen wird.
+Die Funktion \emph{partial} des Moduls \emph{functools} der Standardbibliothek
+erlaubt die partielle Evaluation einer Funktion, dabei übergibt man
+ihr zuerst die Funktion, welche partiell evaluiert werden soll, und
+anschließend alle Parameter, welche sozusagen ,,vorbelegt`` werden.
+Hierbei sagen wir also, dass die zurückgegebene Funktion der Decorator
+selbst ist, welcher bei jedem Aufruf die dekorierte Funktion übergeben
+bekommt. Desweiteren setzen wir das decorated-Flag auf True.
+
+Wird nun die dekorierte Funktion  (in ihrem dekorierten Zustand) aufgerufen,
+wird die Funktion \emph{function}  (also die dekorierte Funktion in
+undekoriertem Zustand) aufgerufen, wobei als Parameter nach der Partiellevaluation
+nur noch \emph{args} und \emph{kwargs} übrig sind. Hier wird beim
+Aufruf explizites \emph{Tuple Unpacking} für \emph{args} und\emph{
+Dictionary Unpacking} durch die {*}- bzw. {*}{*}-Syntax eingesetzt,
+was dazu führt, dass die Originalfunktion effektiv einen ,,normalen``
+Funktionsaufruf ,,erlebt``. Die dadurch erzeugte Instanz kann nun
+weiterverbeitet werden, bevor sie an den ursprünglichen Funktionsaufruf
+zurückgegeben wird.
+
+\section{Benutzerverwaltung}
+
+Da es in der Anwendung unter anderem darum geht, festzulegen, wer
+für welche Geräte verantwortlich ist, haben wir die Entscheidung getroffen,
+dass es nicht möglich sein sollte, die Verantwortlichkeiten eines
+anderen Mitarbeiters bearbeiten zu können. Dies erfordert ein Nutzersystem
+mit entsprechender Nutzerverwaltung. Aufgrund dieser Nutzerverwaltung
+wurden wir mit dem Problem konfrontiert, dass die Benutzer sich authentifizieren
+können müssen, hierfür wurde, klassischerweise, ein Passwort-System
+gewählt. Dies bringt das Problem der Passwortspeicherung mit sich,
+das, auch heute noch, in vielen Systemen eine Schwachstelle für potentielle
+Angriffe Dritter darstellt. Während es sich bei diesem System nicht
+um eine wirklich sicherheitskritische Anwendung handelt, sollte eine
+Anwendung unserer Ansicht nach dennoch so gestaltet sein, dass sie
+keine zu offensichtlichen Schwachstellen hat. Ein weiteres Problem
+entsteht dadurch, dass eine SQL-Datenbank im Hintergrund mit vom Nutzer
+zur Laufzeit eingegebenen Daten befüllt wird. Dies könnte, wenn nicht
+richtig abgefangen zur SQL-Injection genutzt werden.
+
+\subsection{SQL}
+
+Das zweite Problem lässt sich mit Python vergleichsweise leicht umgehen,
+indem man beim Nutzen von \emph{sqlite3} die mitgelieferte ?-Syntax
+einsetzt, oder aber, wie wir, das bereits näher erläuterte SQLAlchemy
+nutzt, welches intern eine Validierung der Werte durchführt, die es
+in seinen SQL-Befehlen nutzt.
+
+Um das Problem/Prinzip der SQL-Injection aufzuzeigen, folgt hier ein
+kurzes Beispiel.
+
+Gegeben sei eine sehr einfache Datenbank, die Nutzer mit Namen speichert:
+\begin{center}
+\includegraphics[scale=0.5]{Beispielprogramme/SQL-Injection/DB}
+\par\end{center}
+
+Wobei es möglich sein soll neue Nutzer über eine Kommandozeileneingabe
+des Namens hinzuzufügen.
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/SQL-Injection/SQL-Injection.py}
+
+\caption{Beispiel von SQL-Injection}
+\end{algorithm}
+
+Wird nun über die Kommandozeile als Name z.B. '\textquotedbl\textquotedbl );
+DROP TABLE users;-{}-' eingegeben, wird die Tabelle aller Nutzer gelöscht.
+Korrekt umgesetzt ist das Ganze in \emph{insert\_user\_secure} dargestellt.
+In diesem Fall wirft dieselbe Eingabe einen Fehler und die Datenbank
+wird nicht kompromittiert.
+
+\subsection{Kryptografie}
+
+Für die Passwörter gestaltet sich das Ganze nicht ganz so unkompliziert.
+Aufgrund dessen, dass der Quellcode offen ist und auch die Datenbank
+lokal liegt, ist es einem Angreifer ein Leichtes, jede eventuelle
+einfache Verschlüsselung zu umgehen. Daher werden bei unserer Lösung
+die Passwörter gar nicht gespeichert - stattdessen wird ein Hash-Algorithmus
+(zu Deutsch: Streuwertfunktion) eingesetzt und dieser Hash gespeichert.
+Ein Hash-Algorithmus ist eine Funktion, welche, idealerweise, in eine
+Richtung sehr schnell durchzuführen ist, in die andere dagegen einen
+sehr hohen Rechenaufwand benötigt. Im Idealfall ist dieser Rechenaufwand
+so hoch, dass sich eine ``Einwegfunktion'' ergibt, die nicht umzukehren
+ist. Ein klassisches Beispiel für einen simplen Hash-Algorithmus ist
+die einstellige Quersumme, hier wird rekursiv die Quersumme einer
+Zahl gebildet, bis nur noch eine Stelle übrig ist.
+
+\subsubsection{Benutzer anlegen}
+
+Das genaue Verfahren ist im folgenden Diagramm ersichtlich, der zugehörige
+Quellcode ist in der Klasse \emph{User }als Methode \emph{hash} zu
+finden.
+
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.5]{Bilder/User-Anlegen-Prozess}\caption{Passwort-Speicher-Vorgang}
+\end{figure}
+
+Es werden also aus den vom Nutzer getätigten Eingaben der Benutzername
+und das Passwort ausgewählt  (bzw. werden diese in der Instanz einer
+Nutzerklasse abgelegt und daraus wieder abgerufen, dies wird allerdings
+später näher erläutert). Außerdem wird eine kryptografisch starke
+ (im Gegensatz zu den, nicht für Kryptografieanwendungen geeigneten
+Zufallszahlen des normalen Pythonmoduls \emph{random}) 256-Bit Zufallszahl
+generiert. Diese stellt ein erstes Salt dar. Im ersten Schritt wird
+nun die E-Mail-Adresse - ein String also - zu einer Abfolge aus Bytes
+codiert, welche dann als Ganzzahl interpretiert wird. Diese Zahl wird
+anschließend über ein logisches XOR mit dem generierten Salt verknüpft
+und stellt unser finales Salt dar. Die daraus resultierende Zahl sowie
+das Passwort werden dann wieder zu einer Folge aus Bytes konvertiert.
+Im zweiten Schritt werden nun diese beiden \emph{bytes}-Instanzen
+über einen PBKDF2-Algorithmus miteinander verknüpft. In unserem Fall
+nutzt dieser intern einen HMAC-, welcher wiederum einen SHA-512-Algorithmus
+nutzt. Dieser Hash-Vorgang wird nun 9600-mal durchgeführt. Der daraus
+entstehende Hash ist unser ``Endergebnis'' und wird zusammen mit
+der Anfangs generierten Zufallszahl in der Datenbank abgelegt.
+
+Der Hintergrund zu der vergleichsweise komplexen Erzeugung des finalen
+Salts ist Folgender:
+\begin{itemize}
+\item Wenn man kein Salt einsetzt, haben zwei Nutzer in der Datenbank denselben
+Hash, wenn sie dasselbe Passwort haben, was einem Angreifer im Bereich
+Social Engineering einen Angriffspunkt liefern würde  (\`{a} la.:
+``Was haben diese Nutzer gemeinsam, dass sie eventuell als Passwort
+nutzen könnten''), bzw. lässt auf ein gängiges Passwort schließen.
+\item Wenn man nur die Zufallszahl als Salt nutzt, ist es theoretisch möglich,
+dass zwei Nutzer dieselbe Zufallszahl erhalten  (Auch wenn diese Wahrscheinlichkeit
+praktisch vernachlässigbar klein ist, bei $2^{256}$ Werten, die die
+Zufallszahl annehmen kann und einer zu erwartenden Nutzerzahl $\leq$
+50) was im selben Problem wie der zuvor genannte Punkt münden würde.
+\item Wenn man nur den Benutzernamen als Salt einsetzt läuft man Gefahr,
+dass ein Nutzer einen sehr kurzen Benutzernamen wählt, wodurch ein
+vergleichsweise schnelles Durchprobieren/ Brute-Forcen durch alle
+Salts möglich ist.
+\item Durch die XOR-Verknüpfung von Nutzername und Zufallszahl hat man somit
+ein für jeden Nutzer garantiert einzigartiges Salt. Ein Angreifer
+kann dadurch eine Bruteforce Attacke nur für einen einzigen Nutzer
+auf einmal ausführen.
+\end{itemize}
+
+\subsubsection{Benutzer anmelden}
+
+Beim Anmeldevorgang wird grundsätzlich derselbe Vorgang wie beim Erzeugen
+eines Nutzers durchgeführt, nur dass hier aus der Datenbank abgefragt,
+anstatt gespeichert wird.
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.5]{Bilder/User-Anmelden-Prozess}\caption{Anmelde-Vorgang}
+\end{figure}
+
+Der Nutzer gibt also wieder seine Daten ein. Anhand des Nutzernamens
+wird nun geprüft, ob ein solcher Nutzer in der Datenbank vorhanden
+ist - wenn ja, wird dieser ausgelesen. Nun wird mit dem ausgelesenen
+Salt analog zum Passwort-Speicher-Vorgang ein Hash erzeugt. Stimmt
+dieser Hash mit dem des Nutzers aus der Datenbank überein, wird der
+Benutzer eingeloggt.
+
+\subsubsection{Benutzer hat sein Passwort vergessen}
+
+Wenn man ein System errichtet, bei dem ein Nutzer sich ein Passwort
+merken muss, ist die Wahrscheinlichkeit groß, dass er dieses vergisst.
+Daher gibt es einen Prozess, um das Passwort eines Nutzers zurücksetzen
+zu können. Da die Anwendung grundsätzlich offline laufen können sollte
+ (nicht zuletzt aus sicherheitstechnischen Aspekten), wurde hier nicht
+die Variante des Rücksetzens per E-Mail-Token gewählt - stattdessen
+gibt es einen  (oder auch mehrere) Admin-User die dem Nutzer ein automatisch
+generiertes Passwort zuweisen können, sodass er sich anmelden und
+selbst ein neues eingeben kann. Dieser Prozess lässt sich wie folgt
+visualisieren:
+
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.5]{Bilder/User-PW-Reset}\caption{Rücksetzen eines Benutzerpassworts}
+\end{figure}
+
+Es wird also zunächst, über eine Nutzereingabe, der gewünschte User
+aus der Datenbank ausgelesen. Parallel dazu wird aus einer vordefinierten
+Zeichenfolge eine Auswahl von 15 Zeichen getroffen. Diese stellen
+das neue Passwort dar und werden in der UI angezeigt. Bei der Zeichenfolge,
+aus der das Passwort generiert wird, wird darauf geachtet, dass jedes
+Zeichen klar lesbar ist. So wurden ``O'', ``0'', ``I'' und ``l''
+ausgenommen da diese nicht immer klar zu unterscheiden bzw. leicht
+zu verwechseln sind. Abseits davon besteht die Zeichenfolge aus dem
+ganzen Alphabet in Groß- und Kleinschreibung, den Ziffern und einigen
+Sonderzeichen - insgesamt stehen somit 77 Zeichen zur Verfügung. Es
+stellt sich die Frage, ob es klüger wäre mehr Zeichen hinzuzufügen
+oder aber ein längeres Passwort zu wählen.
+
+\newpage{}
+
+\subsubsection{Mathematische Betrachtung der Passwort-Generation}
+
+Definiert man \emph{n} als die Anzahl an verfügbaren Zeichen und \emph{k}
+als Länge des Passwortes lässt sich die Anzahl an möglichen Passwörtern
+mit der Funktion $$f (n,k) := n^k$$ darstellen. Möchte man nun wissen,
+ob es effizienter ist, weitere Zeichen hinzuzufügen oder das Passwort
+zu verlängern, kann man dies über eine Betrachtung der beiden partiellen
+Ableitungen
+
+$$f_1 (n,k) := \frac {\partial f}{\partial n} = k \cdot n^{k-1}$$ 
+
+und 
+
+$$f_2 (n,k) := \frac {\partial f}{\partial k} = n^k \cdot ln (n)$$ 
+
+herausfinden. Diese beschreiben die Änderungsraten von $f (n,k)$
+bei Änderung eines der beiden Parameter.
+
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.35]{Bilder/Passwort-Varianten-Graph_1_cropped}\caption{Vergleich von $f_1$ und $f_2$}
+\end{figure}
+
+Hier wurden die beiden Funktionen für die Werte 5, 10 und 15 für den
+Parameter, welcher statisch gehalten wird  (k bei $f_1$ und n bei
+$f_2$; dargestellt durch i), und in einem Bereich von 0 bis 20 des
+dynamischen Parameters geplottet. Wie man sieht, gibt es sowohl Bereiche,
+in denen $f_1$, wie auch welche, in denen $f_2$ effizienter (sprich
+größer) ist (siehe Schnittpunkte der Graphen). Daher sollte man eine
+allgemeinere Darstellung wählen. Verallgemeinert, sodass kein Parameter
+statisch gehalten wird, lässt sich die Funktion folgendermaßen darstellen:
+
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.75]{Bilder/Passwort-Varianten-Graph_2_cropped}\caption{Heatmap aus $f_1$ und $f_2$}
+\end{figure}
+
+Wenn man eine neue Funktion $f_3 (n, k)$ als $$f_3 (n, k) := f_1 - f_2 = \frac {\partial f}{\partial n} - \frac {\partial f}{\partial k} = k \cdot n^{k-1} - n^k \cdot ln (n)$$
+definiert, und bei dieser alle Werte > 0 in Schwarz, die anderen in
+Weiß darstellt, hat man eine Karte, die angibt, ob bei einer bestimmten
+Koordinate die Erhöhung von k oder n die effizientere Wahl ist, um
+das generierte Passwort sicherer zu machen. Die Grenze zwischen den
+weißen und schwarzen Bereichen stellt die Nullstellen von $f_3$ dar.
+Setzt man also $f_3 = 0$ und löst dieses beispielsweise nach k auf
+ergibt sich $$k (n) = n \cdot ln (n),$$ was ein einfacheres Überprüfen
+der Koordinaten zulässt.
+
+\begin{figure}[H]
+\centering{}\includegraphics[clip,scale=0.4]{Bilder/Passwort-Varianten-Graph_3_cropped}\caption{$k (n)$ aus $f_3$}
+\end{figure}
+
+Hier gilt, dass bei einem Punkt oberhalb der Kurve der Wert von $f_3$
+positiv ist, wohingegen er unterhalb negativ ist. Daraus folgt, dass
+oberhalb der Kurve $f_1$ überwiegt, also die Rate der Änderung von
+k größer der von n ist.
+
+Basierend auf diesen Daten bzw. Feststellungen wurde also der Zeichensatz
+um einige Zeichen erweitert. Es stehen nun 84 anstatt 77 Zeichen zur
+Verfügung, also 7 Zeichen mehr. Diese 7 Zeichen mehr geben bei gleicher
+Passwortlänge von 15 Zeichen $84^{15}-77^{15} \approx 7,31 \cdot 10^{28} - 1.98 \cdot 10^{28} = 5.33 \cdot 10^{28}$
+mehr Möglichkeiten. Oder anders ausgedrückt ist die Sicherheit des
+Passworts um den Faktor 3,69 erhöht worden.
+
+Im Retrospekt ist zu erkennen, dass hierbei eine Funktion für die
+Schnittpunkte der beiden partiellen Ableitungen gebildet wurde.
+
+\subsubsection{Admin hat sein Passwort vergessen}
+
+Allerdings kann es auch vorkommen, dass ein Admin sein Passwort vergisst
+- auch für so einen Fall steht ein Prozess zur Verfügung.
+
+\begin{figure}[H]
+\centering{}\includegraphics[clip,scale=0.5]{Bilder/Admin-PW-Reset}\caption{Verifizierung zum Rücksetzen eines Admin-Passworts }
+\end{figure}
+
+Wenn ein Admin sein Passwort zurücksetzen möchte, so erfordert dies
+eine weitere Sicherheitsstufe. Diese wird über eine asymmetrische
+Verschlüsselung mittels RSA, bzw. PKCS \#1-OAEP realisiert. Das Verfahren
+läuft dabei wie folgt ab:
+\begin{itemize}
+\item Lokal ist ein Public-Key hinterlegt
+\item Mit diesem wird ein arbiträrer Wert  (In der Implementierung ist ``True''
+gewählt) verschlüsselt
+\item Anschließend wird probiert diesen Wert mit einem vom Nutzer gegebenen
+Schlüssel zu entschlüsseln
+\item Ist dies erfolgreich, wird ein neues Schlüsselpaar erzeugt und sowohl
+Public- wie auch Private-Key überschrieben - dies hat zur Folge, dass
+jedes Schlüsselpaar nur einmal gültig ist - so können andere Admins
+kontrollieren, ob ein Admin kürzlich sein Passwort zurückgesetzt hat
+\item Ab hier wird der normale Passwort-Rücksetz-Vorgang eines Users eingeleitet
+\end{itemize}
+Es ist so vorgesehen, dass ein Admin  (bzw. Superadmin - je nachdem,
+wer Zugang zum Private-Key erhält) den Schlüssel auf einem USB-Stick
+o.ä. ablegt und diesen im Bedarfsfall einsteckt.
+
+\subsection{\label{subsec:Automatisches-Abmelden}Automatisches Abmelden}
+
+Bei einem zentralen System, das mehreren Nutzern zugänglich ist, ist
+es wünschenswert, wenn ein Nutzer automatisch abgemeldet wird, sobald
+er eine bestimmte Zeit untätig ist. Dies beugt Missbrauch vor. Hierzu
+wurde die Klasse \emph{Timeout} geschrieben.
+
+\emph{Timeout} ermöglicht es, einen Thread zu öffnen, welcher im Hintergrund
+mit einer bestimmten Abtastrate prüft, ob die eingestellte Zeit bereits
+verstrichen ist. Da es mit dieser Funktionalität an sich nur ein Timer
+wäre, implementiert die Klasse weiterhin die Methode \emph{reset},
+um den internen Timer immer dann zurückzusetzen, wenn ein bestimmtes
+Event aufgetreten ist. Jede \emph{Timeout}-Instanz erhält außerdem
+ein aufrufbares Objekt und eine Liste mit positionellen Argumenten.
+Beim timeout wird diese Methode mit den übergebenen Argumenten ausgeführt
+und das Attribut \emph{timed\_out} auf \emph{True} gesetzt. Bei den
+Argumenten ist zu beachten, dass \emph{args} standardmäßig auf None
+gesetzt wird, zur Laufzeit des Konstruktors allerdings mit einer leeren
+Liste ersetzt wird, wenn dieser Standardwert vorhanden ist. Dies hat
+den Hintergrund, dass es generell eine schlechte Idee ist, eine leere
+Liste als Standardwert festzulegen. Standardwerte werden nämlich nicht
+beim Aufrufen einer Methode  (oder Funktion oder Sonstigem), sondern
+sobald das zugehörige \emph{def }ausgeführt wird, evaluiert. Bei immutablen
+Datentypen ist dies kein Problem, bei mutablen allerdings wird so
+stets dieselbe Instanz intern verwendet, was dazu führt, dass eine
+Änderung der Daten in einem Funktionsaufruf alle anderen mit beeinflusst.
+
+Da die Klasse Timeout auf paralleler Programmierung basiert, sind
+hier einige Besonderheiten zu beachten. So wird auf \emph{timer} sowohl
+von außerhalb, über \emph{reset}, wie auch von innerhalb zugegriffen.
+Die Punkte, an denen diese Zugriffe stattfinden, bezeichnet man als
+\emph{Critical Sections}, hier kann es zu sog. \emph{Race Conditions}
+kommen\footnote{\cite[S. 565]{Python3}}. Dies ist der Fall, wenn
+ein Thread gerade auf die Variable zugreift (z.B. liest) und dann
+der andere Thread die Kontrolle erhält und die Variable überschreibt
+und führt dazu, dass der lesende Thread einen falschen Wert erhält.
+Um diesem Problem vorzubeugen existiert die Klasse \emph{Lock} des
+Moduls \emph{threading.} Mithilfe dieser lassen sich Stellen, die
+nicht parallel verarbeitet werden dürfen, abriegeln  (siehe Mutex).
+Dabei nimmt sich der Thread, welcher zuerst seine \emph{Critical Section}
+erreicht, den \emph{lock}, welcher als Kontext-Manager fungiert (intern
+werden die Methoden lock.acquire und lock.release aufgerufen) und
+führt den Code im \emph{with}-Block aus. Der andere Thread kann hierbei
+weiterlaufen bis er seine \emph{Critical Section} erreicht, erst dann
+wird er blockiert, bis er selbst den \emph{lock }akquirieren kann. 
+
+Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt,
+da der Overhead hier kleiner ist, es ist also weniger kostspielig
+einen neuen Thread zu öffnen. Außerdem ist der Datenaustausch zwischen
+Threads immens einfacher verglichen mit Prozessen. In unserem Fall
+können wir einfach Attribute der Klasse dafür benutzen; bei einem
+Prozess müsste hier auf Kommunikation mittels \emph{sockets}, Serialisierung
+mit \emph{pickle} oder temporäre Dateien zurückgegriffen werden (alternativ
+gibt es auch im Modul \emph{multiprocessing} eine Klasse für \emph{Atomic-Message
+Queues}).
+
+Abschließend ist als wichtiger Punkt zu nennen, dass es für simple
+Timer-Aufgaben die Klasse \emph{Timer} im Modul \emph{threading} gibt.
+Diese unterstützt jedoch weder Funktionsargumente noch das Zurücksetzen
+des Timers, er kann lediglich gänzlich abgebrochen werden. Außerdem
+bietet \emph{threading} weitere Klassen, welche in der Implementierung
+von Timer hätten genutzt werden können. So hätte man das Zurücksetzen
+beispielsweise mit einer \emph{Event}-Instanz lösen können. Da dies
+jedoch keinen weiteren Nutzen oder bessere Performance bringt wurde
+darauf verzichtet.
+
+\subsection{\emph{\label{subsec:Die-Klasse-TelephoneNumber}}Die Klasse \emph{TelephoneNumber}}
+
+Beim Ablegen einer Nutzereingabe in einer Datenbank ist es ratsam
+diese Eingabe in irgendeiner Art und Weise zu standardisieren, sodass
+bei einer anderen Eingabe die jedoch dieselben Informationen enthält,
+erkannt wird, dass der Nutzer dasselbe meint. Bei einer E-Mail-Adresse
+oder einem Namen z.B. ist das eine sehr einfache Aufgabe, so kann
+man hier einfach die übergebene Zeichenkette komplett in Kleinbuchstaben
+umwandeln. Bei einer Telefonnummer hingegen ist diese Standardisierung
+eine nontriviale Aufgabe, da ein Nutzer eine Telefonnummer beispielsweise
+mit Länderkennzahl, Vorwahl, Durchwahl oder auch einfach nur als lokale
+Nummer eingeben könnte. Daher wird die Nutzereingabe intern umformatiert
+und eventuell fehlende Angaben  (wie z.B. eine fehlende Länderkennzahl)
+extrapoliert, sodass jedesmal eine volle Nummer zur Verfügung steht.
+Sieht man sich die Norm DIN 5008 an, dann besteht eine vollständige
+Nummer aus Länderkennzahl  (country-code), Vorwahl  (area-code), Rufnummer
+ (subscriber number) und Nebenstellennummer bzw. Durchwahl  (extension)\footnote{\cite[22.12.18 - 18:02 Uhr]{Wiki_Rufnummer}}.
+Es gilt in der Nutzereingabe ein Muster zu erkennen, anhand dessen
+sich feststellen lässt, welche Teile der Nummer er angegeben hat und
+wie diese lauten. Hierbei handelt es sich um ein Paradebeispiel für
+Pattern-Recognition  (dt. Mustererkennung) mittels\emph{ regular expression}
+(dt. regulärer Ausdruck, kurz \emph{Regex}). Diese kann man in Python
+mit dem Modul \emph{re} der Standardbibliothek nutzen. Zunächst wird
+also ein Muster entwickelt, dass die einzelnen Teile erkennt. Der
+Muster-String ist:
+
+\medskip{}
+
+r\textquotedbl{} ( ( (\textbackslash +\textbackslash d\{1,3\})|
+(0)) ? ({[}1-9{]}+) )? (\textbackslash d+ ?)+ (-\textbackslash d+)?\textquotedbl{}
+
+\medskip{}
+
+Was zunächst wie eine Kette aus unzusammenhängenden Zeichen aussieht,
+symbolisiert alle syntaktischen Kombinationen die ein Nutzer zur Eingabe
+wählen kann, um dem System zu erlauben, die Telefonnummer korrekt
+zu erkennen. Der präfix \emph{r} vor dem String gibt an, dass es sich
+um einen raw-String handelt - ein String ohne standard Escape-Sequenzen
+wie \textbackslash n etc. also.
+
+Eine Regex ist über die runden Klammern in Gruppen unterteilt, die
+jeweils eine Aufgabe unternehmen. Zu Beginn werden also drei Gruppen
+eröffnet, diese sind mit der Reihenfolge ihrer öffnenden Klammer nach
+als erste, zweite und dritte Gruppe benannt. Gruppe 3 enthält damit
+erste Unterpattern. Hierarchisch dargestellt ließe sich die Regex
+so aufbauen  (Syntax in Anlehnung an XML):
+\begin{description}
+\item [{Pattern}]~
+\begin{description}
+\item [{Gruppe\_1}]~
+\begin{description}
+\item [{Gruppe\_2}]~
+\begin{description}
+\item [{Gruppe\_3}]~
+\begin{description}
+\item [{\textbackslash +}] steht für das Literal +
+\item [{\textbackslash d}] steht für eine beliebige Zahl zwischen 0 und
+9
+\item [{\{1,3\}}] steht dafür, dass der vorhergehende Ausdruck mindestens
+einmal und maximal 3 mal vorkommen darf
+\end{description}
+\item [{/Gruppe\_3}]~
+\item [{|}] stellt ein logisches ODER zwischen Gruppen oder Ausdrücken
+dar
+\item [{Gruppe\_4}]~
+\begin{description}
+\item [{0}] steht für das Literal 0
+\end{description}
+\item [{/Gruppe\_4}]~
+\end{description}
+\item [{/Gruppe\_2}]~
+\item [{Leerzeichen}] steht für den String `` ``, also ein einzelnes
+Leerzeichen
+\item [{?}] steht dafür, dass der vorhergehende Teil entweder 0- oder 1-mal,
+jedoch nicht öfter vorkommt; mit den bisherigen Gruppen lässt sich
+also feststellen, ob eine Eingabe mit Länderkennzahl oder eine Vorwahl
+mit beginnender 0 gewählt wurde oder keine von beidem vorhanden ist.
+Es kann auch sein, dass eine Leerstelle zwischen Länderkennzahl/ führender
+Null und dem Rest der Nummer steht
+\item [{Gruppe\_5}]~
+\begin{description}
+\item [{{[}1-9{]}}] steht für eine beliebige Zahl zwischen 1 und 9
+\item [{+}] steht dafür, dass der vorhergehende Ausdruck mindestens einmal,
+möglicherweise jedoch beliebig oft vorkommt
+\end{description}
+\item [{/Gruppe\_5}]~
+\item [{Leerzeichen}] steht für den String `` ``, also ein einzelnes
+Leerzeichen
+\end{description}
+\item [{/Gruppe\_1}]~
+\item [{?}] steht dafür, dass der vorhergehende Teil entweder 0- oder 1-mal,
+jedoch nicht öfter vorkommt; mit den bisherigen Gruppen lässt sich
+feststellen, ob eine Vorwahl angegeben wurde
+\item [{Gruppe\_6}]~
+\begin{description}
+\item [{\textbackslash d}] steht für eine beliebige Zahl zwischen 0 und
+9
+\item [{+}] steht dafür, dass der vorhergehende Ausdruck mindestens einmal,
+möglicherweise jedoch beliebig oft vorkommt
+\item [{Leerzeichen}] steht für den String `` ``, also ein einzelnes
+Leerzeichen
+\item [{?}] steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal,
+jedoch nicht öfter vorkommt
+\end{description}
+\item [{/Gruppe\_6}]~
+\item [{+}] steht dafür, dass der vorhergehende Ausdruck mindestens einmal,
+möglicherweise jedoch beliebig oft vorkommt; bisher lässt sich feststellen,
+ob eine Vorwahl gegeben wurde und ob eine Rufnummer vorhanden ist
+\item [{Gruppe\_7}]~
+\begin{description}
+\item [{-}] steht für das Literal -
+\item [{\textbackslash d}] steht für eine beliebige Zahl zwischen 0 und
+9
+\item [{+}] steht dafür, dass der vorhergehende Ausdruck mindestens einmal,
+möglicherweise jedoch beliebig oft vorkommt
+\end{description}
+\item [{/Gruppe\_7}]~
+\item [{?}] steht dafür dass der vorhergehende Teil entweder 0- oder 1-mal,
+jedoch nicht öfter vorkommt; Hiermit wird geprüft ob eine Durchwahl
+angegeben wurde
+\end{description}
+\item [{/Pattern}]~
+\end{description}
+Dieses Pattern ist als Klassenvariable der Klasse TelephoneNumber
+hinterlegt. Wird nun TelephoneNumber instanziiert, so wird über \emph{re.match}
+zunächst ermittelt ob im übergebenen String - also der Nutzereingabe
+- eine Telefonnummer ist, die auf das Pattern passt. Sofern dies nicht
+der Fall ist, wird ein Fehler geworfen. Andernfalls werden die einzelnen
+Gruppen ausgewertet und als Attribute der Instanz hinterlegt. So ist
+der Ländercode beispielsweise durch Gruppe 2 vertreten. Es wird überprüft,
+ob Gruppe zwei ein + enthält, wenn dies der Fall ist, wird der \emph{\_whitespacekiller}
+aufgerufen, eine statische Methode die alle Zeichen die keine Zahlen
+sind, aus der Kette entfernt  (hier kommt eine weitere Regex zum Einsatz,
+diese ist jedoch so trivial, dass auf eine Erklärung verzichtet wird).
+Sofern kein + vorhanden ist, wird direkt 049 zurückgegeben, da davon
+ausgegangen werden kann, dass es sich in diesem Fall um eine deutsche
+Nummer handelt. Ähnlichen Verfahren folgend werden dann die Gruppen
+5, 6 und 7 für Vorwahl, Rufnummer und Durchwahl ausgewertet.
+
+Desweiteren implementiert die Klasse die Magic Methods \emph{\_\_str\_\_
+}und \emph{\_\_format\_\_}, welche ermöglichen eine Instanz als String
+zu evaluieren. Hierbei wird die Telefonnummer als vollständige DIN
+5008-konforme Nummer zurückgegeben. Über \emph{\_\_format\_\_} ist
+es möglich, die Instanz direkt in f-Strings o.Ä. einzubinden und die
+bekannten Formatspecifier für Strings zu nutzen.
+
+Die Klasse besitzt außerdem eine von \emph{Warning} abgeleitete Klasse,
+die sie emmitiert, wenn sie keine Nummer finden kann.
+
+Durch diese ausgefeilte Implementierung des Telefonnummernextrahierens
+kann der Nutzer seine Telefonnummer, wenn er denn möchte, auch in
+einem Satz verpacken o.ä., sie sollte dennoch fehlerfrei erkannt werden.
+
+\newpage{}
+
+\section{PyQt5}
+
+Bei PyQt5 handelt es sich um ein GUI-Toolkit und Framework für Python.
+Grundsätzlich handelt es sich um einen Wrapper des Qt  (lies ``cute'',
+oftmals jedoch auch Q-T (englisch)) Frameworks für C++. Was Qt und
+PyQt seine Attraktivität, auch im professionellen, Bereich verleiht,
+ist vor allem, dass eine Qt-Anwendung grundsätzlich Cross-Platform
+ist und dabei auf allen Plattformen konsistent gut aussieht.
+
+\subsection{Darstellen der Verantwortlichkeiten als Baumstruktur}
+
+Aufgrund von guter Übersichtlichkeit haben wir uns dazu entschlossen
+die Verantwortlichkeiten als Baumstruktur darzustellen. PyQt5 stellt
+hierzu die Widgets QTreeView und QTreeWidget zur Verfügung, wobei
+QTreeView ein Model-View-Architektur- und QTreeWidget ein Item-basierendes
+Widget ist. Die MV-Architektur die PyQt über einige, teils abstrakte,
+Klassen bietet, ist dabei eine Variante der generell bekannten Model-View-Controller-Architektur,
+wobei der Controller mit dem View kombiniert wurde. Desweiteren wurde
+in PyQt der Delegate hinzugefügt, der managt, wie Daten im View gerendert
+werden und wie geänderte Daten der UI im Model abgelegt werden.
+
+Da im Fall von TUInventory nicht gewünscht ist, dass Daten direkt
+im Baum geändert werden können und die Darstellung der Daten nur an
+dieser Stelle erfolgt, musste aufgrund von Kosten-Nutzen-Aspekten
+vorerst die Item-basierte Variante des \emph{QTreeWidget} vorgezogen
+werden. Das Befüllen dieses Widgets erfolgt in der Methode \emph{set\_tree}
+der Klasse \emph{MainDialog}.
+
+Zu Beginn wird hier über den bereits erläuterten Session-Context-Manager
+eine neue Datenbank-Session geöffnet, in der wir nun alle \emph{Responsibilit}ies
+abfragen können. Über diese wird nun iteriert, wobei in jeder Iteration
+für Ort, Benutzer und Gerät jeweils zuerst ein \emph{QTreeWidgetItem}
+erzeugt wird. Dieses wird zum Einfügen in den Baum benötigt. Nun wird
+nach einem Siebprinzip nacheinander ermittelt, ob sich der Ort, Benutzer
+und das Gerät bereits im Baum befinden. Hierbei wird zuerst überprüft,
+ob sich im Wurzelverzeichnis \emph{root} des Baums die \emph{Location}
+der aktuellen \emph{Responsibility} befindet. Sofern dies nicht der
+Fall ist, wird die Location mit all ihren untergeordneten Elementen
+eingefügt. Falls sich die \emph{Location} bereits als sog. \emph{TopLevelItem}
+im Baum befindet, wird überprüft, ob sich unter dieser \emph{Location}
+bereits der \emph{User} der aktuellen \emph{Responsibility} befindet.
+Sofern dies nicht der Fall ist, wird der \emph{User} unter seiner
+\emph{Location} einsortiert und bekommt das aktuelle \emph{Device}
+als Unterelement zugewiesen. Sollte der \emph{User} bereits vorhanden
+sein, wird analog zur \emph{Location} weiterverfahren. Dieser Prozess
+ist im folgenden Struktogramm dargestellt:
+
+\begin{figure}[H]
+\begin{centering}
+\includegraphics[scale=0.75]{Bilder/Responsibility-Baum-Sieb-Struktorgramm}\caption{Struktogramm nach Nassi-Shneiderman zum Responsibility-Baum-Sieb }
+\par\end{centering}
+\end{figure}
+
+In diesem Teil des Programms werden oftmals Generator-Expressions
+und List-Comprehensions verwendet, daher sei im Folgenden kurz erläutert,
+wann man sich für welche entscheidet.
+
+Der folgende Programmausschnitt zeigt einen Ausschnitt der interaktiven
+Konsole.
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/Generator-Expression_vs_List-Comprehension.py}
+
+\caption{Gegenüberstellung Generator Expression und List Comprehension}
+\end{algorithm}
+
+Zu Beginn wird hier die Funktion \emph{getsizeof} des Moduls \emph{sys}
+der Standardlibrary importiert, die es erlaubt, die Größe einer Instanz
+in Bytes zu ermitteln. Nun wird zunächst über eine List-Comprehension
+eine Liste mit den Zahlen 0 bis 9 definiert. Anschließend werden dieselben
+Zahlen mit einer Generator-Expression hinterlegt. 
+
+Vergleicht man hier die Größe der beiden Instanzen, wird klar, dass
+die Generator-Expression wesentlich kleiner ist. Führt man nun einen
+Typvergleich der Instanzen durch, sieht man, dass es sich bei \emph{a}
+um eine Liste und bei \emph{b} um einen Generator handelt. Damit lässt
+sich auch einfach der geringere Speicher-Footprint erklären: Bei einer
+List-Comprehension erfolgt die Auswertung sofort und somit liegt die
+ganze Liste im Speicher. Bei der Generator-Expression hingegen wird
+erst zum Zeitpunkt der Auswertung die Methode \emph{\_\_next\_\_}
+der zugrundeliegenden Generatorinstanz aufgerufen, welche dann intern
+mittels \emph{yield} den nächsten Wert ausgibt.
+
+Jedoch kann man nicht immer Generatoren einsetzen, da diese einige
+entscheidende Nachteile haben. So ist es nicht möglich, mittels Index
+auf die Elemente eines Generators zuzugreifen. Außerdem ist ein Generator
+nach einer ``Benutzung'' ``aufgebraucht''. Dies kann man sehen,
+wenn man zweimal die Summen unserer beiden Instanzen addiert. Für
+die List-Comprehension wird hier korrekterweise 90 ausgegeben  ($\sum_{n=0}^{9} n = 45$),
+für die Generator-Expression jedoch nur 45, da sie beim zweiten Aufruf
+0 zurückgibt. Hierzu sollte noch gesagt werden, dass, wenn man einen
+Generator nicht über eine Generator-Expression, sondern manuell als
+Klasse/Funktion implementiert, dies teilweise umgangen werden kann.
+
+Mit diesem Wissen ist nun auch leicht erklärbar, wann welche der Strukturen
+eingesetzt wurde:
+\begin{itemize}
+\item Generator-Expression immer, wenn sichergestellt ist, dass die Instanz
+nur einmal iteriert werden muss.
+\item List-Comprehension immer dann, wenn die Instanz mehrfach iteriert
+oder subscribed (dt. abonniert - also die {[}Index{]}-Notation) werden
+muss
+\end{itemize}
+
+\subsection{Fazit}
+
+Es kann gesagt werden, dass PyQt (5) gegenüber anderen GUI-Paketen,
+wie z.B. tkinter aus der Python Standardbibliothek, klare Vorzüge
+hat. So ist der Code plattformunabhängig, die Bedienelemente sehen
+ansprechend aus und es ist einfach, auch größere Anwendungen noch
+gut zu strukturieren. Jedoch muss auch gesagt werden, dass PyQt5 teils
+nicht wirklich ``pythonic'' ist; so werden z.B. die Texte vieler
+Bedienelemente nicht über eine \emph{property}/Zuweisung sondern über
+eine \emph{setText}-Methode geändert. Da Qt eigentlich aus dem C++
+Bereich kommt, ist dies verständlich, hätte im Wrapper jedoch geändert
+werden sollen.
+
+\section{Optimierung}
+
+Nachdem das Backend vollständig implementiert und größtenteils verknüpft
+ist, wird nach potentiellen Optimierungsstellen gesucht. Hierzu wird
+das Modul \emph{cProfile} eingesetzt.
+
+\subsection{mouseMoveEvent}
+
+Beim Betrachten der Zeiten und Aufrufhäufigkeiten nach einer ,,Session``
+des Programms kann man z.B. sehen, dass sehr häufig das \emph{mouseMoveEvent}
+des Hauptfensters aufgerufen wird. Diese Aufrufhäufigkeit lässt sich
+nicht optimieren\footnote{Außer durch ein anderes Event, wie z.B. Überprüfung, ob der Nutzer
+noch aktiv die UI bedient und Elemente anklickt}, da das Event genutzt wird, um zu überprüfen, ob der Nutzer noch
+aktiv ist oder eventuell ausgeloggt werden sollte. Der Code, der dies
+übernimmt, ist sehr klein und nimmt auch nach einer mehrminütigen
+Session nur einige Millisekunden in Anspruch, dennoch wird hier eine
+Optimierung angestrebt.
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/Timeout-reset_1.py}
+
+\caption{Ursprünglicher Timeout reset}
+\end{algorithm}
+
+Es wird zu jedem \emph{mouseMoveEvent} überprüft, ob aktuell ein Timer
+aktiv ist. Wenn dies der Fall ist, wird er zurückgesetzt. Diese Überprüfung
+ist notwendig, da andernfalls eine Exception geworfen wird, wenn die
+Klasse aktuell keine Instanz besitzt, die über die Methode \emph{reset
+}verfügt. Außerdem ist ein Beispiel des Dictionaries einer \emph{MainDialog-Instanz}
+abgebildet, wie es zum Zeitpunkt eines \emph{mouseMoveEvents} aussehen
+könnte. Wie zu sehen ist, ist dieses Dictionary nicht unbedeutend
+klein  (ca. 100 Elemente) was jedoch kein Problem darstellt, da ein
+Dictionary-Lookup i.d.R. eine Zeitkomplexität von O(1)  (im worst
+case O(n), bei vielen Hash-Kollisionen etc.) besitzt. Dennoch gibt
+es hier eventuell eine effizientere Variante: die Funktion \emph{hasattr}.
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/Timeout-reset_2.py}
+
+\caption{Alternativer Timeout reset}
+\end{algorithm}
+
+Ein Blick in den Python Sourcecode zeigt, dass diese in C implementiert
+ist\footnote{https://github.com/python/cpython/blob/master/Python/bltinmodule.c},
+was einen Geschwindigkeitsschub in Aussicht stellt. Dies wird jedoch
+dadurch relativiert, dass auch Dictionaries in C implementiert sind\footnote{https://github.com/python/cpython/blob/master/Objects/dictobject.c}.
+
+Daher wird ein statistischer Versuch herangezogen, um zu sehen, ob
+eine Variante schneller ist als die andere:
+
+\begin{figure}[H]
+\centering{}\includegraphics[scale=0.4]{Bilder/hasattr_vs_dict-lookup_cropped}\caption{Vergleich von dict lookup und hasattr  (jeweiliger Durchschnitt der
+Versuchsreihe in Legende)}
+\end{figure}
+
+Da hier zu sehen ist, dass beide Varianten praktisch gleich sind,
+könnte man hier bereits eine Entscheidung treffen, es wird jedoch
+noch das letzte Werkzeug herangezogen, um die Varianten zu vergleichen:
+Bytecode
+
+Wie eingangs erwähnt wurde, ist Bytecode das Zwischenkompilat, welches
+tatsächlich vom Interpreter verwertet wird. Zugriff auf den Bytecode
+bekommt man entweder über das \emph{\_\_pycache\_\_} oder den \emph{\_\_code\_\_}
+Member.
+
+Das Modul \emph{dis} erlaubt es, diesen Bytecode in menschenlesbarer
+Form darzustellen.
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python,numbers=left]{Beispielprogramme/hasattr_vs_dict-lookup_2.py}
+
+\caption{Bytecode zu beiden Varianten erzeugen}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\lstinputlisting[language=Python]{Beispielprogramme/hasattr_vs_dict-lookup_2_output.py}
+
+\caption{Bytecode zu beiden Varianten}
+\end{algorithm}
+
+Bytecode liest sich wie folgt (Spalten von links nach rechts aufsteigend
+nummeriert)\footnote{\cite[24.12.18 - 20:27 Uhr]{dis}}:
+\begin{enumerate}
+\item Zeilennummer des Quellcodes
+\item Hier nicht vorhanden  (Aktuelle Anweisung beim schrittweisen Ausführen)
+\item Mögliches Sprungziel markiert mit >\textcompwordmark >
+\item Adresse der Anweisung
+\item Anweisungsname
+\item Anweisungsparameter
+\item Interpretation der Parameter in Klammern
+\end{enumerate}
+Um den Sprung in beiden Varianten direkt zu Anfang zu erklären: Wenn
+das \emph{if} als \emph{False} evaluiert, gibt die Funktion ein \emph{None}
+zurück.
+
+Ebenso können vorab die Zeilen 30 und 35 erklärt und gleichzeitig
+eine Einführung in Bytecode gegeben werden\footnote{Einige Aspekte sind hier zum besseren Verständnis vereinfacht dargestellt
+ (z.B. werden eigentlich \emph{frame}-Objekte auf die Stacks gelegt)}, da sie bei beiden gleich sind:
+\begin{itemize}
+\item Es wird zuerst die Globale \emph{a} auf den \emph{Evaluation-Stack}
+ (im Folgenden E-Stack)\emph{ }geladen.
+\item Anschließend wird das TOS (Top of Stack)-Element, also \emph{a}, mit
+der Anweisung \emph{getattr (TOS, co\_names{[}namei{]}) -> getattr
+(a, co\_names{[}timeout{]})} ersetzt.
+\item Dasselbe geschieht nun mit \emph{reset.}
+\item Nun liegt \emph{reset} oben auf dem E-Stack und wird mit 0 positionellen
+Argumenten aufgerufen, der Rückgabewert wird auf den E-Stack gepusht.
+\item Die folgende Anweisung gibt an, dass der Rückgabewert nicht weiter
+verwertet und somit verworfen wird.
+\item Die letzen beiden Zeilen sind die bereits erklärten Anweisungen des
+impliziten Funktions-return.
+\end{itemize}
+Die Abfolge für hasattr ist wie folgt  (Alle Ladeanweisungen erfolgen
+auf den E-Stack):
+\begin{itemize}
+\item Laden der Globalen \emph{hasattr}
+\item Laden der Globalen \emph{a}
+\item Laden der Konstante \emph{'timeout'}
+\item Aufruf einer Funktion mit zwei positionellen Argumenten, dies ist
+der Aufruf von \emph{hasattr} mit \emph{a} und \emph{'timeout'}
+\item Hier folgt der Sprung falls das TOS-Element \emph{False} ist.
+\end{itemize}
+Wohingegen die Abfolge für den \emph{dict-lookup} ist:
+\begin{itemize}
+\item Laden der Konstante \emph{'timeout'}
+\item Laden Globale \emph{a}
+\item Laden des Attributs \emph{\_\_dict\_\_} von \emph{a}
+\item Vergleichsoperation \emph{in} auf \emph{\_\_dict\_\_} und \emph{'timeout'}
+\item Hier folgt der Sprung falls das TOS-Element \emph{False} ist.
+\end{itemize}
+Der Unterschied besteht also darin, dass eimal eine Globale mehr geladen
+wird  (globale Lookups können kostspielige Operationen sein) und ein
+Funktionsaufruf  (generell auch eher kostspielig) stattfindet, wohingegen
+beim Anderen mal ein Attribut abgerufen wird und eine Vergleichsoperation
+stattfindet. Sieht man sich die Implementierung des Interpreters an\footnote{https://github.com/python/cpython/blob/master/Python/ceval.c, 24.12.18
+- 21:14 Uhr}, sieht man, dass beide Varianten mittels Branch-Prediction optimiert
+werden. In diesem konkreten Fall wird auch durch den Bytecode nicht
+klar, dass eine Variante generell schneller ist als eine andere  (was
+durch die Messung unterstützt wird).
+
+Schließlich kann hier keine Optimierung erfolgen, dennoch wird der
+Code dahingehend abgeändert, dass er \emph{hasattr} einsetzt, da dies
+die leichter zu lesende und somit schlicht bessere Variante ist.
+
+\newpage{}
+
+\bibliographystyle{alphadin}
+\bibliography{Literaturverzeichnis}
+
+\newpage{}
+
+
+\appendix
+
+\lstset{numbers=left, numberblanklines=true}
+
+\section{Quellcode}
+
+\subsection{barcodereader.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/barcodereader.py}
+\par\end{flushleft}
+
+\subsection{classes.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/classes.py}
+\par\end{flushleft}
+
+\subsection{keys.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/keys.py}
+\par\end{flushleft}
+
+\subsection{logger.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/logger.py}
+\par\end{flushleft}
+
+\subsection{main.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/main.py}
+\par\end{flushleft}
+
+\subsection{pydoc.sh}
+\begin{flushleft}
+\lstinputlisting[language=bash]{/home/sv-97/GitHub/TUInventory/TUInventory/pydoc.sh}
+\par\end{flushleft}
+
+\subsection{qr\_generator.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/qr_generator.py}
+\par\end{flushleft}
+
+\subsection{slots.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/slots.py}
+\par\end{flushleft}
+
+\subsection{ui.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/ui.py}
+\par\end{flushleft}
+
+\subsection{utils.py}
+\begin{flushleft}
+\lstinputlisting{/home/sv-97/GitHub/TUInventory/TUInventory/utils.py}
+\par\end{flushleft}
+
+\newpage{}
+
+\section{Automatisch generierte Dokumentation}
+
+Als .html auf beiliegendem USB-Stick, alternativ über pydoc.sh aus
+dem Quellcode zu generieren.
+\begin{lyxcode}
+\end{lyxcode}
+
+\end{document}
