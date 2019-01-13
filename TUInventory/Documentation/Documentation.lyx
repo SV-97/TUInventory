@@ -4117,13 +4117,6 @@ l
  aber ein längeres Passwort zu wählen.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
 \begin_layout Subsubsection
 Mathematische Betrachtung der Passwort-Generation
 \end_layout
@@ -4193,14 +4186,32 @@ frac {
 \backslash
 partial f}{
 \backslash
-partial k} = n^k 
+partial k} = 
+\backslash
+frac{
+\backslash
+partial}{
+\backslash
+partial k} e^{ln(n^k)} = 
+\backslash
+frac{
+\backslash
+partial}{
+\backslash
+partial k} e^{k 
+\backslash
+cdot ln(n)} = e^{k 
+\backslash
+cdot ln(n)} 
+\backslash
+cdot ln(n) = n^k 
 \backslash
 cdot ln (n)$$
 \end_layout
 
 \end_inset
 
- 
+
 \end_layout
 
 \begin_layout Standard
@@ -4452,14 +4463,55 @@ status open
 
 \begin_layout Plain Layout
 
+$$k 
+\backslash
+cdot n^{k-1} - n^k 
+\backslash
+cdot ln (n) = 0$$
+\end_layout
+
+\begin_layout Plain Layout
+
+$$n^k 
+\backslash
+cdot ln(n) = k 
+\backslash
+cdot n^{k-1}$$
+\end_layout
+
+\begin_layout Plain Layout
+
+$$
+\backslash
+frac{n^k}{n^{k-1}} 
+\backslash
+cdot ln(n) = k$$
+\end_layout
+
+\begin_layout Plain Layout
+
+$$n^{k-(k-1)} 
+\backslash
+cdot ln(n) = k$$
+\end_layout
+
+\begin_layout Plain Layout
+
+$$k = n 
+\backslash
+cdot ln(n)$$
+\end_layout
+
+\begin_layout Plain Layout
+
 $$k (n) = n 
 \backslash
-cdot ln (n),$$
+cdot ln (n)$$
 \end_layout
 
 \end_inset
 
- was ein einfacheres Überprüfen der Koordinaten zulässt.
+was ein einfacheres Überprüfen der Koordinaten zulässt.
 \end_layout
 
 \begin_layout Standard
