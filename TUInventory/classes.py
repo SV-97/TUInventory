@@ -359,6 +359,7 @@ class VideoStreamUISync(Thread):
     @staticmethod
     def _matrice_to_QPixmap(frame):
         """Convert cv2/numpy matrice to a Qt QPixmap"""
+        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         height, width, channel = frame.shape
         image = QImage(frame.data, width, height, 3 * width, QImage.Format_RGB888)
         return QPixmap(image)
