@@ -3493,7 +3493,7 @@ save_to_db
 er, beim späteren Pflegen des Programms, sich eventuell nur die Funktionsschnitt
 stelle ansieht und dabei übersieht, dass die Instanz direkt synchronisiert
  wird.
- Daher wurde im Zuge des Refactoring der 
+ Daher wurde, im Zuge des Refactoring, der 
 \emph on
 Function-Decorator synchronized
 \emph default
@@ -3593,17 +3593,17 @@ eter  (daher der Name kwargs, von keyword arguments).
 
 \begin_layout Standard
 Wird diese Funktion nun das erste Mal aufgerufen, nämlich wenn die dekorierte
- Funktion definiert wird, defaulted das 
+ Funktion definiert wird, fällt das 
 \emph on
 decorated
 \emph default
--Flag auf 
+-Flag auf seinen Standardwert 
 \emph on
 False
 \emph default
-, was zur Folge hat, dass der erste if-Block direkt betreten wird.
+ zurück, was zur Folge hat, dass der erste if-Block direkt betreten wird.
  In diesem wird nun die Funktion definiert, welche bei späterem Aufruf der
- Originalfunktion an Stelle dieser aufgerufen wird.
+ Originalfunktion, an Stelle dieser aufgerufen wird.
  Die Funktion 
 \emph on
 partial
@@ -3624,7 +3624,7 @@ vorbelegt
 
  werden.
  Hierbei sagen wir also, dass die zurückgegebene Funktion der Decorator
- selbst ist, welcher bei jedem Aufruf die dekorierte Funktion übergeben
+ selbst ist, welcher bei jedem Aufruf implizit die dekorierte Funktion übergeben
  bekommt.
  Desweiteren setzen wir das decorated-Flag auf True.
 \end_layout
@@ -3676,7 +3676,7 @@ erlebt
 \end_inset
 
 .
- Die dadurch erzeugte Instanz kann nun weiterverbeitet werden, bevor sie
+ Die dadurch erzeugte Instanz kann nun weiterverarbeitet werden, bevor sie
  an den ursprünglichen Funktionsaufruf zurückgegeben wird.
 \end_layout
 
