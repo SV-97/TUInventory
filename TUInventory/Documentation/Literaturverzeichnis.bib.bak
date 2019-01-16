@@ -143,4 +143,12 @@
   url       = {\detokenize{http://shop.oreilly.com/product/0636920040385.do}},
 }
 
+@Article{Decorators1,
+  author  = {H. Chase Stevens},
+  title   = {The decorators they won't tell you about},
+  journal = {GitHub},
+  year    = {2017},
+  url     = {\detokenize{https://github.com/hchasestevens/hchasestevens.github.io/blob/master/notebooks/the-decorators-they-wont-tell-you-about.ipynb}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}

@@ -3540,10 +3540,67 @@ Definition des Function-Decorators
 \end_layout
 
 \begin_layout Standard
+Dekoratoren sind Konstrukte der Metaprogrammierung, die aus dem Programmierparad
+igma der funktionalen Programmierung stammen.
+ Ihre Daten sind andere Funktionen, Klassen etc.
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "16.01.19 - 17:00 Uhr"
+key "Decorators1"
+literal "false"
+
+\end_inset
+
+ und 
+\begin_inset CommandInset citation
+LatexCommand cite
+after "16.01.19 - 17:04 Uhr"
+key "Decorators2"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
 Ein Function-Decorator ist so aufgebaut, dass er mit der @-Syntax, die ihm
- nachgestellte Funktion als ersten positionellen Parameter übergeben bekommt
- und diese mit seiner Rückgabe zum Definitionszeitpunkt der dekorierten
- Funktion redefiniert.
+ nachgestellte Funktion
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Hier sei gesagt, dass Function-Decorator auch auf anderen aufrufbare Objekten
+ arbeiten können und selbst durch verschiedene aufrufbare Objekte (
+\emph on
+callable
+\emph default
+ im Python Jargon) dargestellt werden können (z.B.
+ eine Klasse die 
+\emph on
+__call__
+\emph default
+ implementiert).
+ Außerdem müssen Dekoratoren nicht zwangsläufig Funktionen zurückgeben -
+ sie unterliegen keinerlei Einschränkungen im Bezug auf Parameter und Rückgabewe
+rten.
+ Jedoch sind sie in der Form Funktion-dekoriert-Funktion-und-gibt-Funktion-zurüc
+k am Häufigsten anzutreffen.
+\end_layout
+
+\end_inset
+
+ als ersten positionellen Parameter übergeben bekommt und diese mit seiner
+ Rückgabe zum Definitionszeitpunkt der dekorierten Funktion redefiniert.
  In der Schnittstelle gibt es außerdem noch 
 \emph on
 decorated
@@ -3678,6 +3735,51 @@ erlebt
 .
  Die dadurch erzeugte Instanz kann nun weiterverarbeitet werden, bevor sie
  an den ursprünglichen Funktionsaufruf zurückgegeben wird.
+\end_layout
+
+\begin_layout Standard
+Im Zuge des Refactoring wird auch diese Funktion überarbeitet.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/synchronized_new.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Definition des Function-Decorators
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Der Verzicht auf den rekursiven, partiell evaluierten Aufruf des Dekorators,
+ welcher durch die Definition einer Funktion im Funktionskörper des Dekorators
+ ersetzt wird, macht den Code wesentlich klarer.
+ Die grundsätzliche Funktionsweise, bleibt abseits dessen gleich.
 \end_layout
 
 \begin_layout Section

@@ -12,14 +12,13 @@ from logger import logger
 CSession = classes.setup_context_session(classes.engine)
 
 
-def synchronized(function, decorated=False, *args, **kwargs):
+def synchronized(function):
     """Function-decorator to automatically add the instance a function returns to DB"""
-    if not decorated:
-        return partial(synchronized, function, True)
-    else:
+    def synchronized_function(*args, **kwargs):
         instance = function(*args, **kwargs)
         save_to_db(instance)
         return instance
+    return synchronized_function
 
 
 def save_to_db(instance):
