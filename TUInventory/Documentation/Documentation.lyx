@@ -1471,7 +1471,21 @@ Funktionen und Methoden in Python
 
 \begin_layout Standard
 Eine Besonderheit Pythons ist, dass alles, sei es Klasse, Instanz oder Funktion,
- ein Objekt ist.
+ ein Objekt ist
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Selbst der Code welcher ausgeführt wird, ist ein, über den 
+\emph on
+__code__
+\emph default
+ Member erreichbares Objekt
+\end_layout
+
+\end_inset
+
+.
  Dies bringt eine extreme Flexibilität mit sich.
 \end_layout
 
@@ -3738,7 +3752,8 @@ erlebt
 \end_layout
 
 \begin_layout Standard
-Im Zuge des Refactoring wird auch diese Funktion überarbeitet.
+In einer weiteren Verbesserungsiteration konnte die Funktion immens vereinfacht
+ werden:
 \end_layout
 
 \begin_layout Standard
@@ -3779,7 +3794,7 @@ Definition des Function-Decorators
 Der Verzicht auf den rekursiven, partiell evaluierten Aufruf des Dekorators,
  welcher durch die Definition einer Funktion im Funktionskörper des Dekorators
  ersetzt wird, macht den Code wesentlich klarer.
- Die grundsätzliche Funktionsweise, bleibt abseits dessen gleich.
+ Die grundsätzliche Funktionsweise, bleibt abseits dessen jedoch gleich.
 \end_layout
 
 \begin_layout Section
