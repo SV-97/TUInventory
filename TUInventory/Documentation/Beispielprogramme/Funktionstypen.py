@@ -3,7 +3,7 @@ class MyClass():
         pass
 
     @classmethod
-    def my_classmethod(this):
+    def my_classmethod(cls):
         pass
 
     @staticmethod
