@@ -134,20 +134,10 @@ von Stefan Volz & Yannis Köhler
 \end_layout
 
 \begin_layout Standard
+\align center
 \begin_inset Graphics
 	filename Bilder/Logo.png
 	scale 60
-
-\end_inset
-
-
-\begin_inset space \quad{}
-\end_inset
-
-
-\begin_inset Graphics
-	filename Bilder/TUI_Logo.png
-	scale 70
 
 \end_inset
 
@@ -1378,6 +1368,245 @@ Thread-Safe
 \end_layout
 
 \begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Einführung und Problemanalyse
+\end_layout
+
+\begin_layout Standard
+Um ein flüssiges Arbeiten mit dem Testraum zu gewährleisten, ist ein Inventarsys
+tem erforderlich.
+ Dieses System ist grundsätzlich aus drei Teilen aufgebaut:
+\end_layout
+
+\begin_layout Enumerate
+Ein Codierungssystem zum eindeutigen Markieren von Geräten
+\end_layout
+
+\begin_layout Enumerate
+Eine grafische Desktopanwendung, über die Geräte, bzw.
+ eine Datenbank verwaltet werden können
+\end_layout
+
+\begin_layout Enumerate
+Eine Kommandozeilen-Schnittstelle um spezielle Funktionen extern verfügbar
+ zu machen
+\end_layout
+
+\begin_layout Subsection
+Codierungssystem
+\end_layout
+
+\begin_layout Standard
+An das Codierungssystem werden folgende Anforderungen gestellt:
+\end_layout
+
+\begin_layout Itemize
+Problemlos an einer Vielzahl von Geräten zu befestigen (keine komplexe Befestigu
+ng wie z.B.
+ NFC-Tag)
+\end_layout
+
+\begin_layout Itemize
+Nicht-properitäres System, um auch von anderen Geräten/Anwendungen verwertet
+ werden zu können
+\end_layout
+
+\begin_layout Itemize
+Einfache Auswertung und Codierung von selbst definierten Daten
+\end_layout
+
+\begin_layout Standard
+Generell gibt es einige Möglichkeiten zur Codierung, welche mehr oder weniger
+ gut für diesen Use Case geeignet sind:
+\end_layout
+
+\begin_layout Description
+RFID Eher unpraktisch in Sachen nachträglicher Anbringung an beliebigen
+ Geräten.
+\end_layout
+
+\begin_layout Description
+EAN-Code EAN-Codes sind auf vielen Geräten bereits vorhanden, was sie zu
+ einer attraktiven Wahl macht.
+ Diese bereits vorhandenen Codes sind jedoch nicht für jedes Gerät eindeutig.
+ Tatsächlich sind sie eher hinderlich, da beim Anbringen eines eigenen Codes
+ Verwechslungsgefahr besteht.
+\end_layout
+
+\begin_layout Description
+QR-Code QR-Codes sind sehr uneingeschränkt in Sachen Anbringung, können
+ beliebige Daten halten und da sie optisch ausgewertet werden können, kann
+ man sie mit jedem modernen Gerät wie einem Smartphone oder einem PC mit
+ Kamera einfach auswerten.
+\end_layout
+
+\begin_layout Standard
+Die Wahl fiel daher auf QR-Codes.
+\end_layout
+
+\begin_layout Subsection
+Desktopanwendung und Kommandozeilen-Schnittstelle
+\end_layout
+
+\begin_layout Standard
+Bei der Umsetzung der Desktopanwendung und der Kommandozeilen-Schnittstelle,
+ die letzen Endes auf dem selben Softwarestack aufbauen sollen, stellt sich
+ nach einigen grundlegenden Überlegungen die Frage der gewählten Programmierspra
+che.
+\end_layout
+
+\begin_layout Standard
+Einige Anforderungen sind:
+\end_layout
+
+\begin_layout Itemize
+Lauffähigkeit auf mehrere Plattformen
+\end_layout
+
+\begin_layout Itemize
+Wartung/Weiterentwicklung durch Padcon möglich
+\end_layout
+
+\begin_layout Standard
+Hierbei gab es grundsätzlich drei Sprachen, die ernsthaft Betracht gezogen
+ wurden (entweder für das ganze Projekt oder um einzelne Funktionalität
+ zu implementieren):
+\end_layout
+
+\begin_layout Description
+Java Da die Kraftwerksüberwachungssoftware größtenteils in Java geschrieben
+ ist und dementsprechend viele Java-Programmierer bei Padcon zur Verfügung
+ stehen, wäre Java eine attraktive Sprache.
+ Auch die C#-ähnliche Syntax spricht dafür.
+\end_layout
+
+\begin_layout Description
+C# Da C# bereits aus der Techniker-Ausbildung bekannt ist, wäre es eine
+ denkbare Lösung.
+ Jedoch ist C# immernoch nur bedingt Cross-Plattform
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Mit dem Mono-Framework besteht grundsätzlich die Möglichkeit, C# Anwendungen
+ für Linux zu entwickeln
+\end_layout
+
+\end_inset
+
+.
+ Eine weiterentwicklung durch Padcon ist bedingt möglich, so ist grundlegende
+ Syntax von C# ähnlich der von Java.
+\end_layout
+
+\begin_layout Description
+Python Python ist eine grundlegend andere Sprache als Java und C#
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Mehr dazu im Kapitel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Python-3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ und attraktiv, da es eine sehr schnelle Entwicklung ermöglicht.
+ Desweiteren ist es bei praktisch allen Linux Distributionen vorinstalliert
+ und bietet eine Vielzahl an Möglichkeiten um plattformübergreifende Anwendungen
+ zu entwickeln.
+\end_layout
+
+\begin_layout Standard
+Java wurde schnell verworfen, da es im Zeitraum des Projektes unrealistisch
+ ist, die Anwendung in Java zu entwickeln und dabei idiomatischen, guten
+ Code zu produzieren.
+ C# wurde ebenfalls für ungeeignet befunden, da mit Problemen mit Linux
+ gerechnet wurde.
+ Außerdem liegt auch bei C#, ein eher langsamer Entwicklungsprozess vor.
+ Der Vorteil der besseren Performance von C# und Java gegenüber CPython
+ (der Standartimplementierung von Python, andere Implementierungen bieten
+ vergleichbare Performance zu C#), ist hier eher irrelevant da die Anwendung
+ aufgrund der grafischen Oberfläche ohnehin die meiste Zeit 
+\begin_inset Quotes gld
+\end_inset
+
+idle
+\begin_inset Quotes grd
+\end_inset
+
+ ist
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Sicher wäre die Implementierung auch mit C++, Rust oder einer Vielzahl anderer
+ Sprachen möglich gewesen, jedoch liegen in den meisten Fällen die gleichen
+ 
+\begin_inset Quotes gld
+\end_inset
+
+Probleme
+\begin_inset Quotes gld
+\end_inset
+
+ wie bei C# und Java vor: es würde sich einfach nicht lohnen eine performantere
+ Sprache auf Kosten der Entwicklungszeit zu nutzen.
+ Sollte zu einem späteren Zeitpunkt eine Erweiterung nötig sein, bei der
+ sich herausstellt, dass die Geschwindigkeit von Python ein Flaschenhals
+ ist, so lässt sich dieses performancekritische Modul in einer maschinennahen
+ Sprache wie C oder Rust entwickeln und problemlos einbinden (oder man nutzt
+ eine der alternativen Python Implementierungen welche in Kapitel 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Python-3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ erläutert werden).
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Python bietet desweiteren exzellente Interoperabilität mit C und kann auf
+ viele große Frameworks aus den Bereichen C/C++ zurückgreifen (z.B.
+ Qt und OpenCV).
+ Der Pflege der Software durch Padcon steht auch bei Python nichts im Wege,
+ da,
+\end_layout
+
+\begin_layout Enumerate
+sich der Code größtenteils wie Pseudocode oder ein englischer Satz liest.
+\end_layout
+
+\begin_layout Enumerate
+die Auszubildenen ohnehin Python lernen sollen.
+\end_layout
+
+\begin_layout Standard
+Aufgrund dieser Punkte fiel die Wahl der Sprache auf Python.
 \begin_inset Newpage newpage
 \end_inset
 
@@ -4584,7 +4813,9 @@ $$k
 \backslash
 cdot n^{k-1} - n^k 
 \backslash
-cdot ln (n) = 0$$
+cdot ln (n) = 0$$ mit Subtraktion von $n^k 
+\backslash
+cdot ln (n)$ folgt
 \end_layout
 
 \begin_layout Plain Layout
@@ -4593,7 +4824,7 @@ $$n^k
 \backslash
 cdot ln(n) = k 
 \backslash
-cdot n^{k-1}$$
+cdot n^{k-1}$$ Division durch $n^{k-1}$ liefert
 \end_layout
 
 \begin_layout Plain Layout
@@ -4602,7 +4833,7 @@ $$
 \backslash
 frac{n^k}{n^{k-1}} 
 \backslash
-cdot ln(n) = k$$
+cdot ln(n) = k$$ 
 \end_layout
 
 \begin_layout Plain Layout
@@ -4616,7 +4847,7 @@ cdot ln(n) = k$$
 
 $$k = n 
 \backslash
-cdot ln(n)$$
+cdot ln(n)$$ Was letztendlich unser Ergebnis darstellt
 \end_layout
 
 \begin_layout Plain Layout
@@ -4628,7 +4859,7 @@ cdot ln (n)$$
 
 \end_inset
 
-was ein einfacheres Überprüfen der Koordinaten zulässt.
+, was ein einfacheres Überprüfen der Koordinaten zulässt.
 \end_layout
 
 \begin_layout Standard
