@@ -24,13 +24,13 @@ class _ParallelPrint(Thread):
     @classmethod
     def run(cls):
         while True:
-            val = this.print_.get()
+            val = cls.print_.get()
             print(val)
-            this.print_.task_done()
+            cls.print_.task_done()
 
     @classmethod
     def __call__(cls):
-        raise ResourceWarning(f"{this.__class__} should only be instantiated once!")
+        raise ResourceWarning(f"{cls.__class__} should only be instantiated once!")
 
 
 _ParallelPrint = _ParallelPrint()
