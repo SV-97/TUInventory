@@ -1500,8 +1500,8 @@ Mit dem Mono-Framework besteht grundsätzlich die Möglichkeit, C# Anwendungen
 
 \end_inset
 
-.
- Eine weiterentwicklung durch Padcon ist bedingt möglich, so ist grundlegende
+ fähig.
+ Eine Weiterentwicklung durch Padcon ist bedingt möglich, so ist grundlegende
  Syntax von C# ähnlich der von Java.
 \end_layout
 
@@ -1602,7 +1602,8 @@ sich der Code größtenteils wie Pseudocode oder ein englischer Satz liest.
 \end_layout
 
 \begin_layout Enumerate
-die Auszubildenen ohnehin Python lernen sollen.
+die Auszubildenen im Bereich Anwendungsentwicklung in Zukunft auch Python
+ lernen.
 \end_layout
 
 \begin_layout Standard
