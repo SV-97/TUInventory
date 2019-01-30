@@ -3,7 +3,7 @@
 import sys
 
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
+from PyQt5.QtGui import QColor, QFont, QIcon, QPainter, QPen
 from PyQt5.QtCore import Qt
 
 import classes
@@ -14,10 +14,10 @@ from utils import absolute_path, parallel_print
 CSession = classes.setup_context_session(classes.engine)
 
 
-class MainDialog(QtWidgets.QDialog):
+class MainDialog(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
-        path = absolute_path("main_horizontal.ui")
+        path = absolute_path("mainScaling.ui")
         super().__init__(parent)
         self.ui = uic.loadUi(path, self)
         self.logged_in_user = None
@@ -33,14 +33,12 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
         self.ui.b_tab_4.clicked.connect(self.b_tab_4_click)
         self.ui.b_tab_5.clicked.connect(self.b_tab_5_click)
-        self.ui.b_tui_bottom.clicked.connect(self.b_tui_bottom_click)
 
     #*# set Colors
         self.setAutoFillBackground(True)                    # background / white
         p = self.palette()
         p.setColor(self.backgroundRole(), Qt.white)
         self.setPalette(p)
-
 
         palette1 = self.line_1.palette()                    # tab 1 / blue
         role1 = self.line_1.backgroundRole()
@@ -72,30 +70,11 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.setPalette(palette5)
         self.ui.line_5.setAutoFillBackground(True)
 
-        palette6 = self.line_6.palette()                    # line_bottom / blue
-        role6 = self.line_6.backgroundRole()
-        palette6.setColor(role6, QColor('blue'))
-        self.ui.line_6.setPalette(palette6)
-        self.ui.line_6.setAutoFillBackground(True)
-
         #palette7 = self.line_7.palette()                   # line_top / blue
         #role7 = self.line_7.backgroundRole()
         #palette7.setColor(role7, QColor('blue'))
         #self.ui.line_7.setPalette(palette7)
         #self.ui.line_7.setAutoFillBackground(True)
-
-        palette8 = self.b_tui_bottom.palette()              # button_bottom / blue
-        role8 = self.b_tui_bottom.backgroundRole()
-        palette8.setColor(role8, QColor('blue'))
-        self.ui.b_tui_bottom.setPalette(palette8)
-        self.ui.b_tui_bottom.setAutoFillBackground(True)
-
-        #palette9 = self.b_home_1.palette()                 # ist noch hässlich, muss überarbeitet werden
-        #role9 = self.b_home_1.backgroundRole()
-        #palette9.setColor(role9, QColor('blue'))
-        #self.ui.b_home_1.setPalette(palette9)
-        #self.ui.b_home_1.setAutoFillBackground(True)
-        #self.b_home_1.setStyleSheet("color: white")
     #/#
 
 
@@ -108,14 +87,6 @@ class MainDialog(QtWidgets.QDialog):
         self.ui.line_5.hide()
 
     def b_home_1_click(self):                       # home
-        self.ui.stackedWidget.setCurrentIndex(0)
-        self.ui.line_1.show()
-        self.ui.line_2.hide()
-        self.ui.line_3.hide()
-        self.ui.line_4.hide()
-        self.ui.line_5.hide()
-
-    def b_tui_bottom_click(self):                       # home
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
@@ -206,7 +177,11 @@ class MainDialog(QtWidgets.QDialog):
 
     def timed_out(self):
         logger.info(f"User {self.logged_in_user.uid} logged out due to inactivity")
-        self.b_user_logout_click()
+        self.b_user_logout_click()   
+
+        #self.statusBar().setStyleSheet("color: #ff0000")   
+        #self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 2000)
+
         """Crashes on windows for some reason, known Qt issue
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
@@ -218,7 +193,11 @@ class MainDialog(QtWidgets.QDialog):
     def update_user_dependant(self):
         if self.logged_in_user:
             self.ui.log_in_out.setCurrentIndex(0)
-            self.label.setText(str(self.logged_in_user).title())
+            self.label.setText(str(self.logged_in_user).title()) 
+
+            self.statusBar().setStyleSheet("color: #008080")
+            self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user.name} {self.logged_in_user.surname} angemeldet.", 1500)
+
             if self.logged_in_user.is_admin:
                 self.checkBox.visible = True
             else:
