@@ -30,12 +30,12 @@ def main():
 
     dialog_main.show()
 
-    sys.exit(app.exec_())
+    return app.exec_()
 
 
 if __name__ == "__main__":
-    """# Profiling via terminal
+    # Profiling via terminal
     import cProfile
     cProfile.run("main()", sort="time")
-    """
-    main()
+    
+    #sys.exit(main())
