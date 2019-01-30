@@ -130,7 +130,8 @@ class PhoneNumber(Base):
                 probably not possible due to precision limitations of system-locale
     """
     __tablename__ = "phone_numbers"
-    user_uid = Column(Integer, sqlalchemy.ForeignKey("users.uid"), primary_key=True)
+    uid = Column(Integer, primary_key=True)
+    user_uid = Column(Integer, sqlalchemy.ForeignKey("users.uid"))
     raw_string = Column(String)
     country_code = Column(String)
     area_code = Column(String)
