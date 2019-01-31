@@ -17,6 +17,7 @@ from utils import absolute_path
 def main():
     app = QtWidgets.QApplication(sys.argv)
     dialog_main = ui.MainDialog()
+    dialog_main.show()
     
     try:
         videostream = LazyVideoStream()
@@ -27,8 +28,6 @@ def main():
         logger.info("Connected Camera to UI")
     except IOError as e:
         logger.error(str(e))
-
-    dialog_main.show()
 
     return app.exec_()
 
