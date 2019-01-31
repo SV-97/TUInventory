@@ -3,7 +3,7 @@
 import sys
 
 from PyQt5 import uic, QtWidgets
-from PyQt5.QtGui import QColor, QFont, QIcon, QPainter, QPen
+from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
 from PyQt5.QtCore import Qt
 
 import classes
@@ -22,6 +22,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui = uic.loadUi(path, self)
         self.logged_in_user = None
         self.set_tree()
+        
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
@@ -166,10 +167,12 @@ class MainDialog(QtWidgets.QMainWindow):
         self.update_user_dependant()
         if self.logged_in_user:
             logger.info(f"Logged in as {self.logged_in_user}")
-            self.timeout = classes.Timeout(5, self.timed_out)
+            self.timeout = classes.Timeout(5, lambda signal: signal.emit(True), (self.ui.b_user_logout.clicked,))
             self.timeout.start()
 
-    def b_user_logout_click(self):
+    def b_user_logout_click(self, timed_out=False):
+        if timed_out:
+            self.timed_out()
         self.logged_in_user = None # may want slots.logout if that does something eventually
         self.update_user_dependant()
         self.timeout.function = None
@@ -177,18 +180,16 @@ class MainDialog(QtWidgets.QMainWindow):
 
     def timed_out(self):
         logger.info(f"User {self.logged_in_user.uid} logged out due to inactivity")
-        self.b_user_logout_click()   
 
-        #self.statusBar().setStyleSheet("color: #ff0000")   
-        #self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 2000)
+        self.statusBar().setStyleSheet("color: #ff0000")   
+        self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 2000)
 
-        """Crashes on windows for some reason, known Qt issue
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
         messagebox.setWindowTitle("Automatisch ausgeloggt")
         messagebox.setText("Sie wurden wegen Inaktivität automatisch ausgeloggt!")
         messagebox.setStandardButtons(QtWidgets.QMessageBox.Ok)
-        messagebox.exec_()"""
+        messagebox.exec_()
 
     def update_user_dependant(self):
         if self.logged_in_user:
@@ -196,7 +197,7 @@ class MainDialog(QtWidgets.QMainWindow):
             self.label.setText(str(self.logged_in_user).title()) 
 
             self.statusBar().setStyleSheet("color: #008080")
-            self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user.name} {self.logged_in_user.surname} angemeldet.", 1500)
+            self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user} angemeldet.", 1500)
 
             if self.logged_in_user.is_admin:
                 self.checkBox.visible = True
