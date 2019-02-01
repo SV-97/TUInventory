@@ -5135,6 +5135,65 @@ ausgeführt wird, evaluiert.
  Bei immutablen Datentypen ist dies kein Problem, bei mutablen allerdings
  wird so stets dieselbe Instanz intern verwendet, was dazu führt, dass eine
  Änderung der Daten in einem Funktionsaufruf alle anderen mit beeinflusst.
+ Des Weiteren ist hier der Vergleich auf 
+\emph on
+None
+\emph default
+ zu beachten.
+ 
+\emph on
+None
+\emph default
+ ist in Python ein Singleton, das stets mit 
+\emph on
+is anstatt mit 
+\emph default
+== verglichen werden sollte.
+ In einer späteren Revision wurde die Klasse dahingehend abgeändert, dass
+ sie auch Keyword-Arguments unterstützt.
+\end_layout
+
+\begin_layout Standard
+Die Funktion die ausgeführt wird, ist eine sog.
+ 
+\emph on
+Lambda Funktion/Lambda Expression
+\emph default
+.
+ Lambda Expressions sind anonyme Funktionen, die vorwiegend eingesetzt werden
+ wenn sich der Umfang einer Funktion zu gering ist um eine Funktionsdefinition
+ mit 
+\emph on
+def
+\emph default
+ zu rechtfertigen oder die Funkionsdefinition 
+\emph on
+inline
+\emph default
+ geschehen soll.
+ Die eingesetzte Funktion, ist eine Funktion, welche ein 
+\emph on
+Signal
+\emph default
+ übergeben bekommt und dieses mit dem Parameter 
+\emph on
+True
+\emph default
+ emittiert.
+ Dieses Signal ist ein Qt-Signal, welches soz.
+ von einem 
+\emph on
+Slot
+\emph default
+ der UI abgefangen wird.
+ Ein direkter Aufruf einer Methode der UI ist nicht möglich, da Qt nicht
+ 
+\emph on
+threadsafe
+\emph default
+ aufgebaut ist.
+ Das Prinzip der Slots und Signale wird im Abschnitt über PyQt näher erläutert.
+ 
 \end_layout
 
 \begin_layout Standard
