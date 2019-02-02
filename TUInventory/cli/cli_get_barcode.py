@@ -34,6 +34,9 @@ if not path:
 try:
     image = imread(path)
     barcodes = pyzbar.decode(image)
+    if not barcodes:
+        stderr.write("Couldn't find any barcodes\n")
+        exit(1)
 except TypeError as e:
     if enable_tracebacks:
         raise e
