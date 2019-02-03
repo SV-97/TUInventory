@@ -1,4 +1,4 @@
-from functools import partial
+from functools import wraps
 from secrets import choice, compare_digest
 from string import ascii_letters, digits
 
@@ -14,6 +14,7 @@ CSession = classes.setup_context_session(classes.engine)
 
 def synchronized(function):
     """Function-decorator to automatically add the instance a function returns to DB"""
+    @wraps(function)
     def synchronized_function(*args, **kwargs):
         instance = function(*args, **kwargs)
         save_to_db(instance)
