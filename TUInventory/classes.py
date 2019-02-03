@@ -292,6 +292,7 @@ class Timeout(Thread):
             timeout: time in seconds afters which the timer times out
             function: function to be executed once time runs out
             args: arguments for function
+            kwargs: keyword arguments for function
             lock: mutex for various attributes
             timed_out: boolean presenting wether the timer timed out
             last_interaction_timestamp: unix timestamp of last refresh/initialization
@@ -300,13 +301,12 @@ class Timeout(Thread):
             timer: Shows the time remaining until timeout
     """
 
-    def __init__(self, timeout, function, args=None):
+    def __init__(self, timeout, function, *args, **kwargs):
         super().__init__()
-        if args is None:
-            args = []
         self.timeout = timeout
         self.function = function
         self.args = args
+        self.kwargs = kwargs
         self.lock = Lock()
         self.timed_out = False
         self.reset()
@@ -334,7 +334,7 @@ class Timeout(Thread):
                 self.is_reset = False           
             else:
                 self.timed_out = True
-                self.function(*self.args)
+                self.function(*self.args, **self.kwargs)
                 return
             difference_to_timeout = self.timeout - (time() - self.last_interaction_timestamp)
         sleep(difference_to_timeout)
