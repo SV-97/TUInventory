@@ -62,15 +62,26 @@ def setup_context_session(engine):
     class ContextSession():
         _engine = engine
         _Session = orm.sessionmaker(bind=engine)
+
+        def _add(self, instance):
+            self.session.instances.append(instance)
+            self.session._add(instance)
+
         def __enter__(self):
             self.session = self._Session()
+            self.session.instances = []
+            self.session._add = self.session.add
+            self.session.add = self._add
             return self.session
+
         def __exit__(self, exc_type, exc_value, traceback):
             if exc_value or exc_type or traceback:
                 self.session.rollback()
                 return False
             else:
                 self.session.commit()
+                [self.session.refresh(instance) for instance in self.session.instances]
+                self.session.expunge_all()
                 self.session.close()
                 return True
     return ContextSession
@@ -106,8 +117,8 @@ class Device(Base):
     __tablename__ = "devices"
     uid = Column(Integer, primary_key=True)
     article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
-    name = Column(String) # not currently used
     code = Column(String)
+    #name = Column(String) # not currently used
     #location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
     responsibilities = orm.relationship("Responsibility", backref="device")
     def __init__(self, code=None, uid=None):
