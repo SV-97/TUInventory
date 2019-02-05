@@ -234,7 +234,15 @@ class User(Base):
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
     location = orm.relationship("Location", backref=orm.backref("users", uselist=False))
     responsibilities = orm.relationship("Responsibility", backref="user")
-    phonenumber = orm.relationship("PhoneNumber", backref="user", uselist=False)
+    phonenumber = orm.relationship(
+        "PhoneNumber", 
+        backref=orm.backref(
+            "user", 
+            cascade="all, delete-orphan", 
+            single_parent=True), 
+        uselist=False, 
+        lazy="immediate")
+
     def __init__(self, e_mail, password, name="", surname="", phonenumber="", uid=None, salt=None):
         self.uid = uid
         self.e_mail = e_mail.lower()
