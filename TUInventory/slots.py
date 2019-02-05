@@ -17,14 +17,16 @@ def synchronized(function):
     @wraps(function)
     def synchronized_function(*args, **kwargs):
         instance = function(*args, **kwargs)
-        save_to_db(instance)
+        try:
+            save_to_db(instance)
+        except sqlalchemy.exc.IntegrityError:
+            ... # UID already in DB, do something here
         return instance
     return synchronized_function
 
 
 def save_to_db(instance):
     """Save instance to it's corresponding table
-    Needs testing: May need to expunge instance after commit
     ToDo: Error handling if uid already exists
     """
     with CSession() as session:
