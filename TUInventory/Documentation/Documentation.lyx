@@ -2929,6 +2929,14 @@ literal "false"
 
 \end_layout
 
+\begin_layout Subsection
+
+\emph on
+ContextSession
+\emph default
+s
+\end_layout
+
 \begin_layout Standard
 Dies und der Fakt, dass eine Session stets ordnungsgemäß initialisiert und
  deinitialisiert werden muss, führt uns daher ein weiteres Mal zu einem
@@ -2972,6 +2980,62 @@ commit
 autocommit
 \emph default
  eingestellt ist.
+ 
+\end_layout
+
+\begin_layout Standard
+Der Aufbau der Fabrikmethode ist in soweit non-trivial, dass in ihr eine
+ Klasse definiert wird in der widerrum weitere Klassen definiert werden,
+ welche mitunter voneinander erben.
+ Dieses vielleicht überkompliziert anmutende Konstrukt, ist eigentlich nicht
+ nötig, stellt aber eine sehr elegante Lösung dar und ist tatsächlich sehr
+ einfach erklärt.
+ Die erste innere Klasse wurde bereits erläutert und ist die, welche von
+ der Funktion schließlich zurückgegeben wird.
+ In dieser wird über den 
+\emph on
+sessionmaker
+\emph default
+ von SQLAlchemy eine Klasse 
+\emph on
+_Session
+\emph default
+ erzeugt - auf Instanzen dieser können bereits Datenbankoperationen durchgeführt
+ werden, i.d.R.
+ wird das bei SQLAlchemy auch so gemacht.
+ Wir hingegen erben nun von dieser Klasse.
+ Im Konstruktor der abgeleiteten Klasse delegieren wir die tatsächliche
+ Initialisierung zum Konstruktor der Grundklasse und hinterlegen eine leere
+ Liste, welche uns später als Cache dient.
+ Desweiteren redefinieren wir die Methode 
+\emph on
+add
+\emph default
+ der Grundklasse
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Tatsächlich werden dem gleichen Prinzip folgend, weitere Methoden redefiniert
+\end_layout
+
+\end_inset
+
+, in ihr wird nun jede übergebene Instanz zum vorher angelegten Cache hinzugefüg
+t und anschließend der Funktionsaufruf wieder an die Basisklasse delegiert.
+ Dieses Cache ermöglicht es der Session sobald ihr Kontext verlassen wird,
+ alle hinzugefügten Instanzen zu 
+\begin_inset Quotes gld
+\end_inset
+
+refreshen
+\begin_inset Quotes grd
+\end_inset
+
+.
+ Hierbei wird die Instanz mit der Datenbank synchronisiert - die meisten
+ Objekte erhalten hier ihre UID von der Datenbank.
+ 
 \end_layout
 
 \begin_layout Subsubsection
