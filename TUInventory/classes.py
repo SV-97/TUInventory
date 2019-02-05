@@ -63,15 +63,21 @@ def setup_context_session(engine):
         _engine = engine
         _Session = orm.sessionmaker(bind=engine)
 
-        def _add(self, instance):
-            self.session.instances.append(instance)
-            self.session._add(instance)
+        class _StateKeepingSession(_Session):
+            def __init__(self):
+                super().__init__()
+                self.instances = []
+
+            def add(self, instance, *args):
+                self.instances.append(instance)
+                super().add(instance, *args)
+
+            def add_all(self, instances):
+                self.instances += instances
+                super().add_all(instances)
 
         def __enter__(self):
-            self.session = self._Session()
-            self.session.instances = []
-            self.session._add = self.session.add
-            self.session.add = self._add
+            self.session = self._StateKeepingSession()
             return self.session
 
         def __exit__(self, exc_type, exc_value, traceback):
