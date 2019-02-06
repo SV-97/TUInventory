@@ -82,7 +82,7 @@ def setup_context_session(engine):
         def __exit__(self, exc_type, exc_value, traceback):
             if exc_value or exc_type or traceback:
                 self.session.rollback()
-                return False
+                return False # propagate exceptions upwards
             else:
                 self.session.commit()
                 [self.session.refresh(instance) for instance in self.session.instances]
@@ -217,7 +217,7 @@ class Location(Base):
     uid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
     #devices = orm.relationship("Device", backref=orm.backref("location", uselist=False))
-    responsibilities = orm.relationship("Responsibility", backref="location")
+    responsibilities = orm.relationship("Responsibility", backref="location", lazy="immediate")
     def __init__(self, name="", uid=None):
         self.name = name.title()
         self.uid = uid
@@ -237,7 +237,7 @@ class User(Base):
     surname = Column(String)
     is_admin = Column(Boolean)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
-    location = orm.relationship("Location", backref=orm.backref("users", uselist=False))
+    location = orm.relationship("Location", backref=orm.backref("users", lazy="immediate"), uselist=False, lazy="immediate")
     responsibilities = orm.relationship("Responsibility", backref="user")
     phonenumber = orm.relationship(
         "PhoneNumber", 
@@ -277,7 +277,7 @@ class User(Base):
             iterations=9600)
 
     def __str__(self):
-        return f"{self.name} {self.surname}"
+        return f"{self.name} {self.surname}".title()
 
 
 class Responsibility(Base):
