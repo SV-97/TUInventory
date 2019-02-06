@@ -128,5 +128,25 @@ def reset_admin_password(user, path_public, path_private):
 
 
 if __name__ == "__main__":
-    user = login("schokoladenkönig@googlemail.com", "12345ibimsdaspasswort")
-    print(user.e_mail)
+    from datetime import datetime
+
+    with CSession() as session: 
+        loc = session.query(classes.Location).first()
+        session.add(loc)
+
+    print(list(map(lambda x: str(x), loc.users)))
+
+    user = create_user(str(datetime.now()), "password", "name", "surname", None, "94123 12315-123")
+        
+    with CSession() as session:
+        session.add(user)
+        session.add(loc)
+        user.location = loc
+
+    print(user.uid)
+    print(user.location.uid)
+
+    with CSession() as session:
+        session.add(user)
+        session.add(loc)
+        user.name = "updated"
