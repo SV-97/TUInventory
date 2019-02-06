@@ -3035,7 +3035,17 @@ refreshen
 .
  Hierbei wird die Instanz mit der Datenbank synchronisiert - die meisten
  Objekte erhalten hier ihre UID von der Datenbank.
- 
+ Später wurde die innerste Klassendefinition dahingegend geändert, dass
+ der 
+\emph on
+sessionmaker
+\emph default
+ entfällt.
+ Stattdessen wird von der 
+\emph on
+Session
+\emph default
+ Grundklasse geerbt und die Konfiguration selbst durchgeführt.
 \end_layout
 
 \begin_layout Subsubsection

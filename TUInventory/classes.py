@@ -61,11 +61,10 @@ def setup_context_session(engine):
     """
     class ContextSession():
         _engine = engine
-        _Session = orm.sessionmaker(bind=engine)
 
-        class _StateKeepingSession(_Session):
+        class _StateKeepingSession(orm.session.Session):
             def __init__(self):
-                super().__init__()
+                super().__init__(bind=engine)
                 self.instances = []
 
             def add(self, instance, *args):
