@@ -5743,6 +5743,67 @@ d steht für eine beliebige Zahl zwischen 0 und 9
 \end_layout
 
 \begin_layout Standard
+Mittels 
+\emph on
+re.compile,
+\emph default
+ mit gesetztem 
+\emph on
+re.DEBUG
+\emph default
+ Flag, lässt sich außerdem folgende, die Regex beschreibende Ausgabe erzeugen:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/regex.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Kompilierung und Debugausgabe der Regular Expression
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Auf diese Ausgabe sei hier nicht näher eingegangen.
+ Im Code selbst findet sich die Kompilierung nicht wieder.
+ Sie ist nicht nötig, da die Funktionen von 
+\emph on
+re
+\emph default
+ so implementiert sind, dass sie die übergebenen patterns intern kompilieren
+ und cachen.
+ Wenn nicht sehr viele verschiedene patterns genutzt werden, kann daher
+ auf dieses Cache zurückgegriffen werden.
+ Dies hat den Vorteil, dass die Kompilierung nur stattfindet, wenn sie tatsächli
+ch nötig ist und außerdem pro Session maximal einmal.
+\end_layout
+
+\begin_layout Standard
 Dieses Pattern ist als Klassenvariable der Klasse TelephoneNumber hinterlegt.
  Wird nun TelephoneNumber instanziiert, so wird über 
 \emph on
