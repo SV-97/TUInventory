@@ -38,15 +38,15 @@ def update_user_dependant(user):
 
 
 @synchronized
-def create_user(e_mail, password, name, surname, location, phonenumber):
-    new_user = classes.User(e_mail, password, name, surname, phonenumber)
-    new_user.location = location
+def create_user(*args, **kwargs):
+    new_user = classes.User(*args, **kwargs)
     return new_user
 
 
 @synchronized
-def create_admin(new_admin):
+def create_admin(*args, **kwargs):
     """Create a new admin"""
+    new_admin = classes.User(*args, **kwargs)
     new_admin.is_admin = True
     return new_admin
 
@@ -88,8 +88,9 @@ def create_device(article):
 
 
 @synchronized
-def create_location():
-    pass
+def create_location(*args, **kwargs):
+    loc = classes.Location(*args, **kwargs)
+    return loc
 
 
 @synchronized
@@ -136,7 +137,7 @@ if __name__ == "__main__":
 
     print(list(map(lambda x: str(x), loc.users)))
 
-    user = create_user(str(datetime.now()), "password", "name", "surname", None, "94123 12315-123")
+    user = create_user(str(datetime.now()), "password", "name", "surname", "94123 12315-123")
         
     with CSession() as session:
         session.add(user)
@@ -150,3 +151,6 @@ if __name__ == "__main__":
         session.add(user)
         session.add(loc)
         user.name = "updated"
+
+    admin = create_admin(str(datetime.now()), "password", "name", "surname", "94123 12315-123")
+    print(admin.is_admin)
