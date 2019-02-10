@@ -2667,6 +2667,30 @@ Traceback
  Python Traceback zu erhalten.
 \end_layout
 
+\begin_layout Standard
+Das CLI läuft schlussendlich auf einem Server und kann über eine RESTful
+ API angesprochen werden.
+ Um hier ein einfaches Setup zu ermöglichen, wird es mittels pyinstaller
+ als 
+\emph on
+onefile
+\emph default
+ bzw 
+\emph on
+onedir
+\emph default
+ Lösung verpackt.
+ Hierbei wird zum Beispiel für Windows eine exe erzeugt, die eine volle
+ Python Installation und alle benötigten Packages beinhaltet.
+ Die 
+\emph on
+onefile
+\emph default
+ Lösung stellt sich jedoch als eher ungeeignet heraus, da hier zum Programmstart
+ ein Archiv temporär entpackt wird, was einen enormen Overhead schafft,
+ der bei so kurzer Programmlaufzeit nicht gerechtfertigt ist.
+\end_layout
+
 \begin_layout Section
 SQLAlchemy
 \end_layout
