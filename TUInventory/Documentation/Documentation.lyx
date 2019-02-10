@@ -142,7 +142,7 @@ von Stefan Volz & Yannis Köhler
 \end_inset
 
 
-\begin_inset space \quad{}
+\begin_inset space \qquad{}
 \end_inset
 
 
@@ -181,7 +181,7 @@ Abkürzungsverzeichnis
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="28" columns="2">
+<lyxtabular version="3" rows="29" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -260,6 +260,26 @@ CLI
 
 \begin_layout Plain Layout
 Common Language Infrastructure
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+CLI
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Command Line Interface
 \end_layout
 
 \end_inset
@@ -752,6 +772,25 @@ Yannis Köhler
 
 \end_layout
 
+\begin_layout Subsection*
+Markierungsschema
+\end_layout
+
+\begin_layout Standard
+Zur Markierung, welcher Projektpartner welche Teile verfasst hat, werden
+ Tags als Randnotizen im Inhaltsverzeichnis und an Überschriften genutzt.
+ Dabei gilt, dass alle einem getaggten Abschnitt hierarchisch untergeordneten
+ Abschnitte das übergeordnete Tag tragen, sofern sie nicht selbst eines
+ besitzen.
+ Der tatsächliche Verfasser ist über die Initialen im Tag codiert (Volle
+ Namen im Inhaltsverzeichnis).
+ Ein mit 
+\emph on
+&&
+\emph default
+ getaggter Abschnitt wurde kollaborativ vom ganzen Projektteam erstellt.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -777,6 +816,16 @@ pagenumbering{arabic} % enable page numbering
 
 \begin_layout Part
 Einführung
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[&&]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -856,6 +905,16 @@ Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
 
 \begin_layout Part
 Test- und Integrationsraum
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[yk]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -892,6 +951,16 @@ Abschnitt 1 Raum
 
 \begin_layout Part
 TUInventory
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[sv]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2337,6 +2406,20 @@ Responsibility class
 Timeout class, thread
 \end_layout
 
+\begin_layout Description
+VideoStreamUISync class, thread
+\end_layout
+
+\end_deeper
+\begin_layout Description
+cli
+\end_layout
+
+\begin_deeper
+\begin_layout Description
+cli_get_barcode.py
+\end_layout
+
 \end_deeper
 \begin_layout Description
 keys.py
@@ -2367,10 +2450,6 @@ main.py
 \end_layout
 
 \begin_deeper
-\begin_layout Description
-VideoStreamUISync class, thread
-\end_layout
-
 \begin_layout Description
 main method
 \end_layout
@@ -2472,6 +2551,146 @@ parallel_print put method of _ParallelPrint instance
 \end_layout
 
 \end_deeper
+\begin_layout Section
+Command Line Interface
+\end_layout
+
+\begin_layout Standard
+Im CLI sollte ursprünglich der volle Umfang des Barcodereaders umgesetzt
+ werden, dies wurde auch so durchgeführt.
+ Jedoch stellte sich heraus, dass lediglich das Extrahieren eines Barcodes
+ aus einem gegebenen Bild nötig war.
+ Mit Blick auf die Größe des CLI wurde daher die restliche Funktionalität
+ entfernt.
+\end_layout
+
+\begin_layout Standard
+Das CLI setzt intern auf Pythons eingebautes Modul 
+\emph on
+argparse
+\emph default
+, bzw.
+ dessen 
+\emph on
+ArgumentParser
+\emph default
+.
+ Das Interface zeigt sich über Kommandozeilenparameter 
+\emph on
+-h
+\emph default
+ dabei wie folgt:
+\end_layout
+
+\begin_layout LyX-Code
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/cli_help.sh"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Schnittstellenhilfe von cli_get_barcode.py
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Über 
+\emph on
+-h
+\emph default
+ kann also wie oben dargestellt eine Schnittstellenbeschreibung angezeigt
+ werden.
+ 
+\emph on
+-i
+\emph default
+ ist der Parameter, über welchen der Pfad zu einem Bild übergeben wird.
+ Aus diesem Bild wird der Barcode ausgelesen und zurückgegeben.
+ In der Regel wird lediglich der Inhalt eines Codes benötigt, jedoch kann
+ es mitunter nützlich sein, mehr Details (wie z.B.
+ um welche Art Code es sich handelt) zu erhalten.
+ Daher existiert das Flag 
+\emph on
+-d
+\emph default
+, welches es ermöglicht alle intern verfügbaren Informationen über das Bild,
+ bzw.
+ die darin enthaltenen Codes wiederzugeben.
+ Hierüber ist es außerdem möglich mehrere Codes aus einem Bild zu extrahieren.
+\end_layout
+
+\begin_layout Standard
+Der letzte Parameter ist 
+\emph on
+-tb
+\emph default
+.
+ 
+\emph on
+cli_get_barcodes
+\emph default
+ ist so aufgebaut, dass alle möglichen Fehler abgefangen werden und zu Fehlern
+ die dem Nutzer (der potentiell mit einer Python Fehlermeldung nichts anfangen
+ kann) mehr sagen gewandelt werden.
+ Jedoch ist in manchen Fällen ein sog.
+ 
+\emph on
+Traceback
+\emph default
+ nützlich, daher ist es über den Parameter 
+\emph on
+-tb
+\emph default
+ möglich, die benutzerdefinierten Fehler abzustellen und stattdessen einen
+ Python Traceback zu erhalten.
+\end_layout
+
+\begin_layout Standard
+Das CLI läuft schlussendlich auf einem Server und kann über eine RESTful
+ API angesprochen werden.
+ Um hier ein einfaches Setup zu ermöglichen, wird es mittels pyinstaller
+ als 
+\emph on
+onefile
+\emph default
+ bzw 
+\emph on
+onedir
+\emph default
+ Lösung verpackt.
+ Hierbei wird zum Beispiel für Windows eine exe erzeugt, die eine volle
+ Python Installation und alle benötigten Packages beinhaltet.
+ Die 
+\emph on
+onefile
+\emph default
+ Lösung stellt sich jedoch als eher ungeeignet heraus, da hier zum Programmstart
+ ein Archiv temporär entpackt wird, was einen enormen Overhead schafft,
+ der bei so kurzer Programmlaufzeit nicht gerechtfertigt ist.
+\end_layout
+
 \begin_layout Section
 SQLAlchemy
 \end_layout
@@ -3030,6 +3249,29 @@ t und anschließend der Funktionsaufruf wieder an die Basisklasse delegiert.
 
 refreshen
 \begin_inset Quotes grd
+\end_inset
+
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Dieser refresh wird mittels 
+\emph on
+map
+\emph default
+ durchgeführt.
+ Eigentlich ist 
+\emph on
+map
+\emph default
+ eine Funktion, um eine Funktion auf alle Elemente eines iterierbaren Objektes
+ anzuwenden und aus den Ergebnissen eine Liste zu erstellen.
+ Hier wird die Ergebnisliste jedoch verworfen, map wird lediglich für die
+ Seiteneffekte genutzt.
+ 
+\end_layout
+
 \end_inset
 
 .
@@ -6809,6 +7051,206 @@ hasattr
 \emph default
  einsetzt, da dies die leichter zu lesende und somit schlicht bessere Variante
  ist.
+\end_layout
+
+\begin_layout Subsection
+ContextSession Cache Refresh
+\end_layout
+
+\begin_layout Standard
+In der Magic Method 
+\emph on
+__exit__
+\emph default
+ der ContextSession Klasse, ist es erforderlich auf jedes Objekt einer Liste
+ eine Funktion anzuwenden.
+ Klassischerweise würde man hier auf eine 
+\emph on
+for
+\emph default
+ Schleife zurückgreifen, doch Python bietet noch andere Lösungsmöglichkeiten.
+ Grundsätzlich sagt man in Python, dass List Comprehensions oftmals schneller
+ als for-Schleifen sind, da sie auf optimierte Bytecode Operationen zurückgreife
+n können.
+ Jedoch bezieht sich das stets auf Anwendungen in denen eine neue Liste
+ erzeugt wird.
+ Eine Anwendung wie unsere, bei der lediglich die Seiteneffekte der Schleife
+ gewünscht sind, und keine neue Liste benötigt wird, wie eine List Comprehension
+ sie erzeugt sind jedoch nichts was man in Python häufig antrifft, bzw.
+ was i.d.R.
+ mit einer Comprehension gelöst wird.
+ Desweiteren gibt es noch die Funktion 
+\emph on
+map
+\emph default
+ welche ebenfalls auf jedes Element eines iterierbaren Objektes eine Funktion
+ anwendet.
+ Auch hier wurde ein Vergleich über einer einfachen Grundfunktion nach dem
+ bereits bekannten Verfahren durchgeführt.
+ Die interessanten Funktionen sind 
+\emph on
+f_1
+\emph default
+, 
+\emph on
+f_2
+\emph default
+ und 
+\emph on
+f_3
+\emph default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/map_vs_for_vs_listcomp_side_effects.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Analysecode
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Im Beispiel wird hier für jedes Element einer Liste (die Liste beinhaltet
+ alle ASCII Buchstaben) eine Funktion aufgerufen, die dieses Element printed.
+ Dabei erfolgt das printen jedoch nicht auf den Standartausgabestream 
+\emph on
+stdout
+\emph default
+, den 
+\emph on
+print
+\emph default
+ regulär nutzt, sondern in eine temporäre Datei.
+ Führt man diesen Code aus ergibt sich folgende Ausgabe:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/map_vs_for_vs_listcomp_side_effects_output.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Ausschnitt der Konsolenausgabe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/map_vs_for_vs_listcomp_side_effects_cropped.png
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Visualisierung einer Testreihe
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Konsolenausgabe stellt dabei eine bestimmte Anzahl an Datensätzen dar,
+ in denen jeweils 2000 mal der Funktionsaufruf durchgeführt und der jeweilige
+ Durchschnitt der verschiedenen Methoden bestimmt wird.
+ Die letzte Zeile jedes Datensatzes gibt die je schnellste Methode an.
+\end_layout
+
+\begin_layout Standard
+Wie zu sehen ist, besteht beim Verzicht auf den Rückgabewert effektiv kein
+ Unterschied zwischen List Comprehensions und for-Schleifen.
+ Außerdem sieht man, dass 
+\emph on
+map
+\emph default
+ für solche Anwendungen wesentlich effizienter arbeitet, so ist es um einige
+ Größenordnungen schneller als die beiden anderen Lösungen.
+ Dementsprechend wird die ursprüngliche Implementierung durch eine auf 
+\emph on
+map
+\emph default
+ basierende ersetzt.
+ Die optimierte Version läuft damit 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+approx 250$
+\end_layout
+
+\end_inset
+
+ mal schneller.
 \end_layout
 
 \begin_layout Standard

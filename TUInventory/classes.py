@@ -85,7 +85,8 @@ def setup_context_session(engine):
                 return False # propagate exceptions upwards
             else:
                 self.session.commit()
-                [self.session.refresh(instance) for instance in self.session.instances]
+                # [self.session.refresh(instance) for instance in self.session.instances] if I didn't mess up the map below, this can be deleted
+                map(self.session.refresh, self.session.instances)
                 self.session.expunge_all()
                 self.session.close()
                 return True
