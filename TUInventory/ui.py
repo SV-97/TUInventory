@@ -272,16 +272,21 @@ class MainDialog(QtWidgets.QMainWindow):
             self.new_user()
 
     def new_user(self):
-        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone]):
+        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone]): # password box is missing
             self.statusBar().setStyleSheet("color: #ff0000")
             self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
             return
-        
-        args = [None for i in range(6)]
-        user = slots.create_user(*args) # add textboxes once names are final and remove args
-        if self.checkBox.isChecked():
-            slots.create_admin(user)
 
+        args = [None for i in range(6)]
+        if self.checkBox.isChecked():
+            user = slots.create_admin(*args)
+        else:
+            user = slots.create_user(*args) # add textboxes once names are final and remove args
+
+        with CSession() as session:
+            session.add(user)
+            user.location = ... # queried location
+            
         self.statusBar().setStyleSheet("color: green")   
         self.statusBar().showMessage("Benutzer {user} wurde erfolgreich angelegt.", 5000)
 
@@ -293,6 +298,8 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:    
             # check if admin is logged in(though this dialog shouldn't show if no admin is logged in)
             # query user from db via name
+            if self.logged_in_user.is_admin:
+                user = session.query(classes.User).filter(classes.User.name)
             user = None
             new_password = slots.reset_password(user)
         # display password
