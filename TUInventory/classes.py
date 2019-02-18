@@ -67,13 +67,13 @@ def setup_context_session(engine):
                 super().__init__(bind=engine)
                 self.instances = []
 
-            def add(self, instance, *args):
+            def add(self, instance, *args, **kwargs):
                 self.instances.append(instance)
-                super().add(instance, *args)
+                super().add(instance, *args, **kwargs)
 
-            def add_all(self, instances):
+            def add_all(self, instances, *args, **kwargs):
                 self.instances += instances
-                super().add_all(instances)
+                super().add_all(instances, *args, **kwargs)
 
         def __enter__(self):
             self.session = self._StateKeepingSession()
@@ -86,7 +86,8 @@ def setup_context_session(engine):
             else:
                 self.session.commit()
                 # [self.session.refresh(instance) for instance in self.session.instances] if I didn't mess up the map below, this can be deleted
-                map(self.session.refresh, self.session.instances)
+                for x in map(self.session.refresh, self.session.instances):
+                    pass # refresh all instances via side effect of map
                 self.session.expunge_all()
                 self.session.close()
                 return True
@@ -110,8 +111,8 @@ class Article(Base):
     uid = Column(Integer, primary_key=True)
     name = Column(String)
     producer_uid = Column(Integer, sqlalchemy.ForeignKey("producers.uid"))
-    last_price = Column(Float(asdecimal=True))
-    devices = orm.relationship("Device", backref="article")
+    #last_price = Column(Float(asdecimal=True))
+    devices = orm.relationship("Device", backref=orm.backref("article", lazy="immediate"), lazy="immediate")
     def __init__(self, name, producer=None, uid=None):
         self.uid = uid
         self.name = name
@@ -126,7 +127,7 @@ class Device(Base):
     code = Column(String)
     #name = Column(String) # not currently used
     #location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
-    responsibilities = orm.relationship("Responsibility", backref="device")
+    responsibility = orm.relationship("Responsibility", backref=orm.backref("device", lazy="immediate", uselist=False), lazy="immediate", uselist=False)
     def __init__(self, code=None, uid=None):
         self.uid = uid
         self.code = code
@@ -327,7 +328,7 @@ class Timeout(Thread):
     """
 
     def __init__(self, timeout, function, *args, **kwargs):
-        super().__init__(name=f"{self.__class__.__name__}Thread_{camera_id}")
+        super().__init__(name=f"{self.__class__.__name__}Thread_{function.__name__}")
         self.timeout = timeout
         self.function = function
         self.args = args
