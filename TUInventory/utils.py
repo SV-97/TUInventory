@@ -16,8 +16,8 @@ class _ParallelPrint(Thread):
     _created = False
     def __init__(self):
         if self._created:
-            raise ResourceWarning(f"{self.__class__} should only be instantiated once!")
-        super().__init__()
+            raise ResourceWarning(f"{self.__class__.__name__} should only be instantiated once!")
+        super().__init__(name=f"{self.__class__.__name__}Thread")
         self.daemon = True
         self.__class__._created = True
 

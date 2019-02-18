@@ -23,7 +23,7 @@ class VideoStream(threading.Thread):
             target_resolution: Tuple of (width, height) to set the final resolution of the frames
             camera_id: The id of the camera that's to be used (if your system only has one it's zero)
         """
-        super().__init__()
+        super().__init__(name=f"{self.__class__.__name__}Thread_{camera_id}")
         self.camera = Camera(camera_id)
         self.camera_id = camera_id
         self.barcodes = []
@@ -137,7 +137,7 @@ class LazyVideoStream(threading.Thread):
             target_resolution: gp_lock locked _target_resolution
     """
     def __init__(self, target_resolution=None, camera_id=0):
-        super().__init__()
+        super().__init__(name=f"{self.__class__.__name__}Thread_{camera_id}")
         self.camera = Camera(camera_id)
         self.camera_id = camera_id
         self._mirror = False

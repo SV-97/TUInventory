@@ -327,7 +327,7 @@ class Timeout(Thread):
     """
 
     def __init__(self, timeout, function, *args, **kwargs):
-        super().__init__()
+        super().__init__(name=f"{self.__class__.__name__}Thread_{camera_id}")
         self.timeout = timeout
         self.function = function
         self.args = args
@@ -375,7 +375,7 @@ class VideoStreamUISync(Thread):
             barcode_lock: Lock for barcodes
     """
     def __init__(self, canvas, videostream):
-        super().__init__()
+        super().__init__(name=f"{self.__class__.__name__}Thread_{id(self)}")
         self.canvas = canvas
         self.videostream = videostream
         self.daemon = True
