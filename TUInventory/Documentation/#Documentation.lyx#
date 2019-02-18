@@ -6470,18 +6470,10 @@ join
 Inner Join
 \emph default
 ) werden die dazugehörigen Nutzer abgefragt.
- Nachdem auch die Nutzer alphabetisch sortiert sind, wird über diese iteriert
+ Nachdem auch die Nutzer alphabetisch sortiert sind wird, über diese iteriert
  und über eine weitere Abfrage ermittelt, welche Geräte der aktuellen Location
  und dem aktuellen User zuzuordnen sind.
- Diese geänderte Version hat außerdem den Vorteil, dass weniger Interaktion
- mit PyQt nötig ist.
- Es werden lediglich die entsprechenden 
-\emph on
-Items
-\emph default
- zu jeder Location, jedem User und jedem Gerät jeweils exakt 1 mal erstellt
- und an der korrekten Stelle in den Baum eingepflegt.
- Abfragen aus dem Baum entfallen vollständig.
+ Die 
 \end_layout
 
 \begin_layout Subsection
@@ -6513,7 +6505,7 @@ setText
 \emph default
 -Methode geändert.
  Da Qt eigentlich aus dem C++ Bereich kommt, ist dies verständlich, hätte
- im Wrapper jedoch eventuell geändert werden sollen.
+ im Wrapper jedoch geändert werden sollen.
 \end_layout
 
 \begin_layout Section
