@@ -141,7 +141,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.show()
     #/#    
 
-    def set_tree(self): # toDo make tree scrollable if it gets too big
+    def set_tree(self):
         self.treeWidget.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
@@ -165,36 +165,9 @@ class MainDialog(QtWidgets.QMainWindow):
                         device_item = QtWidgets.QTreeWidgetItem([str(device)])
                         user_item.addChild(device_item)
 
-            """
-            responsibilities = session.query(classes.Responsibility).all()
-            responsibilities.sort(key=lambda resp: resp.device.uid)
-            for resp in responsibilities:
-                print()
-                print(f"New Resp: {resp.location.uid}.{resp.user.uid}.{resp.device.uid} | {resp.user.name:^15} | {resp.location.name:^15}")
-                location = QtWidgets.QTreeWidgetItem([str(resp.location.name)])
-                user = QtWidgets.QTreeWidgetItem([str(resp.user)])
-                device = QtWidgets.QTreeWidgetItem([str(resp.device)])
-                locations = [self.treeWidget.topLevelItem(i) for i in range(self.treeWidget.topLevelItemCount())]
-                tree_text = [item.text(0) for item in locations]
-                if str(resp.location.name) not in tree_text:
-                    location.addChild(user)
-                    user.addChild(device)
-                    self.treeWidget.addTopLevelItem(location)
-                else:
-                    for location in locations:
-                        if location.text(0) == str(resp.location):
-                            users = [location.child(i) for i in range(location.childCount())]
-                            if str(resp.user) not in (user.text(0) for user in users):
-                                location.addChild(user)
-                                user.addChild(device)
-                            else:
-                                for user in users:
-                                    devices = (user.child(i) for i in range(location.childCount()))
-                                    if str(resp.device) not in devices:
-                                        user.addChild(device)
-                """
-
     def set_combobox(self):
+        ... # Hier am besten einmal die cb leer machen, da beim adden von neuen locations 
+        # diese Funktion erneut aufgerufen werden muss und es sonst wahrscheinlich doppelte einträge gibt(?)
         with CSession() as session:
             locations = session.query(classes.Location).all()
             for location in locations:
