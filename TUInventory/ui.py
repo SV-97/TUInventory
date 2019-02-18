@@ -22,18 +22,16 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui = uic.loadUi(path, self)
         self.logged_in_user = None
         self.set_tree()
-        self.set_comboBox()
+        self.set_combobox()
         
+        self.setMouseTracking(True)
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
-
-        if self.ui.in_phone.textChanged:
-            self.phoneNumber(self)
-
-        #self.ui.in_phone.textChanged[str].connect(self.phoneNumber)
+        
+        self.ui.in_phone.textChanged.connect(self.set_phonenumber)
 
         # tabs_click
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
@@ -169,15 +167,20 @@ class MainDialog(QtWidgets.QMainWindow):
                                     if str(resp.device) not in devices:
                                         user.addChild(device)
 
-    def set_comboBox(self):
+    def set_combobox(self):
         with CSession() as session:
             locations = session.query(classes.Location).all()
             for location in locations:
                 self.cb_location.addItem(location.name)
 
-    def phoneNumber(self, str):
-        self.out_phone.setText("0170")
-
+    def set_phonenumber(self, str_):
+        try:
+            if not str_:
+                raise classes.PhoneNumber.NoNumberFoundWarning
+            text = str(classes.PhoneNumber(str_))
+        except classes.PhoneNumber.NoNumberFoundWarning:
+            text = "Es konnte keine Nummer erkannt werden. Empfohlene Syntax ist: Vorwahl Benutzernummer-Durchwahl"    
+        self.out_phone.setText(text)
 
     def b_user_login_click(self):
         LoginDialog(self).exec() # show dialog_login as modal dialog => blocks controll of main
@@ -224,13 +227,15 @@ class MainDialog(QtWidgets.QMainWindow):
             self.ui.log_in_out.setCurrentIndex(1)
             self.label.setText("")
 
-    def mousePressEvent(self, QMouseEvent):
-        pass
+    def mousePressEvent(self, QMouseEvent=None):
+        print("Maus geklickt")
+        self.mouseMoveEvent()
     
-    def mouseMoveEvent(self, QMouseEvent):
+    def mouseMoveEvent(self, QMouseEvent=None):
+        if QMouseEvent is not None:
+            print("Maus bewegt")
         if hasattr(self, "timeout"):
             self.timeout.reset()
-
 
     def b_user_change_click(self): #toDo finish linked classes
         if self.logged_in_user:
@@ -238,10 +243,8 @@ class MainDialog(QtWidgets.QMainWindow):
         else:
             self.new_user()
 
-    def new_user(self): # not linked yet
-        #if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email1, self.in_email2, self.in_phone]) or self.cb_location.currentText() == "":  # !doesn't work!
-
-        if (self.in_name.text() == "" or self.in_surname.text() == "" or self.in_email.text() == "" or self.in_phone.text() == ""): #toDo shorten this
+    def new_user(self):
+        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone]):
             self.statusBar().setStyleSheet("color: #ff0000")
             self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
             return
