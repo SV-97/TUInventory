@@ -22,11 +22,18 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui = uic.loadUi(path, self)
         self.logged_in_user = None
         self.set_tree()
+        self.set_comboBox()
         
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
+        self.ui.b_user_change.clicked.connect(self.b_user_change_click)
+
+        if self.ui.in_phone.textChanged:
+            self.phoneNumber(self)
+
+        #self.ui.in_phone.textChanged[str].connect(self.phoneNumber)
 
         # tabs_click
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
@@ -162,6 +169,16 @@ class MainDialog(QtWidgets.QMainWindow):
                                     if str(resp.device) not in devices:
                                         user.addChild(device)
 
+    def set_comboBox(self):
+        with CSession() as session:
+            locations = session.query(classes.Location).all()
+            for location in locations:
+                self.cb_location.addItem(location.name)
+
+    def phoneNumber(self, str):
+        self.out_phone.setText("0170")
+
+
     def b_user_login_click(self):
         LoginDialog(self).exec() # show dialog_login as modal dialog => blocks controll of main
         self.update_user_dependant()
@@ -214,16 +231,31 @@ class MainDialog(QtWidgets.QMainWindow):
         if hasattr(self, "timeout"):
             self.timeout.reset()
 
+
+    def b_user_change_click(self): #toDo finish linked classes
+        if self.logged_in_user:
+            self.update_user()
+        else:
+            self.new_user()
+
     def new_user(self): # not linked yet
-        if "" in (box.text for box in [self.lineEdit_2, self.lineEdit_3, self.lineEdit_4, self.lineEdit_5, self.lineEdit_6]) or self.comboBox.currentText() == "": # change to final names
-            # show message that user needs to fill all boxes
+        #if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email1, self.in_email2, self.in_phone]) or self.cb_location.currentText() == "":  # !doesn't work!
+
+        if (self.in_name.text() == "" or self.in_surname.text() == "" or self.in_email.text() == "" or self.in_phone.text() == ""): #toDo shorten this
+            self.statusBar().setStyleSheet("color: #ff0000")
+            self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
             return
         
         args = [None for i in range(6)]
         user = slots.create_user(*args) # add textboxes once names are final and remove args
         if self.checkBox.isChecked():
             slots.create_admin(user)
-        # show message that creation was successful
+
+        self.statusBar().setStyleSheet("color: green")   
+        self.statusBar().showMessage("Benutzer {user} wurde erfolgreich angelegt.", 5000)
+
+    #def update_user():
+        #toDo make User updateable
 
     def reset_password(self):
         """Set new password and salt for user, push it to db and show it in UI"""
@@ -233,7 +265,6 @@ class MainDialog(QtWidgets.QMainWindow):
             user = None
             new_password = slots.reset_password(user)
         # display password
-    
 
 class LoginDialog(QtWidgets.QDialog):
     
