@@ -83,19 +83,17 @@ def logout():
 def create_device(article):
     new_device = classes.Device()
     new_device.article = article
-    save_to_db(new_device)
     return new_device
 
 
 @synchronized
 def create_location(*args, **kwargs):
-    loc = classes.Location(*args, **kwargs)
-    return loc
-
+    return classes.Location(*args, **kwargs)
+    
 
 @synchronized
-def create_producer():
-    pass
+def create_producer(*args, **kwargs):
+    return classes.Producer(*args, **kwargs)
 
 
 def generate_password(len_=15):
@@ -154,3 +152,10 @@ if __name__ == "__main__":
 
     admin = create_admin(str(datetime.now()), "password", "name", "surname", "94123 12315-123")
     print(admin.is_admin)
+
+    with CSession() as session: 
+        article = session.query(classes.Article).first()
+        session.add(article)
+        session.add_all(article.devices)
+
+    list(map(print, article.devices))
