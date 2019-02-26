@@ -5,6 +5,9 @@
 \save_transient_properties true
 \origin unavailable
 \textclass article
+\begin_preamble
+\usepackage{xcolor}
+\end_preamble
 \use_default_options true
 \begin_modules
 figs-within-sections
@@ -4079,12 +4082,729 @@ Auslesen von Barcodes und grundlegende Aufbereitung von Frames
 \end_layout
 
 \begin_layout Standard
-\begin_inset Marginal
+Die Funktionalität des Barcode-Auslesens und eine erste Bearbeitung der
+ Frames findet in der Methode 
+\emph on
+find_and_mark_barcodes
+\emph default
+ der VideoStream Klassen statt.
+ Der Methode wird ein Frame übergeben, auf dem dann operiert wird.
+\end_layout
+
+\begin_layout Standard
+Grundsätzlich gibt es zwei gängige Formate, in denen Bilder im Speicher
+ dargestellt werden:
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
 status open
 
 \begin_layout Plain Layout
-Hier ein cooles Bild von drei Matrizen (in Rot grün blau maybe) und einer
- Matrize mit vektoren als einträgen die ebenfalls rot grün und blau sind)
+
+$$
+\end_layout
+
+\begin_layout Plain Layout
+
+A_1 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{bmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+	{r_{11} & r_{12} & 
+\backslash
+cdots & r_{1n}}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	r_{21} & r_{22} & 
+\backslash
+cdots & r_{2n}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vdots &
+\backslash
+vdots  & 
+\backslash
+ddots & 
+\backslash
+vdots
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	r_{m1} & r_{m2} & 
+\backslash
+cdots & r_{mn}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{bmatrix}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{bmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+	g_{11} & g_{12} & 
+\backslash
+cdots & g_{1n}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	g_{21} & g_{22} & 
+\backslash
+cdots & g_{2n}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vdots &
+\backslash
+vdots  & 
+\backslash
+ddots & 
+\backslash
+vdots 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	g_{m1} & g_{m2} & 
+\backslash
+cdots & g_{mn}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{bmatrix}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{bmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+	b_{11} & b_{12} & 
+\backslash
+cdots & b_{1n}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	b_{21} & b_{22} & 
+\backslash
+cdots & b_{2n}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+vdots &
+\backslash
+vdots  & 
+\backslash
+ddots & 
+\backslash
+vdots 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	b_{m1} & b_{m2} & 
+\backslash
+cdots & b_{mn}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{bmatrix}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+$$
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$$
+\end_layout
+
+\begin_layout Plain Layout
+
+A_2 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+begin{bmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix} 
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{11} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{11} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{11} 
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix} &
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix} 
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{12} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{12} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{12} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix} &
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+cdots & 
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix} 
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{1n} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{1n} 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{1n} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{21} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{21} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{21} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix}&
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{22} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{22} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{22} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix}&
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+cdots& 
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{2n} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{2n} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{2n} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+vdots &
+\backslash
+vdots  & 
+\backslash
+ddots & 
+\backslash
+vdots 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{m1} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{m1} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{m1} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix}&
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{m2} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{m2} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{m2} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix}&
+\end_layout
+
+\begin_layout Plain Layout
+
+        
+\backslash
+cdots& 
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+			r_{mn} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			g_{mn} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+			b_{mn} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
+end{pmatrix}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	
+\backslash
+end{bmatrix}
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$$
 \end_layout
 
 \end_inset
@@ -4093,13 +4813,30 @@ Hier ein cooles Bild von drei Matrizen (in Rot grün blau maybe) und einer
 \end_layout
 
 \begin_layout Standard
-Die Funktionalität des Barcode-Auslesens und eine erste Bearbeitung der
- Frames findet in der Methode 
-\emph on
-find_and_mark_barcodes
-\emph default
- der VideoStream Klassen statt.
- Der Methode wird ein Frame übergeben, auf dem dann operiert wird.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$A_1$
+\end_layout
+
+\end_inset
+
+ ist dabei je eine Matrix (sprich Array, Liste etc.) pro Farbkanal.
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$A_2$
+\end_layout
+
+\end_inset
+
+ ist lediglich eine Matrix, welche dann einen Vektor je Farbkanal enthält.
+ 
 \end_layout
 
 \begin_layout Standard
