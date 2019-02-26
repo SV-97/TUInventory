@@ -270,3 +270,7 @@ __pycache__/
 *.db
 
 *.svg
+
+TUInventory/testUI\.py
+
+TUInventory/fileDialog\.py

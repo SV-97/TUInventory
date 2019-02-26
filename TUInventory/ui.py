@@ -1,10 +1,11 @@
 """PyQt5 UI classes and linking to slots"""
 
-import sys
+import os, sys 
 
-from PyQt5 import uic, QtWidgets
+from PyQt5 import uic, QtGui, QtWidgets
 from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
 from PyQt5.QtCore import Qt
+from PyQt5.QtWidgets import QFileDialog
 
 import classes
 from logger import logger
@@ -21,6 +22,7 @@ class MainDialog(QtWidgets.QMainWindow):
         super().__init__(parent)
         self.ui = uic.loadUi(path, self)
         self.logged_in_user = None
+        self.savepath = None
         self.set_tree()
         self.set_combobox()
         
@@ -30,7 +32,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
-        
+        self.ui.b_savepath.clicked.connect(self.b_savepath_click)
         self.ui.in_phone.textChanged.connect(self.set_phonenumber)
 
         # tabs_click
@@ -40,7 +42,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_tab_4.clicked.connect(self.b_tab_4_click)
         self.ui.b_tab_5.clicked.connect(self.b_tab_5_click)
 
-    #*# set Colors
         self.setAutoFillBackground(True)                    # background / white
         p = self.palette()
         p.setColor(self.backgroundRole(), Qt.white)
@@ -76,15 +77,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.setPalette(palette5)
         self.ui.line_5.setAutoFillBackground(True)
 
-        #palette7 = self.line_7.palette()                   # line_top / blue
-        #role7 = self.line_7.backgroundRole()
-        #palette7.setColor(role7, QColor('blue'))
-        #self.ui.line_7.setPalette(palette7)
-        #self.ui.line_7.setAutoFillBackground(True)
-    #/#
-
-
-    #*# show tabs
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
@@ -138,8 +130,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_2.hide()
         self.ui.line_3.hide()
         self.ui.line_4.hide()
-        self.ui.line_5.show()
-    #/#    
+        self.ui.line_5.show()   
 
     def set_tree(self): # toDo make tree scrollable if it gets too big
         with CSession() as session:
@@ -189,6 +180,12 @@ class MainDialog(QtWidgets.QMainWindow):
             logger.info(f"Logged in as {self.logged_in_user}")
             self.timeout = classes.Timeout(5, lambda signal: signal.emit(True), (self.ui.b_user_logout.clicked,))
             self.timeout.start()
+
+            #self.in_name.setText(self.logged_in_user.name)              # fill textEdits for UserChange
+            #self.in_surname.setText(self.logged_in_user.surname)
+            #self.in_email.setText(self.logged_in_user.email)
+            #self.in_phone.setText(self.logged_in_user.phone)
+
 
     def b_user_logout_click(self, timed_out=False):
         if timed_out:
@@ -269,6 +266,12 @@ class MainDialog(QtWidgets.QMainWindow):
             new_password = slots.reset_password(user)
         # display password
 
+    def b_savepath_click(self):
+        SaveDialog(self).exec()
+        if self.savepath:
+            print(self.savepath)
+
+
 class LoginDialog(QtWidgets.QDialog):
     
     def __init__(self, parent=None):
@@ -284,10 +287,39 @@ class LoginDialog(QtWidgets.QDialog):
         self.parent.logged_in_user = slots.login(username, password)
         self.close()
 
+
+class SaveDialog(QtWidgets.QDialog):        #Dialog to get select a filepath
+         
+    def __init__(self, parent=None):
+        path = absolute_path("save.ui")
+        super().__init__(parent)
+        self.parent = parent
+        self.ui = uic.loadUi(path, self)
+        self.b_file_ok.clicked.connect(self.b_file_ok_click)
+        self.b_close.clicked.connect(self.b_close_click)
+        self.b_browse.clicked.connect(self.b_browse_click)
+        self.filepath = None
+    
+    def b_browse_click(self):
+        self.filename = "filename.svg"
+        #self.filepath = QtWidgets.QFileDialog.getOpenFileName(self, 'Single File', "~/Desktop") #could be used to select a file
+        self.filepath = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory") + "/" + self.filename
+        self.t_path.setText(self.filepath)
+
+    def b_file_ok_click(self):
+        self.parent.savepath = self.t_path.text()
+        self.close()
+
+    def b_close_click(self):
+        self.close()
+
+
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     dialog_main = MainDialog()
     dialog_login = LoginDialog()
+    dialog_save = SaveDialog()
+
     dialog_main.show() # show dialog_main as modeless dialog => return control back immediately
-    
+
     sys.exit(app.exec_())

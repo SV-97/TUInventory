@@ -545,7 +545,7 @@
           </size>
          </property>
          <property name="currentIndex">
-          <number>3</number>
+          <number>2</number>
          </property>
          <widget class="QWidget" name="page_5">
           <widget class="QGroupBox" name="groupBox">
@@ -730,7 +730,7 @@
            <property name="geometry">
             <rect>
              <x>20</x>
-             <y>20</y>
+             <y>280</y>
              <width>671</width>
              <height>421</height>
             </rect>
@@ -806,6 +806,29 @@
              </item>
             </layout>
            </widget>
+           <widget class="QPushButton" name="b_savepath">
+            <property name="geometry">
+             <rect>
+              <x>390</x>
+              <y>90</y>
+              <width>141</width>
+              <height>23</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string>Speichern unter</string>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QTableWidget" name="table_devices">
+           <property name="geometry">
+            <rect>
+             <x>35</x>
+             <y>21</y>
+             <width>711</width>
+             <height>251</height>
+            </rect>
+           </property>
           </widget>
          </widget>
          <widget class="QWidget" name="page_8">
@@ -1133,7 +1156,7 @@
             </widget>
            </widget>
            <widget class="QWidget" name="page_4">
-            <widget class="QWidget" name="">
+            <widget class="QWidget" name="layoutWidget">
              <property name="geometry">
               <rect>
                <x>20</x>
@@ -1486,7 +1509,7 @@
                 <property name="sizeHint" stdset="0">
                  <size>
                   <width>20</width>
-                  <height>3</height>
+                  <height>6</height>
                  </size>
                 </property>
                </spacer>
