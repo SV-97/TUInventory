@@ -274,3 +274,5 @@ __pycache__/
 TUInventory/testUI\.py
 
 TUInventory/fileDialog\.py
+
+*.xcf

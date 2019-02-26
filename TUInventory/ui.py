@@ -2,10 +2,10 @@
 
 import os, sys 
 
-from PyQt5 import uic, QtGui, QtWidgets
+from PyQt5 import uic, QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
-from PyQt5.QtCore import Qt
-from PyQt5.QtWidgets import QFileDialog
+from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtWidgets import QFileDialog, QPushButton, QStyle
 
 import classes
 from logger import logger
@@ -26,6 +26,14 @@ class MainDialog(QtWidgets.QMainWindow):
         self.set_tree()
         self.set_combobox()
         
+        icon = QtGui.QIcon()
+        icon.addFile('pictures/16x16.png', QtCore.QSize(16,16))
+        icon.addFile('pictures/24x24.png', QtCore.QSize(24,24))
+        icon.addFile('pictures/32x32.png', QtCore.QSize(32,32))
+        icon.addFile('pictures/48x48.png', QtCore.QSize(48,48))
+        icon.addFile('pictures/256x256.png', QtCore.QSize(256,256))
+        self.setWindowIcon(icon)
+
         self.setMouseTracking(True)
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
@@ -34,6 +42,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
         self.ui.b_savepath.clicked.connect(self.b_savepath_click)
         self.ui.in_phone.textChanged.connect(self.set_phonenumber)
+        self.ui.b_exit.clicked.connect(self.b_exit_clicked)
 
         # tabs_click
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
@@ -130,7 +139,10 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_2.hide()
         self.ui.line_3.hide()
         self.ui.line_4.hide()
-        self.ui.line_5.show()   
+        self.ui.line_5.show() 
+
+    def b_exit_clicked(self):
+        QtGui.QApplication.instance().quit()  
 
     def set_tree(self):
         self.treeWidget.clear()
@@ -182,10 +194,10 @@ class MainDialog(QtWidgets.QMainWindow):
             self.timeout = classes.Timeout(5, lambda signal: signal.emit(True), self.ui.b_user_logout.clicked)
             self.timeout.start()
 
-            #self.in_name.setText(self.logged_in_user.name)              # fill textEdits for UserChange
-            #self.in_surname.setText(self.logged_in_user.surname)
-            #self.in_email.setText(self.logged_in_user.email)
-            #self.in_phone.setText(self.logged_in_user.phone)
+            self.in_name.setText(self.logged_in_user.name)              # fill textEdits for UserChange
+            self.in_surname.setText(self.logged_in_user.surname)
+            self.in_email.setText(self.logged_in_user.e_mail)
+            self.in_phone.setText(str(self.logged_in_user.phonenumber))
 
 
     def b_user_logout_click(self, timed_out=False):
