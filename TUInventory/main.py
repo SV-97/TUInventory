@@ -2,6 +2,7 @@
 
 import logging
 import sys
+import ctypes                                                               # --
 from threading import Lock, Thread
 from time import sleep
 
@@ -14,12 +15,13 @@ from logger import logger
 import ui
 from utils import absolute_path
 
+appid = u'Padcon.TUInventory.DesktopApp.1_0_0'                              # probably WONT WORK on Linux
+ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appid)        # --
 
 def main():
     app = QApplication(sys.argv)
     dialog_main = ui.MainDialog()
-    #dialog_main.show()                 # NON FULLSCREEN
-    dialog_main.showFullScreen()        # FULLSCREEN
+    dialog_main.showMaximized()
     
     try:
         videostream = LazyVideoStream()
