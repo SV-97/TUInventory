@@ -5,6 +5,7 @@ import sys
 from threading import Lock, Thread
 from time import sleep
 
+from PyQt5 import Qt
 from PyQt5.QtWidgets import QApplication
 
 from barcodereader import LazyVideoStream, VideoStream
@@ -17,7 +18,8 @@ from utils import absolute_path
 def main():
     app = QApplication(sys.argv)
     dialog_main = ui.MainDialog()
-    dialog_main.show()
+    #dialog_main.show()                 # NON FULLSCREEN
+    dialog_main.showFullScreen()        # FULLSCREEN
     
     try:
         videostream = LazyVideoStream()
