@@ -407,7 +407,7 @@ class VideoStreamUISync(Thread):
             frame, found_codes = self.videostream.frame_queue.get()
             pixmap = self._matrice_to_QPixmap(frame)
             self.canvas.setPixmap(pixmap)
-            if found_codes: # maybe lock here
+            if found_codes: # may need to lock here
                 self.barcodes.update(found_codes)
             cv2.waitKey(1)
 
