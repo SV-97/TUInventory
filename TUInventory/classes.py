@@ -67,13 +67,13 @@ def setup_context_session(engine):
                 super().__init__(bind=engine)
                 self.instances = []
 
-            def add(self, instance, *args):
+            def add(self, instance, *args, **kwargs):
                 self.instances.append(instance)
-                super().add(instance, *args)
+                super().add(instance, *args, **kwargs)
 
-            def add_all(self, instances):
+            def add_all(self, instances, *args, **kwargs):
                 self.instances += instances
-                super().add_all(instances)
+                super().add_all(instances, *args, **kwargs)
 
         def __enter__(self):
             self.session = self._StateKeepingSession()
@@ -86,7 +86,8 @@ def setup_context_session(engine):
             else:
                 self.session.commit()
                 # [self.session.refresh(instance) for instance in self.session.instances] if I didn't mess up the map below, this can be deleted
-                map(self.session.refresh, self.session.instances)
+                for x in map(self.session.refresh, self.session.instances):
+                    pass # refresh all instances via side effect of map
                 self.session.expunge_all()
                 self.session.close()
                 return True
@@ -110,8 +111,8 @@ class Article(Base):
     uid = Column(Integer, primary_key=True)
     name = Column(String)
     producer_uid = Column(Integer, sqlalchemy.ForeignKey("producers.uid"))
-    last_price = Column(Float(asdecimal=True))
-    devices = orm.relationship("Device", backref="article")
+    #last_price = Column(Float(asdecimal=True))
+    devices = orm.relationship("Device", backref=orm.backref("article", lazy="immediate"), lazy="immediate")
     def __init__(self, name, producer=None, uid=None):
         self.uid = uid
         self.name = name
@@ -126,7 +127,7 @@ class Device(Base):
     code = Column(String)
     #name = Column(String) # not currently used
     #location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
-    responsibilities = orm.relationship("Responsibility", backref="device")
+    responsibility = orm.relationship("Responsibility", backref=orm.backref("device", lazy="immediate", uselist=False), lazy="immediate", uselist=False)
     def __init__(self, code=None, uid=None):
         self.uid = uid
         self.code = code
@@ -327,7 +328,7 @@ class Timeout(Thread):
     """
 
     def __init__(self, timeout, function, *args, **kwargs):
-        super().__init__(name=f"{self.__class__.__name__}Thread_{camera_id}")
+        super().__init__(name=f"{self.__class__.__name__}Thread_{function.__name__}")
         self.timeout = timeout
         self.function = function
         self.args = args
@@ -406,7 +407,7 @@ class VideoStreamUISync(Thread):
             frame, found_codes = self.videostream.frame_queue.get()
             pixmap = self._matrice_to_QPixmap(frame)
             self.canvas.setPixmap(pixmap)
-            if found_codes:
+            if found_codes: # maybe lock here
                 self.barcodes.update(found_codes)
             cv2.waitKey(1)
 
@@ -432,116 +433,86 @@ if __name__ == "__main__":
     reset_thread.join()
     """
 
+    import random
+    random.seed(0)
+    
     location1 = Location("Gebäude 23")
     location2 = Location("Büro")
     location3 = Location("Lager")
+    locations = (
+        location1,
+        location2,
+        location3)
+
+
     user1 = User(e_mail="Karl@googlemail.com", password="123", name="Karl", surname="König", phonenumber="123456")
-    user2 = User(e_mail="hey@ho.com", password="passwort", name="Bob", surname="Künig", phonenumber="654321")
-    user3 = User(e_mail="Mail@mail.com", password="456", name="Bob", surname="Künig", phonenumber="21")
+    user2 = User(e_mail="hey@ho.com", password="passwort", name="Bob", surname="Fischer", phonenumber="654321")
+    user3 = User(e_mail="Mail@mail.com", password="456", name="Tim", surname="Meier", phonenumber="21")
+    user6 = User(e_mail="a@a.a", password=" ", name="Wilhelm", surname="Schmidt", phonenumber="09123 12345-67")
     user4 = User(e_mail="Testo@web.de", password="456", name="testo", surname="Testington", phonenumber="621")
     user5 = User(e_mail="Jack@web.de", password="1234", name="Jack", surname="von Teststadt", phonenumber="+49045 1123")
     user6 = User(e_mail="mymail@gmail.com", password="abc", name="Billy", surname="Bob", phonenumber="651")
-    user1.location = location2
-    user2.location = location2
-    user3.location = location2
-    user4.location = location2
-    user5.location = location2
-    user6.location = location3
+    users = (
+        user1,
+        user2,
+        user3,
+        user4,
+        user5,
+        user6)
+
+    for user in users:
+        user.location = random.choice(locations)
 
     producer1 = Producer("Padcon")
-    producer2 = Producer("Intel")
-    article1 = Article("Prusa Mk3")
-    article2 = Article("Kopierpapier")
-    article3 = Article("Laptop 123")
-    article4 = Article("i7 4790k")
+    producer2 = Producer("VIA Embedded")
+    producer3 = Producer("Jetway")
+    producer4 = Producer("Hirschmann")
+    producers = (
+        producer1,
+        producer2,
+        producer3,
+        producer4)
+
+    article1 = Article("PID Killer")
+    article2 = Article("IPC AMOS-3005-1Q12A2")
+    article3 = Article("IPC JBC323U591-3160-B")
+    article4 = Article("IPC HM-1000")
+    article5 = Article("MSwitch JRL116M-2F-M")
+    article6 = Article("Switch SPIDER 8TX")
+    article7 = Article("Switch SPIDER 5TX")
     article1.producer = producer1
-    article2.producer = producer1
-    article3.producer = producer1
-    article4.producer = producer2
+    article2.producer = producer2
+    article3.producer = producer3
+    article4.producer = producer3
+    article5.producer = producer3
+    article6.producer = producer4
+    article7.producer = producer4
+    articles = (
+        article1, 
+        article2, 
+        article3, 
+        article4, 
+        article5,
+        article6,
+        article7)
 
-    device1 = Device("1")
-    device1.article = article1
-    device1.location = location1
-
-    device2 = Device("2")
-    article1.devices.append(device2)
-    device2.location = location2
-
-    device3 = Device("3")
-    device3.article = article1
-    device3.location = location3
-
-    device4 = Device("4")
-    device4.article = article4
-    device4.location = location3
-
-    device5 = Device("5")
-    device5.article = article4
-    device5.location = location3
-
-    device6 = Device("6")
-    device6.article = article3
-    device6.location = location1
-
-    device7 = Device("7")
-    device7.article = article2
-    device7.location = location1
-
-    device8 = Device("8")
-    device8.article = article1
-    device8.location = location2
-
-    resp1 = Responsibility()
-    resp1.user = user1
-    resp1.location = location2
-    resp1.device = device1
-
-    resp2 = Responsibility()
-    resp2.user = user2
-    resp2.location = location3
-    resp2.device = device2
-    
-    resp3 = Responsibility()
-    resp3.user = user5
-    resp3.location = location1
-    resp3.device = device3
-
-    resp4 = Responsibility()
-    resp4.user = user5
-    resp4.location = location1
-    resp4.device = device4
-    
-    resp5 = Responsibility()
-    resp5.user = user3
-    resp5.location = location2
-    resp5.device = device5
-    
-    resp6 = Responsibility()
-    resp6.user = user3
-    resp6.location = location1
-    resp6.device = device6
-
-    resp7 = Responsibility()
-    resp7.user = user1
-    resp7.location = location1
-    resp7.device = device7
-
-    resp8 = Responsibility()
-    resp8.user = user1
-    resp8.location = location1
-    resp8.device = device8
-
+    devices = [Device(str(i)) for i in range(200)]
+    resps = [Responsibility() for device in devices]
+    for device, resp in zip(devices, resps):
+        device.article = random.choice(articles)
+        resp.user = random.choice(users)
+        resp.location = random.choice(locations)
+        resp.device = device
+        
     Session = orm.sessionmaker(bind=engine)
     session = Session()
 
-    session.add(location1)
-    session.add(location2)
-    session.add(location3)
-    session.add_all([user1, user2, user3, user4, user5, user6])
-    session.add_all([producer1, producer2])
-    session.add_all([article1, article2, article3, article4])
-    session.add_all([device1, device2, device3, device4, device5, device6, device7, device8])
-    session.add_all([resp1, resp2, resp3, resp4, resp5, resp6, resp7, resp8])
+    session.add_all(locations)
+    session.add_all(users)
+    session.add_all(producers)
+    session.add_all(articles)
+    session.add_all(devices)
+    session.add_all(resps)
 
     print("-"*30)
     print(f"{article1.producer.name} produces the following articles")
@@ -549,7 +520,7 @@ if __name__ == "__main__":
         print(f"{' '*5}{art.name}")
         print(f"{' '*10}instances of these articles are:")
         for device in art.devices:
-            print(f"{device.code:>20} stored at {device.location.name:<20}")
+            print(f"{device.code:>20} stored at {device.responsibility.location.name:<20}")
     print("-"*30)
     
     del user1
@@ -572,8 +543,7 @@ if __name__ == "__main__":
     print("Known responsibilities for these users are:")
     for user in users:
         for resp in user.responsibilities:
-            print(f"{resp.user.name:^15}|{resp.device.code:^15}|{resp.location.name:^15}")
-            print(resp.device.article.name)
+            print(f"{str(resp.user):^30}|{resp.device.code:^8}|{resp.location.name:^15}|{resp.device.article.name:^30}")
 
     session.commit()
     session.close()

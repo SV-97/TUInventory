@@ -4031,6 +4031,499 @@ e anlegen.
  beide Anfragen mit einem Frame beantworten.
 \end_layout
 
+\begin_layout Standard
+Weiterhin stellt sich die Frage, wieso auch die Antworten über eine Queue
+ geregelt sind, anstatt auf eine gelockte Property zu setzen: Die Request-Respon
+se Variante hat den Vorteil, dass es nicht möglich ist, veraltete Daten
+ abzufragen.
+ Jeder der ein Frame von der Kamera möchte, ist gezwungen vorher eine Abfrage
+ zu starten - daher ist dieses grundsätzlich aktuell.
+\end_layout
+
+\begin_layout Standard
+Dieser Mechanismus hätte, nach folgendem Schema auch in einer Property gekapselt
+ werden können:
+\end_layout
+
+\begin_layout Itemize
+bei 
+\emph on
+get-Zugriff
+\emph default
+ der Property wird intern eine Abfrage in der Request-Queue abgelegt
+\end_layout
+
+\begin_layout Itemize
+blockierende Methode 
+\emph on
+get
+\emph default
+ der Response-Queue wird aufgerufen
+\end_layout
+
+\begin_layout Itemize
+Daten werden zurückgegeben
+\end_layout
+
+\begin_layout Standard
+Hierauf wurde jedoch verzichtet, da man bei manuellem Zugriff auf die Queues
+ die Laufzeit der Bildabfrage mit einkalkulieren kann.
+ Zum Beispiel weiss man an Punkt A, dass man bald ein Frame benötigt, also
+ fragt man es an.
+ Danach erledigt man einige andere Arbeiten, bis man das Frame an Punkt
+ B tatsächlich entgegennimmt und verarbeitet.
+\end_layout
+
+\begin_layout Subsection
+Auslesen von Barcodes und grundlegende Aufbereitung von Frames
+\end_layout
+
+\begin_layout Standard
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+Hier ein cooles Bild von drei Matrizen (in Rot grün blau maybe) und einer
+ Matrize mit vektoren als einträgen die ebenfalls rot grün und blau sind)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Funktionalität des Barcode-Auslesens und eine erste Bearbeitung der
+ Frames findet in der Methode 
+\emph on
+find_and_mark_barcodes
+\emph default
+ der VideoStream Klassen statt.
+ Der Methode wird ein Frame übergeben, auf dem dann operiert wird.
+\end_layout
+
+\begin_layout Standard
+Da einige Zeilen dabei nontrivial sind, wird die Funktion hier im Detail
+ durchgesprochen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/barcodereader.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Methode 
+\emph on
+find_and_mark_barcodes
+\emph default
+ der beiden VideoStream Klassen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Der Ablauf ist wie folgt:
+\end_layout
+
+\begin_layout Enumerate
+Über pyzbar, eine Python Bibliothek, die es ermöglicht Barcodes aus Bildern
+ auszulesen, werden alle Barcodes aus dem Frame ausgelesen.
+\end_layout
+
+\begin_layout Enumerate
+Es wird eine leere Liste 
+\emph on
+found_codes
+\emph default
+ angelegt und über alle Barcodes iteriert
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Es wird ein Tupel angelegt, dass den Barcode Typ (z.B.
+ EAN-14 oder QR-Code) und die enthaltenen Daten mit UTF-8 codiert enthält.
+\end_layout
+
+\begin_layout Enumerate
+Nun wird überprüft ob dieses Tupel bereits in 
+\emph on
+found_codes
+\emph default
+ hinterlegt ist, wenn nicht wird es hinzugefügt.
+ Grundsätzlich gäbe es hier zwei Alternativlösungen.
+ Man könnte entweder nicht überprüfen ob das Tupel bereits enthalten ist,
+ und found_codes am Ende in ein 
+\emph on
+set
+\emph default
+ konvertieren, oder eine set-comprehension einsetzen um 
+\emph on
+found_codes
+\emph default
+ zu erzeugen.
+ Sets sind dabei Python Container, die hashbare Instanzen in nicht geordneter
+ Reihenfolge speichern.
+ Sie sind soz.
+ ein Dictionary, dass nur aus Schlüsseln besteht.
+\end_layout
+
+\begin_layout Enumerate
+ZBar gibt 
+\emph on
+Barcode
+\emph default
+ Objekte zurück, die nebst dem tatsächlichen Payload des Codes, auch Metainforma
+tionen wie z.B.
+ Geometrien um den Code enthalten.
+ Hier setzen wir den 
+\emph on
+polygon
+\emph default
+ Member ein, um jene Punkte (Pixel) zu erhalten, die ein Polygon um den
+ Code im Bild bilden.
+\end_layout
+
+\begin_layout Enumerate
+Wir bilden uns nun eine Liste, die Tupel mit allen Koordinatenpaaren dieser
+ Punkte enthält und setzen diese als Parameter für die Funktion 
+\emph on
+np.asarray
+\emph default
+ ein.
+ Dabei ist 
+\emph on
+np
+\emph default
+ die Bibliothek 
+\emph on
+numpy
+\emph default
+ - eine hochoptimierte Bibliothek die vor allem auf große Vektor und Matrixopera
+tionen - also lineare Algebra - ausgerichtet ist.
+ 
+\emph on
+asarray
+\emph default
+ bildet nun aus der Liste aus Tupeln eine neue Struktur - das Array (tatsächlich
+ ist es ein 
+\emph on
+ndarray
+\emph default
+ - ein n-dimensionales Array also
+\emph on
+)
+\emph default
+.
+ Diese Arrays, wie auch praktisch alle Funktionen auf ihnen, sind durch
+ NumPy direkt in C
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Mitunter werden in numpy auch noch andere Sprachen wie z.B.
+ Fortran eingesetzt
+\end_layout
+
+\end_inset
+
+ implementiert.
+\end_layout
+
+\begin_layout Enumerate
+Nun folgt ein Aufruf der 
+\emph on
+reshape
+\emph default
+ Methode.
+ Diese ermöglicht es 
+\emph on
+arrays
+\emph default
+ effizient umzuformen (z.B.
+ würde ein a.reshape(2 * len(a)) aus einem Array wie unserem, ein 1-dimensionales
+ Array bilden).
+ Über die -1 im übergebenen Tupel, teilen wir Numpy mit, dass es uns egal
+ ist was es mit dieser Dimension macht, uns interessieren lediglich die
+ anderen beiden, welche wir dann auf 1 bzw.
+ 2 setzen.
+\end_layout
+
+\begin_layout Enumerate
+Die Folgende Zeile zeichnet nun, dem Array 
+\emph on
+poly
+\emph default
+ entsprechend ein Polygon auf unser Frame.
+ True definiert das Polygon hierbei als geschlossenes Polygon, das Tupel
+ (0,255,0) ein RGB Triplet das unsere Farbe festlegt und die 2 ist die Dicke
+ der zu zeichnenden Linien.
+\end_layout
+
+\begin_layout Enumerate
+Analog dazu wird noch ein Rechteck um den Code gezeichnet.
+ Ein C-Programmierer würde die dabei vorkommenden Asteriske eventuell als
+ Pointer deuten, tatsächlich handelt es sich jedoch um doppeltes Tupel-Unpacking.
+ Zuerst rufen wir die statische Methode 
+\emph on
+rect_transformation
+\emph default
+ unserer Klasse auf.
+ Diese führt eine Koordinatentransformation des 
+\emph on
+rect
+\emph default
+
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Von Englisch 
+\begin_inset Quotes gld
+\end_inset
+
+rectangle
+\begin_inset Quotes grd
+\end_inset
+
+ zu deutsch 
+\begin_inset Quotes gld
+\end_inset
+
+Rechteck
+\begin_inset Quotes grd
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+-Members des Barcode Obektes durch.
+ Hierbei werden die Koordinaten der Form 
+\begin_inset Quotes gld
+\end_inset
+
+Ursprung und Größe
+\begin_inset Quotes grd
+\end_inset
+
+ in zwei absolute Eckpunktskoordinaten gewandelt.
+ Das dabei zurückgegebene Tupel wird nun direkt wieder unpacked und kann
+ gezeichnet werden.
+\end_layout
+
+\begin_layout Enumerate
+Die anschließende Zeile ist eine sog.
+ 
+\emph on
+slice
+\emph default
+ Operation bei der wir die ersten beiden Elemente des 
+\emph on
+rect
+\emph default
+ Members nehmen, unpacken und in Variablen ablegen.
+\end_layout
+
+\begin_layout Enumerate
+Mithilfe diese dieser Variablen und einem Offset wird nun ein Text auf das
+ Frame gezeichnet.
+ Dieser Text enthält den Typ des Codes, sowie seine Daten.
+ Dies ist eine der wenigen, wenn nicht sogar die einzige Stelle, im gesamten
+ Programm an der zur String-Interpolation kein f-String, sondern die alte
+ 
+\emph on
+str.format
+\emph default
+ Methode eingesetzt wird.
+ Diese kann nämlich über Unpacking komfortabel Tuple verarbeiten - mit einem
+ f-String hätte jedes Element einzeln angesprochen werden müssen.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Sind alle Barcodes verarbeitet, werden das bearbeitete frame und alle gefundenen
+ codes zurückgegeben.
+\end_layout
+
+\begin_layout Subsection
+Weitere Kapselung: VideostreamUISync
+\end_layout
+
+\begin_layout Standard
+Zwischen 
+\emph on
+VideoStream
+\emph default
+ und UI sitzt ein weiterer Abstraktionslayer.
+ Dieser kümmert sich darum die Bilddaten auszuwerten, aufzubereiten und
+ in der UI darzustellen.
+ Konkret handelt es sich hierbei um einen weiteren Daemon-Thread, der bei
+ seiner Instanziierung den 
+\emph on
+LazyVideoStream
+\emph default
+ von dem er seine Frames bekommt, sowie ein 
+\emph on
+canvas
+\emph default
+ übergeben bekommt.
+ Das 
+\emph on
+canvas
+\emph default
+ ist ein beliebiges Qt Widget, das die Methode 
+\emph on
+setPixmap
+\emph default
+ implementiert.
+ Tatsächlich verwendet Qt nämlich nicht einfach Matrizen zur Bilddarstellung,
+ sondern implementiert hierzu eine eigene Klasse 
+\emph on
+QPixmap
+\emph default
+.
+ Der Ablauf einer Schleifeniteration sieht wie folgt aus:
+\end_layout
+
+\begin_layout Enumerate
+Anfrage eines Frames bei VideoStream
+\end_layout
+
+\begin_layout Enumerate
+Abrufen der Antwort - Aufteilung in Bilddaten und Barcodes
+\end_layout
+
+\begin_layout Enumerate
+Aufruf der Methode 
+\emph on
+_matrice_to_QPixmap
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Farbkorrektur über Wandlung von BGR zu RGB mittels 
+\emph on
+cvtColor
+\emph default
+ Methode von OpenCV - dies ist grundsätzlich eine sehr simple Aufgabe, es
+ werden je nach Aufbau der Matrix lediglich zwei Arrays getauscht.
+ Der Einsatz der Methode erlaubt es jedoch, auf das Laden einer großen Bibliothe
+k wie 
+\emph on
+numpy
+\emph default
+ (tatsächlich setzt opencv intern NumPy ein).
+\end_layout
+
+\begin_layout Enumerate
+Ermitteln der Dimensionen der Matrix
+\end_layout
+
+\begin_layout Enumerate
+Konstruktion eines 
+\emph on
+QImage
+\emph default
+; ein für Qt nötiges Zwischenkonstrukt.
+ Hier werden alle Dimensionen und der gewünschte Farbraum (RGB mit 3x8bit)
+ festgelegt.
+\end_layout
+
+\begin_layout Enumerate
+Konstruktion und Rückgabe einer 
+\emph on
+QPixmap
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Schreiben des Frames in die UI
+\end_layout
+
+\begin_layout Enumerate
+Sofern codes gefunden wurden, wird die Methode 
+\emph on
+update
+\emph default
+ des 
+\emph on
+Counters
+\emph default
+ 
+\emph on
+barcodes
+\emph default
+ aufgerufen
+\end_layout
+
+\begin_layout Enumerate
+Kurze Verzögerung, die OpenCV benötigt um korrekt zu funktionieren.
+\end_layout
+
+\begin_layout Standard
+In Schritt 5 wird ein Counter angesprochen.
+ Counter sind eine Datenstruktur des Python Standartmoduls 
+\emph on
+collections
+\emph default
+, das spezielle, high-performance Containertypen zur Verfügung stellt
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "25.02.19 - 19:11 Uhr"
+key "collections"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+ Konkret ist ein Counter eine 
+\emph on
+HashMap
+\emph default
+, also ein Python dictionary, dass hashbare Objekte und ihre Häufigkeit
+ in sich oder einer anderen Datenstruktur, wie einer Liste speichert.
+ Dieser Counter ermöglicht es, Fehler der Barcodeerkennung (diese sind extrem
+ selten, kommen jedoch vor) auzugleichen.
+ Ein Barcode wird erst als korrekt erkannt anerkannt, wenn er in einer bestimmte
+n Anzahl an Frames erkannt wurde.
+ Der Thread implementiert außerdem Methoden um den Counter zurückzusetzen
+ und das häufigste Element abzufragen.
+\end_layout
+
 \begin_layout Subsection
 Datenbanksynchronisation
 \end_layout
@@ -6434,6 +6927,56 @@ d (dt.
  abonniert - also die [Index]-Notation) werden muss
 \end_layout
 
+\begin_layout Standard
+Im Zuge des Refactoring wird auch hier nachgebessert.
+ Der Filtervorgang wird von 
+\begin_inset Quotes gld
+\end_inset
+
+Pure Python
+\begin_inset Quotes grd
+\end_inset
+
+ zu SQL verlegt, wodurch wir uns höhere Performanz versprechen.
+ Wie bei allen anderen Abfragen, werden auch hier die Abfragen nicht über
+ SQL direkt, sondern über die Objektorientierte Query-API von SQLAlchemy
+ durchgeführt.
+ Da der Baum vom Nutzer direkt einsehbar ist und die Abfrage-Texte vom Nutzer
+ beeinflusst werden können, wäre an dieser Stelle die Gefahr für SQL Injection
+ mittels Interpolation der Namen in die Abfragebefehle groß.
+\end_layout
+
+\begin_layout Standard
+Dem geänderten Arbeitsprinzip nach, werden zunächst alle 
+\emph on
+Locations
+\emph default
+ aus der Datenbank abgefragt; hier findet auch direkt eine alphabetische
+ Sortierung statt.
+ Nun wird für jede Location überprüft, ob es Responsibilities in der Datenbank
+ gibt, über einen 
+\emph on
+join
+\emph default
+ (ORM-Methode für einen 
+\emph on
+Inner Join
+\emph default
+) werden die dazugehörigen Nutzer abgefragt.
+ Nachdem auch die Nutzer alphabetisch sortiert sind, wird über diese iteriert
+ und über eine weitere Abfrage ermittelt, welche Geräte der aktuellen Location
+ und dem aktuellen User zuzuordnen sind.
+ Diese geänderte Version hat außerdem den Vorteil, dass weniger Interaktion
+ mit PyQt nötig ist.
+ Es werden lediglich die entsprechenden 
+\emph on
+Items
+\emph default
+ zu jeder Location, jedem User und jedem Gerät jeweils exakt 1 mal erstellt
+ und an der korrekten Stelle in den Baum eingepflegt.
+ Abfragen aus dem Baum entfallen vollständig.
+\end_layout
+
 \begin_layout Subsection
 Fazit
 \end_layout
@@ -6463,7 +7006,7 @@ setText
 \emph default
 -Methode geändert.
  Da Qt eigentlich aus dem C++ Bereich kommt, ist dies verständlich, hätte
- im Wrapper jedoch geändert werden sollen.
+ im Wrapper jedoch eventuell geändert werden sollen.
 \end_layout
 
 \begin_layout Section

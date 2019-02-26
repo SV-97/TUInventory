@@ -132,45 +132,46 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_4.hide()
         self.ui.line_5.show()   
 
-    def set_tree(self): # toDo make tree scrollable if it gets too big
+    def set_tree(self):
+        self.treeWidget.clear()
         with CSession() as session:
-            responsibilities = session.query(classes.Responsibility).all()
-            for resp in responsibilities:
-                location = QtWidgets.QTreeWidgetItem([str(resp.location.name)])
-                user = QtWidgets.QTreeWidgetItem([str(resp.user)]) # toDo: Set color if user is the currently logged in one and add this to update_user_dependant
-                device = QtWidgets.QTreeWidgetItem([str(resp.device)])
-                locations = [self.treeWidget.topLevelItem(i) for i in range(self.treeWidget.topLevelItemCount())] # has to be list-comprehension because used multiple times -> docu
-                tree_text = (item.text(0) for item in locations) # can be generator expression because single-use -> docu
-                if str(resp.location.name) not in tree_text:
-                    location.addChild(user)
-                    user.addChild(device)
-                    self.treeWidget.addTopLevelItem(location)
+            locations = session.query(classes.Location).all()
+            locations.sort(key=lambda loc: loc.name)
+            for location in locations:
+                users = session.query(classes.User).join(classes.Responsibility).\
+                    filter_by(location=location).all()
+                users.sort(key=lambda user: str(user))
+                if users:
+                    location_item = QtWidgets.QTreeWidgetItem([str(location.name)])
+                    self.treeWidget.addTopLevelItem(location_item)
                 else:
-                    for location in locations:
-                        if location.text(0) == str(resp.location):
-                            users = [location.child(i) for i in range(location.childCount())]
-                            if str(resp.user) not in (user.text(0) for user in users):
-                                location.addChild(user)
-                                user.addChild(device)
-                            else:
-                                for user in users:
-                                    devices = (user.child(i) for i in range(location.childCount()))
-                                    if str(resp.device) not in devices:
-                                        user.addChild(device)
+                    continue
+                for user in users:
+                    devices = session.query(classes.Device).join(classes.Responsibility).\
+                        filter_by(user=user, location=location).all()
+                    user_item = QtWidgets.QTreeWidgetItem([str(user)])
+                    devices.sort(key=lambda device: str(device))
+                    location_item.addChild(user_item)
+                    for device in devices:
+                        device_item = QtWidgets.QTreeWidgetItem([str(device)])
+                        user_item.addChild(device_item)
 
     def set_combobox(self):
+        ... # Hier am besten einmal die cb leer machen, da beim adden von neuen locations 
+        # diese Funktion erneut aufgerufen werden muss und es sonst wahrscheinlich doppelte einträge gibt(?)
         with CSession() as session:
             locations = session.query(classes.Location).all()
             for location in locations:
                 self.cb_location.addItem(location.name)
 
     def set_phonenumber(self, str_):
-        try:
-            if not str_:
-                raise classes.PhoneNumber.NoNumberFoundWarning
-            text = str(classes.PhoneNumber(str_))
-        except classes.PhoneNumber.NoNumberFoundWarning:
-            text = "Es konnte keine Nummer erkannt werden. Empfohlene Syntax ist: Vorwahl Benutzernummer-Durchwahl"    
+        if str_:
+            try:
+                text = str(classes.PhoneNumber(str_))
+            except classes.PhoneNumber.NoNumberFoundWarning:
+                text = "Es konnte keine Nummer erkannt werden. Empfohlene Syntax ist: Vorwahl Benutzernummer-Durchwahl"    
+        else:
+            text = "Bitte geben Sie Ihre Telefonnummer ein."
         self.out_phone.setText(text)
 
     def b_user_login_click(self):
@@ -178,7 +179,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.update_user_dependant()
         if self.logged_in_user:
             logger.info(f"Logged in as {self.logged_in_user}")
-            self.timeout = classes.Timeout(5, lambda signal: signal.emit(True), (self.ui.b_user_logout.clicked,))
+            self.timeout = classes.Timeout(5, lambda signal: signal.emit(True), self.ui.b_user_logout.clicked)
             self.timeout.start()
 
             #self.in_name.setText(self.logged_in_user.name)              # fill textEdits for UserChange
@@ -210,18 +211,18 @@ class MainDialog(QtWidgets.QMainWindow):
 
     def update_user_dependant(self):
         if self.logged_in_user:
-            self.ui.log_in_out.setCurrentIndex(0)
-            self.label.setText(str(self.logged_in_user).title()) 
+            self.ui.log_in_out.setCurrentIndex(1)
+            self.label.setText(str(self.logged_in_user)) 
 
             self.statusBar().setStyleSheet("color: #008080")
             self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user} angemeldet.", 1500)
-
+            
             if self.logged_in_user.is_admin:
                 self.checkBox.visible = True
             else:
                 self.checkBox.visible = False 
         else:
-            self.ui.log_in_out.setCurrentIndex(1)
+            self.ui.log_in_out.setCurrentIndex(0)
             self.label.setText("")
 
     def mousePressEvent(self, QMouseEvent=None):
@@ -241,16 +242,21 @@ class MainDialog(QtWidgets.QMainWindow):
             self.new_user()
 
     def new_user(self):
-        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone]):
+        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone]): # password box is missing
             self.statusBar().setStyleSheet("color: #ff0000")
             self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
             return
-        
-        args = [None for i in range(6)]
-        user = slots.create_user(*args) # add textboxes once names are final and remove args
-        if self.checkBox.isChecked():
-            slots.create_admin(user)
 
+        args = [None for i in range(6)]
+        if self.checkBox.isChecked():
+            user = slots.create_admin(*args)
+        else:
+            user = slots.create_user(*args) # add textboxes once names are final and remove args
+
+        with CSession() as session:
+            session.add(user)
+            user.location = ... # queried location
+            
         self.statusBar().setStyleSheet("color: green")   
         self.statusBar().showMessage("Benutzer {user} wurde erfolgreich angelegt.", 5000)
 
@@ -262,6 +268,8 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:    
             # check if admin is logged in(though this dialog shouldn't show if no admin is logged in)
             # query user from db via name
+            if self.logged_in_user.is_admin:
+                user = session.query(classes.User).filter(classes.User.name)
             user = None
             new_password = slots.reset_password(user)
         # display password
