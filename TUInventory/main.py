@@ -6,7 +6,6 @@ import ctypes                                                               # --
 from threading import Lock, Thread
 from time import sleep
 
-from PyQt5 import Qt
 from PyQt5.QtWidgets import QApplication
 
 from barcodereader import LazyVideoStream, VideoStream
