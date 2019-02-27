@@ -25,16 +25,15 @@ class MainDialog(QtWidgets.QMainWindow):
         self.savepath = None
         self.set_tree()
         self.set_combobox()
-        
+        self.setMouseTracking(True)
+
         icon = QtGui.QIcon()
-        icon.addFile('pictures/16x16.png', QtCore.QSize(16,16))
-        icon.addFile('pictures/24x24.png', QtCore.QSize(24,24))
-        icon.addFile('pictures/32x32.png', QtCore.QSize(32,32))
-        icon.addFile('pictures/48x48.png', QtCore.QSize(48,48))
+        #icon.addFile('pictures/16x16.png', QtCore.QSize(16,16))
+        #icon.addFile('pictures/24x24.png', QtCore.QSize(24,24))
+        #icon.addFile('pictures/32x32.png', QtCore.QSize(32,32))
+        #icon.addFile('pictures/48x48.png', QtCore.QSize(48,48))
         icon.addFile('pictures/256x256.png', QtCore.QSize(256,256))
         self.setWindowIcon(icon)
-
-        self.setMouseTracking(True)
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
@@ -42,9 +41,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
         self.ui.b_savepath.clicked.connect(self.b_savepath_click)
         self.ui.in_phone.textChanged.connect(self.set_phonenumber)
-        self.ui.b_exit.clicked.connect(self.b_exit_clicked)
-
-        # tabs_click
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
         self.ui.b_tab_2.clicked.connect(self.b_tab_2_click)
         self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
@@ -141,9 +137,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_4.hide()
         self.ui.line_5.show() 
 
-    def b_exit_clicked(self):
-        QtGui.QApplication.instance().quit()  
-
     def set_tree(self):
         self.treeWidget.clear()
         with CSession() as session:
@@ -197,7 +190,7 @@ class MainDialog(QtWidgets.QMainWindow):
             self.in_name.setText(self.logged_in_user.name)              # fill textEdits for UserChange
             self.in_surname.setText(self.logged_in_user.surname)
             self.in_email.setText(self.logged_in_user.e_mail)
-            self.in_phone.setText(str(self.logged_in_user.phonenumber))
+            #self.in_phone.setText(str(self.logged_in_user.phonenumber))
 
 
     def b_user_logout_click(self, timed_out=False):
@@ -207,12 +200,20 @@ class MainDialog(QtWidgets.QMainWindow):
         self.update_user_dependant()
         self.timeout.function = None
         del self.timeout
+        self.in_name.setText("")
+        self.in_surname.setText("")
+        self.in_email.setText("")
+        self.in_phone.setText("")
 
     def timed_out(self):
         logger.info(f"User {self.logged_in_user.uid} logged out due to inactivity")
 
         self.statusBar().setStyleSheet("color: #ff0000")   
-        self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 2000)
+        self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 5000)
+        self.in_name.setText("")
+        self.in_surname.setText("")
+        self.in_email.setText("")
+        self.in_phone.setText("")
 
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
