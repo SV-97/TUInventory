@@ -4126,9 +4126,9 @@ begin{bmatrix}
 
 \begin_layout Plain Layout
 
-	{r_{11} & r_{12} & 
+	r_{11} & r_{12} & 
 \backslash
-cdots & r_{1n}}
+cdots & r_{1n}
 \backslash
 
 \backslash
