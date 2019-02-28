@@ -3658,6 +3658,20 @@ _created
  außerhalb der zu erwartenden Nutzung und wird nicht mehr abgefangen.
 \end_layout
 
+\begin_layout Subsubsection
+Dateitools - Pfadvalidierung und Normalisierung von Dateinamen 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+td
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Logging
 \end_layout

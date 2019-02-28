@@ -199,7 +199,7 @@ class MainDialog(QtWidgets.QMainWindow):
     def b_user_logout_click(self, timed_out=False):
         if timed_out:
             self.timed_out()
-        self.logged_in_user = None # may want slots.logout if that does something eventually
+        self.logged_in_user = None # may want to use slots.logout if that does something eventually
         self.update_user_dependant()
         self.timeout.function = None
         del self.timeout
