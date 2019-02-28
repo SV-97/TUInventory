@@ -1,6 +1,8 @@
 """PyQt5 UI classes and linking to slots"""
 
-import os, sys 
+import os
+import pathlib
+import sys
 
 from PyQt5 import uic, QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
@@ -11,6 +13,7 @@ import classes
 from logger import logger
 import slots
 from utils import absolute_path, parallel_print
+from qr_generator import generate_qr
 
 CSession = classes.setup_context_session(classes.engine)
 
@@ -288,10 +291,22 @@ class MainDialog(QtWidgets.QMainWindow):
         # display password
 
     def b_savepath_click(self):
-        SaveDialog(self).exec()
-        if self.savepath:
-            print(self.savepath)
+        qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory")
+        if qr_path:
+            self.t_path.setText(qr_path)
 
+    def b_save_device_click(self):
+        if "" in (...):
+            # show error
+            return
+        name = ...
+        with CSession() as session:
+            session.query(classes.Article).filter_by(name=name).first()
+            device = classes.Device()
+            session.add(device)
+            device.article = article
+
+        path = pathlib.Path(self.t_path.text()) / f"{device.uid}_{device.article.name}.svg"
 
 class LoginDialog(QtWidgets.QDialog):
     
@@ -310,7 +325,7 @@ class LoginDialog(QtWidgets.QDialog):
 
 
 class SaveDialog(QtWidgets.QDialog):        #Dialog to get select a filepath
-         
+    filepath = ""
     def __init__(self, parent=None):
         path = absolute_path("save.ui")
         super().__init__(parent)
@@ -319,7 +334,7 @@ class SaveDialog(QtWidgets.QDialog):        #Dialog to get select a filepath
         self.b_file_ok.clicked.connect(self.b_file_ok_click)
         self.b_close.clicked.connect(self.b_close_click)
         self.b_browse.clicked.connect(self.b_browse_click)
-        self.filepath = None
+        self.t_path.setText(self.filepath)
     
     def b_browse_click(self):
         self.filename = "filename.svg"
