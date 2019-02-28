@@ -8590,6 +8590,58 @@ lstset{numbers=left, numberblanklines=true}
 \end_layout
 
 \begin_layout Section
+Pläne
+\end_layout
+
+\begin_layout Subsection
+Stromlaufplan
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename Pläne/Stromlaufplan.pdf
+	extra LaTeX "pages=-"
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Netzwerkplan
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename Pläne/Netzwerkplan.pdf
+	extra LaTeX "pages=-"
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Netzwerkplan nach EN81346
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename Pläne/Netzwerkplan.pdf
+	extra LaTeX "pages=-"
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Quellcode
 \end_layout
 
@@ -8601,7 +8653,7 @@ barcodereader.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/barcodereader.py"
+filename "../barcodereader.py"
 
 \end_inset
 
@@ -8616,7 +8668,7 @@ classes.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/classes.py"
+filename "../classes.py"
 
 \end_inset
 
@@ -8631,7 +8683,7 @@ keys.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/keys.py"
+filename "../keys.py"
 
 \end_inset
 
@@ -8646,7 +8698,7 @@ logger.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/logger.py"
+filename "../logger.py"
 
 \end_inset
 
@@ -8661,7 +8713,7 @@ main.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/main.py"
+filename "../main.py"
 
 \end_inset
 
@@ -8676,7 +8728,7 @@ pydoc.sh
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/pydoc.sh"
+filename "../pydoc.sh"
 lstparams "language=bash"
 
 \end_inset
@@ -8692,7 +8744,7 @@ qr_generator.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/qr_generator.py"
+filename "../qr_generator.py"
 
 \end_inset
 
@@ -8707,7 +8759,7 @@ slots.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/slots.py"
+filename "../slots.py"
 
 \end_inset
 
@@ -8722,7 +8774,7 @@ ui.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/ui.py"
+filename "../ui.py"
 
 \end_inset
 
@@ -8737,7 +8789,7 @@ utils.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/utils.py"
+filename "../utils.py"
 
 \end_inset
 
