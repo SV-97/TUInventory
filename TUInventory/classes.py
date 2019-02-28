@@ -109,7 +109,7 @@ class Article(Base):
     """Represents an article"""
     __tablename__ = "articles"
     uid = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String, unique=True)
     producer_uid = Column(Integer, sqlalchemy.ForeignKey("producers.uid"))
     #last_price = Column(Float(asdecimal=True))
     devices = orm.relationship("Device", backref=orm.backref("article", lazy="immediate"), lazy="immediate")
