@@ -19,8 +19,8 @@ if "win32" in sys.platform:
     try:
         app_id = f"Padcon.TUInventory.DesktopApp.{__version__}"
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
-    except Exception:
-        pass
+    except AttributeError as e:
+        logger.debug(str(e))
 
 def main():
     app = QApplication(sys.argv)
