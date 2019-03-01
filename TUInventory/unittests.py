@@ -1,33 +1,49 @@
+import os
+import random
 import unittest
 
-try:
-    import classes
-    skip_classes = False
-except:
-    skip_classes = True
 
-import slots
-
-from utils import absolute_path
+import classes
+import utils
 
 
-@unittest.skipIf(skip_classes, "Critical error in classes, can't import!")
-class TestDatabase(unittest.TestCase):
+class TestUtils(unittest.TestCase):
+    def test_normalize_filename(self):
+        self.assertEqual(utils.normalize_filename(
+            "123abd.edg/(&(&(%§!14    g\n1gj2141.pdf"), 
+            "123abd.edg4___gj2141.pdf")
+        
+    def test_validate_filename(self):
+        self.assertTrue(utils.validate_filename("abc"))
+        with open("abc", "w") as f:
+            self.assertFalse(utils.validate_filename("abc"))
+        os.remove("abc")
 
+
+class TestTelephoneNumber(unittest.TestCase):
     @classmethod
-    def setUpClass(cls):
-        this.CSession = classes.setup_context_session(classes.engine)
+    def phone_number(cls, string):
+        try:
+            pn = classes.PhoneNumber(string)
+        except Exception as e:
+            raise e
+        else:
+            return str(pn)
 
-    def test_user(self):
-        user = classes.User("e@mail.com", "password")
-        with self.CSession() as session:
-            session.add(user)
-            print(user.uid)
-            session.expunge(user)
+    def test_basic_function(self):
+        self.assertEqual(self.phone_number("+049 9723 1234-123"), "+049 9723 1234-123")
+    
+    def test_non_conforming_input(self):
+        self.assertEqual(self.phone_number("09723 1234"), "+049 9723 1234")
+        self.assertEqual(self.phone_number("09723 1234 56789-10"), "+049 9723 123456789-10")
 
-        print(user.uid)
-        #self.assertEqual(user.e_mail, "e@mail.com")
+    def test_text_input(self):
+        self.assertEqual(self.phone_number("My telephonenumber is: 09723 1234. Yes."), "+049 9723 1234")
+        self.assertEqual(self.phone_number("My number is 0 9723 1234+1 and yours is 09723 1234"), "+049 9723 1234-1")
 
 
 if __name__ == "__main__":
-    unittest.main()
+    try:
+        unittest.main()
+    except SystemExit:
+        pass

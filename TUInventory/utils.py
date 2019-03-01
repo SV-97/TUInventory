@@ -44,7 +44,8 @@ parallel_print = _ParallelPrint.print_.put
 def validate_filename(path):
     """Check whether a file already exists"""
     try:
-        open(path, "x")
+        with open(path, "x"):
+            pass
     except FileExistsError as e:
         return False
     else:

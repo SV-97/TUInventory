@@ -155,7 +155,7 @@ class PhoneNumber(Base):
     area_code = Column(String)
     subscriber_number = Column(String)
     extension = Column(String)
-    pattern = r"(((\+\d{1,3})|(0)) ?([1-9]+) )?(\d+ ?)+(-\d+)?"
+    pattern = r"(?P<prelude>(?P<country_code>(?:\+\d{1,3})|(?:0)) *(?P<area_code>(?:[1-9])+) )?(?P<subscriber_number>(?:\d+ ?)+)(?P<extension>[-\+]\d+)?"
     def __init__(self, raw_string):
         self.raw_string = raw_string
         if not self.raw_string:
@@ -165,7 +165,7 @@ class PhoneNumber(Base):
             self.extension = ""
             self.match = None
             return
-        self.match = re.match(self.pattern, self.raw_string)
+        self.match = re.search(self.pattern, self.raw_string)
         if not self.match:
             raise self.NoNumberFoundWarning(raw_string)
         self.country_code = self._extract_country_code()
@@ -179,22 +179,23 @@ class PhoneNumber(Base):
         return re.sub(r"\D", "", string)
 
     def _extract_country_code(self):
-        country_code = self.match.group(2)
+        country_code = self.match.group("country_code")
         if country_code and "+" in country_code:
             return self._whitespacekiller(country_code)
         else:
             return "049"
 
     def _extract_area_code(self):
-        area_code = self.match.group(5) if self.match.group(5) else "9321"
+        area_code = self.match.group("area_code")
+        area_code = "9321" if not area_code else area_code
         return self._whitespacekiller(area_code)
 
     def _extract_subscriber_number(self):
-        subscriber_number = self.match.group(6)
+        subscriber_number = self.match.group("subscriber_number")
         return self._whitespacekiller(subscriber_number)
 
     def _extract_extension(self):
-        extension = self.match.group(7)
+        extension = self.match.group("extension")
         extension = "" if not extension else extension
         return self._whitespacekiller(extension)
 
