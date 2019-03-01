@@ -87,6 +87,11 @@ def create_device(article):
 
 
 @synchronized
+def create_article(*args, **kwargs):
+    return classes.Article(*args, **kwargs)
+
+
+@synchronized
 def create_location(*args, **kwargs):
     return classes.Location(*args, **kwargs)
     
