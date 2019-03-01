@@ -36,6 +36,7 @@ class TestTelephoneNumber(unittest.TestCase):
     def test_non_conforming_input(self):
         self.assertEqual(self.phone_number("09723 1234"), "+049 9723 1234")
         self.assertEqual(self.phone_number("09723 1234 56789-10"), "+049 9723 123456789-10")
+        self.assertEqual(self.phone_number("09723 1234 56789+10"), "+049 9723 123456789-10")
 
     def test_text_input(self):
         self.assertEqual(self.phone_number("My telephonenumber is: 09723 1234. Yes."), "+049 9723 1234")
