@@ -19,8 +19,8 @@ def synchronized(function):
         instance = function(*args, **kwargs)
         try:
             save_to_db(instance)
-        except sqlalchemy.exc.IntegrityError:
-            ... # UID already in DB, do something here
+        except sqlalchemy.exc.IntegrityError: # uid already in db
+            raise classes.IntegrityError(str(args)+str(kwargs))
         return instance
     return synchronized_function
 
