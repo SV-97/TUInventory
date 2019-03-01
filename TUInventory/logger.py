@@ -6,7 +6,7 @@ from utils import absolute_path
 
 handler = logging.FileHandler(filename=absolute_path("protocol.log"))
 formatter = logging.Formatter(
-    fmt='{asctime} [{levelname:8}] from {module:>15}.{funcName:12} "{message}"', 
+    fmt='{asctime} [{levelname:8}] from {module:>20}.{funcName:30} "{message}"', 
     style="{", 
     datefmt="%Y-%m-%dT%H:%m:%S")
 
