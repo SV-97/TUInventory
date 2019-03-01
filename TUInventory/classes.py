@@ -33,6 +33,14 @@ engine = sqlalchemy.create_engine(f"sqlite:///{absolute_path('test.db')}", echo=
 # engine = sqlalchemy.create_engine("sqlite:///:memory:", echo=False)
 
 
+class IntegrityError(IOError):
+    """Error to raise if an operation compromises database integrity"""
+    def __init__(self, message):
+        self.message = message
+
+    def __str__(self):
+        return f'Couldn\'t create instance with given Parameters: "{self.message}"'
+
 class BigInt(sqlalchemy.types.TypeDecorator):
     """SQLAlchemy datatype for dealing with ints that potentially overflow a basic SQL Integer"""
     impl = sqlalchemy.types.String
@@ -98,7 +106,7 @@ class Producer(Base):
     """Represents a producer of articles"""
     __tablename__ = "producers"
     uid = Column(Integer, primary_key=True)
-    name = Column(String)
+    name = Column(String, unique=True)
     articles = orm.relationship("Article", backref="producer")
     def __init__(self, name, uid=None):
         self.uid = uid
@@ -125,8 +133,6 @@ class Device(Base):
     uid = Column(Integer, primary_key=True)
     article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
     code = Column(String)
-    #name = Column(String) # not currently used
-    #location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
     responsibility = orm.relationship("Responsibility", backref=orm.backref("device", lazy="immediate", uselist=False), lazy="immediate", uselist=False)
     def __init__(self, code=None, uid=None):
         self.uid = uid
