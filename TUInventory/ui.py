@@ -27,28 +27,38 @@ class MainDialog(QtWidgets.QMainWindow):
         self.logged_in_user = None
         self.savepath = None
         self.set_tree()
-        self.set_combobox()
+        self.set_combobox_location_u()
+        self.set_combobox_location_d()
+        self.set_combobox_producer_a()
+        self.set_combobox_producer_d()
+        self.set_combobox_article_d()
+        self.set_combobox_user_d()
         self.setMouseTracking(True)
 
+
         icon = QtGui.QIcon()
-        #icon.addFile('pictures/16x16.png', QtCore.QSize(16,16))
-        #icon.addFile('pictures/24x24.png', QtCore.QSize(24,24))
-        #icon.addFile('pictures/32x32.png', QtCore.QSize(32,32))
-        #icon.addFile('pictures/48x48.png', QtCore.QSize(48,48))
         icon.addFile('pictures/256x256.png', QtCore.QSize(256,256))
         self.setWindowIcon(icon)
+
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
-        self.ui.b_savepath.clicked.connect(self.b_savepath_click)
-        self.ui.in_phone.textChanged.connect(self.set_phonenumber)
+        self.ui.b_save_device.clicked.connect(self.b_save_device_click)
+        self.ui.b_create_device.clicked.connect(self.b_create_device_click)
+        self.ui.b_create_article.clicked.connect(self.b_create_article_click)
+        self.ui.b_create_producer.clicked.connect(self.b_create_producer_click)
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
         self.ui.b_tab_2.clicked.connect(self.b_tab_2_click)
         self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
         self.ui.b_tab_4.clicked.connect(self.b_tab_4_click)
         self.ui.b_tab_5.clicked.connect(self.b_tab_5_click)
+
+        self.ui.in_phone.textChanged.connect(self.set_phonenumber)
+
+        self.ui.cb_producer_d.currentIndexChanged.connect(self.reload_combobox_article_d)
+
 
         self.setAutoFillBackground(True)                    # background / white
         p = self.palette()
@@ -164,13 +174,66 @@ class MainDialog(QtWidgets.QMainWindow):
                         device_item = QtWidgets.QTreeWidgetItem([str(device)])
                         user_item.addChild(device_item)
 
-    def set_combobox(self):
-        ... # Hier am besten einmal die cb leer machen, da beim adden von neuen locations 
-        # diese Funktion erneut aufgerufen werden muss und es sonst wahrscheinlich doppelte einträge gibt(?)
+    def set_combobox_location_u(self):                              # ComboBox for user creation
+        self.cb_location_u.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
             for location in locations:
-                self.cb_location.addItem(location.name)
+                self.cb_location_u.addItem(location.name)
+    
+    def set_combobox_location_d(self):                              # ComboBox for device creation
+        self.cb_location_d.clear()
+        with CSession() as session:
+            locations = session.query(classes.Location).all()
+            for location in locations:
+                self.cb_location_d.addItem(location.name)
+
+    def set_combobox_producer_a(self):
+        self.cb_producer_a.clear()
+        with CSession() as session:
+            producers = session.query(classes.Producer).all()
+            for producer in producers:
+                self.cb_producer_a.addItem(producer.name)
+            
+    def set_combobox_producer_d(self):
+        self.cb_producer_d.clear()
+        self.cb_producer_d.addItem("")
+        with CSession() as session:
+            producers = session.query(classes.Producer).all()
+            for producer in producers:
+                self.cb_producer_d.addItem(producer.name)
+
+    def set_combobox_article_d(self):
+        self.cb_article_d.clear()
+        with CSession() as session:
+            articles = session.query(classes.Article).all()
+            for article in articles:
+                self.cb_article_d.addItem(article.name)
+
+    def reload_combobox_article_d(self):
+        self.cb_article_d.clear()
+        with CSession() as session:
+            articles = session.query(classes.Article).all()
+            producers = session.query(classes.Producer).all()
+            producerX = str(self.cb_producer_d.currentText())
+            if producerX:
+                for producer in producers:
+                    if producer.name == producerX:
+                        self.producer_uid = producer.uid
+                for article in articles:
+                    if self.producer_uid == article.uid:
+                        self.cb_article_d.addItem(article.name)
+            else:
+                for article in articles:
+                    self.cb_article_d.addItem(article.name)
+
+    def set_combobox_user_d(self):
+        self.cb_user_d.clear()
+        self.cb_user_d.addItem("")
+        with CSession() as session:
+            users = session.query(classes.User).all()
+            for user in users:
+                self.cb_user_d.addItem(user.name + " " + user.surname)
 
     def set_phonenumber(self, str_):
         if str_:
@@ -199,7 +262,7 @@ class MainDialog(QtWidgets.QMainWindow):
     def b_user_logout_click(self, timed_out=False):
         if timed_out:
             self.timed_out()
-        self.logged_in_user = None # may want slots.logout if that does something eventually
+        self.logged_in_user = None # may want to use slots.logout if that does something eventually
         self.update_user_dependant()
         self.timeout.function = None
         del self.timeout
@@ -276,8 +339,9 @@ class MainDialog(QtWidgets.QMainWindow):
         self.statusBar().setStyleSheet("color: green")   
         self.statusBar().showMessage("Benutzer {user} wurde erfolgreich angelegt.", 5000)
 
-    #def update_user():
+    def update_user(self):
         #toDo make User updateable
+        pass
 
     def reset_password(self):
         """Set new password and salt for user, push it to db and show it in UI"""
@@ -290,14 +354,15 @@ class MainDialog(QtWidgets.QMainWindow):
             new_password = slots.reset_password(user)
         # display password
 
-    def b_savepath_click(self):
+    def b_save_device_click(self):
         qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory")
         if qr_path:
-            self.t_path.setText(qr_path)
+            self.t_path_device.setText(qr_path)
 
-    def b_save_device_click(self):
+    def b_create_device_click(self):
         if "" in (...):
-            # show error
+            self.statusBar().setStyleSheet("color: #ff0000")
+            self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
             return
         name = ...
         with CSession() as session:
@@ -306,7 +371,15 @@ class MainDialog(QtWidgets.QMainWindow):
             session.add(device)
             device.article = article
 
-        path = pathlib.Path(self.t_path.text()) / f"{device.uid}_{device.article.name}.svg"
+        path = pathlib.Path(self.t_path_device.text()) / f"{device.uid}_{device.article.name}.svg"
+
+    def b_create_article_click(self):
+        # create article
+        pass    
+
+    def b_create_producer_click(self):
+        # create user
+        pass
 
 class LoginDialog(QtWidgets.QDialog):
     

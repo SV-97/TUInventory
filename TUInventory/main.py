@@ -1,8 +1,8 @@
 """main module that ties everything together"""
+__version__ = "0.1.0"
 
 import logging
 import sys
-import ctypes                                                               # --
 from threading import Lock, Thread
 from time import sleep
 
@@ -14,8 +14,13 @@ from logger import logger
 import ui
 from utils import absolute_path
 
-appid = u'Padcon.TUInventory.DesktopApp.1_0_0'                              # probably WONT WORK on Linux
-ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(appid)        # --
+if "win32" in sys.platform:
+    import ctypes
+    try:
+        app_id = f"Padcon.TUInventory.DesktopApp.{__version__}"
+        ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(app_id)
+    except Exception:
+        pass
 
 def main():
     app = QApplication(sys.argv)

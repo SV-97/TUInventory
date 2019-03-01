@@ -7,6 +7,7 @@
 \textclass article
 \begin_preamble
 \usepackage{xcolor}
+\usepackage{multicol}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -184,7 +185,7 @@ Abkürzungsverzeichnis
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="29" columns="2">
+<lyxtabular version="3" rows="28" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -243,26 +244,6 @@ API
 
 \begin_layout Plain Layout
 Application Programming Interface
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-CLI
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Common Language Infrastructure
 \end_layout
 
 \end_inset
@@ -1741,7 +1722,17 @@ In der Standardimplementierung CPython wird der Quellcode zuerst in einen
  JIT-Compiler), Jython  (Ausführung mittels JVM, Vorteil: Interoperabilität
  mit JRE) oder IronPython  (Ausführung mittels DLR - also .NET, Vorteil:
  Interoperabilität mit .NET bzw.
- der CLI und Integration in Visual Studio).
+ der CLI
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Common Language Infrastructure
+\end_layout
+
+\end_inset
+
+ und Integration in Visual Studio).
 \begin_inset Foot
 status open
 
@@ -2692,6 +2683,7 @@ onefile
  Lösung stellt sich jedoch als eher ungeeignet heraus, da hier zum Programmstart
  ein Archiv temporär entpackt wird, was einen enormen Overhead schafft,
  der bei so kurzer Programmlaufzeit nicht gerechtfertigt ist.
+ Daher wurde das CLI dem Auftraggeber als Linux-onedir-Variante übergeben.
 \end_layout
 
 \begin_layout Section
@@ -3666,6 +3658,20 @@ _created
  außerhalb der zu erwartenden Nutzung und wird nicht mehr abgefangen.
 \end_layout
 
+\begin_layout Subsubsection
+Dateitools - Pfadvalidierung und Normalisierung von Dateinamen 
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+td
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Logging
 \end_layout
@@ -4102,31 +4108,38 @@ status open
 
 \begin_layout Plain Layout
 
-$$
-\end_layout
-
-\begin_layout Plain Layout
-
-A_1 = 
-\end_layout
-
-\begin_layout Plain Layout
-
 
 \backslash
-begin{pmatrix}
+begin{multicols}{2}
+\end_layout
+
+\begin_layout Plain Layout
+
+	$$
+\end_layout
+
+\begin_layout Plain Layout
+
+	A_1 = 
 \end_layout
 
 \begin_layout Plain Layout
 
 	
 \backslash
+begin{pmatrix}
+\end_layout
+
+\begin_layout Plain Layout
+
+		
+\backslash
 begin{bmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-	r_{11} & r_{12} & 
+		r_{11} & r_{12} & 
 \backslash
 cdots & r_{1n}
 \backslash
@@ -4137,7 +4150,7 @@ cdots & r_{1n}
 
 \begin_layout Plain Layout
 
-	r_{21} & r_{22} & 
+		r_{21} & r_{22} & 
 \backslash
 cdots & r_{2n}
 \backslash
@@ -4148,7 +4161,7 @@ cdots & r_{2n}
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 vdots &
 \backslash
@@ -4165,7 +4178,7 @@ vdots
 
 \begin_layout Plain Layout
 
-	r_{m1} & r_{m2} & 
+		r_{m1} & r_{m2} & 
 \backslash
 cdots & r_{mn}
 \backslash
@@ -4176,7 +4189,7 @@ cdots & r_{mn}
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 end{bmatrix}
 \backslash
@@ -4187,18 +4200,19 @@ end{bmatrix}
 
 \begin_layout Plain Layout
 
+	
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 begin{bmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-	g_{11} & g_{12} & 
+		g_{11} & g_{12} & 
 \backslash
 cdots & g_{1n}
 \backslash
@@ -4209,7 +4223,7 @@ cdots & g_{1n}
 
 \begin_layout Plain Layout
 
-	g_{21} & g_{22} & 
+		g_{21} & g_{22} & 
 \backslash
 cdots & g_{2n}
 \backslash
@@ -4220,7 +4234,7 @@ cdots & g_{2n}
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 vdots &
 \backslash
@@ -4237,7 +4251,7 @@ vdots
 
 \begin_layout Plain Layout
 
-	g_{m1} & g_{m2} & 
+		g_{m1} & g_{m2} & 
 \backslash
 cdots & g_{mn}
 \backslash
@@ -4248,7 +4262,7 @@ cdots & g_{mn}
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 end{bmatrix}
 \backslash
@@ -4259,18 +4273,19 @@ end{bmatrix}
 
 \begin_layout Plain Layout
 
+	
 \end_layout
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 begin{bmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-	b_{11} & b_{12} & 
+		b_{11} & b_{12} & 
 \backslash
 cdots & b_{1n}
 \backslash
@@ -4281,7 +4296,7 @@ cdots & b_{1n}
 
 \begin_layout Plain Layout
 
-	b_{21} & b_{22} & 
+		b_{21} & b_{22} & 
 \backslash
 cdots & b_{2n}
 \backslash
@@ -4292,7 +4307,7 @@ cdots & b_{2n}
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 vdots &
 \backslash
@@ -4309,7 +4324,7 @@ vdots
 
 \begin_layout Plain Layout
 
-	b_{m1} & b_{m2} & 
+		b_{m1} & b_{m2} & 
 \backslash
 cdots & b_{mn}
 \backslash
@@ -4320,7 +4335,7 @@ cdots & b_{mn}
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 end{bmatrix}
 \backslash
@@ -4331,47 +4346,48 @@ end{bmatrix}
 
 \begin_layout Plain Layout
 
-
+	
 \backslash
 end{pmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-$$
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\begin_layout Plain Layout
-
-$$
-\end_layout
-
-\begin_layout Plain Layout
-
-A_2 = 
+	$$
 \end_layout
 
 \begin_layout Plain Layout
 
 	
+\end_layout
+
+\begin_layout Plain Layout
+
+	$$
+\end_layout
+
+\begin_layout Plain Layout
+
+	A_2 = 
+\end_layout
+
+\begin_layout Plain Layout
+
+		
 \backslash
 begin{bmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix} 
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{11} 
+				r_{11} 
 \backslash
 
 \backslash
@@ -4380,7 +4396,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{11} 
+				g_{11} 
 \backslash
 
 \backslash
@@ -4389,26 +4405,26 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{11} 
+				b_{11} 
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix} &
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix} 
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{12} 
+				r_{12} 
 \backslash
 
 \backslash
@@ -4417,7 +4433,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{12} 
+				g_{12} 
 \backslash
 
 \backslash
@@ -4426,7 +4442,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{12} 
+				b_{12} 
 \backslash
 
 \backslash
@@ -4435,28 +4451,28 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix} &
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 cdots & 
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix} 
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{1n} 
+				r_{1n} 
 \backslash
 
 \backslash
@@ -4465,7 +4481,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{1n} 
+				g_{1n} 
 \backslash
 
 \backslash
@@ -4474,7 +4490,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{1n} 
+				b_{1n} 
 \backslash
 
 \backslash
@@ -4483,7 +4499,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix}
 \backslash
@@ -4494,19 +4510,19 @@ end{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{21} 
+				r_{21} 
 \backslash
 
 \backslash
@@ -4515,7 +4531,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{21} 
+				g_{21} 
 \backslash
 
 \backslash
@@ -4524,7 +4540,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{21} 
+				b_{21} 
 \backslash
 
 \backslash
@@ -4533,21 +4549,21 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix}&
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{22} 
+				r_{22} 
 \backslash
 
 \backslash
@@ -4556,7 +4572,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{22} 
+				g_{22} 
 \backslash
 
 \backslash
@@ -4565,7 +4581,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{22} 
+				b_{22} 
 \backslash
 
 \backslash
@@ -4574,28 +4590,28 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix}&
 \end_layout
 
 \begin_layout Plain Layout
 
-        
+	        
 \backslash
 cdots& 
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{2n} 
+				r_{2n} 
 \backslash
 
 \backslash
@@ -4604,7 +4620,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{2n} 
+				g_{2n} 
 \backslash
 
 \backslash
@@ -4613,7 +4629,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{2n} 
+				b_{2n} 
 \backslash
 
 \backslash
@@ -4622,7 +4638,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix}
 \backslash
@@ -4633,11 +4649,12 @@ end{pmatrix}
 
 \begin_layout Plain Layout
 
+	
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 vdots &
 \backslash
@@ -4654,19 +4671,19 @@ vdots
 
 \begin_layout Plain Layout
 
-		
+			
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{m1} 
+				r_{m1} 
 \backslash
 
 \backslash
@@ -4675,7 +4692,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{m1} 
+				g_{m1} 
 \backslash
 
 \backslash
@@ -4684,7 +4701,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{m1} 
+				b_{m1} 
 \backslash
 
 \backslash
@@ -4693,21 +4710,21 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix}&
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{m2} 
+				r_{m2} 
 \backslash
 
 \backslash
@@ -4716,7 +4733,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{m2} 
+				g_{m2} 
 \backslash
 
 \backslash
@@ -4725,7 +4742,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{m2} 
+				b_{m2} 
 \backslash
 
 \backslash
@@ -4734,28 +4751,28 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix}&
 \end_layout
 
 \begin_layout Plain Layout
 
-        
+	        
 \backslash
 cdots& 
 \end_layout
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 begin{pmatrix}
 \end_layout
 
 \begin_layout Plain Layout
 
-			r_{mn} 
+				r_{mn} 
 \backslash
 
 \backslash
@@ -4764,7 +4781,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			g_{mn} 
+				g_{mn} 
 \backslash
 
 \backslash
@@ -4773,7 +4790,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-			b_{mn} 
+				b_{mn} 
 \backslash
 
 \backslash
@@ -4782,7 +4799,7 @@ begin{pmatrix}
 
 \begin_layout Plain Layout
 
-		
+			
 \backslash
 end{pmatrix}
 \backslash
@@ -4793,7 +4810,7 @@ end{pmatrix}
 
 \begin_layout Plain Layout
 
-	
+		
 \backslash
 end{bmatrix}
 \backslash
@@ -4804,7 +4821,14 @@ end{bmatrix}
 
 \begin_layout Plain Layout
 
-$$
+	$$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{multicols}
 \end_layout
 
 \end_inset
@@ -4823,7 +4847,8 @@ $A_1$
 
 \end_inset
 
- ist dabei je eine Matrix (sprich Array, Liste etc.) pro Farbkanal.
+ ist dabei ein Vektor(zwecks Übersichtlichkeit - im Code ist es ein beliebiger
+ Container) mit je einer Matrix pro Farbkanal.
  
 \begin_inset ERT
 status open
@@ -4835,13 +4860,12 @@ $A_2$
 
 \end_inset
 
- ist lediglich eine Matrix, welche dann einen Vektor je Farbkanal enthält.
- 
+ ist hingegen eine Matrix, welche dann einen Vektor je Farbkanal enthält.
 \end_layout
 
 \begin_layout Standard
-Da einige Zeilen dabei nontrivial sind, wird die Funktion hier im Detail
- durchgesprochen.
+Da einige Zeilen der Auswertung nontrivial sind, wird die Funktion hier
+ im Detail durchgesprochen.
 \end_layout
 
 \begin_layout Standard
@@ -8580,6 +8604,58 @@ lstset{numbers=left, numberblanklines=true}
 \end_layout
 
 \begin_layout Section
+Pläne
+\end_layout
+
+\begin_layout Subsection
+Stromlaufplan
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename Pläne/Stromlaufplan.pdf
+	extra LaTeX "pages=-"
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Netzwerkplan
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename Pläne/Netzwerkplan.pdf
+	extra LaTeX "pages=-"
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Netzwerkplan nach EN81346
+\end_layout
+
+\begin_layout Standard
+\begin_inset External
+	template PDFPages
+	filename Pläne/Netzwerkplan.pdf
+	extra LaTeX "pages=-"
+	rotateAngle 90
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Quellcode
 \end_layout
 
@@ -8591,7 +8667,7 @@ barcodereader.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/barcodereader.py"
+filename "../barcodereader.py"
 
 \end_inset
 
@@ -8606,7 +8682,7 @@ classes.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/classes.py"
+filename "../classes.py"
 
 \end_inset
 
@@ -8621,7 +8697,7 @@ keys.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/keys.py"
+filename "../keys.py"
 
 \end_inset
 
@@ -8636,7 +8712,7 @@ logger.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/logger.py"
+filename "../logger.py"
 
 \end_inset
 
@@ -8651,7 +8727,7 @@ main.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/main.py"
+filename "../main.py"
 
 \end_inset
 
@@ -8666,7 +8742,7 @@ pydoc.sh
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/pydoc.sh"
+filename "../pydoc.sh"
 lstparams "language=bash"
 
 \end_inset
@@ -8682,7 +8758,7 @@ qr_generator.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/qr_generator.py"
+filename "../qr_generator.py"
 
 \end_inset
 
@@ -8697,7 +8773,7 @@ slots.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/slots.py"
+filename "../slots.py"
 
 \end_inset
 
@@ -8712,7 +8788,7 @@ ui.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/ui.py"
+filename "../ui.py"
 
 \end_inset
 
@@ -8727,7 +8803,7 @@ utils.py
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "/home/sv-97/GitHub/TUInventory/TUInventory/utils.py"
+filename "../utils.py"
 
 \end_inset
 
