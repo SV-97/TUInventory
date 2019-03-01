@@ -219,12 +219,13 @@ class MainDialog(QtWidgets.QMainWindow):
             if producerX:
                 for producer in producers:
                     if producer.name == producerX:
-                        self.producer_uid = producer.uid
+                        self.producerXY = producer.uid
+                        print (self.producerXY)
                 for article in articles:
-                    if self.producer_uid == article.uid:
+                    if article.producer_uid == self.producerXY:
                         self.cb_article_d.addItem(article.name)
             else:
-                for article in articles:
+                for article in articles:    
                     self.cb_article_d.addItem(article.name)
 
     def set_combobox_user_d(self):

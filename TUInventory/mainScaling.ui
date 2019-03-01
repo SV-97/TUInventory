@@ -354,7 +354,7 @@
                   </font>
                  </property>
                  <property name="text">
-                  <string> Geräte</string>
+                  <string>Kamera</string>
                  </property>
                  <property name="iconSize">
                   <size>
@@ -624,7 +624,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="page_5">
            <widget class="QGroupBox" name="groupBox">
@@ -696,9 +696,14 @@
              <rect>
               <x>20</x>
               <y>20</y>
-              <width>500</width>
+              <width>871</width>
               <height>751</height>
              </rect>
+            </property>
+            <property name="font">
+             <font>
+              <pointsize>14</pointsize>
+             </font>
             </property>
             <property name="title">
              <string>Gerät einscannen</string>
@@ -749,7 +754,7 @@
              </font>
             </property>
             <property name="currentIndex">
-             <number>1</number>
+             <number>0</number>
             </property>
             <widget class="QWidget" name="tab_1">
              <attribute name="title">
@@ -786,7 +791,7 @@
                <string>Wichtig: Sie müssen erst einen Artikel angelegt haben!</string>
               </property>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>20</x>
@@ -835,7 +840,7 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>20</x>
@@ -926,7 +931,7 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>20</x>
@@ -984,7 +989,7 @@
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>20</x>
@@ -1061,10 +1066,10 @@
               </property>
               <property name="text">
                <string>Beim Anlegen des Geräts wird gleichzeitig ein QR-Code erzeugt. 
-Wählen Sie bitte einen Speicherort aus.</string>
+Bitte wählen Sie einen passenden Speicherort aus.</string>
               </property>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>20</x>
@@ -1414,7 +1419,7 @@ Wählen Sie bitte einen Speicherort aus.</string>
                </item>
               </layout>
              </widget>
-             <widget class="QWidget" name="">
+             <widget class="QWidget" name="layoutWidget">
               <property name="geometry">
                <rect>
                 <x>30</x>
