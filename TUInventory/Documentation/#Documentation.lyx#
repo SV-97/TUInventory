@@ -1698,7 +1698,7 @@ Bei Python 3 handelt es sich um eine universell einsetzbare, plattformübergreif
 nde, dynamisch typisierte Hochsprache, welche in verschiedensten Implementierung
 en als Open Source Projekt entwickelt wird.
  Ursprünglich wurde sie von Guido van Rossum 1991 mit dem Ziel entwickelt,
- eine möglichst lesbare und dennoch mächtige Programmiersprache zu schaffen.
+ eine möglichst lesbare regeund dennoch mächtige Programmiersprache zu schaffen.
  Auf der Website der PSF steht dazu: 
 \begin_inset Quotes eld
 \end_inset
@@ -6683,12 +6683,7 @@ Timeout
 status open
 
 \begin_layout Plain Layout
-td: Abtastrate ist nicht aktuell
-\end_layout
-
-\begin_layout Plain Layout
-es wird bei theoretischem timeout überprüft ob ein reset erfolgt ist =>
- Performanz
+td: Abtastrate ist nicht aktuell:
 \end_layout
 
 \end_inset
