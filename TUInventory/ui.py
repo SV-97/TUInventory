@@ -259,7 +259,6 @@ class MainDialog(QtWidgets.QMainWindow):
             self.in_email.setText(self.logged_in_user.e_mail)
             #self.in_phone.setText(str(self.logged_in_user.phonenumber))
 
-
     def b_user_logout_click(self, timed_out=False):
         if timed_out:
             self.timed_out()
@@ -379,8 +378,17 @@ class MainDialog(QtWidgets.QMainWindow):
         pass    
 
     def b_create_producer_click(self):
-        # create user
-        pass
+        name = self.t_name_p.text()
+        try:
+            slots.create_producer(name=name)
+        except classes.IntegrityError as e:
+            logger.info(str(e))
+            self.statusBar().setStyleSheet("color: red")
+            self.statusBar().showMessage(f'Produzent mit Namen "{name}" existiert bereits.', 5000)
+        else:
+            self.statusBar().setStyleSheet("color: green")
+            self.statusBar().showMessage(f'Produzent "{name}" wurde angelegt.', 5000)
+        self.t_name_p.setText("")
 
 class LoginDialog(QtWidgets.QDialog):
     
