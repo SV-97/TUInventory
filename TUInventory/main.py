@@ -2,7 +2,7 @@
 __version__ = "0.1.0"
 
 import logging
-import sys                                                         # --
+import sys
 from threading import Lock, Thread
 from time import sleep
 
