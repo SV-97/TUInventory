@@ -2,6 +2,7 @@
 
 import os
 import pathlib
+import re
 import sys
 
 from PyQt5 import uic, QtCore, QtGui, QtWidgets
@@ -12,7 +13,7 @@ from PyQt5.QtWidgets import QFileDialog, QPushButton, QStyle
 import classes
 from logger import logger
 import slots
-from utils import absolute_path, parallel_print
+from utils import absolute_path, parallel_print, validate_filename, normalize_filename
 from qr_generator import generate_qr
 
 CSession = classes.setup_context_session(classes.engine)
@@ -60,36 +61,36 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.cb_producer_d.currentIndexChanged.connect(self.reload_combobox_article_d)
 
 
-        self.setAutoFillBackground(True)                    # background / white
+        self.setAutoFillBackground(True) # background / white
         p = self.palette()
         p.setColor(self.backgroundRole(), Qt.white)
         self.setPalette(p)
 
-        palette1 = self.line_1.palette()                    # tab 1 / blue
+        palette1 = self.line_1.palette() # tab 1 / blue
         role1 = self.line_1.backgroundRole()
         palette1.setColor(role1, QColor('blue'))
         self.ui.line_1.setPalette(palette1)
         self.ui.line_1.setAutoFillBackground(True)
 
-        palette2 = self.line_2.palette()                    # tab 2 / blue
+        palette2 = self.line_2.palette() # tab 2 / blue
         role2 = self.line_2.backgroundRole()
         palette2.setColor(role2, QColor('blue'))
         self.ui.line_2.setPalette(palette2)
         self.ui.line_2.setAutoFillBackground(True)
 
-        palette3= self.line_3.palette()                     # tab 3 / blue
+        palette3= self.line_3.palette() # tab 3 / blue
         role3 = self.line_3.backgroundRole()
         palette3.setColor(role3, QColor('blue'))
         self.ui.line_3.setPalette(palette3)
         self.ui.line_3.setAutoFillBackground(True)
 
-        palette4 = self.line_4.palette()                    # tab 4 / blue
+        palette4 = self.line_4.palette() # tab 4 / blue
         role4 = self.line_4.backgroundRole()
         palette4.setColor(role4, QColor('blue'))
         self.ui.line_4.setPalette(palette4)
         self.ui.line_4.setAutoFillBackground(True)
 
-        palette5 = self.line_5.palette()                    # tab 5 / blue
+        palette5 = self.line_5.palette() # tab 5 / blue
         role5 = self.line_5.backgroundRole()
         palette5.setColor(role5, QColor('blue'))
         self.ui.line_5.setPalette(palette5)
@@ -101,8 +102,9 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_3.hide()
         self.ui.line_4.hide()
         self.ui.line_5.hide()
+        self.update_user_dependant()
 
-    def b_home_1_click(self):                       # home
+    def b_home_1_click(self): # home
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
@@ -174,14 +176,14 @@ class MainDialog(QtWidgets.QMainWindow):
                         device_item = QtWidgets.QTreeWidgetItem([str(device)])
                         user_item.addChild(device_item)
 
-    def set_combobox_location_u(self):                              # ComboBox for user creation
+    def set_combobox_location_u(self): # ComboBox for user creation
         self.cb_location_u.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
             for location in locations:
                 self.cb_location_u.addItem(location.name)
     
-    def set_combobox_location_d(self):                              # ComboBox for device creation
+    def set_combobox_location_d(self): # ComboBox for device creation
         self.cb_location_d.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
@@ -215,7 +217,7 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:
             articles = session.query(classes.Article).all()
             producers = session.query(classes.Producer).all()
-            producerX = str(self.cb_producer_d.currentText())
+            producerX = str(self.cb_producer_d.currentText()) # todo: rework names
             if producerX:
                 for producer in producers:
                     if producer.name == producerX:
@@ -234,7 +236,7 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:
             users = session.query(classes.User).all()
             for user in users:
-                self.cb_user_d.addItem(user.name + " " + user.surname)
+                self.cb_user_d.addItem(f"{user.uid} {str(user)}")
 
     def set_phonenumber(self, str_):
         if str_:
@@ -247,14 +249,15 @@ class MainDialog(QtWidgets.QMainWindow):
         self.out_phone.setText(text)
 
     def b_user_login_click(self):
-        LoginDialog(self).exec() # show dialog_login as modal dialog => blocks controll of main
+        LoginDialog(self).exec()
         self.update_user_dependant()
         if self.logged_in_user:
             logger.info(f"Logged in as {self.logged_in_user}")
-            self.timeout = classes.Timeout(5, lambda signal: signal.emit(True), self.ui.b_user_logout.clicked)
+            self.timeout = classes.Timeout(60*15, lambda signal: signal.emit(True), self.ui.b_user_logout.clicked)
             self.timeout.start()
 
-            self.in_name.setText(self.logged_in_user.name)              # fill textEdits for UserChange
+            # todo: these belong in update_user_dependant
+            self.in_name.setText(self.logged_in_user.name) # fill textEdits for UserChange
             self.in_surname.setText(self.logged_in_user.surname)
             self.in_email.setText(self.logged_in_user.e_mail)
             #self.in_phone.setText(str(self.logged_in_user.phonenumber))
@@ -297,12 +300,13 @@ class MainDialog(QtWidgets.QMainWindow):
             self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user} angemeldet.", 1500)
             
             if self.logged_in_user.is_admin:
-                self.checkBox.visible = True
+                self.checkBox.setVisible(True)
             else:
-                self.checkBox.visible = False 
+                self.checkBox.setVisible(False)
         else:
             self.ui.log_in_out.setCurrentIndex(0)
             self.label.setText("")
+            self.checkBox.setVisible(False)
 
     def mousePressEvent(self, QMouseEvent=None):
         print("Maus geklickt")
@@ -321,16 +325,14 @@ class MainDialog(QtWidgets.QMainWindow):
             self.new_user()
 
     def new_user(self):
-        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone]): # password box is missing
-            self.statusBar().setStyleSheet("color: #ff0000")
-            self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
+        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone, self.in_password1, self.in_password2]):
+            self.not_all_fields_filled_notice()
             return
 
-        args = [None for i in range(6)]
         if self.checkBox.isChecked():
-            user = slots.create_admin(*args)
+            user = slots.create_admin()
         else:
-            user = slots.create_user(*args) # add textboxes once names are final and remove args
+            user = slots.create_user()
 
         with CSession() as session:
             session.add(user)
@@ -359,23 +361,56 @@ class MainDialog(QtWidgets.QMainWindow):
         if qr_path:
             self.t_path_device.setText(qr_path)
 
-    def b_create_device_click(self):
-        if "" in (...):
-            self.statusBar().setStyleSheet("color: #ff0000")
-            self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
+    def b_create_device_click(self): # todo: handle if logged in user is no admin and can't create devices for others
+        article = self.cb_article_d.currentText()
+        location = self.cb_location_d.currentText()
+        user = self.cb_user_d.currentText()
+        path = self.t_path_device.text()
+        locals_ = {key: value for (key, value) in locals().items() if key != "self"}
+        if "" in locals_.values():
+            self.not_all_fields_filled_notice()
             return
-        name = ...
+
+        path = pathlib.Path(path)
+        user_uid = int(user.split(" ")[0])
         with CSession() as session:
-            session.query(classes.Article).filter_by(name=name).first()
+            article = session.query(classes.Article).filter_by(name=article).first()
+            user = session.query(classes.User).filter_by(uid=user_uid).first()
+            location = session.query(classes.Location).filter_by(name=location).first()
             device = classes.Device()
             session.add(device)
             device.article = article
-
-        path = pathlib.Path(self.t_path_device.text()) / f"{device.uid}_{device.article.name}.svg"
+            resp = classes.Responsibility(device, user, location)
+            session.add(resp)
+        path = pathlib.Path(self.t_path_device.text())
+        if not re.match(r".*\.(svg)|(png)", str(path)):
+            path = path / f"{device.uid}_{device.article.name}.svg"
+            normalize_filename(str(path))
+            
+        validate_filename(path)
+        generate_qr()
 
     def b_create_article_click(self):
-        # create article
-        pass    
+        name = self.t_name_a.text()
+        producer_name = self.cb_producer_a.currentText()
+        locals_ = {key: value for (key, value) in locals().items() if key != "self"}
+        if "" in locals_.values():
+            self.not_all_fields_filled_notice()
+            return
+        with CSession() as session:
+            producer = session.query(classes.Producer)\
+                .filter_by(name=producer_name).first()
+        try:
+            slots.create_article(name=name, producer=producer)
+        except classes.IntegrityError as e:
+            logger.info(str(e))
+            self.statusBar().setStyleSheet("color: red")
+            self.statusBar().showMessage(f'Artikel mit Namen "{name}" existiert bereits.', 5000)
+        else:
+            self.statusBar().setStyleSheet("color: green")
+            self.statusBar().showMessage(f'Artikel "{name}" wurde angelegt.', 5000)
+        self.t_name_a.setText("")
+        self.set_combobox_article_d()
 
     def b_create_producer_click(self):
         name = self.t_name_p.text()
@@ -389,6 +424,16 @@ class MainDialog(QtWidgets.QMainWindow):
             self.statusBar().setStyleSheet("color: green")
             self.statusBar().showMessage(f'Produzent "{name}" wurde angelegt.', 5000)
         self.t_name_p.setText("")
+        self.set_combobox_producer_d()
+        self.set_combobox_producer_a()
+
+    def not_all_fields_filled_notice(self):
+        """Show message that user hasn't filled all necessary fields
+        This could also be reworked to use signals and slots
+        """
+        self.statusBar().setStyleSheet("color: #ff0000")
+        self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
+
 
 class LoginDialog(QtWidgets.QDialog):
     
