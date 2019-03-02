@@ -7,22 +7,22 @@ import sys
 
 from PyQt5 import uic, QtCore, QtGui, QtWidgets
 from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
-from PyQt5.QtCore import QSize, Qt
+from PyQt5.QtCore import QSize, Qt, pyqtSignal
 from PyQt5.QtWidgets import QFileDialog, QPushButton, QStyle
 
 import classes
 from logger import logger
 import slots
-from utils import absolute_path, parallel_print, validate_filename, normalize_filename
+import utils
 from qr_generator import generate_qr
 
 CSession = classes.setup_context_session(classes.engine)
 
 
 class MainDialog(QtWidgets.QMainWindow):
-
+    code_recognized = pyqtSignal()
     def __init__(self, parent=None):
-        path = absolute_path("mainScaling.ui")
+        path = utils.absolute_path("mainScaling.ui")
         super().__init__(parent)
         self.ui = uic.loadUi(path, self)
         self.logged_in_user = None
@@ -35,12 +35,11 @@ class MainDialog(QtWidgets.QMainWindow):
         self.set_combobox_article_d()
         self.set_combobox_user_d()
         self.setMouseTracking(True)
-
+        self.t_path_device.setText(str(utils.absolute_path(pathlib.Path("qr_codes"))))
 
         icon = QtGui.QIcon()
         icon.addFile('pictures/256x256.png', QtCore.QSize(256,256))
         self.setWindowIcon(icon)
-
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
@@ -59,7 +58,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.in_phone.textChanged.connect(self.set_phonenumber)
 
         self.ui.cb_producer_d.currentIndexChanged.connect(self.reload_combobox_article_d)
-
 
         self.setAutoFillBackground(True) # background / white
         p = self.palette()
@@ -103,6 +101,8 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_4.hide()
         self.ui.line_5.hide()
         self.update_user_dependant()
+        self.code_recognized.connect(self.recognized_barcode)
+        self.code_recognized.emit()
 
     def b_home_1_click(self): # home
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -153,6 +153,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.show() 
 
     def set_tree(self):
+        """Fill main screen treeWidget"""
         self.treeWidget.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
@@ -176,14 +177,16 @@ class MainDialog(QtWidgets.QMainWindow):
                         device_item = QtWidgets.QTreeWidgetItem([str(device)])
                         user_item.addChild(device_item)
 
-    def set_combobox_location_u(self): # ComboBox for user creation
+    def set_combobox_location_u(self):
+        """Fill Location ComboBox for User creation"""
         self.cb_location_u.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
             for location in locations:
                 self.cb_location_u.addItem(location.name)
     
-    def set_combobox_location_d(self): # ComboBox for device creation
+    def set_combobox_location_d(self):
+        """Fill Location ComboBox for Device creation"""
         self.cb_location_d.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
@@ -191,6 +194,7 @@ class MainDialog(QtWidgets.QMainWindow):
                 self.cb_location_d.addItem(location.name)
 
     def set_combobox_producer_a(self):
+        """Fill Producer ComboBox for Article creation"""
         self.cb_producer_a.clear()
         with CSession() as session:
             producers = session.query(classes.Producer).all()
@@ -198,6 +202,7 @@ class MainDialog(QtWidgets.QMainWindow):
                 self.cb_producer_a.addItem(producer.name)
             
     def set_combobox_producer_d(self):
+        """Fill Producer ComboBox for Device creation"""
         self.cb_producer_d.clear()
         self.cb_producer_d.addItem("")
         with CSession() as session:
@@ -206,6 +211,7 @@ class MainDialog(QtWidgets.QMainWindow):
                 self.cb_producer_d.addItem(producer.name)
 
     def set_combobox_article_d(self):
+        """Fill Article ComboBox for Device creation"""
         self.cb_article_d.clear()
         with CSession() as session:
             articles = session.query(classes.Article).all()
@@ -217,7 +223,7 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:
             articles = session.query(classes.Article).all()
             producers = session.query(classes.Producer).all()
-            producerX = str(self.cb_producer_d.currentText()) # todo: rework names
+            producerX = str(self.cb_producer_d.currentText()) # todo: rework names; also currentText probably already is a string
             if producerX:
                 for producer in producers:
                     if producer.name == producerX:
@@ -231,6 +237,7 @@ class MainDialog(QtWidgets.QMainWindow):
                     self.cb_article_d.addItem(article.name)
 
     def set_combobox_user_d(self):
+        """Fill User ComboBox for Device creation"""
         self.cb_user_d.clear()
         self.cb_user_d.addItem("")
         with CSession() as session:
@@ -239,6 +246,11 @@ class MainDialog(QtWidgets.QMainWindow):
                 self.cb_user_d.addItem(f"{user.uid} {str(user)}")
 
     def set_phonenumber(self, str_):
+        """Set reference PhoneNumber display on User creation tab
+        to PhoneNumber represantation of str_
+        Args:
+            str_(str): str_ to try and interpret as PhoneNumber
+        """
         if str_:
             try:
                 text = str(classes.PhoneNumber(str_))
@@ -249,10 +261,11 @@ class MainDialog(QtWidgets.QMainWindow):
         self.out_phone.setText(text)
 
     def b_user_login_click(self):
+        """Login button click"""
         LoginDialog(self).exec()
         self.update_user_dependant()
         if self.logged_in_user:
-            logger.info(f"Logged in as {self.logged_in_user}")
+            # logger.info(f"Logged in as {self.logged_in_user}") # already logged in login
             self.timeout = classes.Timeout(60*15, lambda signal: signal.emit(True), self.ui.b_user_logout.clicked)
             self.timeout.start()
 
@@ -263,6 +276,10 @@ class MainDialog(QtWidgets.QMainWindow):
             #self.in_phone.setText(str(self.logged_in_user.phonenumber))
 
     def b_user_logout_click(self, timed_out=False):
+        """Logout button click - also handles timeouts via timed_out flag
+        Args:
+            timed_out(bool): Set to True to handle logout as one rooted in timeout
+        """
         if timed_out:
             self.timed_out()
         self.logged_in_user = None # may want to use slots.logout if that does something eventually
@@ -309,12 +326,15 @@ class MainDialog(QtWidgets.QMainWindow):
             self.checkBox.setVisible(False)
 
     def mousePressEvent(self, QMouseEvent=None):
-        print("Maus geklickt")
+        """Event that's called on mouse click"""
+        # print("Maus geklickt")
         self.mouseMoveEvent()
     
     def mouseMoveEvent(self, QMouseEvent=None):
+        """Event that's called on mouse move"""
+        """
         if QMouseEvent is not None:
-            print("Maus bewegt")
+            print("Maus bewegt")"""
         if hasattr(self, "timeout"):
             self.timeout.reset()
 
@@ -357,7 +377,7 @@ class MainDialog(QtWidgets.QMainWindow):
         # display password
 
     def b_save_device_click(self):
-        qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory")
+        qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Bitte wählen Sie ein Verzeichnis")
         if qr_path:
             self.t_path_device.setText(qr_path)
 
@@ -383,12 +403,21 @@ class MainDialog(QtWidgets.QMainWindow):
             resp = classes.Responsibility(device, user, location)
             session.add(resp)
         path = pathlib.Path(self.t_path_device.text())
-        if not re.match(r".*\.(svg)|(png)", str(path)):
-            path = path / f"{device.uid}_{device.article.name}.svg"
-            normalize_filename(str(path))
-            
-        validate_filename(path)
-        generate_qr()
+        if not re.match(r".*\.(?P<filetype>.*$)", str(path), re.IGNORECASE):
+            path /= utils.normalize_filename(f"{device.uid}_{device.article.name}.svg")
+        if not utils.check_if_file_exists(path):
+            self.statusBar().setStyleSheet("color: red")
+            self.statusBar().showMessage(f"{path} ist kein gültiger Pfad/eine bereits vorhandede Datei.", 5000)
+            return
+        try:
+            generate_qr(device, path)
+        except NotImplementedError as e:
+            logger.error(str(e))
+            self.statusBar().setStyleSheet("color: red")
+            self.statusBar().showMessage(f"Um {e[1]} Dateien zu speichern sind weitere Pakete nötig. Das Standartformat ist svg.", 10000)
+        else:
+            self.statusBar().setStyleSheet("color: green")
+            self.statusBar().showMessage(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert.", 10000)
 
     def b_create_article_click(self):
         name = self.t_name_a.text()
@@ -434,11 +463,14 @@ class MainDialog(QtWidgets.QMainWindow):
         self.statusBar().setStyleSheet("color: #ff0000")
         self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
 
+    def recognized_barcode(self):
+        """Slot that's called if the camera recognized a barcode"""
+        print("YEEHAAAW")
 
 class LoginDialog(QtWidgets.QDialog):
     
     def __init__(self, parent=None):
-        path = absolute_path("login.ui")
+        path = utils.absolute_path("login.ui")
         super().__init__(parent)
         self.parent = parent
         self.ui = uic.loadUi(path, self)
@@ -454,7 +486,7 @@ class LoginDialog(QtWidgets.QDialog):
 class SaveDialog(QtWidgets.QDialog):        #Dialog to get select a filepath
     filepath = ""
     def __init__(self, parent=None):
-        path = absolute_path("save.ui")
+        path = utils.absolute_path("save.ui")
         super().__init__(parent)
         self.parent = parent
         self.ui = uic.loadUi(path, self)
