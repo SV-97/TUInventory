@@ -20,7 +20,8 @@ CSession = classes.setup_context_session(classes.engine)
 
 
 class MainDialog(QtWidgets.QMainWindow):
-    code_recognized = pyqtSignal()
+    code_recognized = pyqtSignal(str)
+
     def __init__(self, parent=None):
         path = utils.absolute_path("mainScaling.ui")
         super().__init__(parent)
@@ -102,7 +103,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.hide()
         self.update_user_dependant()
         self.code_recognized.connect(self.recognized_barcode)
-        self.code_recognized.emit()
 
     def b_home_1_click(self): # home
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -463,9 +463,17 @@ class MainDialog(QtWidgets.QMainWindow):
         self.statusBar().setStyleSheet("color: #ff0000")
         self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
 
-    def recognized_barcode(self):
+    def recognized_barcode(self, str_):
         """Slot that's called if the camera recognized a barcode"""
-        print("YEEHAAAW")
+        logger.info(f"Recognized barcode: {str_}")
+        match = re.match(r"id=(?P<id>\d+) name=(?P<name>.*)", str_)
+        uid = match.group("id")
+        with CSession() as session:
+            resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=uid).first()
+            print(resp.device)
+            print(resp.user)
+            print(resp.location)
+        logger.info("Successfully processed barcode")
 
 class LoginDialog(QtWidgets.QDialog):
     

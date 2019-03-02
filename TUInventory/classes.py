@@ -384,16 +384,22 @@ class VideoStreamUISync(Thread):
         Args:
             canvas: canvas has to be able to take pixmaps/implement setPixmap
             videostream: Instance of LazyVideoStream that supplies the frames
+            signal: qt-signal that's emitted if a barcode has been recognized
+        
+        Attributes:
             barcodes: Counter that holds all found barcodes USE barcode_lock WHEN ACCESSING!
             barcode_lock: Lock for barcodes
+            sensibility: How often a barcode has to be recognized to count it as valid
     """
-    def __init__(self, canvas, videostream):
+    def __init__(self, canvas, videostream, signal):
         super().__init__(name=f"{self.__class__.__name__}Thread_{id(self)}")
         self.canvas = canvas
         self.videostream = videostream
         self.daemon = True
         self.barcodes = Counter()
         self.barcode_lock = Lock()
+        self.sensibility = 5
+        self.signal = signal
 
     @staticmethod
     def _matrice_to_QPixmap(frame):
@@ -406,11 +412,15 @@ class VideoStreamUISync(Thread):
     def get_most_common(self):
         """Get barcode with highest occurence"""
         with self.barcode_lock:
-            return self.barcodes.most_common(1)[0]
+            return self.barcodes.most_common(1)
 
     def reset_counter(self):
         with self.barcode_lock:
             self.barcodes = Counter()
+
+    def update_counter(self, found_codes):
+        with self.barcode_lock:
+            self.barcodes.update(found_codes)
 
     def run(self):
         """Start synchronization"""
@@ -419,8 +429,12 @@ class VideoStreamUISync(Thread):
             frame, found_codes = self.videostream.frame_queue.get()
             pixmap = self._matrice_to_QPixmap(frame)
             self.canvas.setPixmap(pixmap)
-            if found_codes: # may need to lock here
-                self.barcodes.update(found_codes)
+            if found_codes:
+                self.update_counter(found_codes)
+                most_common = self.get_most_common()
+                if most_common[1] > self.sensibility:
+                    self.signal.emit(most_common[0])
+                    self.reset_counter()
             cv2.waitKey(1)
 
 
@@ -559,5 +573,7 @@ if __name__ == "__main__":
         for resp in user.responsibilities:
             print(f"{str(resp.user):^30}|{resp.device.code:^8}|{resp.location.name:^15}|{resp.device.article.name:^30}")
 
+    for device in devices:
+        print(f"id={device.uid} name={device.article.name}")
     session.commit()
     session.close()
