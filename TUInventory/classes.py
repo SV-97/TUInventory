@@ -112,6 +112,9 @@ class Producer(Base):
         self.uid = uid
         self.name = name.title()
 
+    def __str__(self):
+        return f"{self.uid} {self.name}"
+
 
 class Article(Base):
     """Represents an article"""
@@ -126,6 +129,8 @@ class Article(Base):
         self.name = name
         self.producer = producer
 
+    def __str__(self):
+        return f"{self.uid} {self.name}"
 
 class Device(Base):
     """Represents a device"""
@@ -221,7 +226,7 @@ class PhoneNumber(Base):
 
 
 class Location(Base):
-    """Represents a physical location where a Device or User (or Responsibility) may be located"""
+    """Represents a physical location where a User (or Responsibility) may be located"""
     __tablename__ = "locations"
     uid = Column(Integer, primary_key=True)
     name = Column(String, unique=True)
