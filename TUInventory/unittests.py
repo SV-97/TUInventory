@@ -13,10 +13,10 @@ class TestUtils(unittest.TestCase):
             "123abd.edg/(&(&(%§!14    g\n1gj2141.pdf"), 
             "123abd.edg4___gj2141.pdf")
         
-    def test_validate_filename(self):
-        self.assertTrue(utils.validate_filename("abc"))
+    def test_check_if_file_exists(self):
+        self.assertTrue(utils.check_if_file_exists("abc"))
         with open("abc", "w") as f:
-            self.assertFalse(utils.validate_filename("abc"))
+            self.assertFalse(utils.check_if_file_exists("abc"))
         os.remove("abc")
 
 

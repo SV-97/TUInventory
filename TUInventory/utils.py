@@ -41,13 +41,16 @@ _ParallelPrint.start()
 parallel_print = _ParallelPrint.print_.put
 
 
-def validate_filename(path):
-    """Check whether a file already exists"""
+def check_if_file_exists(path):
+    """Check whether a file already exists, create directories in path that don't exist yet"""
     try:
         with open(path, "x"):
             pass
     except FileExistsError as e:
         return False
+    except FileNotFoundError:
+        path.parents[0].mkdir(parents=True)
+        return True
     else:
         os.remove(path)
         return True
@@ -58,15 +61,20 @@ def normalize_filename(string):
     replace whitespaces with underscores keeping dots untouched"""
     segs = string.split(".")
     for i, seg in enumerate(segs):
-        segs[i] = re.sub(r"[\W][^\s]", "", seg, flags=re.ASCII)
         segs[i] = re.sub(r"[\s]", "_", segs[i])
+        segs[i] = re.sub(r"[\W]", "", seg, flags=re.ASCII)
     return ".".join(segs)
     
+
+def umlaut_converter(string):
+    """Convert all umlauts to their e-equivalent"""
+    return umlauts.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
+
 
 if __name__ == "__main__":
     assert normalize_filename("123abd.edg/(&(&(%§!14    g\n1gj2141.pdf") == "123abd.edg4___gj2141.pdf"
 
-    assert validate_filename("abc") == True
+    assert check_if_file_exists("abc") == True
     with open("abc", "w") as f:
-        assert validate_filename("abc") == False
+        assert check_if_file_exists("abc") == False
     os.remove("abc")
