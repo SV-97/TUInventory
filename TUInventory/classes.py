@@ -400,7 +400,7 @@ class VideoStreamUISync(Thread):
         self.daemon = True
         self.barcodes = Counter()
         self.barcode_lock = Lock()
-        self.sensibility = 3
+        self.sensibility = 10
         self.signal = signal
         self.job = job
 

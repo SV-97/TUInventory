@@ -3,7 +3,6 @@ __version__ = "0.1.0"
 
 import logging
 import sys
-from threading import Lock, Thread
 from time import sleep
 
 from PyQt5.QtWidgets import QApplication
