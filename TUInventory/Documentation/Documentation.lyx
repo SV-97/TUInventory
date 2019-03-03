@@ -5255,7 +5255,8 @@ Counters
 \emph on
 barcodes
 \emph default
- aufgerufen
+ aufgerufen, falls ein Barcode als sicher erkannt eingestuft wird wird ein
+ Qt Signal emmitiert, welches die UI entgegennimmt und verarbeitet
 \end_layout
 
 \begin_layout Enumerate
@@ -5299,6 +5300,68 @@ HashMap
 n Anzahl an Frames erkannt wurde.
  Der Thread implementiert außerdem Methoden um den Counter zurückzusetzen
  und das häufigste Element abzufragen.
+\end_layout
+
+\begin_layout Standard
+Nach dem Verknüpfen mit der UI zeichnet sich ab, dass diese Lösung nicht
+ funktioniert.
+ Das emittieren eines Qt Signals scheint, entgegen den Erwartungen, eine
+ sehr teure (im Bezug auf Laufzeit) Operation zu sein - so läuft das Bild
+ perfekt flüssig, bis man ein Signal einfügt, dann ruckelt es merklich;
+ nämlich immer dann, wenn ein Signal emittiert wird.
+ Außerdem stürzt die Anwendung ohne jegliche Fehlermeldung ab wenn zuviele
+ Signale in kurzer Zeit emittiert werden.
+ Die Tatsache, dass hier keine Python Exception geworfen wird, aber auch
+ der Hauptthread nicht korrekt 
+\begin_inset Quotes gld
+\end_inset
+
+durchläuft
+\begin_inset Quotes grd
+\end_inset
+
+ sondern einfach schließt, lässt auf einen Fehler in der C/C++ Ebene von
+ Qt schließen.
+ Ein grundsätzlicher Workaround wäre, einen 
+\emph on
+sleep
+\emph default
+ von 1-2s nachdem ein Signal emittiert wurde einzubauen oder die Sensitivität
+ herunter zu stellen (also höherer Wert).
+ Da in der Anwendung i.d.R.
+ nicht nötig ist, innerhalb weniger Sekunden viele Codes einzuscannen wäre
+ das auch erstmal akzeptabel und funktionell - jedoch nicht sonderlich elegant
+ da das Bild in dieser Zeit immer stillstehen würde.
+\end_layout
+
+\begin_layout Standard
+Dank des modularen Designs bieten sich einige bessere Möglichkeiten um dieses
+ Problem zu beheben:
+\end_layout
+
+\begin_layout Itemize
+Weiterer Thread, sodass ein Thread nur Bilddaten verarbeitet und ein weiterer
+ nur Barcodes
+\end_layout
+
+\begin_layout Itemize
+Die Qt 
+\emph on
+QApplication
+\emph default
+ auf eine nicht-blockierende Art starten und eine eigene Eventloop für die
+ UI implementieren, um eine performantere Kommunikation zwischen UI und
+ Sync selbst zu implementieren.
+\end_layout
+
+\begin_layout Standard
+Umgesetzt wird die erste Variante.
+ Dies ist mit nur geringfügigen Änderungen (weiteres Attribute der 
+\emph on
+VideostreamUISync
+\emph default
+ Klasse, zwei Verzweigungen und weitere Instanziierung der Synchronisation)
+ möglich und erzielt das gewünschte Ergebnis.
 \end_layout
 
 \begin_layout Subsection
