@@ -248,7 +248,7 @@ class Camera():
         self.camera_id = camera_id
 
     def __enter__(self):
-        self.camera = cv2.VideoCapture(self.camera_id)
+        self.camera = cv2.VideoCapture(cv2.CAP_DSHOW + self.camera_id)
         if not self.camera.isOpened():
             raise IOError(f"Failed to open camera {self.camera_id}")
         while not self.camera.read()[0]:
