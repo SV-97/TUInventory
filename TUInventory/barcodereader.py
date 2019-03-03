@@ -212,8 +212,9 @@ class LazyVideoStream(threading.Thread):
             poly = np.asarray([(point.x, point.y) for point in poly])
             poly = poly.reshape((-1, 1, 2))
             cv2.polylines(frame, [poly], True, (0, 255, 0), 2)
-            cv2.rectangle(frame, *self.rect_transformation(*barcode.rect), (255, 0, 0), 2)
+            # cv2.rectangle(frame, *self.rect_transformation(*barcode.rect), (255, 0, 0), 2)
             x, y = barcode.rect[:2]
+            """
             cv2.putText(
                 frame, 
                 "{}({})".format(*barcode_information), 
@@ -221,7 +222,7 @@ class LazyVideoStream(threading.Thread):
                 cv2.FONT_HERSHEY_PLAIN, 
                 1, 
                 (0, 0, 255), 
-                1)
+                1)"""
         return frame, found_codes
 
     def request(self):
