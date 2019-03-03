@@ -31,8 +31,14 @@ def main():
         videostream = LazyVideoStream()
         videostream.start()
         logger.info(f"Camera {videostream.camera_id} succesfully opened")
-        video_ui_sync = VideoStreamUISync(dialog_main.ui.videoFeed, videostream, dialog_main.code_recognized)
-        video_ui_sync.start()
+        video_ui_sync_1 = VideoStreamUISync(
+            dialog_main.ui.videoFeed, videostream, 
+            dialog_main.code_recognized, "frames")
+        video_ui_sync_2 = VideoStreamUISync(
+            dialog_main.ui.videoFeed, videostream, 
+            dialog_main.code_recognized, "codes")
+        video_ui_sync_1.start()
+        video_ui_sync_2.start()
         logger.info("Connected Camera to UI")
     except IOError as e:
         logger.error(str(e))

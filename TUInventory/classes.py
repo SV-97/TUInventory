@@ -385,13 +385,15 @@ class VideoStreamUISync(Thread):
             canvas: canvas has to be able to take pixmaps/implement setPixmap
             videostream: Instance of LazyVideoStream that supplies the frames
             signal: qt-signal that's emitted if a barcode has been recognized
-        
+            job: set to "both", "codes" or "frames" to set whether it should 
+                only process image data, barcodes and signals or both
+
         Attributes:
             barcodes: Counter that holds all found barcodes USE barcode_lock WHEN ACCESSING!
             barcode_lock: Lock for barcodes
             sensibility: How often a barcode has to be recognized to count it as valid
     """
-    def __init__(self, canvas, videostream, signal):
+    def __init__(self, canvas, videostream, signal, job="both"):
         super().__init__(name=f"{self.__class__.__name__}Thread_{id(self)}")
         self.canvas = canvas
         self.videostream = videostream
@@ -400,6 +402,7 @@ class VideoStreamUISync(Thread):
         self.barcode_lock = Lock()
         self.sensibility = 3
         self.signal = signal
+        self.job = job
 
     @staticmethod
     def _matrice_to_QPixmap(frame):
@@ -427,15 +430,17 @@ class VideoStreamUISync(Thread):
         while True:
             self.videostream.request_queue.put(True)
             frame, found_codes = self.videostream.frame_queue.get()
-            pixmap = self._matrice_to_QPixmap(frame)
-            self.canvas.setPixmap(pixmap)
-            if found_codes:
-                self.update_counter(found_codes)
-                most_common = self.get_most_common()
-                if most_common[1] > self.sensibility:
-                    self.signal.emit(most_common[0][1])
-                    self.reset_counter()
-                    sleep(1)
+            if self.job == "frames" or self.job == "both":
+                pixmap = self._matrice_to_QPixmap(frame)
+                self.canvas.setPixmap(pixmap)
+            elif self.job == "codes" or self.job == "both":
+                if found_codes:
+                    self.update_counter(found_codes)
+                    most_common = self.get_most_common()
+                    if most_common[1] > self.sensibility:
+                        self.signal.emit(most_common[0][1])
+                        self.reset_counter()
+                        sleep(2)
             cv2.waitKey(1)
 
 
