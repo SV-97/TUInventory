@@ -398,7 +398,7 @@ class VideoStreamUISync(Thread):
         self.daemon = True
         self.barcodes = Counter()
         self.barcode_lock = Lock()
-        self.sensibility = 5
+        self.sensibility = 3
         self.signal = signal
 
     @staticmethod
@@ -412,7 +412,7 @@ class VideoStreamUISync(Thread):
     def get_most_common(self):
         """Get barcode with highest occurence"""
         with self.barcode_lock:
-            return self.barcodes.most_common(1)
+            return self.barcodes.most_common(1)[0]
 
     def reset_counter(self):
         with self.barcode_lock:
@@ -433,8 +433,9 @@ class VideoStreamUISync(Thread):
                 self.update_counter(found_codes)
                 most_common = self.get_most_common()
                 if most_common[1] > self.sensibility:
-                    self.signal.emit(most_common[0])
+                    self.signal.emit(most_common[0][1])
                     self.reset_counter()
+                    sleep(1)
             cv2.waitKey(1)
 
 
@@ -575,5 +576,6 @@ if __name__ == "__main__":
 
     for device in devices:
         print(f"id={device.uid} name={device.article.name}")
+
     session.commit()
     session.close()
