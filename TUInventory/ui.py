@@ -30,11 +30,13 @@ class MainDialog(QtWidgets.QMainWindow):
         self.savepath = None
         self.set_tree()
         self.set_combobox_location_u()
+        self.set_combobox_location_u_admin()
         self.set_combobox_location_d()
         self.set_combobox_producer_a()
         self.set_combobox_producer_d()
         self.set_combobox_article_d()
         self.set_combobox_user_d()
+        self.set_combobox_user_admin()
         self.setMouseTracking(True)
         self.t_path_device.setText(str(utils.absolute_path(pathlib.Path("qr_codes"))))
 
@@ -59,6 +61,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.in_phone.textChanged.connect(self.set_phonenumber)
 
         self.ui.cb_producer_d.currentIndexChanged.connect(self.reload_combobox_article_d)
+        self.ui.cb_user_admin.currentIndexChanged.connect(self.reload_user_change)
 
         self.setAutoFillBackground(True) # background / white
         p = self.palette()
@@ -103,14 +106,6 @@ class MainDialog(QtWidgets.QMainWindow):
         
         self.statusBar().setStyleSheet("color: white")   
         self.statusBar().showMessage("               ©2019 by SVYK – all rights reserved         ")
-
-        #palette5 = self.line_5.palette() # tab 5 / blue
-        #role5 = self.line_5.backgroundRole()
-        #palette5.setColor(role5, QColor('blue'))
-       # self.ui.line_5.setPalette(palette5)
-        #self.ui.line_5.setAutoFillBackground(True)
-        #self.ui.statusbar.move(x, y)
-
 
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
@@ -159,13 +154,11 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_3.hide()
         self.ui.line_4.show()
         self.ui.line_5.hide()
-        
         if self.logged_in_user:
             if self.logged_in_user.is_admin:
                 self.ui.stackedWidget.setCurrentIndex(3)
         else:
             self.ui.stackedWidget.setCurrentIndex(4)
-
 
     def b_tab_5_click(self):
         self.ui.stackedWidget.setCurrentIndex(5)
@@ -207,6 +200,14 @@ class MainDialog(QtWidgets.QMainWindow):
             locations = session.query(classes.Location).all()
             for location in locations:
                 self.cb_location_u.addItem(location.name)
+
+    def set_combobox_location_u_admin(self):
+        """Fill Location ComboBox for User creation"""
+        self.cb_location_u_admin.clear()
+        with CSession() as session:
+            locations = session.query(classes.Location).all()
+            for location in locations:
+                self.cb_location_u_admin.addItem(location.name)
     
     def set_combobox_location_d(self):
         """Fill Location ComboBox for Device creation"""
@@ -246,7 +247,7 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:
             articles = session.query(classes.Article).all()
             producers = session.query(classes.Producer).all()
-            producerX = str(self.cb_producer_d.currentText()) # todo: rework names; also currentText probably already is a string
+            producerX = self.cb_producer_d.currentText() # todo: rework names
             if producerX:
                 for producer in producers:
                     if producer.name == producerX:
@@ -267,7 +268,28 @@ class MainDialog(QtWidgets.QMainWindow):
             users = session.query(classes.User).all()
             for user in users:
                 self.cb_user_d.addItem(f"{user.uid} {str(user)}")
+    
+    def set_combobox_user_admin(self):
+        """Fill User ComboBox for User change"""
+        self.cb_user_admin.clear()
+        self.cb_user_admin.addItem("")
+        with CSession() as session:
+            users = session.query(classes.User).all()
+            for user in users:
+                self.cb_user_admin.addItem(user.name)
 
+    def reload_user_change(self):
+        """Fill TextBoxes for User change"""
+        with CSession() as session:
+            users = session.query(classes.User).all()
+            userX = self.cb_user_admin.currentText()
+            for user in users:
+                if user.name == userX:
+                    self.in_name_admin.setText(user.name) # fill textEdits for UserChange
+                    self.in_surname_admin.setText(user.surname)
+                    self.in_email_admin.setText(user.e_mail)  
+                    self.in_phone_admin.setText(str(user.phonenumber))     
+                
     def set_phonenumber(self, str_):
         """Set reference PhoneNumber display on User creation tab
         to PhoneNumber represantation of str_
@@ -344,12 +366,17 @@ class MainDialog(QtWidgets.QMainWindow):
             
             if self.logged_in_user.is_admin:
                 self.checkBox.setVisible(True)
+                if self.ui.stackedWidget.currentIndex() == 4:
+                    self.ui.stackedWidget.setCurrentIndex(3)
             else:
                 self.checkBox.setVisible(False)
+                
         else:
             self.ui.log_in_out.setCurrentIndex(0)
             self.label.setText("")
             self.checkBox.setVisible(False)
+            if self.ui.stackedWidget.currentIndex() == 3:
+                         self.ui.stackedWidget.setCurrentIndex(4)
 
     def mousePressEvent(self, QMouseEvent=None):
         """Event that's called on mouse click"""
