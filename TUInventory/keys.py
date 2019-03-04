@@ -11,6 +11,8 @@ except ImportError as e:
         raise err
 from pathlib import Path
 
+PUBLIC_KEY_PATH = Path("pub.key")
+
 def generate_key(path_public, path_private):
     """Generate new RSA key-pair and save it to the given paths
 
