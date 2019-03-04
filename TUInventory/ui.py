@@ -166,7 +166,6 @@ class MainDialog(QtWidgets.QMainWindow):
         else:
             self.ui.stackedWidget.setCurrentIndex(4)
 
-
     def b_tab_5_click(self):
         self.ui.stackedWidget.setCurrentIndex(5)
         self.ui.line_1.hide()
@@ -242,6 +241,7 @@ class MainDialog(QtWidgets.QMainWindow):
                 self.cb_article_d.addItem(article.name)
 
     def reload_combobox_article_d(self):
+        """Change article depending on selected Producer"""
         self.cb_article_d.clear()
         with CSession() as session:
             articles = session.query(classes.Article).all()
@@ -364,32 +364,50 @@ class MainDialog(QtWidgets.QMainWindow):
         if hasattr(self, "timeout"):
             self.timeout.reset()
 
-    def b_user_change_click(self): #toDo finish linked classes
-        if self.logged_in_user:
-            self.update_user()
-        else:
-            self.new_user()
+    def b_user_change_click(self):
+        name = self.in_name.text()
+        surname = self.in_surname.text()
+        e_mail = self.in_email.text()
+        phonenumber = self.in_phone.text()
 
-    def new_user(self):
-        if "" in (box.text() for box in [self.in_name, self.in_surname, self.in_email, self.in_phone, self.in_password1, self.in_password2]):
+        password_1 = self.in_password1.text()
+        password_2 = self.in_password2.text()
+        if password_1 == "" and self.logged_in_user:
+            password_1 = False # leave password as it
+            password_2 = False
+
+        locals_ = {key: value for (key, value) in locals().items() if key != "self"}
+        if "" in locals_.values():
             self.not_all_fields_filled_notice()
             return
-
-        if self.checkBox.isChecked():
-            user = slots.create_admin()
+        
+        if password_1 != password_2:
+            self.statusBar().setStyleSheet("color: red")   
+            self.statusBar().showMessage("Die Passwörter stimmen nicht überein.", 5000)
+            return
         else:
-            user = slots.create_user()
+            password = password_1
+
+        if self.logged_in_user:
+            user = logged_in_user
+        else:
+            user = classes.User(e_mail, password)
 
         with CSession() as session:
             session.add(user)
-            user.location = ... # queried location
-            
+            user.name = name
+            user.surname = surname
+            user.e_mail = e_mail
+            user.phonenumber = classes.PhoneNumber(phonenumber)
+            if self.logged_in_user and password:
+                user.hash(password)
+                
         self.statusBar().setStyleSheet("color: green")   
-        self.statusBar().showMessage("Benutzer {user} wurde erfolgreich angelegt.", 5000)
-
-    def update_user(self):
-        #toDo make User updateable
-        pass
+        if self.logged_in_user:
+            self.logged_in_user = user
+            self.statusBar().showMessage("Benutzer {user} wurde erfolgreich geändert.", 5000)
+        else:
+            self.statusBar().showMessage("Benutzer {user} wurde erfolgreich angelegt.", 5000)
 
     def reset_password(self):
         """Set new password and salt for user, push it to db and show it in UI"""
