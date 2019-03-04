@@ -629,7 +629,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>3</number>
+           <number>1</number>
           </property>
           <widget class="QWidget" name="page_5">
            <widget class="QGroupBox" name="groupBox">
@@ -778,13 +778,13 @@
                      </property>
                      <property name="minimumSize">
                       <size>
-                       <width>100</width>
+                       <width>150</width>
                        <height>0</height>
                       </size>
                      </property>
                      <property name="maximumSize">
                       <size>
-                       <width>200</width>
+                       <width>350</width>
                        <height>16777215</height>
                       </size>
                      </property>
@@ -843,6 +843,22 @@
                     </widget>
                    </item>
                    <item>
+                    <widget class="QComboBox" name="cb_device_user">
+                     <property name="minimumSize">
+                      <size>
+                       <width>150</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>350</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
                     <spacer name="horizontalSpacer_54">
                      <property name="orientation">
                       <enum>Qt::Horizontal</enum>
@@ -888,6 +904,29 @@
                        <width>200</width>
                        <height>16777215</height>
                       </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QComboBox" name="cb_device_location">
+                     <property name="minimumSize">
+                      <size>
+                       <width>150</width>
+                       <height>0</height>
+                      </size>
+                     </property>
+                     <property name="maximumSize">
+                      <size>
+                       <width>350</width>
+                       <height>16777215</height>
+                      </size>
+                     </property>
+                    </widget>
+                   </item>
+                   <item>
+                    <widget class="QPushButton" name="b_change_device">
+                     <property name="text">
+                      <string>Änderungen speichern</string>
                      </property>
                     </widget>
                    </item>

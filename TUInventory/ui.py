@@ -35,6 +35,8 @@ class MainDialog(QtWidgets.QMainWindow):
         self.set_combobox_location_d()
         self.set_combobox_producer_a()
         self.set_combobox_producer_d()
+        self.set_combobox_device_user()
+        self.set_combobox_device_location()
         self.set_combobox_article_d()
         self.set_combobox_user_d()
         self.set_combobox_user_admin()
@@ -56,6 +58,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_user_change_admin.clicked.connect(self.b_user_change_admin_click)
         self.ui.b_user_reset_admin.clicked.connect(self.reset_password)
         self.ui.b_save_device.clicked.connect(self.b_save_device_click)
+        self.ui.b_change_device.clicked.connect(self.b_change_device_click)
         self.ui.b_create_device.clicked.connect(self.b_create_device_click)
         self.ui.b_create_article.clicked.connect(self.b_create_article_click)
         self.ui.b_create_producer.clicked.connect(self.b_create_producer_click)
@@ -266,6 +269,24 @@ class MainDialog(QtWidgets.QMainWindow):
             else:
                 for article in articles:    
                     self.cb_article_d.addItem(article.name)
+
+    def set_combobox_device_user(self):
+        """Fill User ComboBox for QR-Code readings"""
+        self.cb_device_user.clear()
+        self.cb_device_user.addItem("")
+        with CSession() as session:
+            users = session.query(classes.User).all()
+            for user in users:
+                self.cb_device_user.addItem(f"{user.uid} {str(user)}")
+
+    def set_combobox_device_location(self):
+        """Fill Location ComboBox for QR-Code readings"""
+        self.cb_device_location.clear()
+        self.cb_device_location.addItem("")
+        with CSession() as session:
+            locations = session.query(classes.Location).all()
+            for location in locations:
+                self.cb_device_location.addItem(location.name)
 
     def set_combobox_user_d(self):
         """Fill User ComboBox for Device creation"""
@@ -522,6 +543,16 @@ class MainDialog(QtWidgets.QMainWindow):
         if qr_path:
             self.t_path_device.setText(qr_path)
 
+    def b_change_device_click(self):
+        new_user = self.cb_device_user.currentText()    # gives 'user.uid user.surname user.name'
+        user_uid = new_user.split()
+        user_uid = int(new_user.split(" ")[0])
+        new_location = self.cb_device_location.currentText() # gives location.name
+        print (new_user)
+        print (new_location)
+        # toDo: save changes to database
+
+
     def b_create_device_click(self): # todo: handle if logged in user is no admin and can't create devices for others
         article = self.cb_article_d.currentText()
         location = self.cb_location_d.currentText()
@@ -678,8 +709,6 @@ class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for pa
                 self.parent.parent.statusBar().showMessage("Unbekannter Benutzer", 5000)
                 return
             password = slots.reset_admin_password(user, public_path, private_path)
-        self.close()
-        self.parent.close()
         
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
@@ -687,6 +716,9 @@ class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for pa
         messagebox.setText(f"Das neue Passwort für {user} ist {password}")
         messagebox.setStandardButtons(QtWidgets.QMessageBox.Ok)
         messagebox.exec_()
+
+        self.close()
+        self.parent.close()
         
     def b_password_close_click(self):
         self.close()
