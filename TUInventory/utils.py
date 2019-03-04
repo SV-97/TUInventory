@@ -69,12 +69,3 @@ def normalize_filename(string):
 def umlaut_converter(string):
     """Convert all umlauts to their e-equivalent"""
     return umlauts.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
-
-
-if __name__ == "__main__":
-    assert normalize_filename("123abd.edg/(&(&(%§!14    g\n1gj2141.pdf") == "123abd.edg4___gj2141.pdf"
-
-    assert check_if_file_exists("abc") == True
-    with open("abc", "w") as f:
-        assert check_if_file_exists("abc") == False
-    os.remove("abc")
