@@ -440,7 +440,7 @@ class VideoStreamUISync(Thread):
                     if most_common[1] > self.sensibility:
                         self.signal.emit(most_common[0][1])
                         self.reset_counter()
-                        sleep(2)
+                        sleep(10)
             cv2.waitKey(1)
 
 
