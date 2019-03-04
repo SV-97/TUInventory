@@ -629,7 +629,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>4</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="page_5">
            <widget class="QGroupBox" name="groupBox">
@@ -1507,7 +1507,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="comboBox">
+                 <widget class="QComboBox" name="cb_user_admin">
                   <property name="minimumSize">
                    <size>
                     <width>300</width>
@@ -1592,7 +1592,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="in_name_2">
+                 <widget class="QLineEdit" name="in_name_admin">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -1683,7 +1683,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="in_surname_2">
+                 <widget class="QLineEdit" name="in_surname_admin">
                   <property name="minimumSize">
                    <size>
                     <width>300</width>
@@ -1768,7 +1768,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="in_email_2">
+                 <widget class="QLineEdit" name="in_email_admin">
                   <property name="minimumSize">
                    <size>
                     <width>300</width>
@@ -1862,7 +1862,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="in_password1_2">
+                 <widget class="QLineEdit" name="in_password1_admin">
                   <property name="minimumSize">
                    <size>
                     <width>300</width>
@@ -1953,7 +1953,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="in_password2_2">
+                 <widget class="QLineEdit" name="in_password2_admin">
                   <property name="minimumSize">
                    <size>
                     <width>300</width>
@@ -2041,7 +2041,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="in_phone_2">
+                 <widget class="QLineEdit" name="in_phone_admin">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -2196,7 +2196,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </spacer>
                 </item>
                 <item>
-                 <widget class="QComboBox" name="cb_location_u_2">
+                 <widget class="QComboBox" name="cb_location_u_admin">
                   <property name="minimumSize">
                    <size>
                     <width>300</width>
@@ -2250,7 +2250,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
               <item>
                <layout class="QHBoxLayout" name="horizontalLayout_35">
                 <item>
-                 <widget class="QPushButton" name="b_user_change_2">
+                 <widget class="QPushButton" name="b_user_change_admin">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="MinimumExpanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
