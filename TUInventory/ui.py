@@ -307,7 +307,11 @@ class MainDialog(QtWidgets.QMainWindow):
                     self.in_name_admin.setText(user.name) # fill textEdits for UserChange
                     self.in_surname_admin.setText(user.surname)
                     self.in_email_admin.setText(user.e_mail)  
-                    self.in_phone_admin.setText(str(user.phonenumber))     
+                    self.in_phone_admin.setText(str(user.phonenumber))
+                    if user.is_admin:    
+                        self.checkBox.setCheckState(2)
+                    else:
+                        self.checkBox.setCheckState(0)  
                 
     def set_phonenumber(self, str_):
         """Set reference PhoneNumber display on User creation tab
@@ -477,8 +481,7 @@ class MainDialog(QtWidgets.QMainWindow):
             user.e_mail = e_mail
             user.phonenumber = classes.PhoneNumber(phonenumber)
             user.location = location
-            if self.checkBox.isVisible():
-                user.is_admin = self.checkBox.isChecked()
+            user.is_admin = self.checkBox.isChecked()
             session.add_all((user, location))
                    
         if self.logged_in_user.uid == user.uid:

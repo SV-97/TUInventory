@@ -483,6 +483,7 @@ if __name__ == "__main__":
     user4 = User(e_mail="a@a.a", password=" ", name="Wilhelm", surname="Schmidt", phonenumber="09123 12345-67")
     user4.is_admin = True
     user5 = User(e_mail="Testo@web.de", password="456", name="testo", surname="Testington", phonenumber="621")
+    user5.is_admin = True
     user6 = User(e_mail="Jack@web.de", password="1234", name="Jack", surname="von Teststadt", phonenumber="+49045 1123")
     user7 = User(e_mail="mymail@gmail.com", password="abc", name="Billy", surname="Bob", phonenumber="651")
     users = (
