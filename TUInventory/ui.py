@@ -52,6 +52,8 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
+        self.ui.b_user_change_admin.clicked.connect(self.b_user_change_admin_click)
+        self.ui.b_user_reset_admin.clicked.connect(self.reset_password)
         self.ui.b_save_device.clicked.connect(self.b_save_device_click)
         self.ui.b_create_device.clicked.connect(self.b_create_device_click)
         self.ui.b_create_article.clicked.connect(self.b_create_article_click)
