@@ -38,7 +38,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.set_combobox_user_d()
         self.set_combobox_user_admin()
         self.setMouseTracking(True)
-        
+
         if "win32" in sys.platform:
             self.t_path_device.setText(str.title(str(utils.absolute_path(pathlib.Path("qr_codes")))))
         else:
@@ -620,6 +620,7 @@ class LoginDialog(QtWidgets.QDialog):
         self.parent = parent
         self.ui = uic.loadUi(path, self)
         self.b_login.clicked.connect(self.b_login_click)
+        self.b_password_lost.clicked.connect(self.b_password_lost_click)
 
     def b_login_click(self):
         username = self.t_username.text()
@@ -627,30 +628,32 @@ class LoginDialog(QtWidgets.QDialog):
         self.parent.logged_in_user = slots.login(username, password)
         self.close()
 
+    def b_password_lost_click(self):
+        ResetDialog(self).exec()
 
-class SaveDialog(QtWidgets.QDialog):        #Dialog to get select a filepath
+
+class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for password reset
     filepath = ""
     def __init__(self, parent=None):
-        path = utils.absolute_path("save.ui")
+        path = utils.absolute_path("reset.ui")
         super().__init__(parent)
         self.parent = parent
         self.ui = uic.loadUi(path, self)
-        self.b_file_ok.clicked.connect(self.b_file_ok_click)
-        self.b_close.clicked.connect(self.b_close_click)
         self.b_browse.clicked.connect(self.b_browse_click)
+        self.b_password_reset.clicked.connect(self.b_password_reset_click)
+        self.b_password_close.clicked.connect(self.b_password_close_click)
         self.t_path.setText(self.filepath)
     
     def b_browse_click(self):
-        self.filename = "filename.svg"
-        #self.filepath = QtWidgets.QFileDialog.getOpenFileName(self, 'Single File', "~/Desktop") #could be used to select a file
-        self.filepath = QtWidgets.QFileDialog.getExistingDirectory(self, "Select Directory") + "/" + self.filename
-        self.t_path.setText(self.filepath)
+        self.filepath = QtWidgets.QFileDialog.getOpenFileName(self, 'Single File')
+        self.t_path.setText(self.filepath[0])
 
-    def b_file_ok_click(self):
-        self.parent.savepath = self.t_path.text()
+    def b_password_reset_click(self):
+        #save generated password
         self.close()
-
-    def b_close_click(self):
+        self.parent.close()
+        
+    def b_password_close_click(self):
         self.close()
 
 
@@ -658,7 +661,7 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     dialog_main = MainDialog()
     dialog_login = LoginDialog()
-    dialog_save = SaveDialog()
+    dialog_save = ResetDialog()
 
     dialog_main.show() # show dialog_main as modeless dialog => return control back immediately
 
