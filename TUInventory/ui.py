@@ -59,6 +59,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_user_reset_admin.clicked.connect(self.reset_password)
         self.ui.b_save_device.clicked.connect(self.b_save_device_click)
         self.ui.b_change_device.clicked.connect(self.b_change_device_click)
+        self.ui.b_delete_device.clicked.connect(self.b_delete_device_click)
         self.ui.b_create_device.clicked.connect(self.b_create_device_click)
         self.ui.b_create_article.clicked.connect(self.b_create_article_click)
         self.ui.b_create_producer.clicked.connect(self.b_create_producer_click)
@@ -671,12 +672,9 @@ class MainDialog(QtWidgets.QMainWindow):
             return
         with CSession() as session:
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=uid).first()
-            print(resp.device)
-            print(resp.user)
-            print(resp.location)
-            self.t_code_device.setText(resp.device)
-            self.t_code_user.setText(resp.user)
-            self.t_code_location.setText(resp.location)
+            self.t_code_device.setText(str(resp.device))
+            self.t_code_user.setText(str(resp.user))
+            self.t_code_location.setText(str(resp.location))
         logger.info("Successfully processed barcode")
 
 
