@@ -154,11 +154,10 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_3.hide()
         self.ui.line_4.show()
         self.ui.line_5.hide()
+        self.ui.stackedWidget.setCurrentIndex(4)
         if self.logged_in_user:
             if self.logged_in_user.is_admin:
-                self.ui.stackedWidget.setCurrentIndex(3)
-        else:
-            self.ui.stackedWidget.setCurrentIndex(4)
+                self.ui.stackedWidget.setCurrentIndex(3)         
 
     def b_tab_5_click(self):
         self.ui.stackedWidget.setCurrentIndex(5)
@@ -243,6 +242,7 @@ class MainDialog(QtWidgets.QMainWindow):
                 self.cb_article_d.addItem(article.name)
 
     def reload_combobox_article_d(self):
+        """Reload Article ComboBox after Producer changes"""
         self.cb_article_d.clear()
         with CSession() as session:
             articles = session.query(classes.Article).all()
@@ -276,15 +276,16 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:
             users = session.query(classes.User).all()
             for user in users:
-                self.cb_user_admin.addItem(user.name)
+                self.cb_user_admin.addItem(f"{user.uid} {str(user)}")
 
     def reload_user_change(self):
         """Fill TextBoxes for User change"""
         with CSession() as session:
             users = session.query(classes.User).all()
             userX = self.cb_user_admin.currentText()
+            user_uid = int(userX.split(" ")[0])
             for user in users:
-                if user.name == userX:
+                if user.uid == user_uid:
                     self.in_name_admin.setText(user.name) # fill textEdits for UserChange
                     self.in_surname_admin.setText(user.surname)
                     self.in_email_admin.setText(user.e_mail)  
@@ -313,15 +314,6 @@ class MainDialog(QtWidgets.QMainWindow):
             # logger.info(f"Logged in as {self.logged_in_user}") # already logged in login
             self.timeout = classes.Timeout(60*15, lambda signal: signal.emit(True), self.ui.b_user_logout.clicked)
             self.timeout.start()
-
-            # todo: these belong in update_user_dependant
-            self.in_name.setText(self.logged_in_user.name) # fill textEdits for UserChange
-            self.in_surname.setText(self.logged_in_user.surname)
-            self.in_email.setText(self.logged_in_user.e_mail)
-            #self.in_phone.setText(str(self.logged_in_user.phonenumber))
-            if self.logged_in_user.is_admin:
-                if self.ui.stackedWidget.currentIndex() == 4:
-                    self.ui.stackedWidget.setCurrentIndex(3)
 
     def b_user_logout_click(self, timed_out=False):
         """Logout button click - also handles timeouts via timed_out flag
@@ -363,18 +355,24 @@ class MainDialog(QtWidgets.QMainWindow):
 
             self.statusBar().setStyleSheet("color: #008080")
             self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user} angemeldet.", 1500)
+
+            self.in_name.setText(self.logged_in_user.name) # fill textEdits for UserChange
+            self.in_surname.setText(self.logged_in_user.surname)
+            self.in_email.setText(self.logged_in_user.e_mail)
+            with CSession() as session:
+                users = session.query(classes.User).all()
+                userX = self.logged_in_user.name
+                for user in users:
+                    if user.name == userX:
+                        self.in_phone.setText(str(user.phonenumber))
             
             if self.logged_in_user.is_admin:
-                self.checkBox.setVisible(True)
                 if self.ui.stackedWidget.currentIndex() == 4:
                     self.ui.stackedWidget.setCurrentIndex(3)
-            else:
-                self.checkBox.setVisible(False)
                 
         else:
             self.ui.log_in_out.setCurrentIndex(0)
             self.label.setText("")
-            self.checkBox.setVisible(False)
             if self.ui.stackedWidget.currentIndex() == 3:
                          self.ui.stackedWidget.setCurrentIndex(4)
 
