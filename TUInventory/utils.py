@@ -59,6 +59,7 @@ def check_if_file_exists(path):
 def normalize_filename(string):
     """Remove all non ASCII letters and digits from a string and 
     replace whitespaces with underscores keeping dots untouched"""
+    string = umlaut_converter(string)
     segs = string.split(".")
     for i, seg in enumerate(segs):
         segs[i] = re.sub(r"[\s]", "_", segs[i])
