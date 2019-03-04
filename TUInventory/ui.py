@@ -577,7 +577,9 @@ class MainDialog(QtWidgets.QMainWindow):
             logger.info(f"Deleted Device {resp.device.uid}")
             self.statusBar().setStyleSheet("color: green")
             self.statusBar().showMessage(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5000)
-        
+            self.t_code_device.setText("")
+            self.t_code_user.setText("")
+            self.t_code_location.setText("")
 
     def b_create_device_click(self): # todo: handle if logged in user is no admin and can't create devices for others
         article = self.cb_article_d.currentText()
