@@ -59,6 +59,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_user_reset_admin.clicked.connect(self.reset_password)
         self.ui.b_save_device.clicked.connect(self.b_save_device_click)
         self.ui.b_change_device.clicked.connect(self.b_change_device_click)
+        self.ui.b_delete_device.clicked.connect(self.b_delete_device_click)
         self.ui.b_create_device.clicked.connect(self.b_create_device_click)
         self.ui.b_create_article.clicked.connect(self.b_create_article_click)
         self.ui.b_create_producer.clicked.connect(self.b_create_producer_click)
@@ -544,14 +545,39 @@ class MainDialog(QtWidgets.QMainWindow):
             self.t_path_device.setText(qr_path)
 
     def b_change_device_click(self):
-        new_user = self.cb_device_user.currentText()    # gives 'user.uid user.surname user.name'
-        user_uid = new_user.split()
-        user_uid = int(new_user.split(" ")[0])
         new_location = self.cb_device_location.currentText() # gives location.name
-        print (new_user)
-        print (new_location)
-        # toDo: save changes to database
+        new_user = self.cb_device_user.currentText()    # gives 'user.uid user.surname user.name'
+        user_uid = int(new_user.split(" ")[0])
+        device = int(self.t_code_device.text().split(" ")[-1])
 
+        locals_ = {key: value for (key, value) in locals().items() if key != "self"}
+        if "" in locals_.values():
+            self.not_all_fields_filled_notice()
+            return
+
+        with CSession() as session:
+            resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
+            location = session.query(classes.Location).filter_by(name=new_location).first()
+            user = session.query(classes.User).filter_by(uid=user_uid).first()
+            resp.location = location
+            resp.user = user
+            logger.info(f"Modified Responsibility for Device {resp.device.uid}")
+            self.statusBar().setStyleSheet("color: green")
+            self.statusBar().showMessage(f"Verantwortlichkeit für Gerät {resp.device.uid} wurde bearbeitet", 5000)
+
+    def b_delete_device_click(self):
+        device = int(self.t_code_device.text().split(" ")[-1])
+        if device == "":
+            self.not_all_fields_filled_notice()
+            return
+        with CSession() as session:
+            resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
+            session.delete(resp.device)
+            session.delete(resp)
+            logger.info(f"Deleted Device {resp.device.uid}")
+            self.statusBar().setStyleSheet("color: green")
+            self.statusBar().showMessage(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5000)
+        
 
     def b_create_device_click(self): # todo: handle if logged in user is no admin and can't create devices for others
         article = self.cb_article_d.currentText()
@@ -646,13 +672,11 @@ class MainDialog(QtWidgets.QMainWindow):
             return
         with CSession() as session:
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=uid).first()
-            print(resp.device)
-            print(resp.user)
-            print(resp.location)
-            self.t_code_device.setText(resp.device)
-            self.t_code_user.setText(resp.user)
-            self.t_code_location.setText(resp.location)
+            self.t_code_device.setText(str(resp.device))
+            self.t_code_user.setText(str(resp.user))
+            self.t_code_location.setText(str(resp.location))
         logger.info("Successfully processed barcode")
+
 
 class LoginDialog(QtWidgets.QDialog):
     
