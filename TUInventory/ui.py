@@ -38,7 +38,11 @@ class MainDialog(QtWidgets.QMainWindow):
         self.set_combobox_user_d()
         self.set_combobox_user_admin()
         self.setMouseTracking(True)
-        self.t_path_device.setText(str(utils.absolute_path(pathlib.Path("qr_codes"))))
+        
+        if "win32" in sys.platform:
+            self.t_path_device.setText(str.title(str(utils.absolute_path(pathlib.Path("qr_codes")))))
+        else:
+            self.t_path_device.setText(str(utils.absolute_path(pathlib.Path("qr_codes"))))
 
         icon = QtGui.QIcon()
         icon.addFile('pictures/256x256.png', QtCore.QSize(256,256))
