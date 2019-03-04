@@ -286,8 +286,15 @@ class MainDialog(QtWidgets.QMainWindow):
         """Fill TextBoxes for User change"""
         with CSession() as session:
             users = session.query(classes.User).all()
-            userX = self.cb_user_admin.currentText()
-            user_uid = int(userX.split(" ")[0])
+            selected_user = self.cb_user_admin.currentText()
+            if selected_user == "":
+                self.in_name_admin.setText("")
+                self.in_surname_admin.setText("")
+                self.in_email_admin.setText("")  
+                self.in_phone_admin.setText("")  
+                return
+            user_uid = int(selected_user.split(" ")[0])
+            
             for user in users:
                 if user.uid == user_uid:
                     self.in_name_admin.setText(user.name) # fill textEdits for UserChange
