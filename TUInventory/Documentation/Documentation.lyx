@@ -6740,23 +6740,8 @@ Timeout
 \emph on
 Timeout
 \emph default
- ermöglicht es, einen Thread zu öffnen, welcher im Hintergrund mit einer
- bestimmten Abtastrate
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-td: Abtastrate ist nicht aktuell
-\end_layout
-
-\begin_layout Plain Layout
-es wird bei theoretischem timeout überprüft ob ein reset erfolgt ist =>
- Performanz
-\end_layout
-
-\end_inset
-
- prüft, ob die eingestellte Zeit bereits verstrichen ist.
+ ermöglicht es, einen Thread zu öffnen, welcher im Hintergrund prüft, ob
+ die eingestellte Zeit bereits verstrichen ist.
  Da es mit dieser Funktionalität an sich nur ein Timer wäre, implementiert
  die Klasse weiterhin die Methode 
 \emph on
@@ -6768,8 +6753,9 @@ reset
 \emph on
 Timeout
 \emph default
--Instanz erhält außerdem ein aufrufbares Objekt und eine Liste mit positionellen
- Argumenten.
+-Instanz erhält außerdem ein aufrufbares Objekt und beliebig viele positionelle
+ bzw.
+ Schlüsselwort-Argumente.
  Beim timeout wird diese Methode mit den übergebenen Argumenten ausgeführt
  und das Attribut 
 \emph on
