@@ -296,6 +296,10 @@ class MainDialog(QtWidgets.QMainWindow):
                 self.in_phone_admin.setText("")  
                 return
             user_uid = int(selected_user.split(" ")[0])
+            if user_uid == self.logged_in_user.uid:
+                self.checkBox.setEnabled(False)
+            else:
+                self.checkBox.setEnabled(True)
             
             for user in users:
                 if user.uid == user_uid:
