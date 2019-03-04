@@ -548,7 +548,7 @@ class MainDialog(QtWidgets.QMainWindow):
         new_location = self.cb_device_location.currentText() # gives location.name
         new_user = self.cb_device_user.currentText()    # gives 'user.uid user.surname user.name'
         user_uid = int(new_user.split(" ")[0])
-        device = self.t_code_device.text()
+        device = int(self.t_code_device.text().split(" ")[-1])
 
         locals_ = {key: value for (key, value) in locals().items() if key != "self"}
         if "" in locals_.values():
@@ -556,7 +556,7 @@ class MainDialog(QtWidgets.QMainWindow):
             return
 
         with CSession() as session:
-            resp = session.query(classes.Responsibility).join(classes.Device).filter_by(name=device).first()
+            resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
             location = session.query(classes.Location).filter_by(name=new_location).first()
             user = session.query(classes.User).filter_by(uid=user_uid).first()
             resp.location = location
@@ -566,12 +566,12 @@ class MainDialog(QtWidgets.QMainWindow):
             self.statusBar().showMessage(f"Verantwortlichkeit für Gerät {resp.device.uid} wurde bearbeitet", 5000)
 
     def b_delete_device_click(self):
-        device = self.t_code_device.text()
+        device = int(self.t_code_device.text().split(" ")[-1])
         if device == "":
             self.not_all_fields_filled_notice()
             return
         with CSession() as session:
-            resp = session.query(classes.Responsibility).join(classes.Device).filter_by(name=device).first()
+            resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
             session.delete(resp.device)
             session.delete(resp)
             logger.info(f"Deleted Device {resp.device.uid}")
