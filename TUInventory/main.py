@@ -2,6 +2,7 @@
 __version__ = "0.1.0"
 
 import logging
+import pathlib
 import sys
 from time import sleep
 
@@ -9,6 +10,7 @@ from PyQt5.QtWidgets import QApplication
 
 from barcodereader import LazyVideoStream, VideoStream
 from classes import VideoStreamUISync
+import keys
 from logger import logger
 import ui
 from utils import absolute_path
@@ -22,6 +24,10 @@ if "win32" in sys.platform:
         logger.debug(str(e))
 
 def main():
+    public_key_path = keys.PUBLIC_KEY_PATH
+    if not public_key_path.exists():
+        private_key_path = pathlib.Path("priv.key")
+        keys.generate_key(public_key_path, private_key_path)
     app = QApplication(sys.argv)
     dialog_main = ui.MainDialog()
     dialog_main.showMaximized()
