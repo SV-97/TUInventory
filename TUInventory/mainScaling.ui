@@ -629,7 +629,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>1</number>
+           <number>3</number>
           </property>
           <widget class="QWidget" name="page_5">
            <widget class="QGroupBox" name="groupBox">
@@ -2296,6 +2296,9 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                   </property>
                   <property name="text">
                    <string/>
+                  </property>
+                  <property name="checked">
+                   <bool>false</bool>
                   </property>
                  </widget>
                 </item>
