@@ -11,6 +11,7 @@ from PyQt5.QtCore import QSize, Qt, pyqtSignal
 from PyQt5.QtWidgets import QFileDialog, QPushButton, QStyle
 
 import classes
+import keys
 from logger import logger
 import slots
 import utils
@@ -656,9 +657,33 @@ class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for pa
         self.t_path.setText(self.filepath[0])
 
     def b_password_reset_click(self):
-        #save generated password
+        user = self.t_user.text()
+        path = self.t_path.text()
+        if "" in (user, path):
+            self.close()
+            self.parent.parent.not_all_fields_filled_notice()
+            ResetDialog(self.parent).exec()
+            return
+        
+        private_path = pathlib.Path(path)
+        public_path = keys.PUBLIC_KEY_PATH
+        with CSession() as session:
+            user = session.query(classes.User).filter_by(e_mail=user).first()
+            session.add(user)
+            if not user:
+                self.parent.parent.statusBar().setStyleSheet("color: red")
+                self.parent.parent.statusBar().showMessage("Unbekannter Benutzer", 5000)
+                return
+            password = slots.reset_admin_password(user, public_path, private_path)
         self.close()
         self.parent.close()
+        
+        messagebox = QtWidgets.QMessageBox()
+        messagebox.setIcon(QtWidgets.QMessageBox.Information)
+        messagebox.setWindowTitle(f"Neues Passwort für User {user.uid}")
+        messagebox.setText(f"Das neue Passwort für {user} ist {password}")
+        messagebox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        messagebox.exec_()
         
     def b_password_close_click(self):
         self.close()
