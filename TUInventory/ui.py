@@ -95,6 +95,23 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.setPalette(palette5)
         self.ui.line_5.setAutoFillBackground(True)
 
+        palette6 = self.ui.statusbar.palette() # statusBar / blue
+        #role6 = self.statusBar.backgroundRole()
+        palette6.setColor(self.ui.statusbar.backgroundRole(), QColor('blue'))
+        self.ui.statusbar.setPalette(palette6)
+        self.ui.statusbar.setAutoFillBackground(True)
+        
+        self.statusBar().setStyleSheet("color: white")   
+        self.statusBar().showMessage("               ©2019 by SVYK – all rights reserved         ")
+
+        #palette5 = self.line_5.palette() # tab 5 / blue
+        #role5 = self.line_5.backgroundRole()
+        #palette5.setColor(role5, QColor('blue'))
+       # self.ui.line_5.setPalette(palette5)
+        #self.ui.line_5.setAutoFillBackground(True)
+        #self.ui.statusbar.move(x, y)
+
+
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
@@ -137,15 +154,21 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.hide()
 
     def b_tab_4_click(self):
-        self.ui.stackedWidget.setCurrentIndex(3)
         self.ui.line_1.hide()
         self.ui.line_2.hide()
         self.ui.line_3.hide()
         self.ui.line_4.show()
         self.ui.line_5.hide()
+        
+        if self.logged_in_user:
+            if self.logged_in_user.is_admin:
+                self.ui.stackedWidget.setCurrentIndex(3)
+        else:
+            self.ui.stackedWidget.setCurrentIndex(4)
+
 
     def b_tab_5_click(self):
-        self.ui.stackedWidget.setCurrentIndex(4)
+        self.ui.stackedWidget.setCurrentIndex(5)
         self.ui.line_1.hide()
         self.ui.line_2.hide()
         self.ui.line_3.hide()
@@ -274,6 +297,9 @@ class MainDialog(QtWidgets.QMainWindow):
             self.in_surname.setText(self.logged_in_user.surname)
             self.in_email.setText(self.logged_in_user.e_mail)
             #self.in_phone.setText(str(self.logged_in_user.phonenumber))
+            if self.logged_in_user.is_admin:
+                if self.ui.stackedWidget.currentIndex() == 4:
+                    self.ui.stackedWidget.setCurrentIndex(3)
 
     def b_user_logout_click(self, timed_out=False):
         """Logout button click - also handles timeouts via timed_out flag
