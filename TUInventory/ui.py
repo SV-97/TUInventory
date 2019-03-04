@@ -394,7 +394,7 @@ class MainDialog(QtWidgets.QMainWindow):
         surname = self.in_surname.text()
         e_mail = self.in_email.text()
         phonenumber = self.in_phone.text()
-
+        location = self.cb_location_u.currentText()
         password_1 = self.in_password1.text()
         password_2 = self.in_password2.text()
         if password_1 == "" and self.logged_in_user:
@@ -414,25 +414,27 @@ class MainDialog(QtWidgets.QMainWindow):
             password = password_1
 
         if self.logged_in_user:
-            user = logged_in_user
+            user = self.logged_in_user
         else:
             user = classes.User(e_mail, password)
 
         with CSession() as session:
             session.add(user)
+            location = session.query(classes.Location).filter_by(name=location).first()
             user.name = name
             user.surname = surname
             user.e_mail = e_mail
             user.phonenumber = classes.PhoneNumber(phonenumber)
+            user.location = location
             if self.logged_in_user and password:
                 user.hash(password)
                 
         self.statusBar().setStyleSheet("color: green")   
         if self.logged_in_user:
             self.logged_in_user = user
-            self.statusBar().showMessage("Benutzer {user} wurde erfolgreich geändert.", 5000)
+            self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
         else:
-            self.statusBar().showMessage("Benutzer {user} wurde erfolgreich angelegt.", 5000)
+            self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich angelegt.", 5000)
 
     def reset_password(self):
         """Set new password and salt for user, push it to db and show it in UI"""
