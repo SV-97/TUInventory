@@ -253,10 +253,10 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:
             articles = session.query(classes.Article).all()
             producers = session.query(classes.Producer).all()
-            producerX = self.cb_producer_d.currentText() # todo: rework names
-            if producerX:
+            selected_producer = self.cb_producer_d.currentText() # todo: rework names
+            if selected_producer:
                 for producer in producers:
-                    if producer.name == producerX:
+                    if producer.name == selected_producer:
                         self.producerXY = producer.uid
                         print (self.producerXY)
                 for article in articles:
