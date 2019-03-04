@@ -614,6 +614,9 @@ class MainDialog(QtWidgets.QMainWindow):
             print(resp.device)
             print(resp.user)
             print(resp.location)
+            self.t_code_device.setText(resp.device)
+            self.t_code_user.setText(resp.user)
+            self.t_code_location.setText(resp.location)
         logger.info("Successfully processed barcode")
 
 class LoginDialog(QtWidgets.QDialog):
