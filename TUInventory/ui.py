@@ -443,20 +443,69 @@ class MainDialog(QtWidgets.QMainWindow):
         self.statusBar().setStyleSheet("color: green")   
         if self.logged_in_user:
             self.logged_in_user = user
+            logger.info(f"User {user} changed through UI")
             self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
         else:
             self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich angelegt.", 5000)
+            logger.info(f"User {user} created through UI")
 
+    def b_user_change_admin_click(self):
+        user_to_change = self.cb_user_admin.currentText()
+        name = self.in_name_admin.text()
+        surname = self.in_surname_admin.text()
+        e_mail = self.in_email_admin.text()
+        phonenumber = self.in_phone_admin.text()
+        location = self.cb_location_u_admin.currentText()
+        locals_ = {key: value for (key, value) in locals().items() if key != "self"}
+        if "" in locals_.values():
+            self.not_all_fields_filled_notice()
+            return
+
+        user_to_change_uid = user_to_change.split(" ")[0]
+        with CSession() as session:
+            user = session.query(classes.User).filter_by(uid=user_to_change_uid).first()
+            location = session.query(classes.Location).filter_by(name=location).first()
+            user.name = name
+            user.surname = surname
+            user.e_mail = e_mail
+            user.phonenumber = classes.PhoneNumber(phonenumber)
+            user.location = location
+            if self.checkBox.isVisible():
+                user.is_admin = self.checkBox.isChecked()
+            session.add_all((user, location))
+                   
+        if self.logged_in_user.uid == user.uid:
+            self.logged_in_user = user
+        logger.info(f"User {user} changed through UI by admin {self.logged_in_user.uid}")
+        self.statusBar().setStyleSheet("color: green")
+        self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
+        
     def reset_password(self):
         """Set new password and salt for user, push it to db and show it in UI"""
-        with CSession() as session:    
-            # check if admin is logged in(though this dialog shouldn't show if no admin is logged in)
-            # query user from db via name
-            if self.logged_in_user.is_admin:
-                user = session.query(classes.User).filter(classes.User.name)
-            user = None
-            new_password = slots.reset_password(user)
-        # display password
+        user_to_change = self.cb_user_admin.currentText()
+        password = self.in_password_admin.text()
+        if password == "":
+            password = False # autogenerate password
+        locals_ = {key: value for (key, value) in locals().items() if key != "self"}
+        if "" in locals_.values():
+            self.not_all_fields_filled_notice()
+            return
+
+        user_to_change_uid = user_to_change.split(" ")[0]
+        with CSession() as session:
+            user = session.query(classes.User).filter_by(uid=user_to_change_uid).first()
+            session.add(user)
+            if password:
+                user.hash(password)
+            else:
+                password = slots.reset_password(user)
+            
+        messagebox = QtWidgets.QMessageBox()
+        messagebox.setIcon(QtWidgets.QMessageBox.Information)
+        messagebox.setWindowTitle(f"Neues Passwort für User {user.uid}")
+        messagebox.setText(f"Das neue Passwort für {user} ist {password}")
+        messagebox.setStandardButtons(QtWidgets.QMessageBox.Ok)
+        messagebox.exec_()
 
     def b_save_device_click(self):
         qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Bitte wählen Sie ein Verzeichnis")
