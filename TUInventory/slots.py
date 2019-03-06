@@ -55,6 +55,9 @@ def login(e_mail, password):
     """Log user into application
     Checks if there's a user of given name in the database,
     if the given password is correct and returns the user if both is the case
+    Args:
+        e_mail (str): e_mail of the user that wants to log in
+        password (str): user provided password to check against
     """
     e_mail = e_mail.lower()
     with CSession() as session:
@@ -71,7 +74,7 @@ def login(e_mail, password):
                 return None
         except (AttributeError, ValueError) as e: #user not found exception
             logger.info(f"Attempted login from unknown user {e_mail}")
-            pass # show error message
+            raise ValueError(f"Attemped login from unknown user {e_mail}")
 
 
 def logout():

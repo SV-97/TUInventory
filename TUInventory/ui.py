@@ -719,7 +719,11 @@ class LoginDialog(QtWidgets.QDialog):
     def b_login_click(self):
         username = self.t_username.text()
         password = self.t_password.text()
-        self.parent.logged_in_user = slots.login(username, password)
+        try:
+            self.parent.logged_in_user = slots.login(username, password)
+        except ValueError:
+            self.parent.statusBar().setStyleSheet("color: red")
+            self.parent.statusBar().showMessage(f"Unbekannter Benutzer: {username} bekannt", 5000)
         self.close()
 
     def b_password_lost_click(self):
