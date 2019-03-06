@@ -816,7 +816,8 @@ status open
 \begin_layout Standard
 Sämtliche Diagramme, Bilder, etc.
  sind, sofern nicht anders angegeben, selbst erstellt.
- Programmlistings wurden teils notwendigerweise implizit mittels 
+ Programmlistings wurden teils notwendigerweise automatisch vom Texteditor
+ explizit mittels 
 \begin_inset Quotes gld
 \end_inset
 
@@ -864,7 +865,6 @@ Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
  Desweiteren soll eine Inventarsoftware erstellt werden, welche ein Einscannen
  von Barcodes ermöglicht und somit eine schnelle Zuordnung von Geräten zu
  Testplatz und zugehörigem Verantwortlichen zulässt.
- [sv]
 \end_layout
 
 \begin_layout Standard
@@ -1328,7 +1328,25 @@ Salt
 
 \begin_layout Plain Layout
 Zufällige Zeichenfolge die in der Kryptografie u.A.
- bei Hash-Funktionen eingesetzt wird um die Entropie der Eingabe zu erhöhen.
+ bei Hash-Funktionen eingesetzt wird um die Entropie der Eingabe zu erhöhen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "06.03.19 - 12:07 Uhr"
+key "Wiki_Salt"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -1695,8 +1713,8 @@ Python 3
 
 \begin_layout Standard
 Bei Python 3 handelt es sich um eine universell einsetzbare, plattformübergreife
-nde, dynamisch typisierte Hochsprache, welche in verschiedensten Implementierung
-en als Open Source Projekt entwickelt wird.
+nde, dynamisch typisierte und multiparadigmische Hochsprache, welche in
+ verschiedensten Implementierungen als Open Source Projekt entwickelt wird.
  Ursprünglich wurde sie von Guido van Rossum 1991 mit dem Ziel entwickelt,
  eine möglichst lesbare und dennoch mächtige Programmiersprache zu schaffen.
  Auf der Website der PSF steht dazu: 
@@ -1748,7 +1766,7 @@ Common Language Infrastructure
 
 \end_inset
 
- und Integration in Visual Studio).
+ und Integration in Visual Studio)
 \begin_inset Foot
 status open
 
@@ -1766,7 +1784,7 @@ literal "false"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -1926,7 +1944,7 @@ Klasse
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1964,7 +1982,7 @@ Instanz
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1973,7 +1991,7 @@ bound method
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1982,7 +2000,7 @@ bound method
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2007,7 +2025,7 @@ function
 \end_layout
 
 \begin_layout Standard
-Neben Methoden und Funktionen ist auch auch möglich andere Objekte in Python
+Neben Methoden und Funktionen ist es auch möglich andere Objekte in Python
  aufrufbar zu machen, hierzu müssen sie die 
 \emph on
 magic method
@@ -2040,7 +2058,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Die verschiedenen Funktionstypen
+Pythons Funktionsmodell
 \end_layout
 
 \end_inset
@@ -2121,7 +2139,7 @@ literal "false"
 
 .
  PEP 257 hingegen beschäftigt sich mit den sogenannten Docstrings und deren
- Format 
+ Format
 \begin_inset Foot
 status open
 
@@ -2150,8 +2168,17 @@ __doc__
  zu finden.
  Über Docstrings könnte man aus dem Quellcode auch automatisch die Dokumentation
  generieren lassen, dies ist in unserem Fall jedoch nicht gewünscht, da
- die Dokumentation im Rahmen dieser Arbeit stattfindet  (im Anhang sind
- sie dennoch zu finden  ({modulname}.html)).
+ die Dokumentation im Rahmen dieser Arbeit stattfindet  (im Anhang 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Automatisch-generierte-Dokumentation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ ist sie dennoch zu finden  ({modulname}.html)).
  Als weitere Referenz für das genutzte Format galten ein von Google veröffentlic
 htes Dokument
 \begin_inset Foot
@@ -2318,7 +2345,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Übersicht über Verhältnisse von Threads zueinander
+Übersicht über Verhältnisse von Threads
 \end_layout
 
 \end_inset
@@ -2505,6 +2532,10 @@ logout method
 \end_layout
 
 \begin_layout Description
+create_article method
+\end_layout
+
+\begin_layout Description
 create_device method
 \end_layout
 
@@ -2560,6 +2591,14 @@ _ParallelPrint class, thread
 parallel_print put method of _ParallelPrint instance
 \end_layout
 
+\begin_layout Description
+check_if_file_exists method
+\end_layout
+
+\begin_layout Description
+normalize_filename method
+\end_layout
+
 \end_deeper
 \begin_layout Section
 Command Line Interface
@@ -2612,7 +2651,7 @@ filename "Beispielprogramme/cli_help.sh"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Schnittstellenhilfe von cli_get_barcode.py
+Schnittstellenhilfe zu cli_get_barcode.py
 \end_layout
 
 \end_inset
@@ -2953,7 +2992,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Beispiel einer 1-zu-n Beziehung
+Beispiel einer 1-zu-n Beziehung in SQLAlchemy
 \end_layout
 
 \end_inset
@@ -3057,7 +3096,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Beispiel einer 1-zu-1 Beziehung
+Beispiel einer 1-zu-1 Beziehung in SQLAlchemy
 \end_layout
 
 \end_inset
@@ -3210,7 +3249,6 @@ commit
 autocommit
 \emph default
  eingestellt ist.
- 
 \end_layout
 
 \begin_layout Standard
@@ -3309,7 +3347,31 @@ Neue Einträge in der Datenbank vornehmen
 Nachdem die Vorarbeit mit Sessions und Klassen geleistet ist, ist es nun
  sehr einfach, neue Einträge in der Datenbank vorzunehmen.
  Das folgende Beispielprogramm zeigt, wie einige bereits erzeugte Objekte
- in der Datenbank abgelegt werden.
+ in der Datenbank abgelegt werden
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+das 
+\begin_inset Quotes gld
+\end_inset
+
+...
+\begin_inset Quotes grd
+\end_inset
+
+ im Code ist tatsächlich valider Code und wird in Python 
+\emph on
+Ellipsis
+\emph default
+ genannt.
+ Es gibt Stellen an denen Ellipsen funktionalen Nutzen haben, hier dienen
+ sie lediglich als Platzhalter.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout LyX-Code
@@ -3417,8 +3479,8 @@ Abfrage aus Datenbank anhand eines tatsächlichen Beispiels
 \end_layout
 
 \begin_layout Standard
-Die wichtigen Punkte sind hier die Zeilen 6 und 10.
- In Zeile 6 wird über die 
+Die wichtigen Punkte sind hier die Zeilen 14 und 22.
+ In Zeile 14 wird über die 
 \emph on
 query
 \emph default
@@ -3455,7 +3517,7 @@ unique
 first
 \emph default
 .
- Nun wird dieses Objekt verarbeitet bis zu Zeile 10, hier wird die Methode
+ Nun wird dieses Objekt verarbeitet bis zu Zeile 22, hier wird die Methode
  
 \emph on
 expunge
@@ -3482,7 +3544,7 @@ Lazy Evaluation
 e_mail
 \emph default
 , da dieses gerade gebraucht wird.
- Im Verlauf bis Zeile 10 werden noch 
+ Im Verlauf bis Zeile 22 werden noch 
 \emph on
 salt
 \emph default
@@ -3536,7 +3598,8 @@ delete
 \emph on
 flush
 \emph default
- oder 
+ bzw.
+ 
 \emph on
 commit
 \emph default
@@ -3552,6 +3615,11 @@ commit
 
 \begin_layout Section
 Frameworkfreie Implementierung
+\end_layout
+
+\begin_layout Standard
+Die Anwendung umfasst auch viele Funktionen und Klassen die nicht allzu
+ stark an SQLAlchemy oder PyQt gebunden sind - diese werden hier behandelt.
 \end_layout
 
 \begin_layout Subsection
@@ -3573,7 +3641,7 @@ Python bietet grundsätzlich die Möglichkeit an, mit relativen Pfaden zu
  arbeiten.
  Diese sind jedoch so umgesetzt, dass sie nicht relativ zur Quelldatei interpret
 iert werden, sondern stattdessen relativ zum Aufruf arbeiten.
- Führe ich das Python Programm in der Konsole also von einem anderen Ordner
+ Führt man das Python Programm in der Konsole also von einem anderen Ordner
  aus aus, so wird auf eine andere Datei zugegriffen.
  Daher wurde eine Funktion entwickelt, die ermittelt, wo sich die Quellcodedatei
  befindet und ein 
@@ -3672,6 +3740,131 @@ _created
  eine Warnung hervorruft.
  Sollte ein Nutzer diese Klassenvariable manuell zurücksetzen, liegt dies
  außerhalb der zu erwartenden Nutzung und wird nicht mehr abgefangen.
+\end_layout
+
+\begin_layout Standard
+Zu einem späteren Zeitpunkt kam ein weiterer Lösungsansatz auf:
+\end_layout
+
+\begin_layout Standard
+Python erlaubt es beim erzeugen einer Klasse einen Schlüsselwortparameter
+ 
+\emph on
+metaclass
+\emph default
+ zu übergeben.
+ Diese Metaklasse ist, wenn nicht anders definiert stets 
+\emph on
+type
+\emph default
+.
+ Nun könnte man hier angreifen, eine eigene Metaklasse schreiben bei der
+ sich jede Klasse, die sie als Metaklasse nutzt, registriert und dadurch
+ eine Mehrfachinstanziierung verhindern.
+ Konkret sieht das dann wie folgt aus:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/meta_printer.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Paralleles Printen mittels Metaprogrammierung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Singleton
+\emph default
+ ist eine Metaklasse, erbt daher von der Basismetaklasse 
+\emph on
+type
+\emph default
+.
+ In Singleton ist eine 
+\emph on
+Counter
+\emph default
+-Instanz hinterlegt die bei jeder Instanziierung einer Klasse, die Singleton
+ als Metaklasse nutzt mitzählt, wie oft diese Klasse bereits Instanziiert
+ wurde.
+ In dieser konkreten Anwendung ist der Counter eigentlich überflüssig, er
+ könnte genauso ein Dictionary mit boolschen Werten als 
+\emph on
+values
+\emph default
+, oder einfach eine Liste der Klassen sein - dennoch ist er im Code, da
+ die Counter-Klasse klar macht was sein Zweck ist und außerdem lässt sich
+ die Klasse so leicht auf eventuelle Mehrfach-Instaziierungen erweitern.
+ Bei _ParallelPrint entfallen in dieser Variante jegliche mehrfachinstanziierung
+sverhindernde Maßnahmen.
+ Eine weitere Änderung ist, dass die magic-method 
+\emph on
+__new__
+\emph default
+ hinzugefügt wurde.
+ 
+\emph on
+__new__
+\emph default
+ ist in Python der tatsächliche Konstruktor - auch wenn man bei 
+\emph on
+__init__
+\emph default
+ in der Regel vom Konstruktor spricht.
+ In ihm wird der Klasse bei Instanziierung die magic-method 
+\emph on
+__call__
+\emph default
+ angehängt, welche dann die 
+\emph on
+put
+\emph default
+ Methode der Queue 
+\emph on
+print_
+\emph default
+ der Klasse ist - dadurch entfällt die externe Deklaration von 
+\emph on
+parallel_print
+\emph default
+.
+ Alternativ hätte hier eine explizite Deklaration von 
+\emph on
+__call__
+\emph default
+ mit Durchreichung an 
+\emph on
+put
+\emph default
+ erfolgen können.
 \end_layout
 
 \begin_layout Subsubsection
@@ -3871,8 +4064,8 @@ Atomic-Message- Queues
 status open
 
 \begin_layout Plain Layout
-Eine Erklärung dieser Konstrukte, von Raymond Hettinger, der sie entwickelt/impl
-ementiert hat, gab es u.a.
+Eine Erklärung dieser Konstrukte von Raymond Hettinger, der sie entwickelt/imple
+mentiert hat, gab es u.a.
  auf der PyCon Russia 2016 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -5127,8 +5320,8 @@ rect
 \end_layout
 
 \begin_layout Enumerate
-Mithilfe diese dieser Variablen und einem Offset wird nun ein Text auf das
- Frame gezeichnet.
+Mithilfe dieser Variablen und einem Offset wird nun ein Text auf das Frame
+ gezeichnet.
  Dieser Text enthält den Typ des Codes, sowie seine Daten.
  Dies ist eine der wenigen, wenn nicht sogar die einzige Stelle, im gesamten
  Programm an der zur String-Interpolation kein f-String, sondern die alte
@@ -5144,7 +5337,7 @@ str.format
 \end_deeper
 \begin_layout Enumerate
 Sind alle Barcodes verarbeitet, werden das bearbeitete frame und alle gefundenen
- codes zurückgegeben.
+ Codes zurückgegeben.
 \end_layout
 
 \begin_layout Subsection
@@ -5209,12 +5402,7 @@ cvtColor
 \emph default
  Methode von OpenCV - dies ist grundsätzlich eine sehr simple Aufgabe, es
  werden je nach Aufbau der Matrix lediglich zwei Arrays getauscht.
- Der Einsatz der Methode erlaubt es jedoch, auf das Laden einer großen Bibliothe
-k wie 
-\emph on
-numpy
-\emph default
- (tatsächlich setzt opencv intern NumPy ein).
+ Der Einsatz der Methode macht jedoch klar was hier passiert.
 \end_layout
 
 \begin_layout Enumerate
@@ -7609,6 +7797,38 @@ cute
 \end_layout
 
 \begin_layout Subsection
+Signale und Slots
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[yk]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Aufbau der UI
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[yk]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+oder so iwie
+\end_layout
+
+\begin_layout Subsection
 Darstellen der Verantwortlichkeiten als Baumstruktur
 \end_layout
 
@@ -7993,7 +8213,7 @@ setText
 \end_layout
 
 \begin_layout Section
-Optimierung
+Optimierung und Testing
 \end_layout
 
 \begin_layout Standard
@@ -8779,18 +8999,14 @@ approx 250$
  mal schneller.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
+\begin_layout Subsection
+Unittests 
+\begin_inset Marginal
+status open
 
-
+\begin_layout Plain Layout
+[yk]
 \end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "Literaturverzeichnis"
-options "alphadin"
 
 \end_inset
 
@@ -8806,10 +9022,6 @@ options "alphadin"
 
 \begin_layout Standard
 \start_of_appendix
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -8820,6 +9032,32 @@ status open
 lstset{numbers=left, numberblanklines=true}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Anhang
+\end_layout
+
+\begin_layout Section
+Literatur- und Quellenverzeichnis
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "Literaturverzeichnis"
+options "alphadin"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -8879,6 +9117,21 @@ Netzwerkplan nach EN81346
 
 \begin_layout Section
 Quellcode
+\end_layout
+
+\begin_layout Subsection
+cli_get_barcode.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../cli/cli_get_barcode.py"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -9018,6 +9271,21 @@ filename "../ui.py"
 \end_layout
 
 \begin_layout Subsection
+unittests.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../unittests.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 utils.py
 \end_layout
 
@@ -9040,23 +9308,19 @@ filename "../utils.py"
 \end_layout
 
 \begin_layout Section
-Automatisch generierte Dokumentation
-\end_layout
+Automatisch generierte Dokumentation 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Automatisch-generierte-Dokumentation"
 
-\begin_layout Standard
-Als .html auf beiliegendem USB-Stick, alternativ über pydoc.sh aus dem Quellcode
- zu generieren.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Section
-Genutzte Hilfsmittel
+\begin_layout Standard
+Als .html auf beiliegendem USB-Stick, alternativ über pydoc.sh aus dem Quellcode
+ zu generieren.
 \end_layout
 
 \begin_layout Standard

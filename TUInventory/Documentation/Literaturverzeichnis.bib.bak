@@ -168,4 +168,19 @@
   url     = {\detokenize{https://docs.python.org/3/library/collections.html}},
 }
 
+@Manual{re,
+  title   = {re — Regular expression operations},
+  author  = {{Python Software Foundation}},
+  year    = {2019},
+  journal = {Python Documentation},
+  url     = {\detokenize{https://docs.python.org/3/library/re.html}},
+}
+
+@Manual{Wiki_Salt,
+  title   = {Salt (Kryptologie)},
+  year    = {2019},
+  journal = {Wikipedia},
+  url     = {\detokenize{{https://de.wikipedia.org/wiki/Salt_(Kryptologie)}}},
+}
+
 @Comment{jabref-meta: databaseType:bibtex;}
