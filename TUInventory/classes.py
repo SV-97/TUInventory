@@ -251,7 +251,13 @@ class User(Base):
     surname = Column(String)
     is_admin = Column(Boolean)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
-    location = orm.relationship("Location", backref=orm.backref("users", lazy="immediate"), uselist=False, lazy="immediate")
+    location = orm.relationship(
+        "Location", 
+        backref=orm.backref(
+            "users", 
+            lazy="immediate"), 
+        uselist=False, 
+        lazy="immediate")
     responsibilities = orm.relationship("Responsibility", backref="user")
     phonenumber = orm.relationship(
         "PhoneNumber", 
