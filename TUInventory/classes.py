@@ -123,7 +123,10 @@ class Article(Base):
     name = Column(String, unique=True)
     producer_uid = Column(Integer, sqlalchemy.ForeignKey("producers.uid"))
     #last_price = Column(Float(asdecimal=True))
-    devices = orm.relationship("Device", backref=orm.backref("article", lazy="immediate"), lazy="immediate")
+    devices = orm.relationship(
+        "Device", 
+        backref=orm.backref("article", lazy="immediate"), 
+        lazy="immediate")
     def __init__(self, name, producer=None, uid=None):
         self.uid = uid
         self.name = name
@@ -138,7 +141,11 @@ class Device(Base):
     uid = Column(Integer, primary_key=True)
     article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
     code = Column(String)
-    responsibility = orm.relationship("Responsibility", backref=orm.backref("device", lazy="immediate", uselist=False), lazy="immediate", uselist=False)
+    responsibility = orm.relationship(
+        "Responsibility", 
+        backref=orm.backref("device", lazy="immediate", uselist=False), 
+        lazy="immediate", 
+        uselist=False)
     def __init__(self, code=None, uid=None):
         self.uid = uid
         self.code = code
@@ -253,18 +260,13 @@ class User(Base):
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
     location = orm.relationship(
         "Location", 
-        backref=orm.backref(
-            "users", 
-            lazy="immediate"), 
+        backref=orm.backref("users", lazy="immediate"), 
         uselist=False, 
         lazy="immediate")
     responsibilities = orm.relationship("Responsibility", backref="user")
     phonenumber = orm.relationship(
         "PhoneNumber", 
-        backref=orm.backref(
-            "user", 
-            cascade="all, delete-orphan", 
-            single_parent=True), 
+        backref=orm.backref("user", cascade="all, delete-orphan", single_parent=True), 
         uselist=False, 
         lazy="immediate")
 
