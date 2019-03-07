@@ -326,13 +326,14 @@ class Timeout(Thread):
     """Timer that runs in background and executes a function if it's not refreshed
     Important: This is different from the threading.Timer class in that it can provide
     arguments to a function as well as allows reseting the timer, rather than canceling
-    completely. to cancel a Timeout set function to None, the thread will then close itself
+    completely. To cancel a Timeout set function to None, the thread will then close itself
     down on the next lifecycle check.
 
         Args:
             function: function that is executed once time runs out
             timeout: time in seconds after which the timeout executes the function
             args: arguments for function
+            kwargs: keyword arguments for function
 
         Attributes:
             timeout: time in seconds afters which the timer times out

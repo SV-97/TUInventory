@@ -816,7 +816,30 @@ status open
 \begin_layout Standard
 Sämtliche Diagramme, Bilder, etc.
  sind, sofern nicht anders angegeben, selbst erstellt.
- Programmlistings wurden teils notwendigerweise automatisch vom Texteditor
+ Flussdiagramme wurden nach DIN66001 erstellt
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 114f"
+key "HandbuchFuerSoftwareEntwickler"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, mit der Erweiterung, dass Zylinder als lokaler Speicher des Rechners und
+ Datenbank eingesetzt werden.
+\end_layout
+
+\begin_layout Standard
+Programmlistings wurden teils notwendigerweise automatisch vom Texteditor
  explizit mittels 
 \begin_inset Quotes gld
 \end_inset
@@ -5914,9 +5937,30 @@ Gegeben sei eine sehr einfache Datenbank, die Nutzer mit Namen speichert:
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Beispielprogramme/SQL-Injection/DB.png
 	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Beispieldatenbank
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -5986,9 +6030,10 @@ elung zu umgehen.
  Daher werden bei unserer Lösung die Passwörter gar nicht gespeichert -
  stattdessen wird ein Hash-Algorithmus (zu Deutsch: Streuwertfunktion) eingesetz
 t und dieser Hash gespeichert.
- Ein Hash-Algorithmus ist eine Funktion, welche, idealerweise, in eine Richtung
- sehr schnell durchzuführen ist, in die andere dagegen einen sehr hohen
- Rechenaufwand benötigt.
+ Ein Hash-Algorithmus ist eine Funktion, welche, eine Menge an Eingangsdaten
+ auf eine begrenzte Menge an Ausgangsdaten abbildet und idealerweise, in
+ eine Richtung sehr schnell durchzuführen ist, in die andere dagegen einen
+ sehr hohen Rechenaufwand benötigt.
  Im Idealfall ist dieser Rechenaufwand so hoch, dass sich eine 
 \begin_inset Quotes eld
 \end_inset
@@ -5998,7 +6043,45 @@ Einwegfunktion
 \end_inset
 
  ergibt, die nicht umzukehren ist.
- Ein klassisches Beispiel für einen simplen Hash-Algorithmus ist die einstellige
+ Sogenannte Hash-Kollisionen, also die Tatsache, dass mehrere Werte der
+ Eingabemenge auf die gleichen Elemente der Ausgabemenge gemappt werden,
+ bewirken außerdem, dass die Funktion selbst wenn man eine Umkehrfunktion
+ ermitteln kann, diese nicht eindeutig ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Hashes.png
+	scale 75
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prinzip von Hashfunktionen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ein klassisches Beispiel für einen simplen Hash-Algorithmus ist die einstellige
  Quersumme, hier wird rekursiv die Quersumme einer Zahl gebildet, bis nur
  noch eine Stelle übrig ist.
 \end_layout
@@ -6030,7 +6113,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/User-Anlegen-Prozess.png
-	scale 50
+	scale 75
 
 \end_inset
 
@@ -6066,7 +6149,7 @@ random
  Diese stellt ein erstes Salt dar.
  Im ersten Schritt wird nun die E-Mail-Adresse - ein String also - zu einer
  Abfolge aus Bytes codiert, welche dann als Ganzzahl interpretiert wird.
- Diese Zahl wird anschließend über ein logisches XOR mit dem generierten
+ Diese Zahl wird anschließend über ein bitweises XOR mit dem generierten
  Salt verknüpft und stellt unser finales Salt dar.
  Die daraus resultierende Zahl sowie das Passwort werden dann wieder zu
  einer Folge aus Bytes konvertiert.
@@ -6172,7 +6255,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/User-Anmelden-Prozess.png
-	scale 50
+	scale 75
 
 \end_inset
 
@@ -6231,7 +6314,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/User-PW-Reset.png
-	scale 50
+	scale 75
 
 \end_inset
 
@@ -6832,7 +6915,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Admin-PW-Reset.png
-	scale 50
+	scale 75
 	clip
 
 \end_inset
@@ -7125,6 +7208,10 @@ Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt,
 \emph on
 sockets
 \emph default
+ oder 
+\emph on
+pipes
+\emph default
 , Serialisierung mit 
 \emph on
 pickle
@@ -7343,7 +7430,8 @@ d steht für eine beliebige Zahl zwischen 0 und 9
 \end_layout
 
 \begin_layout Description
-| stellt ein logisches ODER zwischen Gruppen oder Ausdrücken dar
+| stellt ein ODER zwischen Gruppen oder Ausdrücken dar und erlaubt damit
+ Alternativen
 \end_layout
 
 \begin_layout Description
@@ -7552,7 +7640,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Kompilierung und Debugausgabe der Regular Expression
+Kompilierung und Debugausgabe der Regular Expression zur Telefonnummernerkennung
 \end_layout
 
 \end_inset
@@ -8120,14 +8208,14 @@ Mit diesem Wissen ist nun auch leicht erklärbar, wann welche der Strukturen
 \end_layout
 
 \begin_layout Itemize
-Generator-Expression immer, wenn sichergestellt ist, dass die Instanz nur
- einmal iteriert werden muss.
+Generator-Expression immer, wenn sichergestellt ist, dass über die Instanz
+ nur einmal iteriert werden muss.
 \end_layout
 
 \begin_layout Itemize
 List-Comprehension immer dann, wenn die Instanz mehrfach iteriert oder subscribe
 d (dt.
- abonniert - also die [Index]-Notation) werden muss
+ abonniert - also die [Index]-Notation) werden muss.
 \end_layout
 
 \begin_layout Standard
@@ -8480,7 +8568,15 @@ lstparams "language=Python,numbers=left"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Bytecode zu beiden Varianten erzeugen
+Bytecode zu 
+\emph on
+dict-lookup
+\emph default
+ und 
+\emph on
+hasattr
+\emph default
+ erzeugen
 \end_layout
 
 \end_inset
@@ -8869,7 +8965,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Analysecode
+Analysecode zum Laufzeitvergleich verschiedener Iterationsmöglichkeiten
 \end_layout
 
 \end_inset

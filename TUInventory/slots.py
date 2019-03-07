@@ -26,19 +26,14 @@ def synchronized(function):
 
 
 def save_to_db(instance):
-    """Save instance to it's corresponding table
-    ToDo: Error handling if uid already exists
-    """
+    """Save instance to it's corresponding table"""
     with CSession() as session:
         session.add(instance)
 
 
-def update_user_dependant(user):
-    pass
-
-
 @synchronized
 def create_user(*args, **kwargs):
+    """Create a new user"""
     new_user = classes.User(*args, **kwargs)
     return new_user
 
