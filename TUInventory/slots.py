@@ -60,7 +60,6 @@ def login(e_mail, password):
             user = session.query(classes.User).filter_by(e_mail=e_mail).first()
             user_at_gate = classes.User(e_mail, password, salt=user.salt)
             if compare_digest(user_at_gate.password, user.password):
-                update_user_dependant(user)
                 session.expunge(user)
                 logger.info(f"Successfully logged in as {user.uid}")
                 return user
