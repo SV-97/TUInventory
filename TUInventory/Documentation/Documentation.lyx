@@ -113,6 +113,48 @@ sfdefault}{phv} % font to Arial
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+floor}[1]{
+\backslash
+left
+\backslash
+lfloor #1 
+\backslash
+right
+\backslash
+rfloor} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+ceil}[1]{
+\backslash
+left
+\backslash
+lceil #1 
+\backslash
+right
+\backslash
+rceil}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 pagenumbering{gobble} % disable page numbering
@@ -6234,7 +6276,24 @@ leq$
 
 \end_inset
 
- 50) was im selben Problem wie der zuvor genannte Punkt münden würde.
+ 50 beträgt die Warscheinlichkeit 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+frac 5{2^{256}} 
+\backslash
+approx 4,32 
+\backslash
+cdot 10^{-75}$
+\end_layout
+
+\end_inset
+
+%) was im selben Problem wie der zuvor genannte Punkt münden würde.
 \end_layout
 
 \begin_layout Itemize
@@ -6248,6 +6307,284 @@ Durch die XOR-Verknüpfung von Nutzername und Zufallszahl hat man somit ein
  für jeden Nutzer garantiert einzigartiges Salt.
  Ein Angreifer kann dadurch eine Bruteforce Attacke nur für einen einzigen
  Nutzer auf einmal ausführen.
+\end_layout
+
+\begin_layout Standard
+Geplant war außerdem, dass der Eingangsbereich des 
+\emph on
+salts
+\emph default
+ von 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$2^{256}$
+\end_layout
+
+\end_inset
+
+ Werten erhöht wird.
+ Dies ist theoretisch der Fall, jedoch ist die E-Mail-Adresse in der Regel
+ nicht groß genug, um dieses Phänomen ausnutzen zu können.
+\end_layout
+
+\begin_layout Standard
+Betrachten wir zum Beispiel den 
+\emph on
+bytestring
+\emph default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinline{e_mail = b
+\begin_inset Quotes gld
+\end_inset
+
+karl@googlemail.com
+\begin_inset Quotes grd
+\end_inset
+
+}
+\end_layout
+
+\end_inset
+
+ und den zugehörigen Integerwert 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinline{x = int.from_bytes(e_mail, 
+\begin_inset Quotes gld
+\end_inset
+
+big
+\begin_inset Quotes grd
+\end_inset
+
+)}
+\end_layout
+
+\end_inset
+
+ erhalten wir nach der Formel 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f(x) = 
+\backslash
+floor{
+\backslash
+log_2 x} + 1$
+\end_layout
+
+\end_inset
+
+ einen Wert von 151 Bit.
+ Da der Ausgangsbereich eines XOR immer der, des größeren Operanden ist,
+ wächst er daher nicht an.
+\end_layout
+
+\begin_layout Standard
+Im Zuge des Refactoring, wird hier nachgebessert.
+ So wird der PBKDF2-HMAC Algorithmus mit dem aktuelleren Argon2 ersetzt.
+ Außerdem lassen sich bessere Ergebnisse erzielen, indem man Salt und E-Mail-Adr
+esse nicht mit einem XOR verknüpft.
+ Stattdessen werden beide Werte als Strings aneinandergehängt
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Es wurde zunächst eine kompliziertere Variante mit einer Reißverschlussverknüpfu
+ng beider Sequenzen und Zufallszahlen implementiert, jedoch wurde diese
+ schnell wieder verworfen da der Code unverhältnismäßig komplex war.
+\end_layout
+
+\end_inset
+
+.
+ Dies hat den Vorteil, dass längere Salts entstehen.
+ Die Chance einer Salt-Kollision sinkt damit je nach Passwortlänge weiter.
+\end_layout
+
+\begin_layout Standard
+Die Parametrierung des Argon2 erfolgt mithilfe der empfohlenen Parameter
+ im zum Algorithmus gehörenden PDF
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "09.03.19 - 00:57 Uhr"
+key "Argon2"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, bzw.
+ der Parametrierungshilfe.
+ Demnach wurden die Parameter wie folgt festgelegt:
+\end_layout
+
+\begin_layout Itemize
+Als Typ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$y$
+\end_layout
+
+\end_inset
+
+ wird Argon2i gewählt.
+\end_layout
+
+\begin_layout Itemize
+Als maximale Speichermenge 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$m$
+\end_layout
+
+\end_inset
+
+ in Kibibyte werden 1024KiB festgelegt.
+\end_layout
+
+\begin_layout Itemize
+Als maximale Zeit 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$x$
+\end_layout
+
+\end_inset
+
+ in Sekunden werden, den vorgeschlagenen Parametern der zugehörigen Wikipedia-Se
+ite
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "09.03.19 - 00:57 Uhr"
+key "Wiki_Argon2"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ für Server-Authentifizierung folgend, 0.5s gewählt.
+\end_layout
+
+\begin_layout Itemize
+Als Salt-Länge sind laut PDF 128 Bit ausreichend - da das Grund-Salt tendentiell
+ durch die E-Mail Adresse noch einmal verlängert wird, wählen wir daher
+ 128 Bit als Grundlänge.
+\end_layout
+
+\begin_layout Itemize
+Als Schlüssellänge werden ebenfalls 128 Bit als ausreichend angegeben -
+ wir wählen 256 Bit.
+\end_layout
+
+\begin_layout Itemize
+Die Auswahl des Parallelisierungsgrades bzw.
+ der maximalen Anzahl Threads 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$h$
+\end_layout
+
+\end_inset
+
+ und der Anzahl an Iterationen 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$t$
+\end_layout
+
+\end_inset
+
+ ist ohne Informationen über das endgültige Zielsystem schwer festzulegen.
+ Da davon ausgegangen wird, dass das Zielsystem etwas langsamer als das
+ Testsystem ist, wurde 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$h = 4$
+\end_layout
+
+\end_inset
+
+ gewählt und 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$x$
+\end_layout
+
+\end_inset
+
+ auf 0.4s nachkorrigiert.
+\end_layout
+
+\begin_layout Itemize
+Mit den gegebenen Parametern ergibt sich 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$t 
+\backslash
+approx 512$
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection

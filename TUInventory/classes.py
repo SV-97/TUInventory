@@ -286,19 +286,22 @@ class User(Base):
 
     @staticmethod
     def new_salt():
-        return randbits(256)
+        return randbits(128)
 
     def hash(self, password):
-        """Hash a string with pbkdf2
-        The salt is XORd with the e_mail to get the final salt
+        """Hash a string with argon2
+        The salt is concatenated with the e_mail to get the final salt
         """
-        salt = str(int.from_bytes(self.e_mail.encode(), byteorder="big") ^ self.salt).encode()
-        """self.password = hashlib.pbkdf2_hmac(
-            hash_name="sha512", 
-            password=password.encode(), 
-            salt=salt, 
-            iterations=9600)"""
-        self.password = argon2.argon2_hash(password, salt)
+        salt = f"{self.salt}{self.e_mail}".encode()
+
+        self.password = argon2.argon2_hash(
+            password, 
+            salt, 
+            t=512, 
+            m=1024, 
+            p=8, 
+            buflen=256, 
+            argon_type=argon2.Argon2Type.Argon2_i)
 
     def __str__(self):
         return f"{self.name} {self.surname}".title()
