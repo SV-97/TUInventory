@@ -9,6 +9,7 @@ from secrets import randbits
 from threading import Lock, Thread
 from time import sleep, time
 
+import argon2
 import cv2
 import sqlalchemy
 from sqlalchemy import Boolean, Column, Float, Integer, LargeBinary, String
@@ -123,7 +124,10 @@ class Article(Base):
     name = Column(String, unique=True)
     producer_uid = Column(Integer, sqlalchemy.ForeignKey("producers.uid"))
     #last_price = Column(Float(asdecimal=True))
-    devices = orm.relationship("Device", backref=orm.backref("article", lazy="immediate"), lazy="immediate")
+    devices = orm.relationship(
+        "Device", 
+        backref=orm.backref("article", lazy="immediate"), 
+        lazy="immediate")
     def __init__(self, name, producer=None, uid=None):
         self.uid = uid
         self.name = name
@@ -138,7 +142,11 @@ class Device(Base):
     uid = Column(Integer, primary_key=True)
     article_uid = Column(Integer, sqlalchemy.ForeignKey("articles.uid"))
     code = Column(String)
-    responsibility = orm.relationship("Responsibility", backref=orm.backref("device", lazy="immediate", uselist=False), lazy="immediate", uselist=False)
+    responsibility = orm.relationship(
+        "Responsibility", 
+        backref=orm.backref("device", lazy="immediate", uselist=False), 
+        lazy="immediate", 
+        uselist=False)
     def __init__(self, code=None, uid=None):
         self.uid = uid
         self.code = code
@@ -251,14 +259,15 @@ class User(Base):
     surname = Column(String)
     is_admin = Column(Boolean)
     location_uid = Column(Integer, sqlalchemy.ForeignKey("locations.uid"))
-    location = orm.relationship("Location", backref=orm.backref("users", lazy="immediate"), uselist=False, lazy="immediate")
+    location = orm.relationship(
+        "Location", 
+        backref=orm.backref("users", lazy="immediate"), 
+        uselist=False, 
+        lazy="immediate")
     responsibilities = orm.relationship("Responsibility", backref="user")
     phonenumber = orm.relationship(
         "PhoneNumber", 
-        backref=orm.backref(
-            "user", 
-            cascade="all, delete-orphan", 
-            single_parent=True), 
+        backref=orm.backref("user", cascade="all, delete-orphan", single_parent=True), 
         uselist=False, 
         lazy="immediate")
 
@@ -277,18 +286,22 @@ class User(Base):
 
     @staticmethod
     def new_salt():
-        return randbits(256)
+        return randbits(128)
 
     def hash(self, password):
-        """Hash a string with pbkdf2
-        The salt is XORd with the e_mail to get the final salt
+        """Hash a string with argon2
+        The salt is concatenated with the e_mail to get the final salt
         """
-        salt = str(int.from_bytes(self.e_mail.encode(), byteorder="big") ^ self.salt).encode()
-        self.password = hashlib.pbkdf2_hmac(
-            hash_name="sha512", 
-            password=password.encode(), 
-            salt=salt, 
-            iterations=9600)
+        salt = f"{self.salt}{self.e_mail}".encode()
+
+        self.password = argon2.argon2_hash(
+            password, 
+            salt, 
+            t=512, 
+            m=1024, 
+            p=8, 
+            buflen=256, 
+            argon_type=argon2.Argon2Type.Argon2_i)
 
     def __str__(self):
         return f"{self.name} {self.surname}".title()
@@ -318,13 +331,14 @@ class Timeout(Thread):
     """Timer that runs in background and executes a function if it's not refreshed
     Important: This is different from the threading.Timer class in that it can provide
     arguments to a function as well as allows reseting the timer, rather than canceling
-    completely. to cancel a Timeout set function to None, the thread will then close itself
+    completely. To cancel a Timeout set function to None, the thread will then close itself
     down on the next lifecycle check.
 
         Args:
             function: function that is executed once time runs out
             timeout: time in seconds after which the timeout executes the function
             args: arguments for function
+            kwargs: keyword arguments for function
 
         Attributes:
             timeout: time in seconds afters which the timer times out

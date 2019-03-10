@@ -113,6 +113,48 @@ sfdefault}{phv} % font to Arial
 
 \begin_layout Plain Layout
 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+floor}[1]{
+\backslash
+left
+\backslash
+lfloor #1 
+\backslash
+right
+\backslash
+rfloor} 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+newcommand{
+\backslash
+ceil}[1]{
+\backslash
+left
+\backslash
+lceil #1 
+\backslash
+right
+\backslash
+rceil}
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+
 
 \backslash
 pagenumbering{gobble} % disable page numbering
@@ -816,7 +858,31 @@ status open
 \begin_layout Standard
 Sämtliche Diagramme, Bilder, etc.
  sind, sofern nicht anders angegeben, selbst erstellt.
- Programmlistings wurden teils notwendigerweise implizit mittels 
+ Flussdiagramme wurden nach DIN 66001 erstellt
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 114f"
+key "HandbuchFuerSoftwareEntwickler"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, mit der Erweiterung, dass Zylinder als lokaler Speicher des Rechners und
+ Datenbank eingesetzt werden.
+\end_layout
+
+\begin_layout Standard
+Programmlistings wurden teils notwendigerweise automatisch vom Texteditor
+ explizit mittels 
 \begin_inset Quotes gld
 \end_inset
 
@@ -864,7 +930,6 @@ Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
  Desweiteren soll eine Inventarsoftware erstellt werden, welche ein Einscannen
  von Barcodes ermöglicht und somit eine schnelle Zuordnung von Geräten zu
  Testplatz und zugehörigem Verantwortlichen zulässt.
- [sv]
 \end_layout
 
 \begin_layout Standard
@@ -1001,7 +1066,7 @@ Duck-Typing
 \begin_inset Text
 
 \begin_layout Plain Layout
-Der Typ einer Instanz wird dadurch beschrieben/festgelegt welche Member
+Der Typ einer Instanz wird dadurch beschrieben/festgelegt, welche Member
  sie besitzt  (Von eng.: 
 \begin_inset Quotes eld
 \end_inset
@@ -1282,11 +1347,11 @@ Race-Condition
 \begin_layout Plain Layout
 Im Falle einer Race-Condition ist das Ergebnis einer Operation nicht determinist
 isch, es wird beeinflusst durch äußere Gegebenheiten wie z.B.
- Prozessorlast
+ Prozessorlast.
 \end_layout
 
 \begin_layout Plain Layout
-Der Name stammt von der Vorstellung, dass Signale wettlaufen um die Ausgabe
+Der Name stammt von der Vorstellung, dass Signale wettlaufen, um die Ausgabe
  als erstes zu beeinflussen
 \begin_inset Foot
 status open
@@ -1307,7 +1372,7 @@ literal "false"
 
 .
  Probleme einer Race-Condition sind beispielsweise, dass sie oftmals verschwinde
-t wenn das Programm mittels Debugger betrachtet wird.
+t, wenn das Programm mittels Debugger betrachtet wird.
 \end_layout
 
 \end_inset
@@ -1327,8 +1392,26 @@ Salt
 \begin_inset Text
 
 \begin_layout Plain Layout
-Zufällige Zeichenfolge die in der Kryptografie u.A.
- bei Hash-Funktionen eingesetzt wird um die Entropie der Eingabe zu erhöhen.
+Zufällige Zeichenfolge, die in der Kryptografie u.A.
+ bei Hash-Funktionen eingesetzt wird, um die Entropie der Eingabe zu erhöhen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "06.03.19 - 12:07 Uhr"
+key "Wiki_Salt"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \end_inset
@@ -1348,13 +1431,13 @@ Singleton
 \begin_inset Text
 
 \begin_layout Plain Layout
-Ein Singleton ist ein Entwurfsmuster bei dem sichergestellt ist, dass nur
+Ein Singleton ist ein Entwurfsmuster, bei dem sichergestellt ist, dass nur
  eine einzige Instanz einer Klasse existiert  (z.B.
  in Python 
 \emph on
 None
 \emph default
-)
+).
 \end_layout
 
 \end_inset
@@ -1408,7 +1491,7 @@ Thread-Safe
 
 \begin_layout Plain Layout
  (dt.: Threadsicherheit) Mehrere Threads können gleichzeitig auf eine Komponente
- zugreifen ohne sich gegenseitig zu behindern oder race-conditions auszulösen
+ zugreifen ohne sich gegenseitig zu behindern oder race-conditions auszulösen.
 \end_layout
 
 \end_inset
@@ -1463,7 +1546,7 @@ Eine grafische Desktopanwendung, über die Geräte, bzw.
 \end_layout
 
 \begin_layout Enumerate
-Eine Kommandozeilen-Schnittstelle um spezielle Funktionen extern verfügbar
+Eine Kommandozeilen-Schnittstelle, um spezielle Funktionen extern verfügbar
  zu machen
 \end_layout
 
@@ -1496,8 +1579,8 @@ Generell gibt es einige Möglichkeiten zur Codierung, welche mehr oder weniger
 \end_layout
 
 \begin_layout Description
-RFID Eher unpraktisch in Sachen nachträglicher Anbringung an beliebigen
- Geräten.
+RFID RFID-Chips sind eher unpraktisch in Sachen nachträglicher Anbringung
+ an beliebigen Geräten.
 \end_layout
 
 \begin_layout Description
@@ -1525,7 +1608,7 @@ Desktopanwendung und Kommandozeilen-Schnittstelle
 
 \begin_layout Standard
 Bei der Umsetzung der Desktopanwendung und der Kommandozeilen-Schnittstelle,
- die letzen Endes auf dem selben Softwarestack aufbauen sollen, stellt sich
+ die letzen Endes auf demselben Softwarestack aufbauen sollen, stellt sich
  nach einigen grundlegenden Überlegungen die Frage der gewählten Programmierspra
 che.
 \end_layout
@@ -1543,8 +1626,8 @@ Wartung/Weiterentwicklung durch Padcon möglich
 \end_layout
 
 \begin_layout Standard
-Hierbei gab es grundsätzlich drei Sprachen, die ernsthaft Betracht gezogen
- wurden (entweder für das ganze Projekt oder um einzelne Funktionalität
+Hierbei gab es grundsätzlich drei Sprachen, die ernsthaft in Betracht gezogen
+ wurden (entweder für das ganze Projekt oder um einzelne Funktionalitäten
  zu implementieren):
 \end_layout
 
@@ -1558,7 +1641,7 @@ Java Da die Kraftwerksüberwachungssoftware größtenteils in Java geschrieben
 \begin_layout Description
 C# Da C# bereits aus der Techniker-Ausbildung bekannt ist, wäre es eine
  denkbare Lösung.
- Jedoch ist C# immernoch nur bedingt Cross-Plattform
+ Jedoch ist C# immernoch nur bedingt Cross-Plattform-fähig
 \begin_inset Foot
 status open
 
@@ -1569,9 +1652,9 @@ Mit dem Mono-Framework besteht grundsätzlich die Möglichkeit, C# Anwendungen
 
 \end_inset
 
- fähig.
- Eine Weiterentwicklung durch Padcon ist bedingt möglich, so ist grundlegende
- Syntax von C# ähnlich der von Java.
+.
+ Eine Weiterentwicklung durch Padcon ist bedingt möglich, so ist die grundlegend
+e Syntax von C# ähnlich der von Java.
 \end_layout
 
 \begin_layout Description
@@ -1596,7 +1679,7 @@ noprefix "false"
 \end_inset
 
  und attraktiv, da es eine sehr schnelle Entwicklung ermöglicht.
- Desweiteren ist es bei praktisch allen Linux Distributionen vorinstalliert
+ Desweiteren ist es bei praktisch allen Linux-Distributionen vorinstalliert
  und bietet eine Vielzahl an Möglichkeiten um plattformübergreifende Anwendungen
  zu entwickeln.
 \end_layout
@@ -1607,10 +1690,10 @@ Java wurde schnell verworfen, da es im Zeitraum des Projektes unrealistisch
  Code zu produzieren.
  C# wurde ebenfalls für ungeeignet befunden, da mit Problemen mit Linux
  gerechnet wurde.
- Außerdem liegt auch bei C#, ein eher langsamer Entwicklungsprozess vor.
+ Außerdem liegt auch bei C# ein eher langsamer Entwicklungsprozess vor.
  Der Vorteil der besseren Performance von C# und Java gegenüber CPython
- (der Standartimplementierung von Python, andere Implementierungen bieten
- vergleichbare Performance zu C#), ist hier eher irrelevant da die Anwendung
+ (der Standardimplementierung von Python, andere Implementierungen bieten
+ vergleichbare Performance zu C#), ist hier eher irrelevant, da die Anwendung
  aufgrund der grafischen Oberfläche ohnehin die meiste Zeit 
 \begin_inset Quotes gld
 \end_inset
@@ -1634,13 +1717,13 @@ Probleme
 \begin_inset Quotes gld
 \end_inset
 
- wie bei C# und Java vor: es würde sich einfach nicht lohnen eine performantere
+ wie bei C# und Java vor: Es würde sich einfach nicht lohnen eine performantere
  Sprache auf Kosten der Entwicklungszeit zu nutzen.
  Sollte zu einem späteren Zeitpunkt eine Erweiterung nötig sein, bei der
  sich herausstellt, dass die Geschwindigkeit von Python ein Flaschenhals
  ist, so lässt sich dieses performancekritische Modul in einer maschinennahen
  Sprache wie C oder Rust entwickeln und problemlos einbinden (oder man nutzt
- eine der alternativen Python Implementierungen welche in Kapitel 
+ eine der alternativen Python-Implementierungen, welche in Kapitel 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "sec:Python-3"
@@ -1671,7 +1754,7 @@ sich der Code größtenteils wie Pseudocode oder ein englischer Satz liest.
 \end_layout
 
 \begin_layout Enumerate
-die Auszubildenen im Bereich Anwendungsentwicklung in Zukunft auch Python
+die Auszubildenden im Bereich Anwendungsentwicklung in Zukunft auch Python
  lernen.
 \end_layout
 
@@ -1695,8 +1778,26 @@ Python 3
 
 \begin_layout Standard
 Bei Python 3 handelt es sich um eine universell einsetzbare, plattformübergreife
-nde, dynamisch typisierte Hochsprache, welche in verschiedensten Implementierung
-en als Open Source Projekt entwickelt wird.
+nde, dynamisch typisierte und multiparadigmatische Hochsprache, welche in
+ verschiedensten Implementierungen als Open Source Projekt entwickelt wird
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 65"
+key "HandbuchFuerSoftwareEntwickler"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
  Ursprünglich wurde sie von Guido van Rossum 1991 mit dem Ziel entwickelt,
  eine möglichst lesbare und dennoch mächtige Programmiersprache zu schaffen.
  Auf der Website der PSF steht dazu: 
@@ -1748,7 +1849,7 @@ Common Language Infrastructure
 
 \end_inset
 
- und Integration in Visual Studio).
+ und Integration in Visual Studio)
 \begin_inset Foot
 status open
 
@@ -1766,7 +1867,7 @@ literal "false"
 
 \end_inset
 
-
+.
 \end_layout
 
 \begin_layout Standard
@@ -1926,7 +2027,7 @@ Klasse
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1964,7 +2065,7 @@ Instanz
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1973,7 +2074,7 @@ bound method
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -1982,7 +2083,7 @@ bound method
 
 \end_inset
 </cell>
-<cell alignment="center" valignment="top" bottomline="true" leftline="true" rightline="true" usebox="none">
+<cell alignment="center" valignment="top" topline="true" bottomline="true" rightline="true" usebox="none">
 \begin_inset Text
 
 \begin_layout Plain Layout
@@ -2007,7 +2108,7 @@ function
 \end_layout
 
 \begin_layout Standard
-Neben Methoden und Funktionen ist auch auch möglich andere Objekte in Python
+Neben Methoden und Funktionen ist es auch möglich, andere Objekte in Python
  aufrufbar zu machen, hierzu müssen sie die 
 \emph on
 magic method
@@ -2040,7 +2141,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Die verschiedenen Funktionstypen
+Pythons Funktionsmodell
 \end_layout
 
 \end_inset
@@ -2121,7 +2222,7 @@ literal "false"
 
 .
  PEP 257 hingegen beschäftigt sich mit den sogenannten Docstrings und deren
- Format 
+ Format
 \begin_inset Foot
 status open
 
@@ -2149,9 +2250,19 @@ __doc__
 \emph default
  zu finden.
  Über Docstrings könnte man aus dem Quellcode auch automatisch die Dokumentation
- generieren lassen, dies ist in unserem Fall jedoch nicht gewünscht, da
- die Dokumentation im Rahmen dieser Arbeit stattfindet  (im Anhang sind
- sie dennoch zu finden  ({modulname}.html)).
+ generieren lassen.
+ Dies ist in unserem Fall jedoch nicht gewünscht, da die Dokumentation im
+ Rahmen dieser Arbeit stattfindet  (im Anhang 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Automatisch-generierte-Dokumentation"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ ist sie dennoch zu finden  ({modulname}.html)).
  Als weitere Referenz für das genutzte Format galten ein von Google veröffentlic
 htes Dokument
 \begin_inset Foot
@@ -2269,7 +2380,7 @@ status open
 \begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
-after ", S. 1"
+after "S. 1"
 key "Rust"
 literal "false"
 
@@ -2318,7 +2429,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Übersicht über Verhältnisse von Threads zueinander
+Übersicht über Verhältnisse von Threads
 \end_layout
 
 \end_inset
@@ -2505,6 +2616,10 @@ logout method
 \end_layout
 
 \begin_layout Description
+create_article method
+\end_layout
+
+\begin_layout Description
 create_device method
 \end_layout
 
@@ -2560,6 +2675,14 @@ _ParallelPrint class, thread
 parallel_print put method of _ParallelPrint instance
 \end_layout
 
+\begin_layout Description
+check_if_file_exists method
+\end_layout
+
+\begin_layout Description
+normalize_filename method
+\end_layout
+
 \end_deeper
 \begin_layout Section
 Command Line Interface
@@ -2612,7 +2735,7 @@ filename "Beispielprogramme/cli_help.sh"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Schnittstellenhilfe von cli_get_barcode.py
+Schnittstellenhilfe zu cli_get_barcode.py
 \end_layout
 
 \end_inset
@@ -2645,8 +2768,8 @@ Schnittstellenhilfe von cli_get_barcode.py
 \emph on
 -d
 \emph default
-, welches es ermöglicht alle intern verfügbaren Informationen über das Bild,
- bzw.
+, welches es ermöglicht, alle intern verfügbaren Informationen über das
+ Bild, bzw.
  die darin enthaltenen Codes wiederzugeben.
  Hierüber ist es außerdem möglich mehrere Codes aus einem Bild zu extrahieren.
 \end_layout
@@ -2661,15 +2784,16 @@ Der letzte Parameter ist
 \emph on
 cli_get_barcodes
 \emph default
- ist so aufgebaut, dass alle möglichen Fehler abgefangen werden und zu Fehlern
- die dem Nutzer (der potentiell mit einer Python Fehlermeldung nichts anfangen
- kann) mehr sagen gewandelt werden.
+ ist so aufgebaut, dass alle möglichen Fehler abgefangen werden und zu Fehlern,
+ die dem Nutzer (der potentiell mit einer Python-Fehlermeldung nichts anfangen
+ kann) mehr sagen, gewandelt werden.
  Jedoch ist in manchen Fällen ein sog.
  
 \emph on
 Traceback
 \emph default
- nützlich, daher ist es über den Parameter 
+ nützlich.
+ Daher ist es über den Parameter 
 \emph on
 -tb
 \emph default
@@ -2685,13 +2809,14 @@ Das CLI läuft schlussendlich auf einem Server und kann über eine RESTful
 \emph on
 onefile
 \emph default
- bzw 
+ bzw.
+ 
 \emph on
 onedir
 \emph default
  Lösung verpackt.
  Hierbei wird zum Beispiel für Windows eine exe erzeugt, die eine volle
- Python Installation und alle benötigten Packages beinhaltet.
+ Python-Installation und alle benötigten Packages beinhaltet.
  Die 
 \emph on
 onefile
@@ -2779,7 +2904,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/ERD.png
-	scale 75
+	width 70page%
 
 \end_inset
 
@@ -2826,7 +2951,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/UML.png
-	scale 75
+	width 70page%
 
 \end_inset
 
@@ -2880,7 +3005,8 @@ salt
 \emph on
 TypeDecorator
 \emph default
- zur Verfügung, von dieser leiten wir eine Klasse 
+ zur Verfügung.
+ Von dieser leiten wir eine Klasse 
 \emph on
 BigInt
 \emph default
@@ -2953,7 +3079,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Beispiel einer 1-zu-n Beziehung
+Beispiel einer 1-zu-n-Beziehung in SQLAlchemy
 \end_layout
 
 \end_inset
@@ -3013,7 +3139,7 @@ relationship
 Child
 \emph default
 , sondern ein String, der ihren Namen enthält.
- Dies ermöglicht es, Beziehungen anzulegen, ohne dass, die Partnerklasse
+ Dies ermöglicht es, Beziehungen anzulegen, ohne dass die Partnerklasse
  bereits angelegt wurde bzw.
  bekannt ist, was das Arbeiten wesentlich komfortabler macht.
 \end_layout
@@ -3057,7 +3183,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Beispiel einer 1-zu-1 Beziehung
+Beispiel einer 1-zu-1-Beziehung in SQLAlchemy
 \end_layout
 
 \end_inset
@@ -3071,7 +3197,7 @@ Beispiel einer 1-zu-1 Beziehung
 \end_layout
 
 \begin_layout Standard
-Prinzipiell ist es auch möglich, n-zu-n Beziehungen-herzustellen, dies ist
+Prinzipiell ist es auch möglich, n-zu-n Beziehungen herzustellen, dies ist
  bei uns jedoch nicht nötig und wird daher nicht aufgeführt.
 \end_layout
 
@@ -3210,14 +3336,13 @@ commit
 autocommit
 \emph default
  eingestellt ist.
- 
 \end_layout
 
 \begin_layout Standard
 Der Aufbau der Fabrikmethode ist in soweit non-trivial, dass in ihr eine
- Klasse definiert wird in der widerrum weitere Klassen definiert werden,
+ Klasse definiert wird, in der wiederrum weitere Klassen definiert werden,
  welche mitunter voneinander erben.
- Dieses vielleicht überkompliziert anmutende Konstrukt, ist eigentlich nicht
+ Dieses vielleicht überkompliziert anmutende Konstrukt ist eigentlich nicht
  nötig, stellt aber eine sehr elegante Lösung dar und ist tatsächlich sehr
  einfach erklärt.
  Die erste innere Klasse wurde bereits erläutert und ist die, welche von
@@ -3309,7 +3434,31 @@ Neue Einträge in der Datenbank vornehmen
 Nachdem die Vorarbeit mit Sessions und Klassen geleistet ist, ist es nun
  sehr einfach, neue Einträge in der Datenbank vorzunehmen.
  Das folgende Beispielprogramm zeigt, wie einige bereits erzeugte Objekte
- in der Datenbank abgelegt werden.
+ in der Datenbank abgelegt werden
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+das 
+\begin_inset Quotes gld
+\end_inset
+
+...
+\begin_inset Quotes grd
+\end_inset
+
+ im Code ist tatsächlich valider Code und wird in Python 
+\emph on
+Ellipsis
+\emph default
+ genannt.
+ Es gibt Stellen an denen Ellipsen funktionalen Nutzen haben, hier dienen
+ sie lediglich als Platzhalter.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout LyX-Code
@@ -3417,8 +3566,8 @@ Abfrage aus Datenbank anhand eines tatsächlichen Beispiels
 \end_layout
 
 \begin_layout Standard
-Die wichtigen Punkte sind hier die Zeilen 6 und 10.
- In Zeile 6 wird über die 
+Die wichtigen Punkte sind hier die Zeilen 14 und 22.
+ In Zeile 14 wird über die 
 \emph on
 query
 \emph default
@@ -3435,7 +3584,7 @@ filter_by
 \emph on
 e_mail
 \emph default
- in der Datenbank mit der übergebenen E-mail Adresse gefiltert.
+ in der Datenbank mit der übergebenen E-mail-Adresse gefiltert.
  Dies gibt uns ein 
 \emph on
 Query
@@ -3455,8 +3604,8 @@ unique
 first
 \emph default
 .
- Nun wird dieses Objekt verarbeitet bis zu Zeile 10, hier wird die Methode
- 
+ Nun wird dieses Objekt verarbeitet bis zu Zeile 22.
+ Hier wird die Methode 
 \emph on
 expunge
 \emph default
@@ -3482,7 +3631,7 @@ Lazy Evaluation
 e_mail
 \emph default
 , da dieses gerade gebraucht wird.
- Im Verlauf bis Zeile 10 werden noch 
+ Im Verlauf bis Zeile 22 werden noch 
 \emph on
 salt
 \emph default
@@ -3536,7 +3685,8 @@ delete
 \emph on
 flush
 \emph default
- oder 
+ bzw.
+ 
 \emph on
 commit
 \emph default
@@ -3552,6 +3702,11 @@ commit
 
 \begin_layout Section
 Frameworkfreie Implementierung
+\end_layout
+
+\begin_layout Standard
+Die Anwendung umfasst auch viele Funktionen und Klassen, die nicht allzu
+ stark an SQLAlchemy oder PyQt gebunden sind - diese werden hier behandelt.
 \end_layout
 
 \begin_layout Subsection
@@ -3573,7 +3728,7 @@ Python bietet grundsätzlich die Möglichkeit an, mit relativen Pfaden zu
  arbeiten.
  Diese sind jedoch so umgesetzt, dass sie nicht relativ zur Quelldatei interpret
 iert werden, sondern stattdessen relativ zum Aufruf arbeiten.
- Führe ich das Python Programm in der Konsole also von einem anderen Ordner
+ Führt man das Python Programm in der Konsole also von einem anderen Ordner
  aus aus, so wird auf eine andere Datei zugegriffen.
  Daher wurde eine Funktion entwickelt, die ermittelt, wo sich die Quellcodedatei
  befindet und ein 
@@ -3641,7 +3796,7 @@ _
 -benannte Klasse/Methode/Instanz etc.
  zwar dennoch verwenden, sollte dabei allerdings die internen Mechanismen
  im Hinterkopf behalten und ist sogesagt im Fehlerfall auf sich alleine
- gestellt
+ gestellt.
 \end_layout
 
 \end_inset
@@ -3674,18 +3829,133 @@ _created
  außerhalb der zu erwartenden Nutzung und wird nicht mehr abgefangen.
 \end_layout
 
-\begin_layout Subsubsection
-Dateitools - Pfadvalidierung und Normalisierung von Dateinamen 
-\begin_inset Marginal
+\begin_layout Standard
+Zu einem späteren Zeitpunkt kam ein weiterer Lösungsansatz auf:
+\end_layout
+
+\begin_layout Standard
+Python erlaubt es beim Erzeugen einer Klasse einen Schlüsselwortparameter
+ 
+\emph on
+metaclass
+\emph default
+ zu übergeben.
+ Diese Metaklasse ist, wenn nicht anders definiert, stets 
+\emph on
+type
+\emph default
+.
+ Nun könnte man hier angreifen, eine eigene Metaklasse schreiben, bei der
+ sich jede Klasse, die sie als Metaklasse nutzt, registriert und dadurch
+ eine Mehrfachinstanziierung verhindern.
+ Konkret sieht das dann wie folgt aus:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float algorithm
+wide false
+sideways false
 status open
 
 \begin_layout Plain Layout
-td
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "Beispielprogramme/meta_printer.py"
+lstparams "language=Python"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Paralleles Printen mittels Metaprogrammierung
 \end_layout
 
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\emph on
+Singleton
+\emph default
+ ist eine Metaklasse, erbt daher von der Basismetaklasse 
+\emph on
+type
+\emph default
+.
+ In Singleton ist eine 
+\emph on
+Counter
+\emph default
+-Instanz hinterlegt, die bei jeder Instanziierung einer Klasse, die Singleton
+ als Metaklasse nutzt, mitzählt, wie oft diese Klasse bereits instanziiert
+ wurde.
+ In dieser konkreten Anwendung ist der Counter eigentlich überflüssig, er
+ könnte genauso ein Dictionary mit boolschen Werten als 
+\emph on
+values
+\emph default
+, oder einfach eine Liste der Klassen sein - dennoch ist er im Code, da
+ die Counter-Klasse klar macht was sein Zweck ist und außerdem lässt sich
+ die Klasse so leicht auf eventuelle Mehrfach-Instanziierungen erweitern.
+ Bei _ParallelPrint entfallen in dieser Variante jegliche mehrfachinstanziierung
+sverhindernde Maßnahmen.
+ Eine weitere Änderung ist, dass die magic-method 
+\emph on
+__new__
+\emph default
+ hinzugefügt wurde.
+ 
+\emph on
+__new__
+\emph default
+ ist in Python der tatsächliche Konstruktor - auch wenn man bei 
+\emph on
+__init__
+\emph default
+ in der Regel vom Konstruktor spricht.
+ In ihm wird der Klasse bei Instanziierung die magic-method 
+\emph on
+__call__
+\emph default
+ angehängt, welche dann die 
+\emph on
+put
+\emph default
+ Methode der Queue 
+\emph on
+print_
+\emph default
+ der Klasse ist - dadurch entfällt die externe Deklaration von 
+\emph on
+parallel_print
+\emph default
+.
+ Alternativ hätte hier eine explizite Deklaration von 
+\emph on
+__call__
+\emph default
+ mit Durchreichung an 
+\emph on
+put
+\emph default
+ erfolgen können.
+\end_layout
+
+\begin_layout Subsubsection
+Dateitools - Pfadvalidierung und Normalisierung von Dateinamen
 \end_layout
 
 \begin_layout Subsection
@@ -3743,7 +4013,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Logger-Beispiel.png
-	scale 50
+	width 70page%
 
 \end_inset
 
@@ -3768,7 +4038,7 @@ Log-Datei Beispiel
 \end_layout
 
 \begin_layout Standard
-Es ist zu sehen, dass sich die Datei Spaltenweise gut lesen lässt und leicht
+Es ist zu sehen, dass sich die Datei spaltenweise gut lesen lässt und leicht
  zurückverfolgbar ist, woher eine Nachricht stammt.
  Bei Nachricht 1 und 3 ist ein 
 \emph on
@@ -3857,7 +4127,7 @@ Die zuerst implementierte: Der Thread arbeitet im Polling-Betrieb und stellt
 \emph on
 Mutex
 \emph default
- gesetzt um Threadsicherheit zu gewährleisten.
+ gesetzt, um Threadsicherheit zu gewährleisten.
 \end_layout
 
 \begin_layout Enumerate
@@ -3871,8 +4141,8 @@ Atomic-Message- Queues
 status open
 
 \begin_layout Plain Layout
-Eine Erklärung dieser Konstrukte, von Raymond Hettinger, der sie entwickelt/impl
-ementiert hat, gab es u.a.
+Eine Erklärung dieser Konstrukte von Raymond Hettinger, der sie entwickelt/imple
+mentiert hat, gab es u.a.
  auf der PyCon Russia 2016 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -3975,7 +4245,7 @@ noprefix "false"
  sondern proaktiv die Schnittstelle aktualisiert.
  Was jedoch auch zu erkennen ist: Bis das Ergebnis erreicht war, wurden
  bei der Queue-Variante lediglich die 20000 minimalen Lesezugriffe  (Auf
- unseren use-case Übertragen also Aktualisierungen des Video-Feeds in der
+ unseren use-case übertragen also Aktualisierungen des Video-Feeds in der
  UI) durchgeführt - beim Polling fanden mehr als doppelt so viele Lesezugriffe
  statt  (über mehrere Versuche ließ sich der tatsächliche Wert auf ~44e3
  bis ~48e3 festmachen); es wurden konsekutiv mehrfach die gleichen Werte
@@ -4059,9 +4329,9 @@ e anlegen.
 \begin_layout Standard
 Weiterhin stellt sich die Frage, wieso auch die Antworten über eine Queue
  geregelt sind, anstatt auf eine gelockte Property zu setzen: Die Request-Respon
-se Variante hat den Vorteil, dass es nicht möglich ist, veraltete Daten
+se-Variante hat den Vorteil, dass es nicht möglich ist, veraltete Daten
  abzufragen.
- Jeder der ein Frame von der Kamera möchte, ist gezwungen vorher eine Abfrage
+ Jeder, der ein Frame von der Kamera möchte, ist gezwungen vorher eine Abfrage
  zu starten - daher ist dieses grundsätzlich aktuell.
 \end_layout
 
@@ -4093,7 +4363,7 @@ Daten werden zurückgegeben
 \begin_layout Standard
 Hierauf wurde jedoch verzichtet, da man bei manuellem Zugriff auf die Queues
  die Laufzeit der Bildabfrage mit einkalkulieren kann.
- Zum Beispiel weiss man an Punkt A, dass man bald ein Frame benötigt, also
+ Zum Beispiel weiß man an Punkt A, dass man bald ein Frame benötigt, also
  fragt man es an.
  Danach erledigt man einige andere Arbeiten, bis man das Frame an Punkt
  B tatsächlich entgegennimmt und verarbeitet.
@@ -4109,7 +4379,7 @@ Die Funktionalität des Barcode-Auslesens und eine erste Bearbeitung der
 \emph on
 find_and_mark_barcodes
 \emph default
- der VideoStream Klassen statt.
+ der VideoStream-Klassen statt.
  Der Methode wird ein Frame übergeben, auf dem dann operiert wird.
 \end_layout
 
@@ -4909,7 +5179,7 @@ Methode
 \emph on
 find_and_mark_barcodes
 \emph default
- der beiden VideoStream Klassen
+ der beiden VideoStream-Klassen
 \end_layout
 
 \end_inset
@@ -4946,13 +5216,13 @@ Es wird ein Tupel angelegt, dass den Barcode Typ (z.B.
 \end_layout
 
 \begin_layout Enumerate
-Nun wird überprüft ob dieses Tupel bereits in 
+Nun wird überprüft, ob dieses Tupel bereits in 
 \emph on
 found_codes
 \emph default
  hinterlegt ist, wenn nicht wird es hinzugefügt.
  Grundsätzlich gäbe es hier zwei Alternativlösungen.
- Man könnte entweder nicht überprüfen ob das Tupel bereits enthalten ist,
+ Man könnte entweder nicht überprüfen, ob das Tupel bereits enthalten ist,
  und found_codes am Ende in ein 
 \emph on
 set
@@ -4999,8 +5269,8 @@ np
 \emph on
 numpy
 \emph default
- - eine hochoptimierte Bibliothek die vor allem auf große Vektor und Matrixopera
-tionen - also lineare Algebra - ausgerichtet ist.
+ - eine hochoptimierte Bibliothek, die vor allem auf große Vektor- und Matrixope
+rationen - also lineare Algebra - ausgerichtet ist.
  
 \emph on
 asarray
@@ -5044,20 +5314,20 @@ arrays
  würde ein a.reshape(2 * len(a)) aus einem Array wie unserem, ein 1-dimensionales
  Array bilden).
  Über die -1 im übergebenen Tupel, teilen wir Numpy mit, dass es uns egal
- ist was es mit dieser Dimension macht, uns interessieren lediglich die
+ ist, was es mit dieser Dimension macht, uns interessieren lediglich die
  anderen beiden, welche wir dann auf 1 bzw.
  2 setzen.
 \end_layout
 
 \begin_layout Enumerate
-Die Folgende Zeile zeichnet nun, dem Array 
+Die folgende Zeile zeichnet nun, dem Array 
 \emph on
 poly
 \emph default
  entsprechend ein Polygon auf unser Frame.
  True definiert das Polygon hierbei als geschlossenes Polygon, das Tupel
- (0,255,0) ein RGB Triplet das unsere Farbe festlegt und die 2 ist die Dicke
- der zu zeichnenden Linien.
+ (0,255,0), ein RGB Triplet, das unsere Farbe festlegt und die 2 ist die
+ Dicke der zu zeichnenden Linien.
 \end_layout
 
 \begin_layout Enumerate
@@ -5119,7 +5389,7 @@ Die anschließende Zeile ist eine sog.
 \emph on
 slice
 \emph default
- Operation bei der wir die ersten beiden Elemente des 
+ Operation, bei der wir die ersten beiden Elemente des 
 \emph on
 rect
 \emph default
@@ -5127,11 +5397,11 @@ rect
 \end_layout
 
 \begin_layout Enumerate
-Mithilfe diese dieser Variablen und einem Offset wird nun ein Text auf das
- Frame gezeichnet.
+Mithilfe dieser Variablen und einem Offset wird nun ein Text auf das Frame
+ gezeichnet.
  Dieser Text enthält den Typ des Codes, sowie seine Daten.
  Dies ist eine der wenigen, wenn nicht sogar die einzige Stelle, im gesamten
- Programm an der zur String-Interpolation kein f-String, sondern die alte
+ Programm, an der zur String-Interpolation kein f-String, sondern die alte
  
 \emph on
 str.format
@@ -5143,8 +5413,8 @@ str.format
 
 \end_deeper
 \begin_layout Enumerate
-Sind alle Barcodes verarbeitet, werden das bearbeitete frame und alle gefundenen
- codes zurückgegeben.
+Sind alle Barcodes verarbeitet, werden das bearbeitete Frame und alle gefundenen
+ Codes zurückgegeben.
 \end_layout
 
 \begin_layout Subsection
@@ -5157,7 +5427,7 @@ Zwischen
 VideoStream
 \emph default
  und UI sitzt ein weiterer Abstraktionslayer.
- Dieser kümmert sich darum die Bilddaten auszuwerten, aufzubereiten und
+ Dieser kümmert sich darum, die Bilddaten auszuwerten, aufzubereiten und
  in der UI darzustellen.
  Konkret handelt es sich hierbei um einen weiteren Daemon-Thread, der bei
  seiner Instanziierung den 
@@ -5209,12 +5479,7 @@ cvtColor
 \emph default
  Methode von OpenCV - dies ist grundsätzlich eine sehr simple Aufgabe, es
  werden je nach Aufbau der Matrix lediglich zwei Arrays getauscht.
- Der Einsatz der Methode erlaubt es jedoch, auf das Laden einer großen Bibliothe
-k wie 
-\emph on
-numpy
-\emph default
- (tatsächlich setzt opencv intern NumPy ein).
+ Der Einsatz der Methode macht jedoch klar, was hier passiert.
 \end_layout
 
 \begin_layout Enumerate
@@ -5255,17 +5520,17 @@ Counters
 \emph on
 barcodes
 \emph default
- aufgerufen, falls ein Barcode als sicher erkannt eingestuft wird wird ein
- Qt Signal emmitiert, welches die UI entgegennimmt und verarbeitet
+ aufgerufen, falls ein Barcode als sicher erkannt eingestuft wird, wird
+ ein Qt Signal emmitiert, welches die UI entgegennimmt und verarbeitet.
 \end_layout
 
 \begin_layout Enumerate
-Kurze Verzögerung, die OpenCV benötigt um korrekt zu funktionieren.
+Kurze Verzögerung, die OpenCV benötigt, um korrekt zu funktionieren.
 \end_layout
 
 \begin_layout Standard
 In Schritt 5 wird ein Counter angesprochen.
- Counter sind eine Datenstruktur des Python Standartmoduls 
+ Counter sind eine Datenstruktur des Python Standardmoduls 
 \emph on
 collections
 \emph default
@@ -5292,24 +5557,24 @@ literal "false"
 \emph on
 HashMap
 \emph default
-, also ein Python dictionary, dass hashbare Objekte und ihre Häufigkeit
- in sich oder einer anderen Datenstruktur, wie einer Liste speichert.
+, also ein Python dictionary, das hashbare Objekte und ihre Häufigkeit in
+ sich oder einer anderen Datenstruktur, wie einer Liste speichert.
  Dieser Counter ermöglicht es, Fehler der Barcodeerkennung (diese sind extrem
  selten, kommen jedoch vor) auzugleichen.
  Ein Barcode wird erst als korrekt erkannt anerkannt, wenn er in einer bestimmte
 n Anzahl an Frames erkannt wurde.
- Der Thread implementiert außerdem Methoden um den Counter zurückzusetzen
+ Der Thread implementiert außerdem Methoden, um den Counter zurückzusetzen
  und das häufigste Element abzufragen.
 \end_layout
 
 \begin_layout Standard
 Nach dem Verknüpfen mit der UI zeichnet sich ab, dass diese Lösung nicht
  funktioniert.
- Das emittieren eines Qt Signals scheint, entgegen den Erwartungen, eine
+ Das Emittieren eines Qt Signals scheint, entgegen den Erwartungen, eine
  sehr teure (im Bezug auf Laufzeit) Operation zu sein - so läuft das Bild
  perfekt flüssig, bis man ein Signal einfügt, dann ruckelt es merklich;
  nämlich immer dann, wenn ein Signal emittiert wird.
- Außerdem stürzt die Anwendung ohne jegliche Fehlermeldung ab wenn zuviele
+ Außerdem stürzt die Anwendung ohne jegliche Fehlermeldung ab, wenn zu viele
  Signale in kurzer Zeit emittiert werden.
  Die Tatsache, dass hier keine Python Exception geworfen wird, aber auch
  der Hauptthread nicht korrekt 
@@ -5320,23 +5585,23 @@ durchläuft
 \begin_inset Quotes grd
 \end_inset
 
- sondern einfach schließt, lässt auf einen Fehler in der C/C++ Ebene von
+, sondern einfach schließt, lässt auf einen Fehler in der C/C++ Ebene von
  Qt schließen.
  Ein grundsätzlicher Workaround wäre, einen 
 \emph on
 sleep
 \emph default
- von 1-2s nachdem ein Signal emittiert wurde einzubauen oder die Sensitivität
+ von 1-2s nachdem ein Signal emittiert wurde, einzubauen oder die Sensitivität
  herunter zu stellen (also höherer Wert).
  Da in der Anwendung i.d.R.
- nicht nötig ist, innerhalb weniger Sekunden viele Codes einzuscannen wäre
- das auch erstmal akzeptabel und funktionell - jedoch nicht sonderlich elegant
+ nicht nötig ist, innerhalb weniger Sekunden viele Codes einzuscannen, wäre
+ das auch erstmal akzeptabel und funktionell - jedoch nicht sonderlich elegant,
  da das Bild in dieser Zeit immer stillstehen würde.
 \end_layout
 
 \begin_layout Standard
-Dank des modularen Designs bieten sich einige bessere Möglichkeiten um dieses
- Problem zu beheben:
+Dank des modularen Designs bieten sich einige bessere Möglichkeiten, um
+ dieses Problem zu beheben:
 \end_layout
 
 \begin_layout Itemize
@@ -5472,7 +5737,7 @@ Ein Function-Decorator ist so aufgebaut, dass er mit der @-Syntax, die ihm
 status open
 
 \begin_layout Plain Layout
-Hier sei gesagt, dass Function-Decorator auch auf anderen aufrufbare Objekten
+Hier sei gesagt, dass Function-Decorator auch auf anderen aufrufbaren Objekten
  arbeiten können und selbst durch verschiedene aufrufbare Objekte (
 \emph on
 callable
@@ -5487,7 +5752,7 @@ __call__
  sie unterliegen keinerlei Einschränkungen im Bezug auf Parameter und Rückgabewe
 rten.
  Jedoch sind sie in der Form Funktion-dekoriert-Funktion-und-gibt-Funktion-zurüc
-k am Häufigsten anzutreffen.
+k am häufigsten anzutreffen.
 \end_layout
 
 \end_inset
@@ -5562,9 +5827,9 @@ partial
 \emph on
 functools
 \emph default
- der Standardbibliothek erlaubt die partielle Evaluation einer Funktion,
- dabei übergibt man ihr zuerst die Funktion, welche partiell evaluiert werden
- soll, und anschließend alle Parameter, welche sozusagen 
+ der Standardbibliothek erlaubt die partielle Evaluation einer Funktion.
+ Dabei übergibt man ihr zuerst die Funktion, welche partiell evaluiert werden
+ soll und anschließend alle Parameter, welche sozusagen 
 \begin_inset Quotes gld
 \end_inset
 
@@ -5673,7 +5938,7 @@ Verbesserte Definition des Function-Decorators
 Der Verzicht auf den rekursiven, partiell evaluierten Aufruf des Dekorators,
  welcher durch die Definition einer Funktion im Funktionskörper des Dekorators
  ersetzt wird, macht den Code wesentlich klarer.
- Die grundsätzliche Funktionsweise, bleibt abseits dessen jedoch gleich.
+ Die grundsätzliche Funktionsweise bleibt abseits dessen jedoch gleich.
 \end_layout
 
 \begin_layout Section
@@ -5697,7 +5962,7 @@ erweise, ein Passwort-System gewählt.
  gestaltet sein, dass sie keine zu offensichtlichen Schwachstellen hat.
  Ein weiteres Problem entsteht dadurch, dass eine SQL-Datenbank im Hintergrund
  mit vom Nutzer zur Laufzeit eingegebenen Daten befüllt wird.
- Dies könnte, wenn nicht richtig abgefangen zur SQL-Injection genutzt werden.
+ Dies könnte, wenn nicht richtig abgefangen, zur SQL-Injection genutzt werden.
 \end_layout
 
 \begin_layout Subsection
@@ -5726,9 +5991,30 @@ Gegeben sei eine sehr einfache Datenbank, die Nutzer mit Namen speichert:
 
 \begin_layout Standard
 \align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
 \begin_inset Graphics
 	filename Beispielprogramme/SQL-Injection/DB.png
-	scale 50
+	width 70page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Beispieldatenbank
+\end_layout
+
+\end_inset
+
+
+\end_layout
 
 \end_inset
 
@@ -5736,8 +6022,8 @@ Gegeben sei eine sehr einfache Datenbank, die Nutzer mit Namen speichert:
 \end_layout
 
 \begin_layout Standard
-Wobei es möglich sein soll neue Nutzer über eine Kommandozeileneingabe des
- Namens hinzuzufügen.
+Wobei es möglich sein soll, neue Nutzer über eine Kommandozeileneingabe
+ des Namens hinzuzufügen.
 \end_layout
 
 \begin_layout Standard
@@ -5798,9 +6084,10 @@ elung zu umgehen.
  Daher werden bei unserer Lösung die Passwörter gar nicht gespeichert -
  stattdessen wird ein Hash-Algorithmus (zu Deutsch: Streuwertfunktion) eingesetz
 t und dieser Hash gespeichert.
- Ein Hash-Algorithmus ist eine Funktion, welche, idealerweise, in eine Richtung
- sehr schnell durchzuführen ist, in die andere dagegen einen sehr hohen
- Rechenaufwand benötigt.
+ Ein Hash-Algorithmus ist eine Funktion, welche, eine Menge an Eingangsdaten
+ auf eine begrenzte Menge an Ausgangsdaten abbildet und idealerweise, in
+ eine Richtung sehr schnell durchzuführen ist, in die andere dagegen einen
+ sehr hohen Rechenaufwand benötigt.
  Im Idealfall ist dieser Rechenaufwand so hoch, dass sich eine 
 \begin_inset Quotes eld
 \end_inset
@@ -5810,7 +6097,45 @@ Einwegfunktion
 \end_inset
 
  ergibt, die nicht umzukehren ist.
- Ein klassisches Beispiel für einen simplen Hash-Algorithmus ist die einstellige
+ Sogenannte Hash-Kollisionen, also die Tatsache, dass mehrere Werte der
+ Eingabemenge auf die gleichen Elemente der Ausgabemenge gemappt werden,
+ bewirken außerdem, dass die Funktion selbst wenn man eine Umkehrfunktion
+ ermitteln kann, diese nicht eindeutig ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename Bilder/Hashes.png
+	width 45page%
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Prinzip von Hashfunktionen
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ein klassisches Beispiel für einen simplen Hash-Algorithmus ist die einstellige
  Quersumme, hier wird rekursiv die Quersumme einer Zahl gebildet, bis nur
  noch eine Stelle übrig ist.
 \end_layout
@@ -5842,7 +6167,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/User-Anlegen-Prozess.png
-	scale 50
+	width 60page%
 
 \end_inset
 
@@ -5878,7 +6203,7 @@ random
  Diese stellt ein erstes Salt dar.
  Im ersten Schritt wird nun die E-Mail-Adresse - ein String also - zu einer
  Abfolge aus Bytes codiert, welche dann als Ganzzahl interpretiert wird.
- Diese Zahl wird anschließend über ein logisches XOR mit dem generierten
+ Diese Zahl wird anschließend über ein bitweises XOR mit dem generierten
  Salt verknüpft und stellt unser finales Salt dar.
  Die daraus resultierende Zahl sowie das Passwort werden dann wieder zu
  einer Folge aus Bytes konvertiert.
@@ -5898,13 +6223,13 @@ Endergebnis
 \begin_inset Quotes erd
 \end_inset
 
- und wird zusammen mit der Anfangs generierten Zufallszahl in der Datenbank
+ und wird zusammen mit der anfangs generierten Zufallszahl in der Datenbank
  abgelegt.
 \end_layout
 
 \begin_layout Standard
 Der Hintergrund zu der vergleichsweise komplexen Erzeugung des finalen Salts
- ist Folgender:
+ ist folgender:
 \end_layout
 
 \begin_layout Itemize
@@ -5951,11 +6276,28 @@ leq$
 
 \end_inset
 
- 50) was im selben Problem wie der zuvor genannte Punkt münden würde.
+ 50 beträgt die Warscheinlichkeit 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+frac 5{2^{256}} 
+\backslash
+approx 4,32 
+\backslash
+cdot 10^{-75}$
+\end_layout
+
+\end_inset
+
+%) was im selben Problem wie der zuvor genannte Punkt münden würde.
 \end_layout
 
 \begin_layout Itemize
-Wenn man nur den Benutzernamen als Salt einsetzt läuft man Gefahr, dass
+Wenn man nur den Benutzernamen als Salt einsetzt, läuft man Gefahr, dass
  ein Nutzer einen sehr kurzen Benutzernamen wählt, wodurch ein vergleichsweise
  schnelles Durchprobieren/ Brute-Forcen durch alle Salts möglich ist.
 \end_layout
@@ -5965,6 +6307,284 @@ Durch die XOR-Verknüpfung von Nutzername und Zufallszahl hat man somit ein
  für jeden Nutzer garantiert einzigartiges Salt.
  Ein Angreifer kann dadurch eine Bruteforce Attacke nur für einen einzigen
  Nutzer auf einmal ausführen.
+\end_layout
+
+\begin_layout Standard
+Geplant war außerdem, dass der Eingangsbereich des 
+\emph on
+salts
+\emph default
+ von 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$2^{256}$
+\end_layout
+
+\end_inset
+
+ Werten erhöht wird.
+ Dies ist theoretisch der Fall, jedoch ist die E-Mail-Adresse in der Regel
+ nicht groß genug, um dieses Phänomen ausnutzen zu können.
+\end_layout
+
+\begin_layout Standard
+Betrachten wir zum Beispiel den 
+\emph on
+bytestring
+\emph default
+ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinline{e_mail = b
+\begin_inset Quotes gld
+\end_inset
+
+karl@googlemail.com
+\begin_inset Quotes grd
+\end_inset
+
+}
+\end_layout
+
+\end_inset
+
+ und den zugehörigen Integerwert 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinline{x = int.from_bytes(e_mail, 
+\begin_inset Quotes gld
+\end_inset
+
+big
+\begin_inset Quotes grd
+\end_inset
+
+)}
+\end_layout
+
+\end_inset
+
+ erhalten wir nach der Formel 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$f(x) = 
+\backslash
+floor{
+\backslash
+log_2 x} + 1$
+\end_layout
+
+\end_inset
+
+ einen Wert von 151 Bit.
+ Da der Ausgangsbereich eines XOR immer der, des größeren Operanden ist,
+ wächst er daher nicht an.
+\end_layout
+
+\begin_layout Standard
+Im Zuge des Refactoring, wird hier nachgebessert.
+ So wird der PBKDF2-HMAC Algorithmus mit dem aktuelleren Argon2 ersetzt.
+ Außerdem lassen sich bessere Ergebnisse erzielen, indem man Salt und E-Mail-Adr
+esse nicht mit einem XOR verknüpft.
+ Stattdessen werden beide Werte als Strings aneinandergehängt
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Es wurde zunächst eine kompliziertere Variante mit einer Reißverschlussverknüpfu
+ng beider Sequenzen und Zufallszahlen implementiert, jedoch wurde diese
+ schnell wieder verworfen da der Code unverhältnismäßig komplex war.
+\end_layout
+
+\end_inset
+
+.
+ Dies hat den Vorteil, dass längere Salts entstehen.
+ Die Chance einer Salt-Kollision sinkt damit je nach Passwortlänge weiter.
+\end_layout
+
+\begin_layout Standard
+Die Parametrierung des Argon2 erfolgt mithilfe der empfohlenen Parameter
+ im zum Algorithmus gehörenden PDF
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "09.03.19 - 00:57 Uhr"
+key "Argon2"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, bzw.
+ der Parametrierungshilfe.
+ Demnach wurden die Parameter wie folgt festgelegt:
+\end_layout
+
+\begin_layout Itemize
+Als Typ 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$y$
+\end_layout
+
+\end_inset
+
+ wird Argon2i gewählt.
+\end_layout
+
+\begin_layout Itemize
+Als maximale Speichermenge 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$m$
+\end_layout
+
+\end_inset
+
+ in Kibibyte werden 1024KiB festgelegt.
+\end_layout
+
+\begin_layout Itemize
+Als maximale Zeit 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$x$
+\end_layout
+
+\end_inset
+
+ in Sekunden werden, den vorgeschlagenen Parametern der zugehörigen Wikipedia-Se
+ite
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "09.03.19 - 00:57 Uhr"
+key "Wiki_Argon2"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+ für Server-Authentifizierung folgend, 0.5s gewählt.
+\end_layout
+
+\begin_layout Itemize
+Als Salt-Länge sind laut PDF 128 Bit ausreichend - da das Grund-Salt tendentiell
+ durch die E-Mail Adresse noch einmal verlängert wird, wählen wir daher
+ 128 Bit als Grundlänge.
+\end_layout
+
+\begin_layout Itemize
+Als Schlüssellänge werden ebenfalls 128 Bit als ausreichend angegeben -
+ wir wählen 256 Bit.
+\end_layout
+
+\begin_layout Itemize
+Die Auswahl des Parallelisierungsgrades bzw.
+ der maximalen Anzahl Threads 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$h$
+\end_layout
+
+\end_inset
+
+ und der Anzahl an Iterationen 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$t$
+\end_layout
+
+\end_inset
+
+ ist ohne Informationen über das endgültige Zielsystem schwer festzulegen.
+ Da davon ausgegangen wird, dass das Zielsystem etwas langsamer als das
+ Testsystem ist, wurde 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$h = 4$
+\end_layout
+
+\end_inset
+
+ gewählt und 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$x$
+\end_layout
+
+\end_inset
+
+ auf 0.4s nachkorrigiert.
+\end_layout
+
+\begin_layout Itemize
+Mit den gegebenen Parametern ergibt sich 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$t 
+\backslash
+approx 512$
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -5984,7 +6604,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/User-Anmelden-Prozess.png
-	scale 50
+	width 70page%
 
 \end_inset
 
@@ -6043,7 +6663,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/User-PW-Reset.png
-	scale 50
+	width 70page%
 
 \end_inset
 
@@ -6236,7 +6856,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Passwort-Varianten-Graph_1_cropped.png
-	scale 35
+	width 75page%
 
 \end_inset
 
@@ -6343,7 +6963,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Passwort-Varianten-Graph_2_cropped.png
-	scale 75
+	width 75page%
 
 \end_inset
 
@@ -6522,7 +7142,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Passwort-Varianten-Graph_3_cropped.png
-	scale 40
+	width 75page%
 	clip
 
 \end_inset
@@ -6644,7 +7264,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Admin-PW-Reset.png
-	scale 50
+	width 50page%
 	clip
 
 \end_inset
@@ -6937,6 +7557,10 @@ Zur Parallelisierung wurde ein Thread einem Prozess gegenüber bevorzugt,
 \emph on
 sockets
 \emph default
+ oder 
+\emph on
+pipes
+\emph default
 , Serialisierung mit 
 \emph on
 pickle
@@ -7155,7 +7779,8 @@ d steht für eine beliebige Zahl zwischen 0 und 9
 \end_layout
 
 \begin_layout Description
-| stellt ein logisches ODER zwischen Gruppen oder Ausdrücken dar
+| stellt ein ODER zwischen Gruppen oder Ausdrücken dar und erlaubt damit
+ Alternativen
 \end_layout
 
 \begin_layout Description
@@ -7364,7 +7989,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Kompilierung und Debugausgabe der Regular Expression
+Kompilierung und Debugausgabe der Regular Expression zur Telefonnummernerkennung
 \end_layout
 
 \end_inset
@@ -7609,6 +8234,38 @@ cute
 \end_layout
 
 \begin_layout Subsection
+Signale und Slots
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[yk]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Aufbau der UI
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[yk]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+oder so iwie
+\end_layout
+
+\begin_layout Subsection
 Darstellen der Verantwortlichkeiten als Baumstruktur
 \end_layout
 
@@ -7734,7 +8391,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/Responsibility-Baum-Sieb-Struktorgramm.png
-	scale 75
+	width 70page%
 
 \end_inset
 
@@ -7900,14 +8557,14 @@ Mit diesem Wissen ist nun auch leicht erklärbar, wann welche der Strukturen
 \end_layout
 
 \begin_layout Itemize
-Generator-Expression immer, wenn sichergestellt ist, dass die Instanz nur
- einmal iteriert werden muss.
+Generator-Expression immer, wenn sichergestellt ist, dass über die Instanz
+ nur einmal iteriert werden muss.
 \end_layout
 
 \begin_layout Itemize
 List-Comprehension immer dann, wenn die Instanz mehrfach iteriert oder subscribe
 d (dt.
- abonniert - also die [Index]-Notation) werden muss
+ abonniert - also die [Index]-Notation) werden muss.
 \end_layout
 
 \begin_layout Standard
@@ -7993,7 +8650,7 @@ setText
 \end_layout
 
 \begin_layout Section
-Optimierung
+Optimierung und Testing
 \end_layout
 
 \begin_layout Standard
@@ -8189,7 +8846,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/hasattr_vs_dict-lookup_cropped.png
-	scale 40
+	width 75page%
 
 \end_inset
 
@@ -8260,7 +8917,15 @@ lstparams "language=Python,numbers=left"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Bytecode zu beiden Varianten erzeugen
+Bytecode zu 
+\emph on
+dict-lookup
+\emph default
+ und 
+\emph on
+hasattr
+\emph default
+ erzeugen
 \end_layout
 
 \end_inset
@@ -8649,7 +9314,7 @@ lstparams "language=Python"
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Analysecode
+Analysecode zum Laufzeitvergleich verschiedener Iterationsmöglichkeiten
 \end_layout
 
 \end_inset
@@ -8721,7 +9386,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename Bilder/map_vs_for_vs_listcomp_side_effects_cropped.png
-	scale 40
+	width 75page%
 
 \end_inset
 
@@ -8779,18 +9444,14 @@ approx 250$
  mal schneller.
 \end_layout
 
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
+\begin_layout Subsection
+Unittests 
+\begin_inset Marginal
+status open
 
-
+\begin_layout Plain Layout
+[yk]
 \end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "Literaturverzeichnis"
-options "alphadin"
 
 \end_inset
 
@@ -8806,10 +9467,6 @@ options "alphadin"
 
 \begin_layout Standard
 \start_of_appendix
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset ERT
 status open
 
@@ -8820,6 +9477,32 @@ status open
 lstset{numbers=left, numberblanklines=true}
 \end_layout
 
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Anhang
+\end_layout
+
+\begin_layout Section
+Literatur- und Quellenverzeichnis
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "Literaturverzeichnis"
+options "alphadin"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -8879,6 +9562,21 @@ Netzwerkplan nach EN81346
 
 \begin_layout Section
 Quellcode
+\end_layout
+
+\begin_layout Subsection
+cli_get_barcode.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../cli/cli_get_barcode.py"
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -9018,6 +9716,21 @@ filename "../ui.py"
 \end_layout
 
 \begin_layout Subsection
+unittests.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../unittests.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 utils.py
 \end_layout
 
@@ -9040,23 +9753,19 @@ filename "../utils.py"
 \end_layout
 
 \begin_layout Section
-Automatisch generierte Dokumentation
-\end_layout
+Automatisch generierte Dokumentation 
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Automatisch-generierte-Dokumentation"
 
-\begin_layout Standard
-Als .html auf beiliegendem USB-Stick, alternativ über pydoc.sh aus dem Quellcode
- zu generieren.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
 \end_inset
 
 
 \end_layout
 
-\begin_layout Section
-Genutzte Hilfsmittel
+\begin_layout Standard
+Als .html auf beiliegendem USB-Stick, alternativ über pydoc.sh aus dem Quellcode
+ zu generieren.
 \end_layout
 
 \begin_layout Standard

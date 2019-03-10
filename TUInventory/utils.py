@@ -59,6 +59,7 @@ def check_if_file_exists(path):
 def normalize_filename(string):
     """Remove all non ASCII letters and digits from a string and 
     replace whitespaces with underscores keeping dots untouched"""
+    string = umlaut_converter(string)
     segs = string.split(".")
     for i, seg in enumerate(segs):
         segs[i] = re.sub(r"[\s]", "_", segs[i])
@@ -68,4 +69,4 @@ def normalize_filename(string):
 
 def umlaut_converter(string):
     """Convert all umlauts to their e-equivalent"""
-    return umlauts.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
+    return string.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")

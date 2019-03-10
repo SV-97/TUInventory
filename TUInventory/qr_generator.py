@@ -24,7 +24,7 @@ def generate_qr(device, path):
     else:
         raise NotImplementedError("See qrcode-docs at https://pypi.org/project/qrcode/ to see how to install additional formats", filetype)
     img.save(str(path))
-    logger.info("Succesfully created and saved qr-code for {device.uid}")
+    logger.info(f"Succesfully created and saved qr-code for {device.uid}")
 
 
 if __name__=="__main__":

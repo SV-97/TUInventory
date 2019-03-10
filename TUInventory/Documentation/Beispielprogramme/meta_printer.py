@@ -10,7 +10,7 @@ class Singleton(type):
     def __call__(self):
         cls = super().__call__()
         self.counter.update((cls.__class__,))
-        if self.counter[cls.__class__] > 1:
+        if self.counter[cls.__class__] > 2:
             raise ResourceWarning(
                 f"{cls.__class__.__name__} should only be instantiated once!")
         return cls
@@ -19,10 +19,15 @@ class Singleton(type):
 class _ParallelPrint(Thread, metaclass=Singleton):
     """Provides a threadsafe print, instantiation below"""
     print_ = Queue()
+
+    def __new__(cls):
+        instance = super().__new__(cls)
+        setattr(cls, "__call__", cls.print_.put)
+        return instance
+
     def __init__(self):
         super().__init__(name=f"{self.__class__.__name__}Thread")
         self.daemon = True
-        self.__class__._created = True
 
     @classmethod
     def run(cls):
@@ -34,4 +39,4 @@ class _ParallelPrint(Thread, metaclass=Singleton):
 
 printer = _ParallelPrint()
 printer.start()
-print_ = printer.print_.put
+printer("test")

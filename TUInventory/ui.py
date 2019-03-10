@@ -540,11 +540,13 @@ class MainDialog(QtWidgets.QMainWindow):
         messagebox.exec_()
 
     def b_save_device_click(self):
+        """Dialog to choose path for qr-codes"""
         qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Bitte wählen Sie ein Verzeichnis")
         if qr_path:
             self.t_path_device.setText(qr_path)
 
     def b_change_device_click(self):
+        """Change Responsibility of a Device"""
         new_location = self.cb_device_location.currentText() # gives location.name
         new_user = self.cb_device_user.currentText()    # gives 'user.uid user.surname user.name'
         user_uid = int(new_user.split(" ")[0])
@@ -559,6 +561,15 @@ class MainDialog(QtWidgets.QMainWindow):
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
             location = session.query(classes.Location).filter_by(name=new_location).first()
             user = session.query(classes.User).filter_by(uid=user_uid).first()
+            if self.logged_in_user:
+                if user.uid != self.logged_in_user.uid and not self.logged_in_user.is_admin:
+                    self.statusBar().setStyleSheet("color: red")
+                    self.statusBar().showMessage("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig", 5000)
+                    return    
+            else:
+                self.statusBar().setStyleSheet("color: red")
+                self.statusBar().showMessage("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig", 5000)
+                return
             resp.location = location
             resp.user = user
             logger.info(f"Modified Responsibility for Device {resp.device.uid}")
@@ -566,9 +577,14 @@ class MainDialog(QtWidgets.QMainWindow):
             self.statusBar().showMessage(f"Verantwortlichkeit für Gerät {resp.device.uid} wurde bearbeitet", 5000)
 
     def b_delete_device_click(self):
+        """Delete device from database"""
         device = int(self.t_code_device.text().split(" ")[-1])
         if device == "":
             self.not_all_fields_filled_notice()
+            return
+        if not self.logged_in_user:
+            self.statusBar().setStyleSheet("color: red")
+            self.statusBar().showMessage("Um Geräte zu löschen müssen Sie angemeldet sein.", 5000)
             return
         with CSession() as session:
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
@@ -577,7 +593,10 @@ class MainDialog(QtWidgets.QMainWindow):
             logger.info(f"Deleted Device {resp.device.uid}")
             self.statusBar().setStyleSheet("color: green")
             self.statusBar().showMessage(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5000)
-        
+            self.t_code_device.setText("")
+            self.t_code_user.setText("")
+            self.t_code_location.setText("")
+            self.set_tree()
 
     def b_create_device_click(self): # todo: handle if logged in user is no admin and can't create devices for others
         article = self.cb_article_d.currentText()
@@ -595,6 +614,15 @@ class MainDialog(QtWidgets.QMainWindow):
             article = session.query(classes.Article).filter_by(name=article).first()
             user = session.query(classes.User).filter_by(uid=user_uid).first()
             location = session.query(classes.Location).filter_by(name=location).first()
+            if self.logged_in_user:
+                if user.uid != self.logged_in_user.uid and not self.logged_in_user.is_admin:
+                    self.statusBar().setStyleSheet("color: red")
+                    self.statusBar().showMessage("Um Geräte für einen anderen Nutzer zu erzeugen ist ein Administrator nötig", 5000)
+                    return
+            else:
+                self.statusBar().setStyleSheet("color: red")
+                self.statusBar().showMessage(f"Um Geräte zu erzeugen müssen sie eingeloggt sein.", 5000)
+                return  
             device = classes.Device()
             session.add(device)
             device.article = article
@@ -665,13 +693,17 @@ class MainDialog(QtWidgets.QMainWindow):
         """Slot that's called if the camera recognized a barcode"""
         logger.info(f"Recognized barcode: {str_}")
         try:
-            match = re.match(r"id=(?P<id>\d+) name=(?P<name>.*)", str_)
+            match = re.search(r"id=(?P<id>\d+).*", str_)
+            # Could also match on r"id=(?P<id>\d+).*name=(?P<name>.*)" to only recognize codes that contain name and uid
             uid = match.group("id")
         except AttributeError:
             logger.info("Tried scanning external code/code with wrong data")
             return
         with CSession() as session:
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=uid).first()
+            if resp is None:
+                logger.info(f"Scanned device is not in Database {uid}")
+                return
             self.t_code_device.setText(str(resp.device))
             self.t_code_user.setText(str(resp.user))
             self.t_code_location.setText(str(resp.location))
@@ -691,7 +723,11 @@ class LoginDialog(QtWidgets.QDialog):
     def b_login_click(self):
         username = self.t_username.text()
         password = self.t_password.text()
-        self.parent.logged_in_user = slots.login(username, password)
+        try:
+            self.parent.logged_in_user = slots.login(username, password)
+        except ValueError:
+            self.parent.statusBar().setStyleSheet("color: red")
+            self.parent.statusBar().showMessage(f"Unbekannter Benutzer: {username} bekannt", 5000)
         self.close()
 
     def b_password_lost_click(self):
