@@ -2,7 +2,7 @@
 
 from collections import Counter
 from time import sleep
-from sys import stderr
+from sys import platform, stderr
 import threading
 import queue
 
@@ -244,18 +244,19 @@ class LazyVideoStream(threading.Thread):
 
 
 class Camera():
-    """Context Manager for video streams"""
     def __init__(self, camera_id=0):
         self.camera_id = camera_id
-
     def __enter__(self):
-        self.camera = cv2.VideoCapture(cv2.CAP_DSHOW + self.camera_id)
+        if "win32" in platform:
+            self.camera = cv2.VideoCapture(cv2.CAP_DSHOW + self.camera_id)
+        else:
+            self.camera = cv2.VideoCapture(self.camera_id)
+            
         if not self.camera.isOpened():
             raise IOError(f"Failed to open camera {self.camera_id}")
         while not self.camera.read()[0]:
             pass
         return self.camera
-
     def __exit__(self, exc_type, exc_value, traceback):
         self.camera.release()
 
