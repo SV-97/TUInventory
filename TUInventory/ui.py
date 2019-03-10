@@ -693,13 +693,17 @@ class MainDialog(QtWidgets.QMainWindow):
         """Slot that's called if the camera recognized a barcode"""
         logger.info(f"Recognized barcode: {str_}")
         try:
-            match = re.match(r"id=(?P<id>\d+) name=(?P<name>.*)", str_)
+            match = re.search(r"id=(?P<id>\d+).*", str_)
+            # Could also match on r"id=(?P<id>\d+).*name=(?P<name>.*)" to only recognize codes that contain name and uid
             uid = match.group("id")
         except AttributeError:
             logger.info("Tried scanning external code/code with wrong data")
             return
         with CSession() as session:
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=uid).first()
+            if resp is None:
+                logger.info(f"Scanned device is not in Database {uid}")
+                return
             self.t_code_device.setText(str(resp.device))
             self.t_code_user.setText(str(resp.user))
             self.t_code_location.setText(str(resp.location))
