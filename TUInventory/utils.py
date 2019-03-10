@@ -69,4 +69,4 @@ def normalize_filename(string):
 
 def umlaut_converter(string):
     """Convert all umlauts to their e-equivalent"""
-    return umlauts.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
+    return string.replace("ä", "ae").replace("ö", "oe").replace("ü", "ue")
