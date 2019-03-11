@@ -10,6 +10,8 @@ from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
 from PyQt5.QtCore import QSize, Qt, pyqtSignal
 from PyQt5.QtWidgets import QFileDialog, QPushButton, QStyle
 
+from time import sleep
+
 import classes
 import keys
 from logger import logger
@@ -22,6 +24,8 @@ CSession = classes.setup_context_session(classes.engine)
 
 class MainDialog(QtWidgets.QMainWindow):
     code_recognized = pyqtSignal(str)
+    statusbar_reset = pyqtSignal()
+
 
     def __init__(self, parent=None):
         path = utils.absolute_path("mainScaling.ui")
@@ -69,6 +73,13 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_tab_4.clicked.connect(self.b_tab_4_click)
         self.ui.b_tab_5.clicked.connect(self.b_tab_5_click)
 
+        
+        self.ui.b_save_device.setIcon(QtGui.QIcon("pictures/folder.png"))
+        self.ui.b_save_device.setIconSize(QtCore.QSize(20,20))
+        self.ui.b_save_device_2.setIcon(QtGui.QIcon("pictures/folder.png"))
+        self.ui.b_save_device_2.setIconSize(QtCore.QSize(20,20))
+
+
         self.ui.in_phone.textChanged.connect(self.set_phonenumber)
 
         self.ui.cb_producer_d.currentIndexChanged.connect(self.reload_combobox_article_d)
@@ -109,14 +120,12 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.setPalette(palette5)
         self.ui.line_5.setAutoFillBackground(True)
 
-        palette6 = self.ui.statusbar.palette() # statusBar / blue
-        #role6 = self.statusBar.backgroundRole()
-        palette6.setColor(self.ui.statusbar.backgroundRole(), QColor('blue'))
-        self.ui.statusbar.setPalette(palette6)
-        self.ui.statusbar.setAutoFillBackground(True)
-        
-        self.statusBar().setStyleSheet("color: white")   
-        self.statusBar().showMessage("               ©2019 by SVYK – all rights reserved         ")
+        palette7 = self.bottom_frame.palette() # bottomframe
+        role7 = self.bottom_frame.backgroundRole()
+        palette7.setColor(role7, QColor('blue'))
+        self.ui.bottom_frame.setPalette(palette7)
+        self.ui.bottom_frame.setAutoFillBackground(True)
+        self.ui.bottom_frame.setStyleSheet("color: white")
 
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
@@ -126,6 +135,17 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.hide()
         self.update_user_dependant()
         self.code_recognized.connect(self.recognized_barcode)
+        self.statusbar_reset.connect(self.status_bar_clear)
+
+    def status_bar_text(self, text, time, color):
+        self.ui.label_status.setStyleSheet(f"color: {color}")
+        self.ui.label_status.setText(text)
+        self.timeout = classes.Timeout(time, MainDialog.status_bar_clear, self)
+        self.timeout.start()
+    
+    def status_bar_clear(self):
+        self.ui.label_status.setStyleSheet("color: black")
+        self.ui.label_status.setText("")
 
     def b_home_1_click(self): # home
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -134,6 +154,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_3.hide()
         self.ui.line_4.hide()
         self.ui.line_5.hide()
+        self.status_bar_text("Home", 2, "red")
 
     def b_tab_1_click(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -378,8 +399,10 @@ class MainDialog(QtWidgets.QMainWindow):
     def timed_out(self):
         logger.info(f"User {self.logged_in_user.uid} logged out due to inactivity")
 
-        self.statusBar().setStyleSheet("color: #ff0000")   
-        self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 5000)
+        #self.statusBar().setStyleSheet("color: #ff0000")   
+        #self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 5000)
+        self.status_bar_text("Sie wurden wegen Inaktivität automatich ausgeloggt!", 5, "red")
+
         self.in_name.setText("")
         self.in_surname.setText("")
         self.in_email.setText("")
@@ -397,8 +420,9 @@ class MainDialog(QtWidgets.QMainWindow):
             self.ui.log_in_out.setCurrentIndex(1)
             self.label.setText(str(self.logged_in_user)) 
 
-            self.statusBar().setStyleSheet("color: #008080")
-            self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user} angemeldet.", 1500)
+            #self.statusBar().setStyleSheet("color: #008080")
+            #self.statusBar().showMessage(f"Sie sind jetzt als {self.logged_in_user} angemeldet.", 1500)
+            self.status_bar_text(f"Sie sind jetzt als {self.logged_in_user} angemeldet", 2, "green")
 
             self.in_name.setText(self.logged_in_user.name) # fill textEdits for UserChange
             self.in_surname.setText(self.logged_in_user.surname)
@@ -451,8 +475,9 @@ class MainDialog(QtWidgets.QMainWindow):
             return
         
         if password_1 != password_2:
-            self.statusBar().setStyleSheet("color: red")   
-            self.statusBar().showMessage("Die Passwörter stimmen nicht überein.", 5000)
+            #self.statusBar().setStyleSheet("color: red")   
+            #self.statusBar().showMessage("Die Passwörter stimmen nicht überein.", 5000)       
+            self.status_bar_text("Die Passwörter stimmen nicht überein.", 5, "red")
             return
         else:
             password = password_1
@@ -473,13 +498,15 @@ class MainDialog(QtWidgets.QMainWindow):
             if self.logged_in_user and password:
                 user.hash(password)
                 
-        self.statusBar().setStyleSheet("color: green")   
+        #self.statusBar().setStyleSheet("color: green")   
         if self.logged_in_user:
             self.logged_in_user = user
             logger.info(f"User {user} changed through UI")
-            self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
+            #self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
+            self.status_bar_text(f"Bentzer {user} wurde erfolgreich geändert", 5, "green")
         else:
-            self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich angelegt.", 5000)
+            #self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich angelegt.", 5000)
+            self.status_bar_text(f"Benutzer {user} wurde erfolgreich angelegt.", 5, "green")
             logger.info(f"User {user} created through UI")
 
     def b_user_change_admin_click(self):
@@ -509,8 +536,9 @@ class MainDialog(QtWidgets.QMainWindow):
         if self.logged_in_user.uid == user.uid:
             self.logged_in_user = user
         logger.info(f"User {user} changed through UI by admin {self.logged_in_user.uid}")
-        self.statusBar().setStyleSheet("color: green")
-        self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
+        #self.statusBar().setStyleSheet("color: green")
+        #self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
+        self.status_bar_text(f"Benutzer {user} wurde erfolgreich geändert.", 5, "green")
         
     def reset_password(self):
         """Set new password and salt for user, push it to db and show it in UI"""
@@ -563,18 +591,21 @@ class MainDialog(QtWidgets.QMainWindow):
             user = session.query(classes.User).filter_by(uid=user_uid).first()
             if self.logged_in_user:
                 if user.uid != self.logged_in_user.uid and not self.logged_in_user.is_admin:
-                    self.statusBar().setStyleSheet("color: red")
-                    self.statusBar().showMessage("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig", 5000)
+                    #self.statusBar().setStyleSheet("color: red")
+                    #self.statusBar().showMessage("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig", 5000)
+                    self.status_bar_text("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig!", 5, "red")
                     return    
             else:
-                self.statusBar().setStyleSheet("color: red")
-                self.statusBar().showMessage("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig", 5000)
+                #self.statusBar().setStyleSheet("color: red")
+                #self.statusBar().showMessage("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig", 5000)
+                self.status_bar_text("Um Geräte einem anderen Nutzer zuzuweisen ist ein Administrator nötig!", 5, "red")
                 return
             resp.location = location
             resp.user = user
             logger.info(f"Modified Responsibility for Device {resp.device.uid}")
-            self.statusBar().setStyleSheet("color: green")
-            self.statusBar().showMessage(f"Verantwortlichkeit für Gerät {resp.device.uid} wurde bearbeitet", 5000)
+            #self.statusBar().setStyleSheet("color: green")
+            #self.statusBar().showMessage(f"Verantwortlichkeit für Gerät {resp.device.uid} wurde bearbeitet", 5000)
+            self.status_bar_text(f"Verantwortlichkeit für Gerät {resp.device.uid} wurde bearbeitet", 5, "green")
 
     def b_delete_device_click(self):
         """Delete device from database"""
@@ -583,16 +614,18 @@ class MainDialog(QtWidgets.QMainWindow):
             self.not_all_fields_filled_notice()
             return
         if not self.logged_in_user:
-            self.statusBar().setStyleSheet("color: red")
-            self.statusBar().showMessage("Um Geräte zu löschen müssen Sie angemeldet sein.", 5000)
+            #self.statusBar().setStyleSheet("color: red")
+            #self.statusBar().showMessage("Um Geräte zu löschen müssen Sie angemeldet sein.", 5000)
+            self.status_bar_text("Um Geräte zu löschen müssen Sie angemeldet sein.", 5, "red")
             return
         with CSession() as session:
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
             session.delete(resp.device)
             session.delete(resp)
             logger.info(f"Deleted Device {resp.device.uid}")
-            self.statusBar().setStyleSheet("color: green")
-            self.statusBar().showMessage(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5000)
+            #self.statusBar().setStyleSheet("color: green")
+            #self.statusBar().showMessage(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5000)
+            self.status_bar_text(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5, "green")
             self.t_code_device.setText("")
             self.t_code_user.setText("")
             self.t_code_location.setText("")
@@ -616,12 +649,14 @@ class MainDialog(QtWidgets.QMainWindow):
             location = session.query(classes.Location).filter_by(name=location).first()
             if self.logged_in_user:
                 if user.uid != self.logged_in_user.uid and not self.logged_in_user.is_admin:
-                    self.statusBar().setStyleSheet("color: red")
-                    self.statusBar().showMessage("Um Geräte für einen anderen Nutzer zu erzeugen ist ein Administrator nötig", 5000)
+                    #self.statusBar().setStyleSheet("color: red")
+                    #self.statusBar().showMessage("Um Geräte für einen anderen Nutzer zu erzeugen ist ein Administrator nötig", 5000)
+                    self.status_bar_text("Um Geräte für einen anderen Nutzer zu erzeugen ist ein Administrator nötig!", 5, "red")
                     return
             else:
-                self.statusBar().setStyleSheet("color: red")
-                self.statusBar().showMessage(f"Um Geräte zu erzeugen müssen sie eingeloggt sein.", 5000)
+                #self.statusBar().setStyleSheet("color: red")
+                #self.statusBar().showMessage(f"Um Geräte zu erzeugen müssen sie eingeloggt sein.", 5000)
+                self.status_bar_text("Um Geräte zu erzeugen müssen Sie eingeloggt sein.", 5, "red")
                 return  
             device = classes.Device()
             session.add(device)
@@ -632,18 +667,21 @@ class MainDialog(QtWidgets.QMainWindow):
         if not re.match(r".*\.(?P<filetype>.*$)", str(path), re.IGNORECASE):
             path /= utils.normalize_filename(f"{device.uid}_{device.article.name}.svg")
         if not utils.check_if_file_exists(path):
-            self.statusBar().setStyleSheet("color: red")
-            self.statusBar().showMessage(f"{path} ist kein gültiger Pfad/eine bereits vorhandede Datei.", 5000)
+            #self.statusBar().setStyleSheet("color: red")
+            #self.statusBar().showMessage(f"{path} ist kein gültiger Pfad/eine bereits vorhandede Datei.", 5000)
+            self.status_bar_text(f"{path} ist kein gültiger Pfad/eine bereits vorhandene Datei.", 5, "red")
             return
         try:
             generate_qr(device, path)
         except NotImplementedError as e:
             logger.error(str(e))
-            self.statusBar().setStyleSheet("color: red")
-            self.statusBar().showMessage(f"Um {e[1]} Dateien zu speichern sind weitere Pakete nötig. Das Standartformat ist svg.", 10000)
+            #self.statusBar().setStyleSheet("color: red")
+            #self.statusBar().showMessage(f"Um {e[1]} Dateien zu speichern sind weitere Pakete nötig. Das Standartformat ist svg.", 10000)
+            self.status_bar_text(f"Um {e[1]} Dateien zu speichern sind weitere Packete nötig. Das Standartformat ist svg.", 10, "red")
         else:
-            self.statusBar().setStyleSheet("color: green")
-            self.statusBar().showMessage(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert.", 10000)
+            #self.statusBar().setStyleSheet("color: green")
+            #self.statusBar().showMessage(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert.", 10000)
+            self.status_bar_text(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert.", 10, "green")
 
     def b_create_article_click(self):
         name = self.t_name_a.text()
@@ -659,11 +697,13 @@ class MainDialog(QtWidgets.QMainWindow):
             slots.create_article(name=name, producer=producer)
         except classes.IntegrityError as e:
             logger.info(str(e))
-            self.statusBar().setStyleSheet("color: red")
-            self.statusBar().showMessage(f'Artikel mit Namen "{name}" existiert bereits.', 5000)
+            #self.statusBar().setStyleSheet("color: red")
+            #self.statusBar().showMessage(f'Artikel mit Namen "{name}" existiert bereits.', 5000)
+            self.status_bar_text(f'Artikel mit Name "{name}" existiert bereits.', 5, "red")
         else:
-            self.statusBar().setStyleSheet("color: green")
-            self.statusBar().showMessage(f'Artikel "{name}" wurde angelegt.', 5000)
+            #self.statusBar().setStyleSheet("color: green")
+            #self.statusBar().showMessage(f'Artikel "{name}" wurde angelegt.', 5000)
+            self.status_bar_text(f'Artikel "{name}" wurde angelegt.', 5, "green")
         self.t_name_a.setText("")
         self.set_combobox_article_d()
 
@@ -673,11 +713,13 @@ class MainDialog(QtWidgets.QMainWindow):
             slots.create_producer(name=name)
         except classes.IntegrityError as e:
             logger.info(str(e))
-            self.statusBar().setStyleSheet("color: red")
-            self.statusBar().showMessage(f'Produzent mit Namen "{name}" existiert bereits.', 5000)
+            #self.statusBar().setStyleSheet("color: red")
+            #self.statusBar().showMessage(f'Produzent mit Namen "{name}" existiert bereits.', 5000)
+            self.status_bar_text(f'Produzent mit Namen "{name}" existiert bereits.', 5, "red")
         else:
-            self.statusBar().setStyleSheet("color: green")
-            self.statusBar().showMessage(f'Produzent "{name}" wurde angelegt.', 5000)
+            #self.statusBar().setStyleSheet("color: green")
+            #self.statusBar().showMessage(f'Produzent "{name}" wurde angelegt.', 5000)
+            self.status_bar_text(f'Produzent "{name}" wurde angelegt.', 5, "green")
         self.t_name_p.setText("")
         self.set_combobox_producer_d()
         self.set_combobox_producer_a()
@@ -686,8 +728,9 @@ class MainDialog(QtWidgets.QMainWindow):
         """Show message that user hasn't filled all necessary fields
         This could also be reworked to use signals and slots
         """
-        self.statusBar().setStyleSheet("color: #ff0000")
-        self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
+        #self.statusBar().setStyleSheet("color: #ff0000")
+        #self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
+        self.status_bar_text("Bitte füllen Sie alle Felder aus", 5, "red")
 
     def recognized_barcode(self, str_):
         """Slot that's called if the camera recognized a barcode"""
@@ -726,8 +769,9 @@ class LoginDialog(QtWidgets.QDialog):
         try:
             self.parent.logged_in_user = slots.login(username, password)
         except ValueError:
-            self.parent.statusBar().setStyleSheet("color: red")
-            self.parent.statusBar().showMessage(f"Unbekannter Benutzer: {username} bekannt", 5000)
+            #self.parent.statusBar().setStyleSheet("color: red")
+            #self.parent.statusBar().showMessage(f"Unbekannter Benutzer: {username} bekannt", 5000)
+            self.parent.status_bar_text(f'Unbekannter Benutzer: "{username}" ist nicht bekannt', 5, "red")
         self.close()
 
     def b_password_lost_click(self):
@@ -745,6 +789,8 @@ class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for pa
         self.b_password_reset.clicked.connect(self.b_password_reset_click)
         self.b_password_close.clicked.connect(self.b_password_close_click)
         self.t_path.setText(self.filepath)
+        self.ui.b_browse.setIcon(QtGui.QIcon("pictures/folder.png"))
+        self.ui.b_browse.setIconSize(QtCore.QSize(20,20))
     
     def b_browse_click(self):
         self.filepath = QtWidgets.QFileDialog.getOpenFileName(self, 'Single File')
@@ -765,8 +811,9 @@ class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for pa
             user = session.query(classes.User).filter_by(e_mail=user).first()
             session.add(user)
             if not user:
-                self.parent.parent.statusBar().setStyleSheet("color: red")
-                self.parent.parent.statusBar().showMessage("Unbekannter Benutzer", 5000)
+                #self.parent.parent.statusBar().setStyleSheet("color: red")
+                #self.parent.parent.statusBar().showMessage("Unbekannter Benutzer", 5000)
+                self.parent.status_bar_text("Unbekannter Benutzer", 5, "red")
                 return
             password = slots.reset_admin_password(user, public_path, private_path)
         
