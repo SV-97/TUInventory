@@ -511,30 +511,53 @@ if __name__ == "__main__":
     for user in users:
         user.location = random.choice(locations)
 
-    producer1 = Producer("Padcon")
-    producer2 = Producer("VIA Embedded")
-    producer3 = Producer("Jetway")
-    producer4 = Producer("Hirschmann")
+
+    producer1 = Producer("ABB")
+    producer2 = Producer("iEi")
+    producer3 = Producer("Moxa")
+    producer4 = Producer("Wago")
+    producer5 = Producer("Phoenix Contact")
+    producer6 = Producer("Padcon")
+    producer7 = Producer("VIA Embedded")
+    producer8 = Producer("Jetway")
+    producer9 = Producer("Hirschmann")
     producers = (
         producer1,
         producer2,
         producer3,
-        producer4)
+        producer4,
+        producer5,
+        producer6,
+        producer7,
+        producer8,
+        producer9)
 
-    article1 = Article("PID Killer")
-    article2 = Article("IPC AMOS-3005-1Q12A2")
-    article3 = Article("IPC JBC323U591-3160-B")
-    article4 = Article("IPC HM-1000")
-    article5 = Article("MSwitch JRL116M-2F-M")
-    article6 = Article("Switch SPIDER 8TX")
-    article7 = Article("Switch SPIDER 5TX")
+    article1 = Article("CP-E 24/20.0")
+    article2 = Article("EtherDevice Switch 316")
+    article3 = Article("ioLogik E1241")
+    article4 = Article("Managed Switch 852-104")
+    article5 = Article("MINI-PS-100-240AC/5DC/3")
+    article6 = Article("UIBX-250-BW")
+    article7 = Article("PID Killer")
+    article8 = Article("IPC AMOS-3005-1Q12A2")
+    article9 = Article("IPC JBC323U591-3160-B")
+    article10 = Article("IPC HM-1000")
+    article11 = Article("MSwitch JRL116M-2F-M")
+    article12 = Article("Switch SPIDER 8TX")
+    article13 = Article("Switch SPIDER 5TX")
     article1.producer = producer1
-    article2.producer = producer2
+    article2.producer = producer3
     article3.producer = producer3
-    article4.producer = producer3
-    article5.producer = producer3
-    article6.producer = producer4
-    article7.producer = producer4
+    article4.producer = producer4
+    article5.producer = producer5
+    article6.producer = producer2
+    article7.producer = producer6
+    article8.producer = producer7
+    article9.producer = producer8
+    article10.producer = producer8
+    article11.producer = producer8
+    article12.producer = producer9
+    article13.producer = producer9
     articles = (
         article1, 
         article2, 
@@ -542,7 +565,13 @@ if __name__ == "__main__":
         article4, 
         article5,
         article6,
-        article7)
+        article7,
+        article8, 
+        article9, 
+        article10, 
+        article11, 
+        article12,
+        article13)
 
     devices = [Device(str(i)) for i in range(200)]
     resps = [Responsibility() for device in devices]
