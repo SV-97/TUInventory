@@ -9,8 +9,8 @@ from secrets import randbits
 from threading import Lock, Thread
 from time import sleep, time
 
-import argon2
 import cv2
+from passlib.hash import argon2
 import sqlalchemy
 from sqlalchemy import Boolean, Column, Float, Integer, LargeBinary, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -293,15 +293,14 @@ class User(Base):
         The salt is concatenated with the e_mail to get the final salt
         """
         salt = f"{self.salt}{self.e_mail}".encode()
-
-        self.password = argon2.argon2_hash(
-            password, 
-            salt, 
-            t=512, 
-            m=1024, 
-            p=8, 
-            buflen=256, 
-            argon_type=argon2.Argon2Type.Argon2_i)
+        hash = argon2.using(
+            salt=salt, 
+            rounds=512, 
+            memory_cost=1024, 
+            max_threads=8, 
+            digest_size=256).hash(password)
+        self.password = re.match(r"\$argon2i\$v=\d+\$m=\d+,t=\d+,p=\d+\$(?P<hash>.+)", hash).\
+            group("hash").encode()
 
     def __str__(self):
         return f"{self.name} {self.surname}".title()
