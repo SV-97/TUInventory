@@ -10,8 +10,6 @@ from PyQt5.QtGui import QColor, QIcon, QPainter, QPen
 from PyQt5.QtCore import QSize, Qt, pyqtSignal
 from PyQt5.QtWidgets import QFileDialog, QPushButton, QStyle
 
-from time import sleep
-
 import classes
 import keys
 from logger import logger
@@ -24,8 +22,6 @@ CSession = classes.setup_context_session(classes.engine)
 
 class MainDialog(QtWidgets.QMainWindow):
     code_recognized = pyqtSignal(str)
-    statusbar_reset = pyqtSignal()
-
 
     def __init__(self, parent=None):
         path = utils.absolute_path("mainScaling.ui")
@@ -135,7 +131,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_5.hide()
         self.update_user_dependant()
         self.code_recognized.connect(self.recognized_barcode)
-        self.statusbar_reset.connect(self.status_bar_clear)
 
     def status_bar_text(self, text, time, color):
         self.ui.label_status.setStyleSheet(f"color: {color}")
@@ -154,7 +149,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_3.hide()
         self.ui.line_4.hide()
         self.ui.line_5.hide()
-        self.status_bar_text("Home", 2, "red")
 
     def b_tab_1_click(self):
         self.ui.stackedWidget.setCurrentIndex(0)
@@ -477,7 +471,7 @@ class MainDialog(QtWidgets.QMainWindow):
         if password_1 != password_2:
             #self.statusBar().setStyleSheet("color: red")   
             #self.statusBar().showMessage("Die Passwörter stimmen nicht überein.", 5000)       
-            self.status_bar_text("Die Passwörter stimmen nicht überein.", 5, "red")
+            self.status_bar_text("Die Passwörter stimmen nicht überein", 5, "red")
             return
         else:
             password = password_1
@@ -503,10 +497,10 @@ class MainDialog(QtWidgets.QMainWindow):
             self.logged_in_user = user
             logger.info(f"User {user} changed through UI")
             #self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
-            self.status_bar_text(f"Bentzer {user} wurde erfolgreich geändert", 5, "green")
+            self.status_bar_text(f"Benutzer {user} wurde erfolgreich geändert", 5, "green")
         else:
             #self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich angelegt.", 5000)
-            self.status_bar_text(f"Benutzer {user} wurde erfolgreich angelegt.", 5, "green")
+            self.status_bar_text(f"Benutzer {user} wurde erfolgreich angelegt", 5, "green")
             logger.info(f"User {user} created through UI")
 
     def b_user_change_admin_click(self):
@@ -538,7 +532,7 @@ class MainDialog(QtWidgets.QMainWindow):
         logger.info(f"User {user} changed through UI by admin {self.logged_in_user.uid}")
         #self.statusBar().setStyleSheet("color: green")
         #self.statusBar().showMessage(f"Benutzer {user} wurde erfolgreich geändert.", 5000)
-        self.status_bar_text(f"Benutzer {user} wurde erfolgreich geändert.", 5, "green")
+        self.status_bar_text(f"Benutzer {user} wurde erfolgreich geändert", 5, "green")
         
     def reset_password(self):
         """Set new password and salt for user, push it to db and show it in UI"""
@@ -616,7 +610,7 @@ class MainDialog(QtWidgets.QMainWindow):
         if not self.logged_in_user:
             #self.statusBar().setStyleSheet("color: red")
             #self.statusBar().showMessage("Um Geräte zu löschen müssen Sie angemeldet sein.", 5000)
-            self.status_bar_text("Um Geräte zu löschen müssen Sie angemeldet sein.", 5, "red")
+            self.status_bar_text("Um Geräte zu löschen müssen Sie angemeldet sein", 5, "red")
             return
         with CSession() as session:
             resp = session.query(classes.Responsibility).join(classes.Device).filter_by(uid=device).first()
@@ -625,7 +619,7 @@ class MainDialog(QtWidgets.QMainWindow):
             logger.info(f"Deleted Device {resp.device.uid}")
             #self.statusBar().setStyleSheet("color: green")
             #self.statusBar().showMessage(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5000)
-            self.status_bar_text(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt.", 5, "green")
+            self.status_bar_text(f"Gerät {resp.device.uid} wurde aus der Datenbank entfernt", 5, "green")
             self.t_code_device.setText("")
             self.t_code_user.setText("")
             self.t_code_location.setText("")
@@ -656,7 +650,7 @@ class MainDialog(QtWidgets.QMainWindow):
             else:
                 #self.statusBar().setStyleSheet("color: red")
                 #self.statusBar().showMessage(f"Um Geräte zu erzeugen müssen sie eingeloggt sein.", 5000)
-                self.status_bar_text("Um Geräte zu erzeugen müssen Sie eingeloggt sein.", 5, "red")
+                self.status_bar_text("Um Geräte zu erzeugen müssen Sie eingeloggt sein", 5, "red")
                 return  
             device = classes.Device()
             session.add(device)
@@ -669,7 +663,7 @@ class MainDialog(QtWidgets.QMainWindow):
         if not utils.check_if_file_exists(path):
             #self.statusBar().setStyleSheet("color: red")
             #self.statusBar().showMessage(f"{path} ist kein gültiger Pfad/eine bereits vorhandede Datei.", 5000)
-            self.status_bar_text(f"{path} ist kein gültiger Pfad/eine bereits vorhandene Datei.", 5, "red")
+            self.status_bar_text(f"{path} ist kein gültiger Pfad/eine bereits vorhandene Datei", 5, "red")
             return
         try:
             generate_qr(device, path)
@@ -677,11 +671,11 @@ class MainDialog(QtWidgets.QMainWindow):
             logger.error(str(e))
             #self.statusBar().setStyleSheet("color: red")
             #self.statusBar().showMessage(f"Um {e[1]} Dateien zu speichern sind weitere Pakete nötig. Das Standartformat ist svg.", 10000)
-            self.status_bar_text(f"Um {e[1]} Dateien zu speichern sind weitere Packete nötig. Das Standartformat ist svg.", 10, "red")
+            self.status_bar_text(f"Um {e[1]} Dateien zu speichern sind weitere Packete nötig. Das Standartformat ist svg", 10, "red")
         else:
             #self.statusBar().setStyleSheet("color: green")
             #self.statusBar().showMessage(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert.", 10000)
-            self.status_bar_text(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert.", 10, "green")
+            self.status_bar_text(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert", 10, "green")
 
     def b_create_article_click(self):
         name = self.t_name_a.text()
@@ -699,11 +693,11 @@ class MainDialog(QtWidgets.QMainWindow):
             logger.info(str(e))
             #self.statusBar().setStyleSheet("color: red")
             #self.statusBar().showMessage(f'Artikel mit Namen "{name}" existiert bereits.', 5000)
-            self.status_bar_text(f'Artikel mit Name "{name}" existiert bereits.', 5, "red")
+            self.status_bar_text(f'Artikel mit Name "{name}" existiert bereits', 5, "red")
         else:
             #self.statusBar().setStyleSheet("color: green")
             #self.statusBar().showMessage(f'Artikel "{name}" wurde angelegt.', 5000)
-            self.status_bar_text(f'Artikel "{name}" wurde angelegt.', 5, "green")
+            self.status_bar_text(f'Artikel "{name}" wurde angelegt', 5, "green")
         self.t_name_a.setText("")
         self.set_combobox_article_d()
 
@@ -715,11 +709,11 @@ class MainDialog(QtWidgets.QMainWindow):
             logger.info(str(e))
             #self.statusBar().setStyleSheet("color: red")
             #self.statusBar().showMessage(f'Produzent mit Namen "{name}" existiert bereits.', 5000)
-            self.status_bar_text(f'Produzent mit Namen "{name}" existiert bereits.', 5, "red")
+            self.status_bar_text(f'Produzent mit Namen "{name}" existiert bereits', 5, "red")
         else:
             #self.statusBar().setStyleSheet("color: green")
             #self.statusBar().showMessage(f'Produzent "{name}" wurde angelegt.', 5000)
-            self.status_bar_text(f'Produzent "{name}" wurde angelegt.', 5, "green")
+            self.status_bar_text(f'Produzent "{name}" wurde angelegt', 5, "green")
         self.t_name_p.setText("")
         self.set_combobox_producer_d()
         self.set_combobox_producer_a()
@@ -728,7 +722,7 @@ class MainDialog(QtWidgets.QMainWindow):
         """Show message that user hasn't filled all necessary fields
         This could also be reworked to use signals and slots
         """
-        #self.statusBar().setStyleSheet("color: #ff0000")
+        #self.statusBar().setStyleSheet("color: red")
         #self.statusBar().showMessage("Bitte füllen Sie alle Felder aus", 5000)
         self.status_bar_text("Bitte füllen Sie alle Felder aus", 5, "red")
 
@@ -750,6 +744,7 @@ class MainDialog(QtWidgets.QMainWindow):
             self.t_code_device.setText(str(resp.device))
             self.t_code_user.setText(str(resp.user))
             self.t_code_location.setText(str(resp.location))
+            self.status_bar_text("Barcode erkannt", 2, "green")
         logger.info("Successfully processed barcode")
 
 
