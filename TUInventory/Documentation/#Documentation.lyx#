@@ -9330,7 +9330,7 @@ Analysecode zum Laufzeitvergleich verschiedener Iterationsmöglichkeiten
 \begin_layout Standard
 Im Beispiel wird hier für jedes Element einer Liste (die Liste beinhaltet
  alle ASCII Buchstaben) eine Funktion aufgerufen, die dieses Element printed.
- Dabei erfolgt das Printen jedoch nicht auf den Standardausgabestream 
+ Dabei erfolgt das Rrinten jedoch nicht auf den Standartausgabestream 
 \emph on
 stdout
 \emph default
@@ -9339,7 +9339,7 @@ stdout
 print
 \emph default
  regulär nutzt, sondern in eine temporäre Datei.
- Führt man diesen Code aus, ergibt sich folgende Ausgabe:
+ Führt man diesen Code aus ergibt sich folgende Ausgabe:
 \end_layout
 
 \begin_layout Standard
@@ -9411,8 +9411,7 @@ Visualisierung einer Testreihe
 Die Konsolenausgabe stellt dabei eine bestimmte Anzahl an Datensätzen dar,
  in denen jeweils 2000 mal der Funktionsaufruf durchgeführt und der jeweilige
  Durchschnitt der verschiedenen Methoden bestimmt wird.
- Die letzte Zeile jedes Datensatzes gibt die jeweils schnellste Methode
- an.
+ Die letzte Zeile jedes Datensatzes gibt die je schnellste Methode an.
 \end_layout
 
 \begin_layout Standard
