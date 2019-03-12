@@ -276,3 +276,7 @@ TUInventory/testUI\.py
 TUInventory/fileDialog\.py
 
 *.xcf
+
+*.ini
+
+*.key
