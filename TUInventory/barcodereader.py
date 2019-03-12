@@ -150,7 +150,8 @@ class LazyVideoStream(threading.Thread):
             target_resolution: gp_lock locked _target_resolution
     """
     def __init__(self, target_resolution=None, camera_id=0):
-        super().__init__(name=f"{self.__class__.__name__}Thread_{camera_id}")
+        super().__init__(name=f"{self.__class__.__name__}Thread_{id(self)}")
+        self.daemon = True
         self.camera = Camera(camera_id)
         self.camera_id = camera_id
         self._mirror = False
@@ -238,8 +239,9 @@ class LazyVideoStream(threading.Thread):
                 marked_frame, found_codes = self.find_and_mark_barcodes(frame)
                 if self.target_resolution:
                     marked_frame = cv2.resize(marked_frame, (self.target_resolution[0], self.target_resolution[1]))
-                self.frame = marked_frame
-                self.frame_queue.put((frame, found_codes))
+                if self.mirror:
+                    marked_frame = cv2.flip(marked_frame, 1)
+                self.frame_queue.put((marked_frame, found_codes))
                 self.request_queue.task_done()
 
 
@@ -259,6 +261,9 @@ class Camera():
         return self.camera
     def __exit__(self, exc_type, exc_value, traceback):
         self.camera.release()
+        while self.camera.isOpened():
+            pass
+        return True
 
 if __name__ == "__main__":
     lazy_feed = LazyVideoStream()
