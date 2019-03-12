@@ -354,6 +354,7 @@ class Timeout(Thread):
 
     def __init__(self, timeout, function, *args, **kwargs):
         super().__init__(name=f"{self.__class__.__name__}Thread_{function.__name__}")
+        self.daemon = True
         self.timeout = timeout
         self.function = function
         self.args = args
