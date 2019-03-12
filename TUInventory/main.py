@@ -26,6 +26,10 @@ if "win32" in sys.platform:
         logger.debug(str(e))
 
 
+class Dummy():
+    pass
+
+
 class SettingsManger(Thread):
     def __init__(self, video_ui_sync_1, video_ui_sync_2, videostream):
         super().__init__(name=f"{self.__class__.__name__}Thread_{id(self)}")
@@ -41,6 +45,7 @@ class SettingsManger(Thread):
             self.event.clear()
             config.read()
             self.videostream.mirror = config["mirror"]
+
 
 def main():
     public_key_path = keys.PUBLIC_KEY_PATH
@@ -67,17 +72,12 @@ def main():
         logger.info("Connected Camera to UI")
     except IOError as e:
         logger.error(str(e))
-
+        videostream = Dummy()
+        video_ui_sync_1 = Dummy()
+        video_ui_sync_2 = Dummy()
     
-    settings_manager = SettingsManger(video_ui_sync_1, video_ui_sync_1, videostream)
+    settings_manager = SettingsManger(video_ui_sync_1, video_ui_sync_2, videostream)
     settings_manager.start()
-    def setter(e):
-        while True:
-            sleep(20)
-            e.set()
-
-    signaller = Thread(target=setter, args=(settings_manager.event,))
-    signaller.start()
     return app.exec_()
 
 
