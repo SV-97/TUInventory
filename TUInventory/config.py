@@ -6,15 +6,12 @@ import re
 
 from utils import absolute_path
 
-bi_bool = bool
-builtins.bool = lambda s: False if s == "False" else bi_bool(s)
-
 
 class ConfigParserDict(configparser.ConfigParser):
     """Allow dict-like access to config items with main as standard-section"""
-    def __init__(self):
+    def __init__(self, config_file=absolute_path("config.ini")):
         super().__init__()
-        self.config_file = absolute_path("config.ini")
+        self.config_file = config_file
 
     @staticmethod
     def _key_conv(key):
@@ -31,6 +28,8 @@ class ConfigParserDict(configparser.ConfigParser):
         match = re.match(r"<class '(?P<type>.*)'> (?P<val>.*)", val)
         type_ = match.group("type")
         val = match.group("val")
+        if type_ == bool and val=="False":
+            return False
         return getattr(builtins, type_)(val)
 
     def __getitem__(self, key):
