@@ -11,6 +11,7 @@ from PyQt5.QtCore import QSize, Qt, pyqtSignal
 from PyQt5.QtWidgets import QFileDialog, QPushButton, QStyle
 
 import classes
+from config import config
 import keys
 from logger import logger
 import slots
@@ -371,7 +372,10 @@ class MainDialog(QtWidgets.QMainWindow):
         self.update_user_dependant()
         if self.logged_in_user:
             # logger.info(f"Logged in as {self.logged_in_user}") # already logged in login
-            self.timeout = classes.Timeout(60*15, lambda signal: signal.emit(True), self.ui.b_user_logout.clicked)
+            self.timeout = classes.Timeout(
+                config["timeout"]*60, 
+                lambda signal: signal.emit(True), 
+                self.ui.b_user_logout.clicked)
             self.timeout.start()
 
     def b_user_logout_click(self, timed_out=False):
