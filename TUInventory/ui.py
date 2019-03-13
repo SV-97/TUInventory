@@ -66,7 +66,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_create_article.clicked.connect(self.b_create_article_click)
         self.ui.b_create_producer.clicked.connect(self.b_create_producer_click)
         self.ui.b_qr_path.clicked.connect(self.b_qr_path_click)
-        self.ui.b_save_settings.toggled.connect(self.mirror_setting)
+        self.ui.b_save_settings.clicked.connect(self.mirror_setting)
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
         self.ui.b_tab_2.clicked.connect(self.b_tab_2_click)
         self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
@@ -133,6 +133,9 @@ class MainDialog(QtWidgets.QMainWindow):
         self.update_user_dependant()
         self.code_recognized.connect(self.recognized_barcode)
 
+        self.ui.t_setting_timeout.setText(str(config["timeout"]))
+        self.ui.t_setting_qr_path.setText(config["qr_path"])
+
 
     def status_bar_text(self, text, time, color):
         self.ui.label_status.setStyleSheet(f"color: {color}")
@@ -150,17 +153,23 @@ class MainDialog(QtWidgets.QMainWindow):
         else:
             config["mirror"] = False
 
-        #timeout = self.ui.t_setting_timeout.text()
-        #config["timeout"] = f"{timeout}"
-        qr_path = self.ui.t_setting_timeout.text()
-        config["qr_path"] = str(qr_path)        
+        timeout = float(self.ui.t_setting_timeout.text())
+        if timeout > 1.9:
+            config["timeout"] = timeout
+        else:
+            self.status_bar_text("Bitte geben Sie einen Wert von mindestens zwei Minuten ein", 4, "red") 
+
+        qr_path = self.ui.t_setting_qr_path.text()
+        config["qr_path"] = qr_path   
+
         config.flush()
+        self.status_bar_text("Ihre Einstellungen wurden erfolgreich gespeichert", 3, "green") 
         self.settings_event.set()
 
     def b_qr_path_click(self):
         qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Bitte wählen Sie ein Verzeichnis")
         if qr_path:
-            self.t_qr_path.setText(qr_path)
+            self.t_setting_qr_path.setText(qr_path)
             config["qr_path"] = f"{qr_path}"
 
     def b_home_1_click(self): # home
@@ -417,8 +426,6 @@ class MainDialog(QtWidgets.QMainWindow):
     def timed_out(self):
         logger.info(f"User {self.logged_in_user.uid} logged out due to inactivity")
 
-        #self.statusBar().setStyleSheet("color: #ff0000")   
-        #self.statusBar().showMessage("Sie wurden wegen Inaktivität automatisch ausgeloggt!", 5000)
         self.status_bar_text("Sie wurden wegen Inaktivität automatich ausgeloggt!", 5, "red")
 
         self.in_name.setText("")
