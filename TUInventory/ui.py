@@ -66,8 +66,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_create_article.clicked.connect(self.b_create_article_click)
         self.ui.b_create_producer.clicked.connect(self.b_create_producer_click)
         self.ui.b_qr_path.clicked.connect(self.b_qr_path_click)
-        self.ui.rb_mirror_yes.toggled.connect(self.mirror_setting)
-        self.ui.rb_mirror_no.toggled.connect(self.mirror_setting)
+        self.ui.b_save_settings.toggled.connect(self.mirror_setting)
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
         self.ui.b_tab_2.clicked.connect(self.b_tab_2_click)
         self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
@@ -125,12 +124,6 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.bottom_frame.setAutoFillBackground(True)
         self.ui.bottom_frame.setStyleSheet("color: white")
 
-        #palette8 = self.frame_3.palette() # tab 5 / blue
-        #role8 = self.frame_3.backgroundRole()
-        #palette5.setColor(role8, QColor('blue'))
-        #self.ui.frame_3.setPalette(palette8)
-        #self.ui.frame_3.setAutoFillBackground(True)
-
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
@@ -156,6 +149,11 @@ class MainDialog(QtWidgets.QMainWindow):
             config["mirror"] = True
         else:
             config["mirror"] = False
+
+        #timeout = self.ui.t_setting_timeout.text()
+        #config["timeout"] = f"{timeout}"
+        qr_path = self.ui.t_setting_timeout.text()
+        config["qr_path"] = str(qr_path)        
         config.flush()
         self.settings_event.set()
 
