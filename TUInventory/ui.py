@@ -137,6 +137,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_4.hide()
         self.ui.line_5.hide()
         self.update_user_dependant()
+        self.code_recognized.connect(self.recognized_barcode)
 
     def status_bar_text(self, text, time, color):
         self.ui.label_status.setStyleSheet(f"color: {color}")
