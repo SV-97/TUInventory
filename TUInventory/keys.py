@@ -9,9 +9,10 @@ except ImportError as e:
         from Crypto.PublicKey import RSA
     except ImportError as err:
         raise err
-from pathlib import Path
+        
+from utils import absolute_path
 
-PUBLIC_KEY_PATH = Path("pub.key")
+PUBLIC_KEY_PATH = absolute_path("pub.key")
 
 def generate_key(path_public, path_private):
     """Generate new RSA key-pair and save it to the given paths

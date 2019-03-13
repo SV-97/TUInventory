@@ -32,7 +32,7 @@ class Dummy():
 def main():
     public_key_path = keys.PUBLIC_KEY_PATH
     if not public_key_path.exists():
-        private_key_path = pathlib.Path("priv.key")
+        private_key_path = absolute_path("priv.key")
         keys.generate_key(public_key_path, private_key_path)
     app = QApplication(sys.argv)
     dialog_main = ui.MainDialog()
