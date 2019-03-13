@@ -6080,7 +6080,27 @@ Kryptografie
 Für die Passwörter gestaltet sich das Ganze nicht ganz so unkompliziert.
  Aufgrund dessen, dass der Quellcode offen ist und auch die Datenbank lokal
  liegt, ist es einem Angreifer ein Leichtes, jede eventuelle einfache Verschlüss
-elung zu umgehen.
+elung zu umgehen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Auf Linux lässt sich das Ganze wie in Abschnitt 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:SETUID-ABSCHNITT"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ dargestellt sichern.
+\end_layout
+
+\end_inset
+
+.
  Daher werden bei unserer Lösung die Passwörter gar nicht gespeichert -
  stattdessen wird ein Hash-Algorithmus (zu Deutsch: Streuwertfunktion) eingesetz
 t und dieser Hash gespeichert.
@@ -9457,6 +9477,16 @@ status open
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:SETUID-ABSCHNITT"
+
+\end_inset
+
+SETUID-ABSCHNITT
 \end_layout
 
 \begin_layout Standard
