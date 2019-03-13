@@ -3,6 +3,7 @@
 import builtins
 import configparser
 import re
+from threading import Event, Thread
 
 from utils import absolute_path
 
@@ -59,3 +60,20 @@ if not config.config_file.exists():
     config["timeout"] = 15.0
     config.flush()
 config.read()
+
+
+class SettingsManger(Thread):
+    def __init__(self, video_ui_sync_1, video_ui_sync_2, videostream):
+        super().__init__(name=f"{self.__class__.__name__}Thread_{id(self)}")
+        self.video_ui_sync_1 = video_ui_sync_1
+        self.video_ui_sync_2 = video_ui_sync_2
+        self.videostream = videostream
+        self.event = Event()
+        self.daemon = True
+
+    def run(self):
+        while True:
+            self.event.wait()
+            self.event.clear()
+            config.read()
+            self.videostream.mirror = config["mirror"]

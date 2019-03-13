@@ -1,17 +1,16 @@
 """main module that ties everything together"""
-__version__ = "0.1.0"
+__version__ = "0.3.0"
 
 import logging
 import pathlib
 import sys
-from threading import Event, Thread
 from time import sleep
 
 from PyQt5.QtWidgets import QApplication
 
 from barcodereader import LazyVideoStream, VideoStream
 from classes import VideoStreamUISync, Timeout
-from config import config
+from config import config, SettingsManger
 import keys
 from logger import logger
 import ui
@@ -28,23 +27,6 @@ if "win32" in sys.platform:
 
 class Dummy():
     pass
-
-
-class SettingsManger(Thread):
-    def __init__(self, video_ui_sync_1, video_ui_sync_2, videostream):
-        super().__init__(name=f"{self.__class__.__name__}Thread_{id(self)}")
-        self.video_ui_sync_1 = video_ui_sync_1
-        self.video_ui_sync_2 = video_ui_sync_2
-        self.videostream = videostream
-        self.event = Event()
-        self.daemon = True
-
-    def run(self):
-        while True:
-            self.event.wait()
-            self.event.clear()
-            config.read()
-            self.videostream.mirror = config["mirror"]
 
 
 def main():
