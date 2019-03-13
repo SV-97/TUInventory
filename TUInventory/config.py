@@ -3,6 +3,7 @@
 import builtins
 import configparser
 import re
+import sys
 from threading import Event, Thread
 
 from utils import absolute_path
@@ -29,7 +30,7 @@ class ConfigParserDict(configparser.ConfigParser):
         match = re.match(r"<class '(?P<type>.*)'> (?P<val>.*)", val)
         type_ = match.group("type")
         val = match.group("val")
-        if type_ == bool and val=="False":
+        if type_ == "bool" and val=="False":
             return False
         return getattr(builtins, type_)(val)
 
@@ -55,8 +56,13 @@ class ConfigParserDict(configparser.ConfigParser):
 
 config = ConfigParserDict()
 if not config.config_file.exists():
+    if "win32" in sys.platform:
+        path = str.title(str(absolute_path("qr_codes")))
+    else:
+        path = str(absolute_path("qr_codes"))
+
     config["mirror"] = True
-    config["qr_path"] = ""
+    config["qr_path"] = path
     config["timeout"] = 15.0
     config.flush()
 config.read()

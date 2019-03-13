@@ -60,6 +60,7 @@ def main():
     
     settings_manager = SettingsManger(video_ui_sync_1, video_ui_sync_2, videostream)
     settings_manager.start()
+    dialog_main.settings_event = settings_manager.event
     return app.exec_()
 
 

@@ -42,12 +42,12 @@ class MainDialog(QtWidgets.QMainWindow):
         self.set_combobox_user_d()
         self.set_combobox_user_admin()
         self.setMouseTracking(True)
+        
+        self.ui.rb_mirror_yes.setChecked(config["mirror"])
+        self.ui.rb_mirror_no.setChecked(not config["mirror"])
 
-        if "win32" in sys.platform:
-            self.t_path_device.setText(str.title(str(utils.absolute_path(pathlib.Path("qr_codes")))))
-        else:
-            self.t_path_device.setText(str(utils.absolute_path(pathlib.Path("qr_codes"))))
-
+        self.t_path_device.setText(config["qr_path"])
+       
         icon = QtGui.QIcon()
         icon_path = utils.absolute_path("pictures/256x256.png")
         icon.addFile(f"{icon_path}", QtCore.QSize(256,256))
@@ -67,6 +67,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_create_producer.clicked.connect(self.b_create_producer_click)
         self.ui.b_qr_path.clicked.connect(self.b_qr_path_click)
         self.ui.rb_mirror_yes.toggled.connect(self.mirror_setting)
+        self.ui.rb_mirror_no.toggled.connect(self.mirror_setting)
         self.ui.b_tab_1.clicked.connect(self.b_tab_1_click)
         self.ui.b_tab_2.clicked.connect(self.b_tab_2_click)
         self.ui.b_tab_3.clicked.connect(self.b_tab_3_click)
@@ -139,6 +140,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.update_user_dependant()
         self.code_recognized.connect(self.recognized_barcode)
 
+
     def status_bar_text(self, text, time, color):
         self.ui.label_status.setStyleSheet(f"color: {color}")
         self.ui.label_status.setText(text)
@@ -154,6 +156,8 @@ class MainDialog(QtWidgets.QMainWindow):
             config["mirror"] = True
         else:
             config["mirror"] = False
+        config.flush()
+        self.settings_event.set()
 
     def b_qr_path_click(self):
         qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Bitte wählen Sie ein Verzeichnis")
