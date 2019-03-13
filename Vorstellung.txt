@@ -1,0 +1,52 @@
+Übersicht Raum: 
+    Was gemacht sollte? 
+        Einheitliche Testumgebung f. Benchmarks und Geräteevaluierung
+
+    Was am Raum gemacht wurde: 
+        Aufteilung der Testplätze;
+        Schaltschrank;
+        Netzwerkplanung;
+        Überwachungskonzept;
+
+    Aufbau Testplätze: 
+        230V + Schaltbar; 
+        12V, 24V Kleinspannung; 
+        alle Plätze unabhängig voneinander;
+        
+Übersicht Software:
+    Zweck:
+        Verantwortlichkeit von Plätzen sollte klar sein
+         => Inventarisierung aller Geräte
+    
+    Zu was es sich entwickelt hat:
+         => Datenbankinterface zur Verwaltung von 
+            Geräten, 
+            Lagerplätzen, 
+            Verantwortlichkeiten
+            und Nutzerverwaltung
+
+    Wieso QR-Codes:
+        Billig zu fertigen und immer verfügbar (Bestellung von RFID-/ NFC-Tags etc. entfällt)
+        Kamera ist universell verfügbar und QR Codes standartisiert (nicht properitär)
+         -> Anbindung an Handys etc.
+        Auch bei Montage an immobilen Geräten mittels Foto auszuwerten
+        Funktionieren auch bei Beschädigung weiterhin da hohe Fehlerkorrektur
+        Dazu neben Desktopanwendung auch noch CLI für Serveranwendung (Mobile App)
+
+    Demonstration der Software:
+        Nutzer anlegen
+        Einloggen
+        Vorhandenes Gerät einscannen
+            -> Normal
+            -> Beschädigter QR-Code
+            -> Foto
+            Ändern (sich selbst nehmen)
+        Ausloggen
+        
+        PW-Reset für Admin -> Damit Einloggen
+            -> User ändern (sich selbst nicht entadminisieren)
+            
+            -> Neuen Hersteller
+            -> Neuer Artikel
+            -> Neues Gerät
+            -> QR-Code Fotografieren und Einscannen
