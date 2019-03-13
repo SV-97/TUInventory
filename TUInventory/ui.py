@@ -73,6 +73,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.b_tab_4.clicked.connect(self.b_tab_4_click)
         self.ui.b_tab_5.clicked.connect(self.b_tab_5_click)
         self.ui.in_phone.textChanged.connect(self.set_phonenumber)
+        self.ui.in_phone_admin.textChanged.connect(self.set_phonenumber)
         self.ui.cb_producer_d.currentIndexChanged.connect(self.reload_combobox_article_d)
         self.ui.cb_user_admin.currentIndexChanged.connect(self.reload_user_change)
 
@@ -148,6 +149,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.label_status.setText("")
 
     def mirror_setting(self):
+        """Save settings to config.ini"""
         if self.ui.rb_mirror_yes.isChecked():
             config["mirror"] = True
         else:
@@ -167,6 +169,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.settings_event.set()
 
     def b_qr_path_click(self):
+        """Show selected path in textbox"""     
         qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Bitte wählen Sie ein Verzeichnis")
         if qr_path:
             self.t_setting_qr_path.setText(qr_path)
@@ -394,6 +397,7 @@ class MainDialog(QtWidgets.QMainWindow):
         else:
             text = "Bitte geben Sie Ihre Telefonnummer ein."
         self.out_phone.setText(text)
+        self.out_phone_admin.setText(text)
 
     def b_user_login_click(self):
         """Login button click"""
@@ -755,7 +759,7 @@ class LoginDialog(QtWidgets.QDialog):
         try:
             self.parent.logged_in_user = slots.login(username, password)
         except ValueError:
-            self.parent.status_bar_text(f'Unbekannter Benutzer: "{username}" ist nicht bekannt', 5, "red")
+            self.parent.status_bar_text(f'Benutzer "{username}" ist nicht bekannt', 5, "red")
         self.close()
 
     def b_password_lost_click(self):
