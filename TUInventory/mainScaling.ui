@@ -760,7 +760,7 @@
            </size>
           </property>
           <property name="currentIndex">
-           <number>2</number>
+           <number>5</number>
           </property>
           <widget class="QWidget" name="page_5">
            <layout class="QVBoxLayout" name="verticalLayout_25">
@@ -2093,7 +2093,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_34">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2168,7 +2168,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_26">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2249,7 +2249,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_27">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2321,7 +2321,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_28">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2421,7 +2421,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_32">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2492,7 +2492,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>310</width>
+                    <width>330</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -2569,7 +2569,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_33">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2644,7 +2644,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_admin_state">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2795,7 +2795,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_30">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2892,7 +2892,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QPushButton" name="b_user_reset_admin">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -2973,7 +2973,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_3">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -3054,7 +3054,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_4">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -3126,7 +3126,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_5">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -3213,7 +3213,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_6">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -3294,7 +3294,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_8">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -3372,7 +3372,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_7">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -3443,7 +3443,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                   </property>
                   <property name="sizeHint" stdset="0">
                    <size>
-                    <width>320</width>
+                    <width>330</width>
                     <height>20</height>
                    </size>
                   </property>
@@ -3504,7 +3504,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  <widget class="QLabel" name="label_12">
                   <property name="minimumSize">
                    <size>
-                    <width>300</width>
+                    <width>320</width>
                     <height>0</height>
                    </size>
                   </property>
@@ -3788,7 +3788,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="lineEdit">
+                 <widget class="QLineEdit" name="t_setting_timeout">
                   <property name="minimumSize">
                    <size>
                     <width>50</width>
@@ -3876,7 +3876,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                  </widget>
                 </item>
                 <item>
-                 <widget class="QLineEdit" name="t_qr_path">
+                 <widget class="QLineEdit" name="t_setting_qr_path">
                   <property name="sizePolicy">
                    <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
                     <horstretch>0</horstretch>
@@ -3946,6 +3946,57 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
                </layout>
               </item>
               <item>
+               <spacer name="verticalSpacer_41">
+                <property name="orientation">
+                 <enum>Qt::Vertical</enum>
+                </property>
+                <property name="sizeType">
+                 <enum>QSizePolicy::Maximum</enum>
+                </property>
+                <property name="sizeHint" stdset="0">
+                 <size>
+                  <width>20</width>
+                  <height>40</height>
+                 </size>
+                </property>
+               </spacer>
+              </item>
+              <item>
+               <layout class="QHBoxLayout" name="horizontalLayout_52">
+                <item>
+                 <widget class="QPushButton" name="b_save_settings">
+                  <property name="minimumSize">
+                   <size>
+                    <width>200</width>
+                    <height>0</height>
+                   </size>
+                  </property>
+                  <property name="font">
+                   <font>
+                    <pointsize>14</pointsize>
+                   </font>
+                  </property>
+                  <property name="text">
+                   <string>Speichern</string>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <spacer name="horizontalSpacer_12">
+                  <property name="orientation">
+                   <enum>Qt::Horizontal</enum>
+                  </property>
+                  <property name="sizeHint" stdset="0">
+                   <size>
+                    <width>40</width>
+                    <height>20</height>
+                   </size>
+                  </property>
+                 </spacer>
+                </item>
+               </layout>
+              </item>
+              <item>
                <spacer name="verticalSpacer_35">
                 <property name="orientation">
                  <enum>Qt::Vertical</enum>
@@ -3973,7 +4024,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>55</height>
+        <height>58</height>
        </size>
       </property>
       <property name="palette">
@@ -4281,7 +4332,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
          </property>
          <property name="font">
           <font>
-           <pointsize>12</pointsize>
+           <pointsize>11</pointsize>
            <weight>75</weight>
            <bold>true</bold>
           </font>
@@ -4305,7 +4356,7 @@ Bitte wählen Sie einen passenden Speicherort aus.</string>
       <property name="minimumSize">
        <size>
         <width>0</width>
-        <height>55</height>
+        <height>60</height>
        </size>
       </property>
       <property name="palette">
