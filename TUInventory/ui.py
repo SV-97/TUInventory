@@ -316,7 +316,7 @@ class MainDialog(QtWidgets.QMainWindow):
         with CSession() as session:
             articles = session.query(classes.Article).all()
             producers = session.query(classes.Producer).all()
-            selected_producer = self.cb_producer_d.currentText() # todo: rework names
+            selected_producer = self.cb_producer_d.currentText()
             if selected_producer:
                 for producer in producers:
                     if producer.name == selected_producer:
@@ -388,6 +388,8 @@ class MainDialog(QtWidgets.QMainWindow):
                     self.in_surname_admin.setText(user.surname)
                     self.in_email_admin.setText(user.e_mail)  
                     self.in_phone_admin.setText(str(user.phonenumber))
+                    self.cb_location_u_admin.setCurrentIndex(user.location_uid)
+
                     if user.is_admin:    
                         self.checkBox.setCheckState(2)
                     else:
@@ -588,7 +590,8 @@ class MainDialog(QtWidgets.QMainWindow):
                 user.hash(password)
             else:
                 password = slots.reset_password(user)
-            
+
+        self.in_password_admin.setText("")  
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
         messagebox.setWindowTitle(f"Neues Passwort für User {user.uid}")
@@ -828,7 +831,7 @@ class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for pa
             self.parent.parent.not_all_fields_filled_notice()
             ResetDialog(self.parent).exec()
             return
-        
+
         private_path = pathlib.Path(path)
         public_path = keys.PUBLIC_KEY_PATH
         with CSession() as session:
