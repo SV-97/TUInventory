@@ -835,10 +835,19 @@ class ResetDialog(QtWidgets.QDialog):        #Dialog to select a filepath for pa
             user = session.query(classes.User).filter_by(e_mail=user).first()
             session.add(user)
             if not user:
-                self.parent.status_bar_text("Unbekannter Benutzer", 5, "red")
+                self.parent.parent.status_bar_text("Unbekannter Benutzer!", 5, "red")
                 return
-            password = slots.reset_admin_password(user, public_path, private_path)
-        
+            try:
+                password = slots.reset_admin_password(user, public_path, private_path)
+            except ValueError as e:
+                logger.info(str(e))
+                self.parent.parent.status_bar_text("Ungültiger Schlüssel!", 5, "red")
+                return
+            except FileNotFoundError as e:
+                logger.info(str(e))
+                self.parent.parent.status_bar_text(f"Keine gültige Datei unter {private_path}!", 5, "red")
+                return
+                
         messagebox = QtWidgets.QMessageBox()
         messagebox.setIcon(QtWidgets.QMessageBox.Information)
         messagebox.setWindowTitle(f"Neues Passwort für User {user.uid}")

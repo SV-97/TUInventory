@@ -38,8 +38,6 @@ def read_keys(path_public, path_private):
         Returns:
             (PKCS1_OAEP-cipher from public-key, PKCS1_OAEP-decipher from private-key)
     """
-    path_public = Path(path_public)
-    path_private = Path(path_private)
     with open(path_public, "rb") as f:
         publickey = RSA.importKey(f.read())
     with open(path_private, "rb") as f:

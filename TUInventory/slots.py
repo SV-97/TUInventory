@@ -116,8 +116,10 @@ def reset_password(user):
 
 
 def reset_admin_password(user, path_public, path_private):
-    #catch error if invalid key or no public key
-    cipher, decipher = keys.read_keys(path_public, path_private)
+    try:
+        cipher, decipher = keys.read_keys(path_public, path_private)
+    except ValueError:
+        raise ValueError(f"Invalid RSA private-key at {path_private}!")
     text = b"True"
     ciphertext = cipher.encrypt(text)
     if compare_digest(decipher.decrypt(ciphertext), text):
