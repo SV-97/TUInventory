@@ -266,6 +266,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.cb_location_u.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
+            locations.sort(key=lambda location: str(location))
             for location in locations:
                 self.cb_location_u.addItem(location.name)
 
@@ -274,6 +275,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.cb_location_u_admin.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
+            locations.sort(key=lambda location: str(location))
             for location in locations:
                 self.cb_location_u_admin.addItem(location.name)
     
@@ -282,6 +284,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.cb_location_d.clear()
         with CSession() as session:
             locations = session.query(classes.Location).all()
+            locations.sort(key=lambda location: str(location))
             for location in locations:
                 self.cb_location_d.addItem(location.name)
 
@@ -344,6 +347,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.cb_device_location.addItem("")
         with CSession() as session:
             locations = session.query(classes.Location).all()
+            locations.sort(key=lambda location: str(location))
             for location in locations:
                 self.cb_device_location.addItem(location.name)
 
