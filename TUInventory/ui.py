@@ -703,10 +703,14 @@ class MainDialog(QtWidgets.QMainWindow):
 
         with CSession() as session:
             device = session.query(classes.Device).filter_by(uid=device_uid).first()
-            filename = f"{device.uid}_{device.article.name}.svg"
+            filename = utils.normalize_filename(f"{device.uid}_{device.article.name}.svg")
             path = pathlib.Path(config["qr_path"])
+            path /= filename
+            if not utils.check_if_file_exists(path):
+                self.status_bar_text(f"{path} ist kein gültiger Pfad/eine bereits vorhandene Datei", 5, "red")
+                return
             try:
-                generate_qr(device, path/filename)
+                generate_qr(device, path)
             except NotImplementedError as e:
                 logger.error(str(e))
                 self.status_bar_text(f"Um {e[1]} Dateien zu speichern sind weitere Pakete nötig. Das Standartformat ist svg", 10, "red")
