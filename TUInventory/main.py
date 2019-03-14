@@ -69,4 +69,4 @@ if __name__ == "__main__":
     # import cProfile
     # cProfile.run("main()", sort="time")
     
-    main()
+    sys.exit(main())

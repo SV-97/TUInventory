@@ -482,32 +482,39 @@ if __name__ == "__main__":
     import random
     random.seed(0)
     
-    location1 = Location("Gebäude 23")
-    location2 = Location("Büro")
-    location3 = Location("Lager")
+    location1 = Location("Testplatz 1")
+    location2 = Location("Testplatz 2")
+    location3 = Location("Testplatz 3")
+    location4 = Location("Testplatz 4")
+    location5 = Location("Testplatz 5")
+    location6 = Location("Büro")
+    location7 = Location("Lager")
     locations = (
         location1,
         location2,
-        location3)
+        location3,
+        location4,
+        location5,
+        location6,
+        location7)
 
 
-    user1 = User(e_mail="Karl@googlemail.com", password="123", name="Karl", surname="König", phonenumber="123456")
-    user2 = User(e_mail="hey@ho.com", password="passwort", name="Bob", surname="Fischer", phonenumber="654321")
-    user3 = User(e_mail="Mail@mail.com", password="456", name="Tim", surname="Meier", phonenumber="21")
-    user4 = User(e_mail="a@a.a", password=" ", name="Wilhelm", surname="Schmidt", phonenumber="09123 12345-67")
-    user4.is_admin = True
-    user5 = User(e_mail="Testo@web.de", password="456", name="testo", surname="Testington", phonenumber="621")
-    user5.is_admin = True
-    user6 = User(e_mail="Jack@web.de", password="1234", name="Jack", surname="von Teststadt", phonenumber="+49045 1123")
-    user7 = User(e_mail="mymail@gmail.com", password="abc", name="Billy", surname="Bob", phonenumber="651")
+    user0 = User(e_mail="admin", password=" ", name="Admin", surname="", phonenumber="888")
+    user0.is_admin = True
+    user1 = User(e_mail="Karl@googlemail.com", password="123", name="Karl", surname="König", phonenumber="71825")
+    user2 = User(e_mail="sv@gmail.com", password="passwort", name="Stefan", surname="Völz", phonenumber="09729 1411")
+    user2.is_admin = True
+    user3 = User(e_mail="yk@gmail.com", password="asdf", name="Yannis", surname="Kohler", phonenumber="09729 1552")
+    user3.is_admin = True
+    user4 = User(e_mail="MaxMustermann@t-online.de", password="123456", name="Max", surname="Mustermann", phonenumber="12345")
+    user5 = User(e_mail="JohnDoe@web.com", password="john", name="John", surname="Doe", phonenumber="+01 1123-5")
     users = (
+        user0,
         user1,
         user2,
         user3,
         user4,
-        user5,
-        user6,
-        user7)
+        user5)
 
     for user in users:
         user.location = random.choice(locations)
@@ -518,20 +525,12 @@ if __name__ == "__main__":
     producer3 = Producer("Moxa")
     producer4 = Producer("Wago")
     producer5 = Producer("Phoenix Contact")
-    producer6 = Producer("Padcon")
-    producer7 = Producer("VIA Embedded")
-    producer8 = Producer("Jetway")
-    producer9 = Producer("Hirschmann")
     producers = (
         producer1,
         producer2,
         producer3,
         producer4,
-        producer5,
-        producer6,
-        producer7,
-        producer8,
-        producer9)
+        producer5)
 
     article1 = Article("CP-E 24/20.0")
     article2 = Article("EtherDevice Switch 316")
@@ -539,46 +538,42 @@ if __name__ == "__main__":
     article4 = Article("Managed Switch 852-104")
     article5 = Article("MINI-PS-100-240AC/5DC/3")
     article6 = Article("UIBX-250-BW")
+    """
     article7 = Article("PID Killer")
     article8 = Article("IPC AMOS-3005-1Q12A2")
     article9 = Article("IPC JBC323U591-3160-B")
     article10 = Article("IPC HM-1000")
     article11 = Article("MSwitch JRL116M-2F-M")
     article12 = Article("Switch SPIDER 8TX")
-    article13 = Article("Switch SPIDER 5TX")
+    article13 = Article("Switch SPIDER 5TX")"""
     article1.producer = producer1
     article2.producer = producer3
     article3.producer = producer3
     article4.producer = producer4
     article5.producer = producer5
     article6.producer = producer2
+    """
     article7.producer = producer6
     article8.producer = producer7
     article9.producer = producer8
     article10.producer = producer8
     article11.producer = producer8
     article12.producer = producer9
-    article13.producer = producer9
+    article13.producer = producer9"""
     articles = (
         article1, 
         article2, 
         article3, 
         article4, 
         article5,
-        article6,
-        article7,
-        article8, 
-        article9, 
-        article10, 
-        article11, 
-        article12,
-        article13)
+        article6)
 
-    devices = [Device(str(i)) for i in range(200)]
+    devices = [Device(str(i)) for i in range(35)]
     resps = [Responsibility() for device in devices]
     for device, resp in zip(devices, resps):
         device.article = random.choice(articles)
-        resp.user = random.choice(users)
+        while resp.user == user0 or not resp.user:
+            resp.user = random.choice(users)
         resp.location = random.choice(locations)
         resp.device = device
         
