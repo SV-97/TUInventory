@@ -54,6 +54,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.setWindowIcon(icon)
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
+        self.ui.b_user_login.clicked.connect(self.b_create_new_qrcode)      #toDo create Button for QR-Code creation
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
@@ -151,22 +152,31 @@ class MainDialog(QtWidgets.QMainWindow):
     def mirror_setting(self):
         """Save settings to config.ini"""
         if self.ui.rb_mirror_yes.isChecked():
-            config["mirror"] = True
+            mirror = True
         else:
-            config["mirror"] = False
+            mirror = False
 
         timeout = float(self.ui.t_setting_timeout.text())
-        if timeout > 1.9:
-            config["timeout"] = timeout
-        else:
+        if timeout < 1.9:
+            timeout = config["timeout"]
             self.status_bar_text("Bitte geben Sie einen Wert von mindestens zwei Minuten ein", 4, "red") 
-
+            return
+        
         qr_path = self.ui.t_setting_qr_path.text()
-        config["qr_path"] = qr_path   
 
-        config.flush()
-        self.status_bar_text("Ihre Einstellungen wurden erfolgreich gespeichert", 3, "green") 
-        self.settings_event.set()
+        settings = [mirror, timeout, qr_path]
+        conf = [config["mirror"], config["timeout"], config["qr_path"]]
+
+        if not all(True if x==y else False for (x,y) in zip(settings, conf)):           
+            #check if changes are made
+            config["mirror"] = mirror
+            config["timeout"] = timeout
+            config["qr_path"] = qr_path   
+            config.flush()
+            self.status_bar_text("Ihre Einstellungen wurden erfolgreich gespeichert", 3, "green") 
+            self.settings_event.set()
+        else:
+            self.status_bar_text("Es wurden keine Änderungen vorgenommen", 3, "green")
 
     def b_qr_path_click(self):
         """Show selected path in textbox"""     
@@ -678,9 +688,31 @@ class MainDialog(QtWidgets.QMainWindow):
             generate_qr(device, path)
         except NotImplementedError as e:
             logger.error(str(e))
-            self.status_bar_text(f"Um {e[1]} Dateien zu speichern sind weitere Packete nötig. Das Standartformat ist svg", 10, "red")
+            self.status_bar_text(f"Um {e[1]} Dateien zu speichern sind weitere Pakete nötig. Das Standartformat ist svg", 10, "red")
         else:
             self.status_bar_text(f"Gerät erfolgreich angelegt. Der QR-Code wurde unter {path} gespeichert", 10, "green")
+
+
+
+
+
+    def b_create_new_qrcode(self):
+        
+        device = self.ui.treeWidget.currentItem().text(0)
+        device_uid = re.match(r"(?:.* mit ID )(?P<ID>\d+)$", device).group("ID")
+
+        with CSession() as session:
+            device = session.query(classes.Device).filter_by(uid=device_uid).first()
+            filename = f"{device.uid}_{device.article.name}.svg"
+            path = pathlib.Path(config["qr_path"])
+            try:
+                generate_qr(device, path/filename)
+            except NotImplementedError as e:
+                logger.error(str(e))
+                self.status_bar_text(f"Um {e[1]} Dateien zu speichern sind weitere Pakete nötig. Das Standartformat ist svg", 10, "red")
+            else:
+                self.status_bar_text(f"Der QR-Code wurde unter {config['qr_path']} gespeichert", 8, "green")
+
 
     def b_create_article_click(self):
         name = self.t_name_a.text()
