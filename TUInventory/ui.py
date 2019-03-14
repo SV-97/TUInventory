@@ -54,7 +54,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.setWindowIcon(icon)
 
         self.ui.b_user_login.clicked.connect(self.b_user_login_click)
-        self.ui.b_user_login.clicked.connect(self.b_create_new_qrcode)      #toDo create Button for QR-Code creation
+        self.ui.b_create_new_qrcode.clicked.connect(self.b_create_new_qrcode_click)
         self.ui.b_user_logout.clicked.connect(self.b_user_logout_click)
         self.ui.b_home_1.clicked.connect(self.b_home_1_click)
         self.ui.b_user_change.clicked.connect(self.b_user_change_click)
@@ -696,8 +696,8 @@ class MainDialog(QtWidgets.QMainWindow):
 
 
 
-    def b_create_new_qrcode(self):
-        
+    def b_create_new_qrcode_click(self):
+        """Creates a new QR-Code for a device"""
         device = self.ui.treeWidget.currentItem().text(0)
         device_uid = re.match(r"(?:.* mit ID )(?P<ID>\d+)$", device).group("ID")
 
