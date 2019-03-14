@@ -293,6 +293,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.cb_producer_a.clear()
         with CSession() as session:
             producers = session.query(classes.Producer).all()
+            producers.sort(key=lambda producer: str(producer.name))
             for producer in producers:
                 self.cb_producer_a.addItem(producer.name)
             
@@ -302,6 +303,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.cb_producer_d.addItem("")
         with CSession() as session:
             producers = session.query(classes.Producer).all()
+            producers.sort(key=lambda producer: str(producer.name))
             for producer in producers:
                 self.cb_producer_d.addItem(producer.name)
 
