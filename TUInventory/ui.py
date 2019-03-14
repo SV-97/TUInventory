@@ -49,7 +49,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.t_path_device.setText(config["qr_path"])
        
         icon = QtGui.QIcon()
-        icon_path = utils.absolute_path("pictures/256x256.png")
+        icon_path = utils.absolute_path("pictures/TUI_Logo.png")
         icon.addFile(f"{icon_path}", QtCore.QSize(256,256))
         self.setWindowIcon(icon)
 
