@@ -89,37 +89,37 @@ class MainDialog(QtWidgets.QMainWindow):
         p.setColor(self.backgroundRole(), Qt.white)
         self.setPalette(p)
 
-        palette1 = self.line_1.palette() # tab 1 / blue
+        palette1 = self.line_1.palette()
         role1 = self.line_1.backgroundRole()
         palette1.setColor(role1, QColor('blue'))
         self.ui.line_1.setPalette(palette1)
         self.ui.line_1.setAutoFillBackground(True)
 
-        palette2 = self.line_2.palette() # tab 2 / blue
+        palette2 = self.line_2.palette()
         role2 = self.line_2.backgroundRole()
         palette2.setColor(role2, QColor('blue'))
         self.ui.line_2.setPalette(palette2)
         self.ui.line_2.setAutoFillBackground(True)
 
-        palette3= self.line_3.palette() # tab 3 / blue
+        palette3= self.line_3.palette()
         role3 = self.line_3.backgroundRole()
         palette3.setColor(role3, QColor('blue'))
         self.ui.line_3.setPalette(palette3)
         self.ui.line_3.setAutoFillBackground(True)
 
-        palette4 = self.line_4.palette() # tab 4 / blue
+        palette4 = self.line_4.palette()
         role4 = self.line_4.backgroundRole()
         palette4.setColor(role4, QColor('blue'))
         self.ui.line_4.setPalette(palette4)
         self.ui.line_4.setAutoFillBackground(True)
 
-        palette5 = self.line_5.palette() # tab 5 / blue
+        palette5 = self.line_5.palette()
         role5 = self.line_5.backgroundRole()
         palette5.setColor(role5, QColor('blue'))
         self.ui.line_5.setPalette(palette5)
         self.ui.line_5.setAutoFillBackground(True)
 
-        palette7 = self.bottom_frame.palette() # bottomframe
+        palette7 = self.bottom_frame.palette()
         role7 = self.bottom_frame.backgroundRole()
         palette7.setColor(role7, QColor('blue'))
         self.ui.bottom_frame.setPalette(palette7)
@@ -140,6 +140,7 @@ class MainDialog(QtWidgets.QMainWindow):
 
 
     def status_bar_text(self, text, time, color):
+        """Status bar"""
         self.ui.label_status.setStyleSheet(f"color: {color}")
         self.ui.label_status.setText(text)
         self.timeout = classes.Timeout(time, MainDialog.status_bar_clear, self)
@@ -167,8 +168,7 @@ class MainDialog(QtWidgets.QMainWindow):
         settings = [mirror, timeout, qr_path]
         conf = [config["mirror"], config["timeout"], config["qr_path"]]
 
-        if not all(True if x==y else False for (x,y) in zip(settings, conf)):           
-            #check if changes are made
+        if not all(True if x==y else False for (x,y) in zip(settings, conf)):           #check if changes are made
             config["mirror"] = mirror
             config["timeout"] = timeout
             config["qr_path"] = qr_path   
@@ -185,7 +185,7 @@ class MainDialog(QtWidgets.QMainWindow):
             self.t_setting_qr_path.setText(qr_path)
             config["qr_path"] = f"{qr_path}"
 
-    def b_home_1_click(self): # home
+    def b_home_1_click(self):
         self.ui.stackedWidget.setCurrentIndex(0)
         self.ui.line_1.show()
         self.ui.line_2.hide()
@@ -224,7 +224,7 @@ class MainDialog(QtWidgets.QMainWindow):
         self.ui.line_4.show()
         self.ui.line_5.hide()
         self.ui.stackedWidget.setCurrentIndex(4)
-        if self.logged_in_user:
+        if self.logged_in_user:                             # check if logged in user is admin
             if self.logged_in_user.is_admin:
                 self.ui.stackedWidget.setCurrentIndex(3)         
 
@@ -708,8 +708,12 @@ class MainDialog(QtWidgets.QMainWindow):
     def b_create_new_qrcode_click(self):
         """Creates a new QR-Code for a device"""
         device = self.ui.treeWidget.currentItem().text(0)
-        device_uid = re.match(r"(?:.* mit ID )(?P<ID>\d+)$", device).group("ID")
-
+        try:
+            device_uid = re.match(r"(?:.* mit ID )(?P<ID>\d+)$", device).group("ID")
+        except AttributeError:
+            self.status_bar_text("Es konnte leider kein Gerät erkannt werden", 8, "red")
+            return
+        
         with CSession() as session:
             device = session.query(classes.Device).filter_by(uid=device_uid).first()
             filename = utils.normalize_filename(f"{device.uid}_{device.article.name}.svg")
