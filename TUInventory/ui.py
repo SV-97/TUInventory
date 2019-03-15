@@ -174,6 +174,7 @@ class MainDialog(QtWidgets.QMainWindow):
             config["qr_path"] = qr_path   
             config.flush()
             self.status_bar_text("Ihre Einstellungen wurden erfolgreich gespeichert", 3, "green") 
+            self.t_path_device.setText(config["qr_path"])
             self.settings_event.set()
         else:
             self.status_bar_text("Es wurden keine Änderungen vorgenommen", 3, "green")
@@ -183,7 +184,6 @@ class MainDialog(QtWidgets.QMainWindow):
         qr_path = QtWidgets.QFileDialog.getExistingDirectory(self, "Bitte wählen Sie ein Verzeichnis")
         if qr_path:
             self.t_setting_qr_path.setText(qr_path)
-            config["qr_path"] = f"{qr_path}"
 
     def b_home_1_click(self):
         self.ui.stackedWidget.setCurrentIndex(0)
