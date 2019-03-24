@@ -228,7 +228,7 @@ Abkürzungsverzeichnis
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="28" columns="2">
+<lyxtabular version="3" rows="29" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -677,6 +677,26 @@ Python Software Foundation
 \begin_inset Text
 
 \begin_layout Plain Layout
+RCBO
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Residual current operated Circuit-Breaker with Overcurrent protection
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
 SCADA
 \end_layout
 
@@ -976,6 +996,350 @@ status open
 
 \begin_layout Section
 Abschnitt 1 Raum
+\end_layout
+
+\begin_layout Standard
+In diesem sogenannten Test- und Integrationsraum sollen neue, zugekaufte
+ Hardwarekomponenten getestet werden können, bevor sie auf größeren Anlagen
+ verbaut werden.
+ Bei den Tests wird vorallem auf Ausfallsicherheit und Steadiness geachtet.
+\end_layout
+
+\begin_layout Standard
+Als Beispiel wurden, als wir mit dem Projekt angefangen hatten, mehrere
+ IPC's auf längere Zeit einfach laufen gelassen.
+ Von der Performance waren alle sehr gut, jedoch ist einer nach mehreren
+ Tagen immer abgestürzt.
+ So etwas lässt sich aus den theoretischen Daten des Produktes nicht herauslesen
+ und darf auch auf keinen Fall auf einer schon in Betrieb genommenen Anlage
+ passieren.
+ Da hier auch teilweise von großen Solaranlagen die Rede ist könnte ein
+ Ausfall einer solchen in manchen Länder das ganze Stromnetz ins Wanken
+ oder zum zusammenbrechen bringen.
+ Ebenfalls soll dann auf bereits auch auf den Anlagen eingesetzter Hardware
+ neue Softwareversionen der firmeneigenen Überwachungssoftware getestet
+ werden können.
+ So wird eine möglischt Realitätsnahe Umgebung geschaffen um einen späteren
+ Fehlerfall zu 99% ausschließen zu können.
+ Bei der Konzeptionierung der Testplätze war vorallem eine einheitliche
+ Umgebung und ein modularer Aufbau wichtig.
+ Es sollte für alle Geräte gleiche Grundbedingungen geschaffen werden, um
+ diese möglichst direkt miteinander vergleichen zu können.
+ Auch der modulare Aufbau stand an hoher Priorität, da Geräte aller Bauformen
+ und Größen getestet werden sollen.
+ Im Laufe Planung stellte sich heraus, dass unser Raum für den neuen Server
+ der Firma, einen besonders geeigneten Platz darstellte, also musste für
+ diesen auch noch eine getrennte Spannungsversorgung mit eingeplant werden.
+\end_layout
+
+\begin_layout Standard
+Bevor die Planung richtig beginnen konnte, musste ein geeigneter Raum gefunden
+ werden.
+ Wir entschieden uns in Absprache mit der Firma für einen leer stehenden
+ Abstellraum an der Nordseite des Entwicklungs- und Verpackungszentrums.
+ Durch die Lage an der Nordseite wurde es im Sommer nicht zu warm und es
+ war trotz der Fenster keine direkte Sonneneinstrahlung vorhanden, was zu
+ ungleichmäßigen Test führen könnte.
+ Trotz alledem wurde eine Standklimaanlage mit eingeplant, um die Temperatur
+ konstant zu halten.
+ Dies wurde vorallem auch in anbetracht des erweiterbaren Servers getan,
+ um hier in Zukunft nicht an Temperaturgrenzen zu stoßen.
+\end_layout
+
+\begin_layout Standard
+Da die bereits vorhandene Stromversorgung in dem Raum für unsere Zwecke
+ nicht ausreichend und ebenfalls stark veraltet war, musste eine neue Zuleitung
+ aus dem Hauptverteiler, sowie eine neue Unterverteilung eingeplant werden.
+ Für die Absicherung der Zuleitung haben wir uns nach Abschluss der Planung
+ auf 35A festgelegt.
+ Da die meisten Geräte keine großen Energieverbraucher sind bleibt hier
+ auch noch genug Reserve für den Server.
+\end_layout
+
+\begin_layout Standard
+Für das Netzwerk, dass entstehen soll, wird auch ein Serverrack benötigt.
+ Im Verlauf der Planung des Raums wurde klar, dass auch ein Server mit in
+ diesen Raum kommt.
+ Für diesen soll die Versorgung auch über die neue Unterverteilung laufen.
+\end_layout
+
+\begin_layout Subsection
+Ursprüngliche Anforderungen
+\end_layout
+
+\begin_layout Standard
+drei bis vier Testplätze, je nach Platzangebot.
+ diese sollten enthalten:
+\end_layout
+
+\begin_layout Itemize
+230V
+\end_layout
+
+\begin_layout Itemize
+24V, 12V, 5V
+\end_layout
+
+\begin_layout Itemize
+Netzwek
+\end_layout
+
+\begin_layout Itemize
+Modularer Aufbau, um Geräte aller Bauarten dort zu befestigen
+\end_layout
+
+\begin_layout Standard
+Officeplatz - für z.B.
+ kurze Recherche im Internet o.Ä.
+\end_layout
+
+\begin_layout Itemize
+230V
+\end_layout
+
+\begin_layout Itemize
+Netzwerk
+\end_layout
+
+\begin_layout Standard
+Unterverteilung - wird einen neue benötigt
+\end_layout
+
+\begin_layout Itemize
+400V Zuleitung
+\end_layout
+
+\begin_layout Itemize
+Netzwerk
+\end_layout
+
+\begin_layout Standard
+Serverrack für Netzwerk - Patchfeld und Switch
+\end_layout
+
+\begin_layout Itemize
+230V überwacht
+\end_layout
+
+\begin_layout Subsection
+Finale Anforderungen/Ausführung
+\end_layout
+
+\begin_layout Standard
+In der finalen Ausführung sind vier Testplätze entstanden, der Officeplatz
+ wurde, durch einen weiteren Testplatz für die eigenen PCBs, ersetzt.
+ Officearbeit wird nun, wenn nötig, am Laptop gemacht.
+\end_layout
+
+\begin_layout Standard
+Da nun auch der Server mit in den Raum kommen sollte musste ein zweiter
+ Serverschrank mit eingeplant werden.
+ Das Testnetzwerk sollte nicht mit dem firmeninternen Netzwerk in einen
+ Schrank kommen um Probleme zu vermeiden.
+ Somit gibt es nun einen großen Serverschrank für die Firmenserver und ein
+ kleineres Rack für die Patchfelder und Switch des Testnetzwerkes.
+ In Zukunft sollen hier auch noch Geräte eingebaut werden, um langsame Verbindun
+gen und Paketverluste simulieren zu können.
+ So findet man auch heraus wie bestimmte Geräte darauf reagieren.
+\end_layout
+
+\begin_layout Section
+Elektrische Umsetzung
+\end_layout
+
+\begin_layout Subsection
+Austattung der einzelnen 
+\begin_inset Quotes gld
+\end_inset
+
+PLÄTZE
+\begin_inset Quotes grd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Testplatz 1-4:
+\end_layout
+
+\begin_layout Itemize
+Spannungsversorgung 230V, teils schaltbar, überwacht
+\end_layout
+
+\begin_layout Itemize
+Kleinspannungsversorgung 24V, 12V
+\end_layout
+
+\begin_layout Itemize
+Netzwerkanbindung
+\end_layout
+
+\begin_layout Subsubsection
+Testplatz PCB
+\end_layout
+
+\begin_layout Itemize
+Spannungsversorgung 230V, teils schaltbar, überwacht
+\end_layout
+
+\begin_layout Itemize
+Netzwerkanbindung
+\end_layout
+
+\begin_layout Subsubsection
+Der Serverschrank
+\end_layout
+
+\begin_layout Itemize
+Spannungsversorgung 230V, überwacht
+\end_layout
+
+\begin_layout Itemize
+Netzwerkanbindung
+\end_layout
+
+\begin_layout Subsubsection
+Das Serverrack
+\end_layout
+
+\begin_layout Itemize
+Spannungsversorgung 230V, überwacht
+\end_layout
+
+\begin_layout Itemize
+Netzwerkanbindung
+\end_layout
+
+\begin_layout Subsection
+Die Unterverteilung
+\end_layout
+
+\begin_layout Standard
+Bei der Unterverteilung entschieden wir uns, da keine Gründe dagegen sprachen,
+ wieder für einen Standardversorger der Firma, hier für einen Rittal AE
+ 1180.500 mit einer Tiefe von 300mm, 800mm Breite und 1000mm Höhe.
+ Dieser kommt in der Standard-Schaltschrankfarbe RAL 7035 und hat die Schutzklas
+se IP66 nach IEC 60 529.
+ Alle Geräte wurden auf einer Montageplatte montiert.
+\end_layout
+
+\begin_layout Standard
+Da der Schaltschrank in der Nähe der Tür hängt, wurde, um den Fluchtweg
+ feizuhalten, der Türanschlag von rechts nach links gewechselt.
+ Die Einführung und die Klemmen sind im Schaltschrank nach unten gewandert,
+ da nur ein einzigstes Kabel - die Zuleitung - von oben kommt.
+ Als Klemmen wurden PHOENIX Contact Installationsklemmen verwendet.
+\end_layout
+
+\begin_layout Subsubsection
+Zuleitung
+\end_layout
+
+\begin_layout Standard
+Als Zuleitung wurde auf eine bereits vorhandene Reserve in der Hauptverteilung
+ zurückgegriffen.
+ Diese war über einen C32 Leitungsschutzschalter abgesichert.
+ Da hier jedoch bei Kurzschlüssen keine Selektivität gegeben wäre wurde
+ dieser durch einfache 35A D02 Schmelzsicherungen ersetzt.
+ Die Leitung wurde in 10mm² ausgeführt, BERECHNUNG
+\end_layout
+
+\begin_layout Subsubsection
+Niederspannung
+\end_layout
+
+\begin_layout Standard
+Als Hauptschalter wurde, wie bei den anderen Geräten auch, auf Siemes zurückgegr
+iffen.
+ Hier wurde ein Siemens 5TL13630 mit einem Schaltvermögen von 63A verbaut.
+\end_layout
+
+\begin_layout Standard
+Für die Spannungsversorgung sollten Brandschutzschalter verbaut werden.
+ Diese erhöhen, gerade auch bei Langzeittests, bei denen nicht immer eine
+ Person vor Ort ist, die Sicherheit.
+ Jeder Testplatz bekommt seine eigene Absicherung.
+ Für diese Stromkreise wurden RCBO's der Charakteristik B mit einem Auslösestrom
+ 30mA verbaut.
+ Aufgrund des begrenzten Platzangebots wurde hier auf Brandschutzschalter
+ der Firma Siemens zurückgegriffen, da diese Brandschutzschalter und RCBO
+ in einer Einheit mit der Breite von drei Teilungseinheiten kombinieren.
+ Bei der gängigen Hausmarke von Padcon ABB, ist diese Kombination vier Teilungse
+inheiten breit.
+ Dies erscheint im ersten Moment nur ein kleiner Breitenunterschied, hätte
+ aber im Gesamten die Auswirkung gehabt, dass keine Platzreserven mehr vorhanden
+ geblieben wären.
+ Konkret wurde hier auf die Geräte 5SM6021-1 und 5SU1656-6KK16 zurückgegriffen.
+\end_layout
+
+\begin_layout Standard
+Um die Stromversorgung später auch aus der Ferne zu Überwachen wurden an
+ allen Sicherungen, die direkt aus dem Schaltschrank gehen Hilfsschalter
+ verbaut.
+ Diese werden über ein Moxa ioLogik E1210 überwacht und können so über das
+ firmeninterne Netzwerk mit Hilfe einer Weboberfläche kontrolliert werden.
+ Gerade für die Serverversorgung ist dies 
+\begin_inset Quotes gld
+\end_inset
+
+vorteilhaft
+\begin_inset Quotes grd
+\end_inset
+
+.
+ Bestimmte Steckdosen an den Testplätzen sollen auch über das Netzwerk geschalte
+n werden können.
+ Diese Steckdosen wurden auf Wunsch der Firma mit blauen Einsätzen 
+\begin_inset Quotes gld
+\end_inset
+
+verbaut
+\begin_inset Quotes grd
+\end_inset
+
+.
+ Für die Netzwerkanbindung wurde auch hier wieder auch Moxa ioLogik Geräte
+ gesetzt, da diese in der Firma bereits mehrfach eingesetzt werden.
+ Diese Komponenten sind jedoch nicht für größere Lasten geeignet, deshalb
+ wurden Finder 10.61.9.024.0000 Relais dahinter geschalten.
+ Mit Hilfe dieser geschaltenen Steckdosen kann z.B.
+ ein kurzzeitiger Spannungsaufall auch aus der Ferne simuliert werden.
+\end_layout
+
+\begin_layout Subsubsection
+Kleinspannung
+\end_layout
+
+\begin_layout Standard
+Da viele der zu testenden Geräte mit einer Kleinspannung von 12V oder 24V
+ versorgt werden müssen, wurde an den Testplätzen eine eben solche auch
+ vorgesehen.
+ Es wurden jedoch - nicht wie urspünglich geplant 24V, 12V und 5V - nur
+ 24V und 12V-Spannungsversogrungen verbaut.
+ Auf die 5V-Versorgung wurde verzichtet, da diese nur sehr selten gebraucht
+ wird und den Mehraufwand nicht gerechtfertigt hätte.
+ Für die Netzteile wurde auch hier wieder auf firmenübliche Geräte zurückgegriff
+en.
+ Es wurden ABB CP-E 24/5.0 und CP-E12/10.0 verbaut.
+ Diese liefern, wie bereits aus der Bezeichnung herauslesbar 24V/5A und
+ 12V/10A.
+ Die 24V Geräte besitzen schon standardmäßig einen Hilfskontakt, der Fehlerfälle
+ anzeigt.
+ Dieser wurde auch auf dem ioLogik Gerät mit angeschlossen und lässt sich
+ nun auch über das Internet überwachen.
+\end_layout
+
+\begin_layout Subsection
+Das Netzwerk
+\end_layout
+
+\begin_layout Standard
+Jeder Testplatz erhält vier Netzwerkbuchsen, diese werden im dafür vorgesehenen
+ Serverrack so konfiguriet, dass der ganze Raum im Firmennetzwerk eine Insel
+ darstellt und sich die Plätze untereinander auch nur wenn es gewoll ist
+ erreichen können.
+ Als Installationskabel wurde S-FTP Cat.7 verwendet.
 \end_layout
 
 \begin_layout Standard
@@ -8235,6 +8599,16 @@ Durch diese ausgefeilte Implementierung des Telefonnummernextrahierens kann
 
 \begin_layout Section
 PyQt5
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[yk]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8249,36 +8623,102 @@ cute
 
 , oftmals jedoch auch Q-T (englisch)) Frameworks für C++.
  Was Qt und PyQt seine Attraktivität, auch im professionellen Bereich, verleiht,
- ist vor allem, dass eine Qt-Anwendung grundsätzlich Cross-Platform ist
- und dabei auf allen Plattformen konsistent gut aussieht.
+ ist vor allem, dass eine Qt-Anwendung grundsätzlich Cross-Platform fähig
+ ist und dabei auf allen Plattformen konsistent gut aussieht.
 \end_layout
 
 \begin_layout Subsection
 Signale und Slots
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-[yk]
 \end_layout
 
+\begin_layout Standard
+Im Gegensatz zu Kommandozeilen-Interfaces sind UI-Anwendungen immer ereignisgest
+euert.
+ Das heißt, der User drückt zum Beispiel einen Button, oder macht eine Eingabe
+ in einem Textfeld und daraus entsteht dann ein bestimmtes Ereignis, z.B.
+ 
+\begin_inset Quotes gld
 \end_inset
 
+Button gedrückt
+\begin_inset Quotes grd
+\end_inset
 
+ oder 
+\begin_inset Quotes gld
+\end_inset
+
+Text geändert
+\begin_inset Quotes grd
+\end_inset
+
+.
+ Diese Ereignisse senden in PyQt sogenannte Signale, welche dann mit Slots
+ verbunden werden müssen, um bei einem bestimmten Ereignis, eine bestimmte
+ Funktion auszuführen.
+ Solche Events enthalten folgende Informationen: Event-Quelle, Event-Objekt
+ und Event-Ziel
+\end_layout
+
+\begin_layout Standard
+Das sieht dann wie folgt aus:
+\end_layout
+
+\begin_layout Standard
+widget.signal.connect(slot)
+\end_layout
+
+\begin_layout Standard
+ein Beispiel dafür wäre:
+\end_layout
+
+\begin_layout Standard
+self.button.clicked.connect(button_click)
+\end_layout
+
+\begin_layout Standard
+self.button ist die Event-Quelle
+\end_layout
+
+\begin_layout Standard
+.clicked ist das Event-Objekt um das es hier geht
+\end_layout
+
+\begin_layout Standard
+.connect sagt aus, dass beide Teile miteinander verbunden werden sollen (Man
+ kann Signale auch wieder disconnecten)
+\end_layout
+
+\begin_layout Standard
+button_click ist dann der Slot der bei diesem Event aufgerufen wird.
+\end_layout
+
+\begin_layout Standard
+Signale können auch mit mehreren Slots und ebenso können Slots mit mehreren
+ Signalen verbunden werden.
+ Dies kann von Vorteil sein, wenn zum Beispiel mehrere Buttons die selbe
+ Funktion auslösen sollen.
+\end_layout
+
+\begin_layout Standard
+Signale können ebenfalls mit anderen Signalen verbunden werden, dies war
+ in unserem Fall jedoch nicht nötig und wird hier nicht weiter behandelt.
+\end_layout
+
+\begin_layout Subsubsection
+Signal
+\end_layout
+
+\begin_layout Standard
+Ein Signal kann von Unterschiedlichsten Objekten ausgehen
+\end_layout
+
+\begin_layout Subsubsection
+Slot
 \end_layout
 
 \begin_layout Subsection
 Aufbau der UI
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-[yk]
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -8287,6 +8727,16 @@ oder so iwie
 
 \begin_layout Subsection
 Darstellen der Verantwortlichkeiten als Baumstruktur
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[sv]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8639,6 +9089,16 @@ Items
 
 \begin_layout Subsection
 Fazit
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[sv]
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
