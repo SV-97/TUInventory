@@ -994,15 +994,18 @@ status open
 
 \end_layout
 
-\begin_layout Section
-Abschnitt 1 Raum
-\end_layout
-
 \begin_layout Standard
 In diesem sogenannten Test- und Integrationsraum sollen neue, zugekaufte
  Hardwarekomponenten getestet werden können, bevor sie auf größeren Anlagen
  verbaut werden.
- Bei den Tests wird vorallem auf Ausfallsicherheit und Steadiness geachtet.
+ Bei diesen Tests wird vorallem auf Ausfallsicherheit und Steadiness geachtet.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1016,13 +1019,36 @@ Als Beispiel wurden, als wir mit dem Projekt angefangen hatten, mehrere
  Da hier auch teilweise von großen Solaranlagen die Rede ist könnte ein
  Ausfall einer solchen in manchen Länder das ganze Stromnetz ins Wanken
  oder zum zusammenbrechen bringen.
- Ebenfalls soll dann auf bereits auch auf den Anlagen eingesetzter Hardware
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Ebenfalls soll dann auf bereits auch auf den Anlagen eingesetzter Hardware
  neue Softwareversionen der firmeneigenen Überwachungssoftware getestet
  werden können.
  So wird eine möglischt Realitätsnahe Umgebung geschaffen um einen späteren
  Fehlerfall zu 99% ausschließen zu können.
- Bei der Konzeptionierung der Testplätze war vorallem eine einheitliche
- Umgebung und ein modularer Aufbau wichtig.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bei der 
+\series bold
+Konzeptionierung der Testplätze
+\series default
+ war vorallem eine einheitliche Umgebung und ein modularer Aufbau wichtig.
  Es sollte für alle Geräte gleiche Grundbedingungen geschaffen werden, um
  diese möglichst direkt miteinander vergleichen zu können.
  Auch der modulare Aufbau stand an hoher Priorität, da Geräte aller Bauformen
@@ -1033,9 +1059,137 @@ Als Beispiel wurden, als wir mit dem Projekt angefangen hatten, mehrere
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da die bereits vorhandene Stromversorgung in dem Raum für unsere Zwecke
+ nicht ausreichend und ebenfalls stark veraltet war, musste eine neue Zuleitung
+ aus dem Hauptverteiler, sowie eine neue Unterverteilung eingeplant werden.
+ Für das Netzwerk, dass entstehen soll, wird auch ein Serverrack benötigt.
+ Im Verlauf der Planung des Raums wurde klar, dass auch ein Server mit in
+ diesen Raum kommt.
+ Für diesen soll die Versorgung auch über die neue Unterverteilung laufen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Raum
+\end_layout
+
+\begin_layout Subsection
+Ursprüngliche Anforderungen
+\end_layout
+
+\begin_layout Standard
+Die vom Auftraggeber vorgegebenen Anforderungen an den Test- und Integrationsrau
+m.
+ Diese haben sich jedoch, wie wohl bei jedem Projekt, im Verlauf geändert.
+ Die finale Ausführung finden Sie unter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Austattung-Bereiche"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+drei bis vier Testplätze, je nach Platzangebot:
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+230V
+\end_layout
+
+\begin_layout Itemize
+24V, 12V, 5V
+\end_layout
+
+\begin_layout Itemize
+Netzwerk
+\end_layout
+
+\begin_layout Itemize
+Modularer Aufbau, um Geräte aller Bauarten dort zu befestigen
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Officeplatz - für z.B.
+ kurze Recherche im Internet o.Ä.
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+230V
+\end_layout
+
+\begin_layout Itemize
+Netzwerk
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+neue Unterverteilung
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+400V Zuleitung
+\end_layout
+
+\begin_layout Itemize
+Netzwerkanschluss
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Serverrack für Netzwerk - Patchfeld und Switch
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+230V, überwacht
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Planung
+\end_layout
+
+\begin_layout Standard
 Bevor die Planung richtig beginnen konnte, musste ein geeigneter Raum gefunden
  werden.
- Wir entschieden uns in Absprache mit der Firma für einen leer stehenden
+ Wir entschieden uns, in Absprache mit der Firma, für einen leer stehenden
  Abstellraum an der Nordseite des Entwicklungs- und Verpackungszentrums.
  Durch die Lage an der Nordseite wurde es im Sommer nicht zu warm und es
  war trotz der Fenster keine direkte Sonneneinstrahlung vorhanden, was zu
@@ -1047,100 +1201,425 @@ Bevor die Planung richtig beginnen konnte, musste ein geeigneter Raum gefunden
 \end_layout
 
 \begin_layout Standard
-Da die bereits vorhandene Stromversorgung in dem Raum für unsere Zwecke
- nicht ausreichend und ebenfalls stark veraltet war, musste eine neue Zuleitung
- aus dem Hauptverteiler, sowie eine neue Unterverteilung eingeplant werden.
- Für die Absicherung der Zuleitung haben wir uns nach Abschluss der Planung
- auf 35A festgelegt.
- Da die meisten Geräte keine großen Energieverbraucher sind bleibt hier
- auch noch genug Reserve für den Server.
+Um einen besseren Überblick über den verfügbaren Platz zu gewinnen wurde
+ zunächst ein 3D-Modell des Raumes in Autodesk Fusion erstellt.
+ Hierzu wurde der Raum vollständig ausgemessen, inklusive der Türen, des
+ Fensters, den Heizungsleitungen und allen anderen möglichen Hindernissen
+ im Verlaufe des Planung.
 \end_layout
 
 \begin_layout Standard
-Für das Netzwerk, dass entstehen soll, wird auch ein Serverrack benötigt.
- Im Verlauf der Planung des Raums wurde klar, dass auch ein Server mit in
- diesen Raum kommt.
- Für diesen soll die Versorgung auch über die neue Unterverteilung laufen.
-\end_layout
+\begin_inset VSpace bigskip
+\end_inset
 
-\begin_layout Subsection
-Ursprüngliche Anforderungen
+
 \end_layout
 
 \begin_layout Standard
-drei bis vier Testplätze, je nach Platzangebot.
- diese sollten enthalten:
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-230V
-\end_layout
-
-\begin_layout Itemize
-24V, 12V, 5V
-\end_layout
-
-\begin_layout Itemize
-Netzwek
-\end_layout
-
-\begin_layout Itemize
-Modularer Aufbau, um Geräte aller Bauarten dort zu befestigen
+\begin_layout Subsubsection
+Iteration 1
 \end_layout
 
 \begin_layout Standard
-Officeplatz - für z.B.
- kurze Recherche im Internet o.Ä.
+Dies stellt den ersten Entwurf des Test- und Integrationsraumes dar.
 \end_layout
 
-\begin_layout Itemize
-230V
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(a) In der Abbildung sind an der rechten Seite (1) bereits drei Testplätze
+ zu sehen.
+ Jeder dieser Testplätze erhält eine kleine Unterverteilung, in der die
+ Kleinspannungsversorgung, also Netzteile und Klemmen, untergebracht sein
+ soll.
+ Als Befestigung für die Testgeräte sind drei Hutschienen, fest an der Wand
+ angeschraubt, vorgesehen.
 \end_layout
 
-\begin_layout Itemize
-Netzwerk
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(b) Unter den Testplätzen verläuft über die komplette Seite ein Installationskan
+al, in dem die Steckdosen und Netzwerkdosen untergebracht sind.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(c) In der linken Ecke (2) ist die neue Unterverteilung zu sehen.
+ In ihr ist die Niederspannungsabsicherung untergebracht.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(d) Rechts daneben (3) wurden als Beispiel mehrere IPCs angebracht, diese
+ sollen für die Langzeittests der Software dienen.
+ Darunter (4) ist ein Arbeitsplatz angedacht, an dem kleinere Hardwarearbeiten
+ durchgeführt werden können.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(f) Unten in der Mitte (5) ist ein Doppeltisch vorgesehen, an diesem werden
+ zwei Officearbeitsplätze aufgebaut.
+ So kann, während die Tests laufen, auch an anderen Aufgaben gearbeitet
+ werden.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(g) Unter der Unterverteilung (6) wurde das Serverrack für das rauminterne
+ Netzwerk platziert.
+ In ihm sind die Patchfelder und Switche untergebracht.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(h) In der linken unteren Ecke (7) ist noch ein Schrank zu sehen, dieser
+ dient als Abstellplatz, in den nicht benötigte Geräte verräumt werden können.
 \end_layout
 
 \begin_layout Standard
-Unterverteilung - wird einen neue benötigt
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Bilder/Iteration_1.png
+	width 16cm
+	clip
+
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-400V Zuleitung
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Iteration 1 Raum
 \end_layout
 
-\begin_layout Itemize
-Netzwerk
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-Serverrack für Netzwerk - Patchfeld und Switch
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
-\begin_layout Itemize
-230V überwacht
-\end_layout
-
-\begin_layout Subsection
-Finale Anforderungen/Ausführung
-\end_layout
-
-\begin_layout Standard
-In der finalen Ausführung sind vier Testplätze entstanden, der Officeplatz
- wurde, durch einen weiteren Testplatz für die eigenen PCBs, ersetzt.
- Officearbeit wird nun, wenn nötig, am Laptop gemacht.
+\begin_layout Subsubsection
+Iteration 2
 \end_layout
 
 \begin_layout Standard
-Da nun auch der Server mit in den Raum kommen sollte musste ein zweiter
- Serverschrank mit eingeplant werden.
- Das Testnetzwerk sollte nicht mit dem firmeninternen Netzwerk in einen
- Schrank kommen um Probleme zu vermeiden.
- Somit gibt es nun einen großen Serverschrank für die Firmenserver und ein
- kleineres Rack für die Patchfelder und Switch des Testnetzwerkes.
- In Zukunft sollen hier auch noch Geräte eingebaut werden, um langsame Verbindun
-gen und Paketverluste simulieren zu können.
- So findet man auch heraus wie bestimmte Geräte darauf reagieren.
+In der zweiten Iteration des Raumes sind bereits einige Änderungen zu sehen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(a) Die wichtigste Änderung ist hier die Unterverteilung (1), diese sitzt
+ nun neben der Eingangstür.
+ Gewählt wurde dieser Platz, da nun feststand von wo aus die Zuleitung in
+ den Raum kommen würde - über der aktuellen Position der Unterverteilung.
+ So wurde, für die Zuleitung, ein möglichst kurzer Weg gewählt.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(b) Links daneben (2) ist nun anstatt des festen Testplatzes ein Regal enstanden.
+ In diesem sollen nun die Langzeittests stattfinden.
+ Dank des Regals ist man deutlich flexibler als bei einer festen Installation
+ der IPCs.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(c) Wiederum links daneben sind nun nurnoch zwei weitere Testplätze zu sehen.
+ Diese sind mittlerweile modular aufgebaut, das heißt man kann, durch die
+ Aluminiumprofile an der Wand, die Höhe und Anzahl der Hutschienen ganz
+ nach den eigenen Bedürfnissen anpassen.
+ Außerdem lassen sich weitere Kabelkanäle anbringen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(d) Zwischen den beiden Testplätzen wurde der Installationskanal bis unter
+ die Decke nach oben gezogen, um auch neben den höher angebrachten Hutschienen
+ noch Steck- und Netzwerkdosen zu haben.
+ Beide Testplätze haben zusätzlich jeweils ein Regal bekommen, in diesem
+ lassen sich nicht-hutschienengeeignete Geräte unterbringen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(e) Das Serverrack hat seinen Platz behalten, da es an anderer Stelle zu
+ viel Platz vereinnahmt hätte.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Bilder/Iteration_2.png
+	width 16cm
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Iteration 2 Raum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Iteration 3
+\end_layout
+
+\begin_layout Standard
+In der dritten Iteration des Raumes wurden das Regal für Langzeittest-IPCs
+ (1) auf die andere Seite, über einen Officearbeitsplatz (2) verlegt, somit
+ enstand auf der anderen Seite Platz für einen weiteren Testplatz.
+ Die ursprünglichen beiden Testplätze konnten somit auch weiter in die Ecke
+ rutschen, was wiederum Platz für noch einen weiteren Testplatz enstehen
+ lies.
+ Sonst sind alle weiteren Elemente weitesgehend aus Iteration 2 übernommen
+ worden.
+ Einzig der dritte Arbeitstisch ist weggefallen und wurde durch die Verlängerte
+ Ablage ersetzt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Bilder/Iteration_3.png
+	width 16cm
+	clip
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Iteration 3 Raum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Iteration 4 FINAL
+\end_layout
+
+\begin_layout Standard
+In der finalen Version sind einige weitere große Veränderungen zu sehen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(a) Erstmals taucht hier in der Planung der Serverschrank für die firmeneigenen
+ Server auf.
+ Dieser war vorher leider noch nicht vorgesehen.
+ Da das Testnetzwerk jedoch nicht mit dem firmeninternen Servern in einen
+ Schrank kommen soll, um Sicherheitsrisiken aus dem Weg zu gehen, musste
+ auch das alte Serverrack erhalten bleiben.
+ In ihm sind, wie bereits zuvor, alle Netzwerkgeräte des Testnetzwerkes
+ untergebracht.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(b) Das Serverrack wurde jedoch um 90° gedreht, somit ragt es nichtmehr
+ über die Heizung hinaus.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(c) Testplatz drei und vier (1) wurden zusammengelegt, um auch größere Aufbauten
+ zu ermöglichen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(d) Das Regal für die Langzeittests ist weggefallen, diese Tests werden
+ nun an einem normalen Testplatz druchgeführt.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(e) Stattdessen wurde ein neuer, großer Testplatz konzeptioniert.
+ Dieser ist für die firmeneigenen PCBs gedacht.
+ Da diese meist eine dedizierte Spannungsversorgung benötigen wurde hier
+ auf die Kleinspannungsversorgung verzichtet.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(f) Durch den enormen Platzverbrauch des neuen Servers musste der Officeplatz
+ unter diesen Testplatz wandern.
+ So kann dieser auch gleichzeitig für Hardwarearbeiten mitbenutzt werden,
+ da an ihm einzig die Inventarsoftware benutzt wird.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(g) Die Unterverteilung hat nun ihre finale Größe, dies hat Testplatz 1
+ leider etwas Platz weggenommen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(h) An den Installationskanälen ist das finale Layout der Steckdosen und
+ Netzwerkdosen zu sehen.
+ Die Kleinspannungsversorgung wird mittels Klemmen auf den Hutschienen angebrach
+t und ist auf dem Bild nicht zu sehen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(i) In der linken unteren Ecke (2) ist zusätzlich noch eine Klimaanlage
+ platziert worden, um den, durch den Server entstehenden, höheren Temperaturen
+ entgegen zu wirken.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(j) An den Testplätzen 1-4 wurde jeweils zwischen Aluprofilen und vertikalem
+ Installationskanal etwas Platz gelassen um hier Regale anzubringen.
+ Da dies jedoch noch nicht zu 100% fest stand ob diese wirklich montiert
+ werden, wurden sie auf dem Render weggelassen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Graphics
+	filename Bilder/Iteration_4.png
+	width 16cm
+	clip
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Iteration 4 Raum final
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Section
@@ -1148,15 +1627,13 @@ Elektrische Umsetzung
 \end_layout
 
 \begin_layout Subsection
-Austattung der einzelnen 
-\begin_inset Quotes gld
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Austattung-Bereiche"
+
 \end_inset
 
-PLÄTZE
-\begin_inset Quotes grd
-\end_inset
-
-
+Austattung der einzelnen Bereiche
 \end_layout
 
 \begin_layout Subsubsection
@@ -1211,6 +1688,13 @@ Spannungsversorgung 230V, überwacht
 Netzwerkanbindung
 \end_layout
 
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Die Unterverteilung
 \end_layout
@@ -1225,11 +1709,10 @@ se IP66 nach IEC 60 529.
 \end_layout
 
 \begin_layout Standard
-Da der Schaltschrank in der Nähe der Tür hängt, wurde, um den Fluchtweg
- feizuhalten, der Türanschlag von rechts nach links gewechselt.
- Die Einführung und die Klemmen sind im Schaltschrank nach unten gewandert,
- da nur ein einzigstes Kabel - die Zuleitung - von oben kommt.
- Als Klemmen wurden PHOENIX Contact Installationsklemmen verwendet.
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1237,12 +1720,188 @@ Zuleitung
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Als Zuleitung wurde auf eine bereits vorhandene Reserve in der Hauptverteilung
  zurückgegriffen.
- Diese war über einen C32 Leitungsschutzschalter abgesichert.
+ Diese war über einen dreipoligen C32A Leitungsschutzschalter abgesichert.
  Da hier jedoch bei Kurzschlüssen keine Selektivität gegeben wäre wurde
- dieser durch einfache 35A D02 Schmelzsicherungen ersetzt.
- Die Leitung wurde in 10mm² ausgeführt, BERECHNUNG
+ dieser durch einfache D02 Schmelzsicherungen ersetzt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph
+Absicherung:
+\end_layout
+
+\begin_layout Standard
+Um die Leistungsaufnahme zu berechnen wurden alle Verbraucher zusammengerechnet.
+ Hiefür wurde jedoch nur die am meisten belastete Phase betrachtet, wobei
+ jedoch auf eine gleichmäßige Verteilung der Last geachtet wurde.
+ Dies lässt sich im Stromlaufplan erkennen.
+ Ebenso is zu erkennen, dass L1 die am meisten belastete Phase ist.
+\end_layout
+
+\begin_layout Standard
+Folgende Verbraucher gibt es:
+\end_layout
+
+\begin_layout Itemize
+16A Serversteckdose
+\end_layout
+
+\begin_layout Itemize
+16A Steckdose Testplatz 1
+\end_layout
+
+\begin_layout Itemize
+16A Steckdose Testplatz 4
+\end_layout
+
+\begin_layout Itemize
+Netzteil1 Testplatz 2 ABB CP-E 24/5.0 = 0,83A
+\end_layout
+
+\begin_layout Itemize
+Netzteil2 Testplatz 2 ABB CP-E 12/10.0 = 0,83A
+\end_layout
+
+\begin_layout Standard
+Da die Testplätze jedoch kaum belastet werden, kann man hier von einem Gleichzei
+tigkeitsfaktor von 0,5 ausgehen.
+ Dies ergibt also 16A + (16A + 0,83A * 2 * 0,5) = 32,83A.
+\end_layout
+
+\begin_layout Standard
+Somit kann eine 35A Schmelzsicherung eingesetzt werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+Leitungsberechnung:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Leitung wurde auf Grundlage folgender Brechnungen in 10mm² ausgeführt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset Formula $A=\cfrac{2*L*I*cos(PHI)}{y*U_{a}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+\begin_inset Formula $A=\cfrac{2*45m*35A*1}{56*6,9V}=8,15mm^{2}\sim10mm^{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A = Leitungsquerschnitt
+\end_layout
+
+\begin_layout Standard
+L = einfache Leitungslänge
+\end_layout
+
+\begin_layout Standard
+I = Leiterstrom
+\end_layout
+
+\begin_layout Standard
+cos PHI = Wirkungsgrad
+\end_layout
+
+\begin_layout Standard
+y = Leitfähigkeit
+\end_layout
+
+\begin_layout Standard
+U
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+a
+\end_layout
+
+\end_inset
+
+ = Spannungsfall
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1250,8 +1909,15 @@ Niederspannung
 \end_layout
 
 \begin_layout Standard
-Als Hauptschalter wurde, wie bei den anderen Geräten auch, auf Siemes zurückgegr
-iffen.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Als Hauptschalter wurde, wie bei den anderen Geräten im Schaltschrank auch,
+ auf die Firma Siemes zurückgegriffen.
  Hier wurde ein Siemens 5TL13630 mit einem Schaltvermögen von 63A verbaut.
 \end_layout
 
@@ -1259,7 +1925,17 @@ iffen.
 Für die Spannungsversorgung sollten Brandschutzschalter verbaut werden.
  Diese erhöhen, gerade auch bei Langzeittests, bei denen nicht immer eine
  Person vor Ort ist, die Sicherheit.
- Jeder Testplatz bekommt seine eigene Absicherung.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Jeder Testplatz bekommt seine eigene Absicherung.
  Für diese Stromkreise wurden RCBO's der Charakteristik B mit einem Auslösestrom
  30mA verbaut.
  Aufgrund des begrenzten Platzangebots wurde hier auf Brandschutzschalter
@@ -1267,44 +1943,53 @@ Für die Spannungsversorgung sollten Brandschutzschalter verbaut werden.
  in einer Einheit mit der Breite von drei Teilungseinheiten kombinieren.
  Bei der gängigen Hausmarke von Padcon ABB, ist diese Kombination vier Teilungse
 inheiten breit.
- Dies erscheint im ersten Moment nur ein kleiner Breitenunterschied, hätte
- aber im Gesamten die Auswirkung gehabt, dass keine Platzreserven mehr vorhanden
- geblieben wären.
- Konkret wurde hier auf die Geräte 5SM6021-1 und 5SU1656-6KK16 zurückgegriffen.
+ Dies erscheint im ersten Moment nur als ein kleiner Breitenunterschied,
+ hätte aber im Gesamten die Auswirkung gehabt, dass keine Platzreserven
+ mehr vorhanden geblieben wären.
+ Konkret wurde hier auf die Geräte 5SM6021-1 (Brandschutzschaltermodul)
+ und 5SU1656-6KK16 (RCBO 16A/300mA) / 5SU1356-6KK16 (RCBO 16A/30mA) zurückgegrif
+fen.
 \end_layout
 
 \begin_layout Standard
-Um die Stromversorgung später auch aus der Ferne zu Überwachen wurden an
- allen Sicherungen, die direkt aus dem Schaltschrank gehen Hilfsschalter
- verbaut.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Um die Stromversorgung später auch aus der Ferne zu Überwachen, wurden an
+ allen Sicherungen, die direkt aus dem Schaltschrank gehen, Hilfsschalter
+ 5ST3010 verbaut.
  Diese werden über ein Moxa ioLogik E1210 überwacht und können so über das
- firmeninterne Netzwerk mit Hilfe einer Weboberfläche kontrolliert werden.
- Gerade für die Serverversorgung ist dies 
-\begin_inset Quotes gld
-\end_inset
-
-vorteilhaft
-\begin_inset Quotes grd
-\end_inset
-
-.
+ firmeninterne Netzwerk, mit Hilfe einer Weboberfläche, kontrolliert werden.
+ Gerade für die Serverversorgung ist dies von Vorteil.
  Bestimmte Steckdosen an den Testplätzen sollen auch über das Netzwerk geschalte
 n werden können.
- Diese Steckdosen wurden auf Wunsch der Firma mit blauen Einsätzen 
-\begin_inset Quotes gld
-\end_inset
-
-verbaut
-\begin_inset Quotes grd
-\end_inset
-
-.
+ Diese Steckdosen wurden auf Wunsch der Firma mit blauen Einsätzen versehen.
  Für die Netzwerkanbindung wurde auch hier wieder auch Moxa ioLogik Geräte
  gesetzt, da diese in der Firma bereits mehrfach eingesetzt werden.
- Diese Komponenten sind jedoch nicht für größere Lasten geeignet, deshalb
- wurden Finder 10.61.9.024.0000 Relais dahinter geschalten.
+ Da diese Komponenten jedoch nicht für größere Lasten geeignet sind, wurden
+ Finder 45.61.9.024.0000 Relais dahinter geschalten.
+ Diese besitzen eine für 24V ausgelegte Schaltspule und haben ein Schaltvermögen
+ von 230V/16A.
  Mit Hilfe dieser geschaltenen Steckdosen kann z.B.
  ein kurzzeitiger Spannungsaufall auch aus der Ferne simuliert werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -1312,17 +1997,25 @@ Kleinspannung
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Da viele der zu testenden Geräte mit einer Kleinspannung von 12V oder 24V
  versorgt werden müssen, wurde an den Testplätzen eine eben solche auch
  vorgesehen.
- Es wurden jedoch - nicht wie urspünglich geplant 24V, 12V und 5V - nur
- 24V und 12V-Spannungsversogrungen verbaut.
+ Es wurden jedoch - nicht wie ursprünglich geplant 24V, 12V und 5V - nur
+ 24V und 12V-Spannungsversorgungen verbaut.
  Auf die 5V-Versorgung wurde verzichtet, da diese nur sehr selten gebraucht
  wird und den Mehraufwand nicht gerechtfertigt hätte.
+ Hierfür muss nun ein externes Netzteil verwendet werden.
  Für die Netzteile wurde auch hier wieder auf firmenübliche Geräte zurückgegriff
 en.
- Es wurden ABB CP-E 24/5.0 und CP-E12/10.0 verbaut.
- Diese liefern, wie bereits aus der Bezeichnung herauslesbar 24V/5A und
+ Es wurden pro Testplatz je ein ABB CP-E 24/5.0 und ein CP-E12/10.0 verbaut.
+ Diese liefern, wie bereits aus der Bezeichnung herauslesbar, 24V/5A und
  12V/10A.
  Die 24V Geräte besitzen schon standardmäßig einen Hilfskontakt, der Fehlerfälle
  anzeigt.
@@ -1330,16 +2023,923 @@ en.
  nun auch über das Internet überwachen.
 \end_layout
 
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Wärmeberechnung:
+\end_layout
+
+\begin_layout Standard
+Nach Abschluss der Geräteplanung musste noch eine Wärmeberechnung für den
+ Schaltschrank durchgeführt werden, um zu überprüfen, ob die Passivkühlung
+ durch das Schaltschrankgehäuse aussreicht.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Für die Wärmeberechnung des Schaltschranks werden folgende Angaben benötigt:
+\end_layout
+
+\begin_layout Itemize
+T
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+u
+\end_layout
+
+\end_inset
+
+max = maximale Umgebungstemperatur -> max.
+ 20°C
+\end_layout
+
+\begin_layout Itemize
+T
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+i
+\end_layout
+
+\end_inset
+
+max = maximale Schaltschrankinnentemperatur -> max.
+ 40°C
+\end_layout
+
+\begin_layout Itemize
+Schrankabmessungen (hxbxt) in mm -> 1000mmx800mmx300mm
+\end_layout
+
+\begin_layout Itemize
+Aufstellungsart des Schaltschrankes -> Einzelgehäuse für Wandaufbau
+\end_layout
+
+\begin_layout Itemize
+Wärmedurchgangskoeffizient k in Abhängigkeit des Materials aus dem der Schaltsch
+rank besteht -> 5,5 W/(m²K) für Stahlblech lackiert
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Aus den Abmessungen und der Aufstellungsart ergibt sich eine effektive Schaltsch
+rankoberfläche (Wärmeabstrahlfläche) nach DIN VDE 0660 Teil 500 von:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+A = 1,4*B*(H+T)+1,8*T*H
+\series default
+ = 1,4*0,8m*(1,0m+0,3m)+1,8*0,3m*1,0m = 
+\series bold
+1,996m²
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Für die Berechnung der Wärmeabfuhr durch die Gehäusewand wird folgende Formel
+ verwendet:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Q = U * A * (T
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\series bold
+i
+\end_layout
+
+\end_inset
+
+- T
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\series bold
+u
+\end_layout
+
+\end_inset
+
+)
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Q = Wärmeabgabe der Schrankoberfläche (in W)
+\end_layout
+
+\begin_layout Itemize
+U = Wärmedurchgangskoeffizient (in W/(m²K)
+\end_layout
+
+\begin_layout Itemize
+A = effektive Schaltschrankoberfläche (in m²)
+\end_layout
+
+\begin_layout Itemize
+T
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+i
+\end_layout
+
+\end_inset
+
+= Schaltschrankinnentemperatur (in °C)
+\end_layout
+
+\begin_layout Itemize
+T
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+u
+\end_layout
+
+\end_inset
+
+= Umgebungstemperatur (in °C)
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Werden nun alle Werte in die Rechnung eingesetzt, so ergibt sich folgendes
+ Ergebnis:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Q = 5,5W/(m²K)*1,996m²*(40°C-20°C) = 
+\series bold
+219,56W
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Installierte Verlustleistung Qt:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\begin_inset Tabular
+<lyxtabular version="3" rows="12" columns="4">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Anzahl
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gerät
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Verlustleistung
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gesamt
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ABB CP-E 24/5.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+20 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+80 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ABB CP-E 12/10.0
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+24 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+96 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ABB CP-E 24/0.75
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,45 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,45 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIEMENS 5TL13630
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,2 W je Pol
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6,6 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+9
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIEMENS 5SM6021-1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+0,6 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+5,4 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIEMENS 5SU1656-6KK16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SIEMENS 5SU1356-6KK16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+3 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+21 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+6
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+FINDER 40.61.9.024.0000
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1,2 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+7,2 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MOXA ioLogik E1210
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,64 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+2,64 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+MOXE ioLogik E1214
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,51 W
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+4,51 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+Gesamtverlustleistung:
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\series bold
+248,8 W
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Gesamtverlustleistung Unterverteilung
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Vergleicht man nun die installierte Verlustleistung mit der Wärmeabfuhr
+ des Schaltschranks so fällt auf, dass die installierte Verlustleistung
+ höher als die Wärmeabfuhr ist.
+ Dies ließ sich leider nicht vermeiden, da der Schaltschrank schon vor Abschluss
+ der Planung von der Firma bestellt und angeliefert wurde.
+ Es wurde der Firma jedoch empfohlen, eine geeignete Lüftung in den Schrank
+ einzubauen, als Beispiel wäre hier der Filterlüfter SK 3237.100 von Rittal
+ geeignet.
+ Da jedoch aktuell noch tiefere Umgebungstemperaturen herrschten und die
+ Lüftung noch nicht notwendig war, wurde erstmal darauf verzichtet.
+ Ein Test in einer längeranhaltenden Wärmeperiode, bei der sich der Raum
+ auf die maximale Raumtemperatur aufheizt, soll zeigen, ob eine Lüftung
+ notwendig wird.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Klemmen
+\end_layout
+
+\begin_layout Standard
+Als Klemmen wurden firmentypisch, PHOENIX Contact Installationsklemmen verwendet.
+ Hier wurden folgende Typen verwendet:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+PT 10, PT10 BU & PT10 PE als Zuleitungsklemmen
+\end_layout
+
+\begin_layout Itemize
+STI 2,5-PE/L/N als Klemmen für die Stromkreise
+\end_layout
+
+\begin_layout Itemize
+PT 1.5/S-QUATTRO RD als Klemmen für die Kleinspannungskreise
+\end_layout
+
+\begin_layout Standard
+Da für die zwei Moxa-Geräte jeweils eine Netzwerkanbindung benötigt wird,
+ musste Ethernet in den Schrank gelegt werden.
+ Dies wurde mit Hilfe zweier Patchmodule für Hutschienen (ABB IPM/S1.1) ausgeführ
+t.
+ So konnte, wie zu den anderen Netzwerkdosen auch, Installationskabel bis
+ in den Schaltschrank gelegt werden und im Schaltschrank dann mit Patchkabeln
+ weiter auf die beiden Geräte gegangen werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Montage
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da der Schaltschrank neben der Tür angebracht wurde und der optimale Fluchtweg,
+ durch den weit in den Raum ragenden Server, leicht schräg von der Tür weg
+ führt, wurde - um den Fluchtweg feizuhalten - der Türanschlag von rechts
+ nach links gewechselt.
+ Die Unterverteilung wurde jedoch trotzdem 30cm von der Tür entfernt angebracht
+ um genügend Platz für einen uneingeschränkten Durchgang durch die Tür zu
+ lassen.
+ Die Einführung und die Klemmen sind im Schaltschrank nach unten gewandert,
+ da nur ein einziges Kabel - die Zuleitung - von oben kommt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection
 Das Netzwerk
 \end_layout
 
 \begin_layout Standard
-Jeder Testplatz erhält vier Netzwerkbuchsen, diese werden im dafür vorgesehenen
- Serverrack so konfiguriet, dass der ganze Raum im Firmennetzwerk eine Insel
- darstellt und sich die Plätze untereinander auch nur wenn es gewoll ist
- erreichen können.
+\begin_inset VSpace smallskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In einem Testraum, der nach aktuellem Stand der Technik gebaut wird, darf
+ ein Netzwerk nicht fehlen.
+ So wurde jeder Testplatz mit vier Netzwerkbuchsen ausgestattet, diese werden
+ im dafür vorgesehenen Serverrack so konfiguriet, dass der ganze Raum im
+ Firmennetzwerk eine Insel darstellt und sich die Plätze untereinander auch
+ nur wenn es gewollt ist, erreichen können.
  Als Installationskabel wurde S-FTP Cat.7 verwendet.
+ Das dafür vergesehene, etwas kleinere Serverrack enthält am Ende nur zwei
+ 24-Port Patchfelder, einen 48-Port Netzwerkswitch und eine hardwaremäßige
+ Firewall.
+ Diese Patchfelder wurden, zu Übungszwecken, von den Auszubildenden der
+ Firma angeschlossen.
+ Alle anderen Arbeiten am Netzwerk wurden selbstverständlich von uns ausgeführt.
+\end_layout
+
+\begin_layout Standard
+In Zukunft sollen im Serverrack noch weitere Geräte eingebaut werden, die
+ langsame Verbindungen und Paketverluste simulieren zu können.
+ So kann auch dieses Fehlerszenario bereits hausintern getestet werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -8722,7 +10322,127 @@ Aufbau der UI
 \end_layout
 
 \begin_layout Standard
-oder so iwie
+Da dies keine 
+\begin_inset Quotes gld
+\end_inset
+
+SPECIAL
+\begin_inset Quotes grd
+\end_inset
+
+ Software ist, die sich auch bei jüngeren Anwendern gut verkaufen muss,
+ wurde beim Aufbau der UI auf eine schlichte und übersichtliche Struktur
+ gesetzt.
+ Die Software wird wohl, außer beim initialen Geräte-anlegen, kaum länger
+ als 5-10min am Stück verwendet werden.
+ Gerade auch deswegen sollte die Software möglichst selbsterklärend aufgebaut
+ sein.
+ Um hier trotzdem niemand auf sich sitzen zu lassen werden alle Mitarbeiter,
+ die diese Software später benutzen sollen, in der Bedienung unterwiesen.
+ Zusätlich wird auch noch eine kurze Bedienungsanleitung als .pdf beigelegt.
+ Jedoch sollte das alles kaum nötig sein, da hier ausschließlich IT-Personal
+ davor sitzt.
+\end_layout
+
+\begin_layout Standard
+Im folgenden finden Sie eine Beschreibung der einzelnen Menüpunkte:
+\end_layout
+
+\begin_layout Subsubsection
+Übersicht:
+\end_layout
+
+\begin_layout Standard
+Hier finden Sie eine Liste, geordnet nach Orten an denen sich die Geräte
+ befinden.
+ Klicken Sie auf einen der Orte und Sue finden alle dort ansässigen Personen
+ und Ihre Geräte dazu.
+ Sollte ein QR-Code auf dem Gerät sich ablösen, so können Sie mit Hilfe
+ des Buttons „QR-Code generieren“ einen neuen QR-Code für Ihr Gerät generieren
+ lassen und diesen dann anschließend wieder am Gerät anbringen.
+ Der Code wird unter dem in den Einstellungen (1.5) festgelegten Pfad abgelegt.
+\end_layout
+
+\begin_layout Subsubsection
+Kamera:
+\end_layout
+
+\begin_layout Standard
+Unter diesem Unterpunkt können Sie mittels QR-Code ihre Geräte einscannen
+ und den Ort ändern oder es einer anderen Person zuweisen.
+ Sollte Ihr Gerät fest installiert sein, so können Sie den Code auch mit
+ einem Handy abfotografieren und dieses Bild einscannen.
+\end_layout
+
+\begin_layout Subsubsection
+Geräteverwaltung:
+\end_layout
+
+\begin_layout Standard
+Hier finden Sie drei Unterpunkte:
+\end_layout
+
+\begin_layout Standard
+- Gerät: Auf dieser Seite lassen sich neue Geräte inklusive Verantwortlichen
+ und Ort anlegen.
+ Beim Speichern wird automatisch ein QR-Code für das neue Gerät erzeugt
+ und unter dem vorher ausgewählten Pfad abgelegt.
+ Hinweis: Es muss erst ein Artikel angelegt werden!
+\end_layout
+
+\begin_layout Standard
+- Artikel: Hier können Sie Artikel erstellen.
+ Es sollte ein eindeutig erkennbarer Name gewählt werden.
+ Hinweis: Es muss erst ein Hersteller angelegt werden!
+\end_layout
+
+\begin_layout Standard
+- Hersteller: Hier wird ein Hersteller angelegt.
+\end_layout
+
+\begin_layout Subsubsection
+Benutzerverwaltung:
+\end_layout
+
+\begin_layout Standard
+Wie Sie sich einloggen können finden Sie unter 2.1 Einloggen
+\end_layout
+
+\begin_layout Standard
+Sollten Sie nicht eingeloggt sein: Hier können neue Benutzer angelegt werden.
+ Die eingegebene Emailadresse wird später beim einloggen als Benutzername
+ verwendet.
+ Sie sind eingeloggt: Ihre Daten können Sie hier auch wieder ändern.
+ Sollten Sie als Admin eingeloggt sein können Sie auch die Daten anderen
+ Nutzer ändern oder Sie ebenfalls zum Admin befördern.
+ Hier sei gesagt, dass nur bereits öffentliche bekannte Daten angezeigt
+ werden, also keine Passwörter.
+\end_layout
+
+\begin_layout Subsubsection
+Einstellungen:
+\end_layout
+
+\begin_layout Standard
+Auf dieser Seite können Sie Ihre Standardeinstellungen ändern.
+\end_layout
+
+\begin_layout Standard
+Kamera spiegeln: Beim Code einscannen ist es für die meisten User einfacher
+ wenn das Kamerabild gespiegelt wird, da sich so das Bild in die selbe Richtung
+ wie auch der das zu einscannende Bauteil bewegt.
+ Sollte dies nicht gewünscht sein, so kann es hier abgestellt werden.
+\end_layout
+
+\begin_layout Standard
+Time Out Delay: Hier wird eingestellt, nach wie viel Minuten ohne Nutzerinterakt
+ion der User automatisch ausgeloggt wird.
+ Aus Sicherheitsgründen kann hier minimal ein wert von 2 Minuten eingestellt
+ werden.
+\end_layout
+
+\begin_layout Standard
+QR-Code Ablage: Die generierten QR-Codes werden unter diesem Pfad angelegt.
 \end_layout
 
 \begin_layout Subsection
