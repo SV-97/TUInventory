@@ -994,6 +994,14 @@ status open
 
 \end_layout
 
+\begin_layout Section
+Raum
+\end_layout
+
+\begin_layout Subsection
+Allgemein
+\end_layout
+
 \begin_layout Standard
 In diesem sogenannten Test- und Integrationsraum sollen neue, zugekaufte
  Hardwarekomponenten getestet werden können, bevor sie auf größeren Anlagen
@@ -1002,13 +1010,9 @@ In diesem sogenannten Test- und Integrationsraum sollen neue, zugekaufte
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace smallskip
+\begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Als Beispiel wurden, als wir mit dem Projekt angefangen hatten, mehrere
  IPC's auf längere Zeit einfach laufen gelassen.
  Von der Performance waren alle sehr gut, jedoch ist einer nach mehreren
@@ -1016,19 +1020,15 @@ Als Beispiel wurden, als wir mit dem Projekt angefangen hatten, mehrere
  So etwas lässt sich aus den theoretischen Daten des Produktes nicht herauslesen
  und darf auch auf keinen Fall auf einer schon in Betrieb genommenen Anlage
  passieren.
- Da hier auch teilweise von großen Solaranlagen die Rede ist könnte ein
- Ausfall einer solchen in manchen Länder das ganze Stromnetz ins Wanken
- oder zum zusammenbrechen bringen.
+ Da hier in der Regel von großen Solaranlagen die Rede ist könnte ein Ausfall
+ einer solchen in manchen Länder das ganze Stromnetz ins Wanken oder zum
+ Zusammenbrechen bringen.
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace smallskip
+\begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Ebenfalls soll dann auf bereits auch auf den Anlagen eingesetzter Hardware
  neue Softwareversionen der firmeneigenen Überwachungssoftware getestet
  werden können.
@@ -1040,39 +1040,36 @@ Ebenfalls soll dann auf bereits auch auf den Anlagen eingesetzter Hardware
 \begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Bei der 
-\series bold
-Konzeptionierung der Testplätze
-\series default
- war vorallem eine einheitliche Umgebung und ein modularer Aufbau wichtig.
- Es sollte für alle Geräte gleiche Grundbedingungen geschaffen werden, um
- diese möglichst direkt miteinander vergleichen zu können.
+Bei der Konzeptionierung der Testplätze war vorallem eine einheitliche Umgebung
+ und ein modularer Aufbau wichtig.
+ Es sollten für alle Geräte die gleichen Grundbedingungen geschaffen werden,
+ um diese möglichst direkt miteinander vergleichen zu können.
  Auch der modulare Aufbau stand an hoher Priorität, da Geräte aller Bauformen
  und Größen getestet werden sollen.
- Im Laufe Planung stellte sich heraus, dass unser Raum für den neuen Server
- der Firma, einen besonders geeigneten Platz darstellte, also musste für
- diesen auch noch eine getrennte Spannungsversorgung mit eingeplant werden.
+ Auf einen Potentialausgleich wurde - trotz ausdrücklicher Empfehlung unserersei
+ts - verzichtet, um diese Modularität beizubehalten.
 \end_layout
 
 \begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
-
+Im Laufe der Planung stellte sich heraus, dass unser Raum für den neuen
+ Server der Firma, einen besonders geeigneten Platz darstellte, also musste
+ für diesen auch noch eine getrennte Spannungsversorgung mit eingeplant
+ werden.
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
 Da die bereits vorhandene Stromversorgung in dem Raum für unsere Zwecke
  nicht ausreichend und ebenfalls stark veraltet war, musste eine neue Zuleitung
  aus dem Hauptverteiler, sowie eine neue Unterverteilung eingeplant werden.
  Für das Netzwerk, dass entstehen soll, wird auch ein Serverrack benötigt.
- Im Verlauf der Planung des Raums wurde klar, dass auch ein Server mit in
- diesen Raum kommt.
- Für diesen soll die Versorgung auch über die neue Unterverteilung laufen.
+ Die versorgung für den neuen Server sollte ebenfalls über die neue Unterverteil
+ung laufen.
 \end_layout
 
 \begin_layout Standard
@@ -1082,12 +1079,15 @@ Da die bereits vorhandene Stromversorgung in dem Raum für unsere Zwecke
 
 \end_layout
 
-\begin_layout Section
-Raum
-\end_layout
-
 \begin_layout Subsection
 Ursprüngliche Anforderungen
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1107,17 +1107,24 @@ noprefix "false"
 .
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 drei bis vier Testplätze, je nach Platzangebot:
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-230V
+230V Netzspannungsversorgung
 \end_layout
 
 \begin_layout Itemize
-24V, 12V, 5V
+24V, 12V, 5V DC
 \end_layout
 
 \begin_layout Itemize
@@ -1129,14 +1136,21 @@ Modularer Aufbau, um Geräte aller Bauarten dort zu befestigen
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
 Officeplatz - für z.B.
  kurze Recherche im Internet o.Ä.
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-230V
+230V Netzspannungsversorgung
 \end_layout
 
 \begin_layout Itemize
@@ -1144,8 +1158,15 @@ Netzwerk
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
-neue Unterverteilung
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Neue Unterverteilung, im Testraum
 \end_layout
 
 \begin_deeper
@@ -1158,13 +1179,20 @@ Netzwerkanschluss
 \end_layout
 
 \end_deeper
-\begin_layout Enumerate
-Serverrack für Netzwerk - Patchfeld und Switch
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Serverrack für das Netzwerk - Patchfeld und Switch
 \end_layout
 
 \begin_deeper
 \begin_layout Itemize
-230V, überwacht
+230V Netzspannungsversorgung, überwacht
 \end_layout
 
 \end_deeper
@@ -1184,6 +1212,10 @@ Serverrack für Netzwerk - Patchfeld und Switch
 
 \begin_layout Subsection
 Planung
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1193,19 +1225,40 @@ Bevor die Planung richtig beginnen konnte, musste ein geeigneter Raum gefunden
  Abstellraum an der Nordseite des Entwicklungs- und Verpackungszentrums.
  Durch die Lage an der Nordseite wurde es im Sommer nicht zu warm und es
  war trotz der Fenster keine direkte Sonneneinstrahlung vorhanden, was zu
- ungleichmäßigen Test führen könnte.
- Trotz alledem wurde eine Standklimaanlage mit eingeplant, um die Temperatur
+ ungleichmäßigen Tests führen könnte.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+Trotz alledem wurde eine Standklimaanlage mit eingeplant, um die Temperatur
  konstant zu halten.
  Dies wurde vorallem auch in anbetracht des erweiterbaren Servers getan,
  um hier in Zukunft nicht an Temperaturgrenzen zu stoßen.
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
 Um einen besseren Überblick über den verfügbaren Platz zu gewinnen wurde
- zunächst ein 3D-Modell des Raumes in Autodesk Fusion erstellt.
+ zunächst ein 3D-Modell des Raumes in Autodesk Fusion 360 erstellt.
  Hierzu wurde der Raum vollständig ausgemessen, inklusive der Türen, des
  Fensters, den Heizungsleitungen und allen anderen möglichen Hindernissen
- im Verlaufe des Planung.
+ im Verlaufe der Planung.
+ Hier konnte die ganze Planung, zum Beispiel von den einzelnen Testplätzen,
+ oder der Kleinspannungsversorgung, auch visuell durchgeführt werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+Mit Hilfe dieses 3D-Modells wurde bereits im Laufe der Planung mehrere Render
+ erstellt.
+ Diese dienten des Öfteren als Grundlage bei Argumentationen über die Finanzieru
+ng einzelner Komponenten.
 \end_layout
 
 \begin_layout Standard
@@ -1227,7 +1280,18 @@ Iteration 1
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Dies stellt den ersten Entwurf des Test- und Integrationsraumes dar.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Labeling
@@ -1280,6 +1344,10 @@ al, in dem die Steckdosen und Netzwerkdosen untergebracht sind.
 \labelwidthstring 00.00.0000
 (h) In der linken unteren Ecke (7) ist noch ein Schrank zu sehen, dieser
  dient als Abstellplatz, in den nicht benötigte Geräte verräumt werden können.
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1291,7 +1359,8 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Bilder/Iteration_1.png
-	width 16cm
+	width 13cm
+	height 20cm
 	clip
 
 \end_inset
@@ -1329,10 +1398,18 @@ Iteration 1 Raum
 
 \begin_layout Subsubsection
 Iteration 2
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 In der zweiten Iteration des Raumes sind bereits einige Änderungen zu sehen.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Labeling
@@ -1341,7 +1418,7 @@ In der zweiten Iteration des Raumes sind bereits einige Änderungen zu sehen.
  nun neben der Eingangstür.
  Gewählt wurde dieser Platz, da nun feststand von wo aus die Zuleitung in
  den Raum kommen würde - über der aktuellen Position der Unterverteilung.
- So wurde, für die Zuleitung, ein möglichst kurzer Weg gewählt.
+ So wurde für die Zuleitung ein möglichst kurzer Weg gewählt.
 \end_layout
 
 \begin_layout Labeling
@@ -1358,7 +1435,8 @@ In der zweiten Iteration des Raumes sind bereits einige Änderungen zu sehen.
  Diese sind mittlerweile modular aufgebaut, das heißt man kann, durch die
  Aluminiumprofile an der Wand, die Höhe und Anzahl der Hutschienen ganz
  nach den eigenen Bedürfnissen anpassen.
- Außerdem lassen sich weitere Kabelkanäle anbringen.
+ Außerdem lassen sich weitere Kabelkanäle oder auch bereits vorinstallierte
+ und verdrahtete Montageplatten anbringen.
 \end_layout
 
 \begin_layout Labeling
@@ -1374,6 +1452,10 @@ In der zweiten Iteration des Raumes sind bereits einige Änderungen zu sehen.
 \labelwidthstring 00.00.0000
 (e) Das Serverrack hat seinen Platz behalten, da es an anderer Stelle zu
  viel Platz vereinnahmt hätte.
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1385,7 +1467,8 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Bilder/Iteration_2.png
-	width 16cm
+	width 13cm
+	height 20cm
 	clip
 
 \end_inset
@@ -1423,19 +1506,77 @@ Iteration 2 Raum
 
 \begin_layout Subsubsection
 Iteration 3
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-In der dritten Iteration des Raumes wurden das Regal für Langzeittest-IPCs
- (1) auf die andere Seite, über einen Officearbeitsplatz (2) verlegt, somit
- enstand auf der anderen Seite Platz für einen weiteren Testplatz.
- Die ursprünglichen beiden Testplätze konnten somit auch weiter in die Ecke
- rutschen, was wiederum Platz für noch einen weiteren Testplatz enstehen
+Die dritte Version des Raumes besitzt auf den ersten Blick keine gravierenden
+ Änderungen, dafür wurden bei dieser Verison bereits einige Details eingeplant/b
+eachtet.
+ 
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(a) Das Regal für die Langzeittest-IPCs (1) wurde auf die andere Seite,
+ über einen Officearbeitsplatz (2) verlegt, somit enstand auf der anderen
+ Seite Platz für einen weiteren Testplatz.
+ Dieser wurde im Gegensatz zu den übrigen gespiegelt konzeptioniert, da
+ ansonsten das Regal in der Ecke hängen würde, was nicht besonders optimal/benut
+zerfreundlich ist.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(b) Die ursprünglichen beiden Testplätze (3,4) konnten somit weiter in die
+ Ecke rutschen, was wiederum Platz für noch einen weiteren Testplatz enstehen
  lies.
- Sonst sind alle weiteren Elemente weitesgehend aus Iteration 2 übernommen
- worden.
- Einzig der dritte Arbeitstisch ist weggefallen und wurde durch die Verlängerte
- Ablage ersetzt.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+(d) Desweiteren wurde der dritte Arbeitstisch weggelassen und durch eine
+ verlängerte Ablage (5) ersetzt, da sich herauskristallisierte, dass im
+ Testraum kaum Arbeiten duchgeführt werden müssen.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+() Die vertikalen Installationskanäle sind nun an allen Testplätzen, jeweils
+ neben den Regalen für die losen Geräte, vorhanden.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+() In ihnen sind bereits die ersten Layout-Entwürfe für die Steckdosen und
+ Netzwerkdosen zu sehen, hier wurde auch festgelegt, dass die schaltbaren
+ Steckdosen eine andere Abdeckungsfarbe erhalten.
+\end_layout
+
+\begin_layout Labeling
+\labelwidthstring 00.00.0000
+() Der Abstellschrank ist in dieser Version noch enthalten, jedoch war bereits
+ hier nicht sicher ob er denn benötigt wird, da die Geräte alle im richtigen
+ Lager aufbewahrt werden und somit der Officearbeitsplatz gedreht werden
+ könnte und nicht so weit in den Raum stünde.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1447,7 +1588,8 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Bilder/Iteration_3.png
-	width 16cm
+	width 13cm
+	height 20cm
 	clip
 
 \end_inset
@@ -1482,10 +1624,18 @@ Iteration 3 Raum
 
 \begin_layout Subsubsection
 Iteration 4 FINAL
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-In der finalen Version sind einige weitere große Veränderungen zu sehen.
+Dies stellt die finale, vierte Version dar.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Labeling
@@ -1520,7 +1670,7 @@ In der finalen Version sind einige weitere große Veränderungen zu sehen.
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-(e) Stattdessen wurde ein neuer, großer Testplatz konzeptioniert.
+(e) An dieser Stelle wurde ein neuer, großer Testplatz (2) konzeptioniert.
  Dieser ist für die firmeneigenen PCBs gedacht.
  Da diese meist eine dedizierte Spannungsversorgung benötigen wurde hier
  auf die Kleinspannungsversorgung verzichtet.
@@ -1550,7 +1700,7 @@ t und ist auf dem Bild nicht zu sehen.
 
 \begin_layout Labeling
 \labelwidthstring 00.00.0000
-(i) In der linken unteren Ecke (2) ist zusätzlich noch eine Klimaanlage
+(i) In der linken unteren Ecke (3) ist zusätzlich noch eine Klimaanlage
  platziert worden, um den, durch den Server entstehenden, höheren Temperaturen
  entgegen zu wirken.
 \end_layout
@@ -1559,12 +1709,9 @@ t und ist auf dem Bild nicht zu sehen.
 \labelwidthstring 00.00.0000
 (j) An den Testplätzen 1-4 wurde jeweils zwischen Aluprofilen und vertikalem
  Installationskanal etwas Platz gelassen um hier Regale anzubringen.
- Da dies jedoch noch nicht zu 100% fest stand ob diese wirklich montiert
- werden, wurden sie auf dem Render weggelassen.
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
+ Da jedoch noch nicht zu 100% fest stand ob diese wirklich montiert werden,
+ wurden sie auf dem Render weggelassen.
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -1579,7 +1726,8 @@ status open
 \begin_layout Plain Layout
 \begin_inset Graphics
 	filename Bilder/Iteration_4.png
-	width 16cm
+	width 14cm
+	height 20cm
 	clip
 
 \end_inset
@@ -1609,13 +1757,6 @@ Iteration 4 Raum final
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
 
@@ -1636,6 +1777,13 @@ name "subsec:Austattung-Bereiche"
 Austattung der einzelnen Bereiche
 \end_layout
 
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection
 Testplatz 1-4:
 \end_layout
@@ -1645,7 +1793,7 @@ Spannungsversorgung 230V, teils schaltbar, überwacht
 \end_layout
 
 \begin_layout Itemize
-Kleinspannungsversorgung 24V, 12V
+Kleinspannungsversorgung 24V, 12V, überwacht
 \end_layout
 
 \begin_layout Itemize
@@ -1688,6 +1836,18 @@ Spannungsversorgung 230V, überwacht
 Netzwerkanbindung
 \end_layout
 
+\begin_layout Subsubsection
+Die Unterverteilung
+\end_layout
+
+\begin_layout Itemize
+400V 35A Zuleitung
+\end_layout
+
+\begin_layout Itemize
+Netzwerkanbindung
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -1697,19 +1857,25 @@ Netzwerkanbindung
 
 \begin_layout Subsection
 Die Unterverteilung
+\begin_inset VSpace smallskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
 Bei der Unterverteilung entschieden wir uns, da keine Gründe dagegen sprachen,
- wieder für einen Standardversorger der Firma, hier für einen Rittal AE
- 1180.500 mit einer Tiefe von 300mm, 800mm Breite und 1000mm Höhe.
- Dieser kommt in der Standard-Schaltschrankfarbe RAL 7035 und hat die Schutzklas
-se IP66 nach IEC 60 529.
+ wieder für einen Standardversorger der Firma.
+ Hier für einen Rittal AE 1180.500 mit einer Tiefe von 300mm, 800mm Breite
+ und 1000mm Höhe.
+ Dieser kommt in der Standard-Schaltschrankfarbe RAL 7035 und hat die Schutzart
+ IP66 nach IEC 60 529.
+ Dies ist ein geerdeter Schaltschrank der Schutzklasse I.
  Alle Geräte wurden auf einer Montageplatte montiert.
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -1720,22 +1886,18 @@ Zuleitung
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
+\begin_inset VSpace medskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Als Zuleitung wurde auf eine bereits vorhandene Reserve in der Hauptverteilung
  zurückgegriffen.
- Diese war über einen dreipoligen C32A Leitungsschutzschalter abgesichert.
+ Diese war über einen dreipoligen G32A Leitungsschutzschalter abgesichert.
  Da hier jedoch bei Kurzschlüssen keine Selektivität gegeben wäre wurde
- dieser durch einfache D02 Schmelzsicherungen ersetzt.
+ der Firma empfohlen, diesen durch einfache D02 Schmelzsicherungen zu ersetzen.
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -1746,11 +1908,25 @@ Absicherung:
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 Um die Leistungsaufnahme zu berechnen wurden alle Verbraucher zusammengerechnet.
  Hiefür wurde jedoch nur die am meisten belastete Phase betrachtet, wobei
  jedoch auf eine gleichmäßige Verteilung der Last geachtet wurde.
  Dies lässt sich im Stromlaufplan erkennen.
  Ebenso is zu erkennen, dass L1 die am meisten belastete Phase ist.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1770,21 +1946,11 @@ Folgende Verbraucher gibt es:
 \end_layout
 
 \begin_layout Itemize
-Netzteil1 Testplatz 2 ABB CP-E 24/5.0 = 0,83A
+Netzteil_24V - Testplatz 2: ABB CP-E 24/5.0 = 0,83A
 \end_layout
 
 \begin_layout Itemize
-Netzteil2 Testplatz 2 ABB CP-E 12/10.0 = 0,83A
-\end_layout
-
-\begin_layout Standard
-Da die Testplätze jedoch kaum belastet werden, kann man hier von einem Gleichzei
-tigkeitsfaktor von 0,5 ausgehen.
- Dies ergibt also 16A + (16A + 0,83A * 2 * 0,5) = 32,83A.
-\end_layout
-
-\begin_layout Standard
-Somit kann eine 35A Schmelzsicherung eingesetzt werden.
+Netzteil_12V - Testplatz 2: ABB CP-E 12/10.0 = 0,83A
 \end_layout
 
 \begin_layout Standard
@@ -1794,7 +1960,20 @@ Somit kann eine 35A Schmelzsicherung eingesetzt werden.
 
 \end_layout
 
-\begin_layout Paragraph*
+\begin_layout Standard
+Da die Testplätze jedoch kaum belastet werden, kann man hier von einem Gleichzei
+tigkeitsfaktor von 0,5 ausgehen.
+ Dies ergibt also 16A + (16A + 0,83A * 2 * 0,5) = 32,83A.
+ 
+\begin_inset VSpace smallskip
+\end_inset
+
+Somit kann eine 35A Schmelzsicherung eingesetzt werden.
+\series bold
+
+\begin_inset Newpage newpage
+\end_inset
+
 Leitungsberechnung:
 \end_layout
 
@@ -1802,92 +1981,234 @@ Leitungsberechnung:
 \begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Die Leitung wurde auf Grundlage folgender Brechnungen in 10mm² ausgeführt.
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-\begin_inset Formula $A=\cfrac{2*L*I*cos(PHI)}{y*U_{a}}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-\begin_inset VSpace smallskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-
-\series bold
-\begin_inset Formula $A=\cfrac{2*45m*35A*1}{56*6,9V}=8,15mm^{2}\sim10mm^{2}$
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-A = Leitungsquerschnitt
-\end_layout
-
-\begin_layout Standard
-L = einfache Leitungslänge
-\end_layout
-
-\begin_layout Standard
-I = Leiterstrom
-\end_layout
-
-\begin_layout Standard
-cos PHI = Wirkungsgrad
-\end_layout
-
-\begin_layout Standard
-y = Leitfähigkeit
-\end_layout
-
-\begin_layout Standard
-U
-\begin_inset script subscript
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
-a
+
+
+\backslash
+begin{align*}  
+\end_layout
+
+\begin_layout Plain Layout
+
+A &= 
+\backslash
+frac {2 
+\backslash
+cdot L 
+\backslash
+cdot I 
+\backslash
+cdot 
+\backslash
+cos(
+\backslash
+varphi)} {y 
+\backslash
+cdot U_a} 
+\backslash
+
+\backslash
+  
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+   
+\end_layout
+
+\begin_layout Plain Layout
+
+	&= 
+\backslash
+frac {2 
+\backslash
+cdot 45m 
+\backslash
+cdot 35A 
+\backslash
+cdot 1} {56 
+\backslash
+cdot 6,9V}
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+	&= 8,15mm^2 
+\backslash
+sim 10mm^2 
+\backslash
+approx 10mm^2 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}
 \end_layout
 
 \end_inset
 
- = Spannungsfall
+
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+ Legende:
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$A = Leitungsquerschnitt $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$L = einfache
+\backslash
+ Leitungslaenge $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$I = Leiterstrom $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+cos(
+\backslash
+varphi) = Wirkungsgrad$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$y = Leitfaehigkeit$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$U_a = Spannungsfall$
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1912,17 +2233,14 @@ Niederspannung
 \begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Als Hauptschalter wurde, wie bei den anderen Geräten im Schaltschrank auch,
  auf die Firma Siemes zurückgegriffen.
  Hier wurde ein Siemens 5TL13630 mit einem Schaltvermögen von 63A verbaut.
-\end_layout
+ 
+\begin_inset VSpace bigskip
+\end_inset
 
-\begin_layout Standard
-Für die Spannungsversorgung sollten Brandschutzschalter verbaut werden.
+Für die Spannungsversorgung wollten wir Brandschutzschalter verbauen.
  Diese erhöhen, gerade auch bei Langzeittests, bei denen nicht immer eine
  Person vor Ort ist, die Sicherheit.
 \end_layout
@@ -1931,18 +2249,14 @@ Für die Spannungsversorgung sollten Brandschutzschalter verbaut werden.
 \begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Jeder Testplatz bekommt seine eigene Absicherung.
  Für diese Stromkreise wurden RCBO's der Charakteristik B mit einem Auslösestrom
  30mA verbaut.
  Aufgrund des begrenzten Platzangebots wurde hier auf Brandschutzschalter
  der Firma Siemens zurückgegriffen, da diese Brandschutzschalter und RCBO
  in einer Einheit mit der Breite von drei Teilungseinheiten kombinieren.
- Bei der gängigen Hausmarke von Padcon ABB, ist diese Kombination vier Teilungse
-inheiten breit.
+ Bei dem geläufigen Zulieferer von Padcon, ABB, ist diese Kombination vier
+ Teilungseinheiten breit.
  Dies erscheint im ersten Moment nur als ein kleiner Breitenunterschied,
  hätte aber im Gesamten die Auswirkung gehabt, dass keine Platzreserven
  mehr vorhanden geblieben wären.
@@ -1955,25 +2269,31 @@ fen.
 \begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-Um die Stromversorgung später auch aus der Ferne zu Überwachen, wurden an
+Um die Stromversorgung später auch aus der Ferne zu überwachen, wurden an
  allen Sicherungen, die direkt aus dem Schaltschrank gehen, Hilfsschalter
  5ST3010 verbaut.
  Diese werden über ein Moxa ioLogik E1210 überwacht und können so über das
  firmeninterne Netzwerk, mit Hilfe einer Weboberfläche, kontrolliert werden.
  Gerade für die Serverversorgung ist dies von Vorteil.
- Bestimmte Steckdosen an den Testplätzen sollen auch über das Netzwerk geschalte
-n werden können.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Bestimmte Steckdosen an den Testplätzen sollen auch über das Netzwerk geschalten
+ werden können.
  Diese Steckdosen wurden auf Wunsch der Firma mit blauen Einsätzen versehen.
  Für die Netzwerkanbindung wurde auch hier wieder auch Moxa ioLogik Geräte
  gesetzt, da diese in der Firma bereits mehrfach eingesetzt werden.
  Da diese Komponenten jedoch nicht für größere Lasten geeignet sind, wurden
  Finder 45.61.9.024.0000 Relais dahinter geschalten.
- Diese besitzen eine für 24V ausgelegte Schaltspule und haben ein Schaltvermögen
- von 230V/16A.
+ Diese besitzen eine für 24V ausgelegte Steuertspule und haben ein Schaltvermöge
+n von 230V/16A.
  Mit Hilfe dieser geschaltenen Steckdosen kann z.B.
  ein kurzzeitiger Spannungsaufall auch aus der Ferne simuliert werden.
 \end_layout
@@ -2000,10 +2320,6 @@ Kleinspannung
 \begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Da viele der zu testenden Geräte mit einer Kleinspannung von 12V oder 24V
  versorgt werden müssen, wurde an den Testplätzen eine eben solche auch
  vorgesehen.
@@ -2012,15 +2328,6 @@ Da viele der zu testenden Geräte mit einer Kleinspannung von 12V oder 24V
  Auf die 5V-Versorgung wurde verzichtet, da diese nur sehr selten gebraucht
  wird und den Mehraufwand nicht gerechtfertigt hätte.
  Hierfür muss nun ein externes Netzteil verwendet werden.
- Für die Netzteile wurde auch hier wieder auf firmenübliche Geräte zurückgegriff
-en.
- Es wurden pro Testplatz je ein ABB CP-E 24/5.0 und ein CP-E12/10.0 verbaut.
- Diese liefern, wie bereits aus der Bezeichnung herauslesbar, 24V/5A und
- 12V/10A.
- Die 24V Geräte besitzen schon standardmäßig einen Hilfskontakt, der Fehlerfälle
- anzeigt.
- Dieser wurde auch auf dem ioLogik Gerät mit angeschlossen und lässt sich
- nun auch über das Internet überwachen.
 \end_layout
 
 \begin_layout Standard
@@ -2031,14 +2338,80 @@ en.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage newpage
+Für die Netzteile wurde auch hier wieder auf firmenübliche Geräte zurückgegriffe
+n.
+ Es wurden pro Testplatz je ein ABB CP-E 24/5.0 und ein CP-E12/10.0 verbaut.
+ Diese liefern, wie bereits aus der Bezeichnung herauslesbar, 24V/5A und
+ 12V/10A.
+ Die 24V Geräte besitzen schon standardmäßig einen Hilfskontakt, der Fehlerfälle
+ anzeigt.
+ Dieser wurde auch auf dem ioLogik Gerät mit angeschlossen und lässt sich
+ nun ebenfalls über das Internet überwachen.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Um die Kleinspannung an den Testplätzen auch irgendwie zugänglich zu machen
+ gab es im Verlauf der Planung mehrere Ideen.
+ Die wohl sauberste Lösung wäre ein Einsatz im Installationskanal gewesen,
+ in dem mehrere Buchsen für Laborstecker untergebracht werden.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diese Lösung wurde jedoch, da immer Kabel mit Laborstecker benötigt werden,
+ als zu umständlich und auch deutlich zu teuer angesehen.
+ So fiehl unsere Wahl auf normale Reihenklemmen.
+ Um diese nicht frei an einen Testplätz hängen zu müssen wurden, wie in
+ Iteration 1 () zu sehen, kleine Schaltschränke vorgesehen.
+ Diese wurden jedoch auch als zu umständlich abgetan.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Auf Wunsch der Firma hin wurden nun die Klemmen der Kleinspannungsversorgung
+ jeweils auf die mittlere Hutschiene der Testplätze gesetzt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
 \end_inset
 
 
 \end_layout
 
 \begin_layout Subsubsection
-Wärmeberechnung:
+Wärmeberechnung
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -2063,12 +2436,12 @@ T
 \begin_inset script subscript
 
 \begin_layout Plain Layout
-u
+{u max}
 \end_layout
 
 \end_inset
 
-max = maximale Umgebungstemperatur -> max.
+= maximale Umgebungstemperatur -> max.
  20°C
 \end_layout
 
@@ -2077,12 +2450,12 @@ T
 \begin_inset script subscript
 
 \begin_layout Plain Layout
-i
+{i max}
 \end_layout
 
 \end_inset
 
-max = maximale Schaltschrankinnentemperatur -> max.
+ = maximale Schaltschrankinnentemperatur -> max.
  40°C
 \end_layout
 
@@ -2097,128 +2470,238 @@ Aufstellungsart des Schaltschrankes -> Einzelgehäuse für Wandaufbau
 \begin_layout Itemize
 Wärmedurchgangskoeffizient k in Abhängigkeit des Materials aus dem der Schaltsch
 rank besteht -> 5,5 W/(m²K) für Stahlblech lackiert
-\begin_inset VSpace bigskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
 Aus den Abmessungen und der Aufstellungsart ergibt sich eine effektive Schaltsch
 rankoberfläche (Wärmeabstrahlfläche) nach DIN VDE 0660 Teil 500 von:
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}  
+\end_layout
+
+\begin_layout Plain Layout
+
+A &= 1,4 
+\backslash
+cdot B 
+\backslash
+cdot (H + T) + 1,8 
+\backslash
+cdot T 
+\backslash
+cdot H 
+\backslash
+
+\backslash
+      
+\end_layout
+
+\begin_layout Plain Layout
+
+	&= 1,4 
+\backslash
+cdot 0,8m 
+\backslash
+cdot (1,0m + 0,3m) + 1,8 
+\backslash
+cdot 0,3m 
+\backslash
+cdot 1,0m 
+\backslash
+
+\backslash
+ 
+\end_layout
+
+\begin_layout Plain Layout
+
+	&= 1,996m^2
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-A = 1,4*B*(H+T)+1,8*T*H
-\series default
- = 1,4*0,8m*(1,0m+0,3m)+1,8*0,3m*1,0m = 
-\series bold
-1,996m²
-\end_layout
-
-\begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
-
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Für die Berechnung der Wärmeabfuhr durch die Gehäusewand wird folgende Formel
  verwendet:
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}  
+\end_layout
+
+\begin_layout Plain Layout
+
+Q = U 
+\backslash
+cdot A 
+\backslash
+cdot (T_i - T_u)
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-
-\series bold
-Q = U * A * (T
-\begin_inset script subscript
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
-\series bold
-i
+$
 \end_layout
-
-\end_inset
-
-- T
-\begin_inset script subscript
 
 \begin_layout Plain Layout
 
-\series bold
-u
-\end_layout
+Legende:
+\backslash
 
-\end_inset
-
-)
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
+\backslash
 
 \end_layout
-
-\begin_layout Itemize
-Q = Wärmeabgabe der Schrankoberfläche (in W)
-\end_layout
-
-\begin_layout Itemize
-U = Wärmedurchgangskoeffizient (in W/(m²K)
-\end_layout
-
-\begin_layout Itemize
-A = effektive Schaltschrankoberfläche (in m²)
-\end_layout
-
-\begin_layout Itemize
-T
-\begin_inset script subscript
 
 \begin_layout Plain Layout
-i
+
+
+\backslash
+qquad Q = Waermeabgabe
+\backslash
+ der
+\backslash
+ Schrankoberflaeche
+\backslash
+ (in
+\backslash
+ W)
+\backslash
+
+\backslash
+
 \end_layout
-
-\end_inset
-
-= Schaltschrankinnentemperatur (in °C)
-\end_layout
-
-\begin_layout Itemize
-T
-\begin_inset script subscript
 
 \begin_layout Plain Layout
-u
+
+
+\backslash
+qquad U = Waermedurchgangskoeffizient
+\backslash
+ (in
+\backslash
+ 
+\backslash
+frac {W}{m 
+\backslash
+cdot K} 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+qquad A = effektive
+\backslash
+ Schaltschrankoberflaeche
+\backslash
+ (in
+\backslash
+ m)
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+qquad T= Schaltschrankinnentemperatur
+\backslash
+ (in
+\backslash
+ °C)
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+qquad T= Umgebungstemperatur
+\backslash
+ (in
+\backslash
+ °C)
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+$
 \end_layout
 
 \end_inset
 
-= Umgebungstemperatur (in °C)
+
 \end_layout
 
 \begin_layout Standard
@@ -2241,6 +2724,46 @@ Werden nun alle Werte in die Rechnung eingesetzt, so ergibt sich folgendes
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+begin{align*}  
+\end_layout
+
+\begin_layout Plain Layout
+
+Q = 5,5
+\backslash
+ 
+\backslash
+frac {W}{m 
+\backslash
+cdot K}
+\backslash
+ 
+\backslash
+cdot 1,996m^2 
+\backslash
+cdot (40°C-20°C) = 219,56W 
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+end{align*}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -2248,34 +2771,27 @@ Werden nun alle Werte in die Rechnung eingesetzt, so ergibt sich folgendes
 \end_layout
 
 \begin_layout Standard
-Q = 5,5W/(m²K)*1,996m²*(40°C-20°C) = 
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
 \series bold
-219,56W
+Installierte Verlustleistung Q
+\begin_inset script subscript
+
+\begin_layout Plain Layout
+
+\series bold
+t
 \end_layout
 
-\begin_layout Standard
-\begin_inset VSpace bigskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Installierte Verlustleistung Qt:
+:
 \end_layout
 
 \begin_layout Standard
@@ -2784,20 +3300,9 @@ Gesamtverlustleistung Unterverteilung
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
+\begin_inset VSpace smallskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
 Vergleicht man nun die installierte Verlustleistung mit der Wärmeabfuhr
  des Schaltschranks so fällt auf, dass die installierte Verlustleistung
  höher als die Wärmeabfuhr ist.
@@ -2809,7 +3314,8 @@ Vergleicht man nun die installierte Verlustleistung mit der Wärmeabfuhr
  Da jedoch aktuell noch tiefere Umgebungstemperaturen herrschten und die
  Lüftung noch nicht notwendig war, wurde erstmal darauf verzichtet.
  Ein Test in einer längeranhaltenden Wärmeperiode, bei der sich der Raum
- auf die maximale Raumtemperatur aufheizt, soll zeigen, ob eine Lüftung
+ auf die maximale Raumtemperatur aufheizt, sowie erste Erfahrungen, wie
+ vieler Geräte denn Gleichzeitig in Betrieb sind, soll zeigen, ob eine Lüftung
  notwendig wird.
 \end_layout
 
@@ -2873,10 +3379,6 @@ Montage
 \begin_inset VSpace smallskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 Da der Schaltschrank neben der Tür angebracht wurde und der optimale Fluchtweg,
  durch den weit in den Raum ragenden Server, leicht schräg von der Tür weg
  führt, wurde - um den Fluchtweg feizuhalten - der Türanschlag von rechts
@@ -2910,10 +3412,6 @@ Das Netzwerk
 \begin_inset VSpace smallskip
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 In einem Testraum, der nach aktuellem Stand der Technik gebaut wird, darf
  ein Netzwerk nicht fehlen.
  So wurde jeder Testplatz mit vier Netzwerkbuchsen ausgestattet, diese werden
@@ -2921,15 +3419,31 @@ In einem Testraum, der nach aktuellem Stand der Technik gebaut wird, darf
  Firmennetzwerk eine Insel darstellt und sich die Plätze untereinander auch
  nur wenn es gewollt ist, erreichen können.
  Als Installationskabel wurde S-FTP Cat.7 verwendet.
- Das dafür vergesehene, etwas kleinere Serverrack enthält am Ende nur zwei
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das dafür vergesehene, etwas kleinere Serverrack enthält am Ende nur zwei
  24-Port Patchfelder, einen 48-Port Netzwerkswitch und eine hardwaremäßige
  Firewall.
  Diese Patchfelder wurden, zu Übungszwecken, von den Auszubildenden der
  Firma angeschlossen.
  Alle anderen Arbeiten am Netzwerk wurden selbstverständlich von uns ausgeführt.
+ Das Netzwerk wurde bereits vor der offiziellen Abnahme vom Systemadmin
+ durchgemessen und auf fehlerfreiheit geprüft.
+ So wurde dies bereits frühzeitig abgenommen.
 \end_layout
 
 \begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
 In Zukunft sollen im Serverrack noch weitere Geräte eingebaut werden, die
  langsame Verbindungen und Paketverluste simulieren zu können.
  So kann auch dieses Fehlerszenario bereits hausintern getestet werden.
@@ -9230,6 +9744,12 @@ Im Retrospekt ist zu erkennen, dass hierbei eine Funktion für die Schnittpunkte
 \end_layout
 
 \begin_layout Subsubsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Admin-Passwort-Lost"
+
+\end_inset
+
 Admin hat sein Passwort vergessen
 \end_layout
 
@@ -10261,11 +10781,27 @@ Text geändert
 \end_layout
 
 \begin_layout Standard
-Das sieht dann wie folgt aus:
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
+Dies sieht dann wie folgt aus:
+\end_layout
+
+\begin_layout Standard
+
+\emph on
 widget.signal.connect(slot)
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10273,24 +10809,49 @@ ein Beispiel dafür wäre:
 \end_layout
 
 \begin_layout Standard
+
+\emph on
 self.button.clicked.connect(button_click)
 \end_layout
 
 \begin_layout Standard
-self.button ist die Event-Quelle
+
+\emph on
+self.button
+\emph default
+ ist die Event-Quelle
 \end_layout
 
 \begin_layout Standard
-.clicked ist das Event-Objekt um das es hier geht
+
+\emph on
+.clicked
+\emph default
+ ist das Event-Objekt um das es hier geht
 \end_layout
 
 \begin_layout Standard
-.connect sagt aus, dass beide Teile miteinander verbunden werden sollen (Man
- kann Signale auch wieder disconnecten)
+
+\emph on
+.connect 
+\emph default
+sagt aus, dass beide Teile miteinander verbunden werden sollen (Man kann
+ Signale auch wieder disconnecten)
 \end_layout
 
 \begin_layout Standard
-button_click ist dann der Slot der bei diesem Event aufgerufen wird.
+
+\emph on
+button_click
+\emph default
+ ist dann der Slot der bei diesem Event aufgerufen wird.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10317,35 +10878,131 @@ Ein Signal kann von Unterschiedlichsten Objekten ausgehen
 Slot
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Aufbau der UI
 \end_layout
 
 \begin_layout Standard
-Da dies keine 
-\begin_inset Quotes gld
-\end_inset
-
-SPECIAL
-\begin_inset Quotes grd
-\end_inset
-
- Software ist, die sich auch bei jüngeren Anwendern gut verkaufen muss,
- wurde beim Aufbau der UI auf eine schlichte und übersichtliche Struktur
- gesetzt.
- Die Software wird wohl, außer beim initialen Geräte-anlegen, kaum länger
- als 5-10min am Stück verwendet werden.
- Gerade auch deswegen sollte die Software möglichst selbsterklärend aufgebaut
- sein.
- Um hier trotzdem niemand auf sich sitzen zu lassen werden alle Mitarbeiter,
- die diese Software später benutzen sollen, in der Bedienung unterwiesen.
- Zusätlich wird auch noch eine kurze Bedienungsanleitung als .pdf beigelegt.
- Jedoch sollte das alles kaum nötig sein, da hier ausschließlich IT-Personal
- davor sitzt.
+Da TUInventroy keine Consumer-Software darstellt, die sich auch bei den
+ Anwendern gut verkaufen muss, wurde beim Aufbau der UI auf eine schlichte
+ und übersichtliche Struktur gesetzt.
 \end_layout
 
 \begin_layout Standard
-Im folgenden finden Sie eine Beschreibung der einzelnen Menüpunkte:
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die Software wird, außer beim initialen Geräteanlegen, selten länger als
+ 5-10min am Stück verwendet.
+ Gerade auch aus diesem Grund, sollte die Software möglichst selbsterklärend
+ aufgebaut sein.
+ Um hier trotzdem niemand auf sich sitzen zu lassen werden alle Mitarbeiter,
+ die diese Software später benutzen sollen, in der Bedienung unterwiesen.
+ Zusätlich wird auch eine kurze Bedienungsanleitung als PDF-Datei beigelegt.
+ Alle diese Aufwendungen sollten jedoch kaum nötig sein, da das Programm
+ ausschließlich von IT-Personal benutzt wird.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Die UI enthält enthält ein Navigationsmenü auf der linken Seite, einen Home-Butt
+on/Logo an der oberen Seite und ein Login-Menü in der rechten oberen Ecke.
+ Ebenfalls ist über der unteren Leiste eine Statusbar enthalten.
+ Dies entspricht dem Standard-Layout, das User gewohnt sind.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Das Navigationsmenü lässt einen durch die unter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Menüpunkte"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ beschriebenen Menüpunkte switchen, beim Klicken auf den Home-Button wechselt
+ die UI zum Übersichtsfenster.
+\end_layout
+
+\begin_layout Subsection
+Login-Menü
+\end_layout
+
+\begin_layout Standard
+Beim klicken auf den Login-Button öffnet sich ein neues Fenster, in dem
+ man seine Anmeldedaten, also Email und Passwort, eingeben kann.
+ Wurden diese Angaben alle richtig gemacht, so schließt sich das Fenster
+ wieder und im Hauptfenster sieht man oben rechts nun den Namen des eingeloggten
+ Users, sowie einen Button zum ausloggen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Da es durchaus vorkommen kann, das selbst der Admin sein Passwort verliert,
+ wurde die Möglichkeit eingebaut, auch dieses Zurückzusetzen.
+ Wie dies funktioniert ist unter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Admin-Passwort-Lost"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ zu finden.
+ Aufrufen lässt sich diese Funktion im Login-Fenster mit Hilfe des Buttons
+ 
+\begin_inset Quotes gld
+\end_inset
+
+Passwort vergessen
+\begin_inset Quotes grd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Menüpunkte"
+
+\end_inset
+
+Menüpunkte
 \end_layout
 
 \begin_layout Subsubsection
@@ -10353,14 +11010,37 @@ Im folgenden finden Sie eine Beschreibung der einzelnen Menüpunkte:
 \end_layout
 
 \begin_layout Standard
-Hier finden Sie eine Liste, geordnet nach Orten an denen sich die Geräte
- befinden.
- Klicken Sie auf einen der Orte und Sue finden alle dort ansässigen Personen
- und Ihre Geräte dazu.
- Sollte ein QR-Code auf dem Gerät sich ablösen, so können Sie mit Hilfe
- des Buttons „QR-Code generieren“ einen neuen QR-Code für Ihr Gerät generieren
- lassen und diesen dann anschließend wieder am Gerät anbringen.
- Der Code wird unter dem in den Einstellungen (1.5) festgelegten Pfad abgelegt.
+Hier befindet sich eine Liste aller vorhandener Geräte, geordnet nach Orten,
+ an denen sich die Geräte befinden.
+ Diese Orte stellen Drop-Down-Menüs dar, welche sich aufklappen lassen,
+ dort sind nun alle ansässigen Personen mit ihren jeweiligen Geräten zu
+ finden.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+Sollte sich ein QR-Code auf dem Gerät abgelöst haben, so kann hier mit Hilfe
+ des Buttons „QR-Code generieren“ ein neuer QR-Code für jedes beliebige
+ Gerät generiert werden.
+ Hierfür muss vorher das entsprechende Gerät in der Übersicht ausgewählt
+ werden.
+ Der generierte Code wird, unter dem in den Einstellungen (
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Einstellungen:"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) festgelegten Pfad, abgelegt.
+ Dies geschieht als SVG-Datei, kann jedoch bei Bedarf auch als zum Beispiel
+ einer PNG- oder JPEG-Datei geschehen.
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -10368,10 +11048,29 @@ Kamera:
 \end_layout
 
 \begin_layout Standard
-Unter diesem Unterpunkt können Sie mittels QR-Code ihre Geräte einscannen
- und den Ort ändern oder es einer anderen Person zuweisen.
- Sollte Ihr Gerät fest installiert sein, so können Sie den Code auch mit
- einem Handy abfotografieren und dieses Bild einscannen.
+Unter diesem Unterpunkt kann der vorher angebrachte QR-Code des Geräts eingescan
+nt werden.
+ Unterhalb des Kamerabilds werden nun alle wichtigen Informationen angezeigt.
+ Hier lässt sich ebenso der Ort ändern oder man kann es einer anderen Person
+ zuweisen.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sollte ein Gerät fest installiert sein, das heißt man kann es nicht in die
+ Kamera halten, so kann der Code auch mit einem Handy abfotografiert werden
+ und dieses Bild abgescannt werden.
+ 
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -10379,25 +11078,81 @@ Geräteverwaltung:
 \end_layout
 
 \begin_layout Standard
-Hier finden Sie drei Unterpunkte:
+Hier sind drei Unterpunkte zu finden:
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
+\begin_layout Itemize
+Gerät:
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
-- Gerät: Auf dieser Seite lassen sich neue Geräte inklusive Verantwortlichen
- und Ort anlegen.
+\begin_inset space \quad{}
+\end_inset
+
+Auf dieser Seite lassen sich neue Geräte inklusive Verantwortlichen und
+ Ort anlegen.
  Beim Speichern wird automatisch ein QR-Code für das neue Gerät erzeugt
  und unter dem vorher ausgewählten Pfad abgelegt.
- Hinweis: Es muss erst ein Artikel angelegt werden!
+ Hierfür muss jedoch erst ein Artikel angelegt werden.
 \end_layout
 
+\end_deeper
+\begin_layout Itemize
+Artikel:
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
-- Artikel: Hier können Sie Artikel erstellen.
+\begin_inset space \quad{}
+\end_inset
+
+Hier können Artikel erstellt werden.
  Es sollte ein eindeutig erkennbarer Name gewählt werden.
- Hinweis: Es muss erst ein Hersteller angelegt werden!
+ Hierfür muss jedoch erst ein Hersteller angelegt werden.
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Hersteller:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset space \quad{}
+\end_inset
+
+Hier können Hersteller angelegt werden.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-- Hersteller: Hier wird ein Hersteller angelegt.
+Ein einfacher 
+\begin_inset Quotes gld
+\end_inset
+
+Speichern
+\begin_inset Quotes grd
+\end_inset
+
+-Button auf allen drei Seiten überprüft die Eingaben auf Vollständigkeit.
+ Sollte dies gegeben sein, so wird das jeweilige Objekt erstellt und in
+ die Datenbank abgespeichert.
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
@@ -10405,44 +11160,233 @@ Benutzerverwaltung:
 \end_layout
 
 \begin_layout Standard
-Wie Sie sich einloggen können finden Sie unter 2.1 Einloggen
+Je nach Login-Status des Users gibt es hier unterschiedliche Funktionen:
 \end_layout
 
 \begin_layout Standard
-Sollten Sie nicht eingeloggt sein: Hier können neue Benutzer angelegt werden.
- Die eingegebene Emailadresse wird später beim einloggen als Benutzername
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Kein User eingeloggt
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset space \quad{}
+\end_inset
+
+Neue Benutzer können hier angelegt werden, solange man nicht eingeloggt
+ ist.
+ Die eingegebene Emailadresse wird später beim Einloggen als Benutzername
  verwendet.
- Sie sind eingeloggt: Ihre Daten können Sie hier auch wieder ändern.
- Sollten Sie als Admin eingeloggt sein können Sie auch die Daten anderen
- Nutzer ändern oder Sie ebenfalls zum Admin befördern.
- Hier sei gesagt, dass nur bereits öffentliche bekannte Daten angezeigt
- werden, also keine Passwörter.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Nutzer eingeloggt
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset space \quad{}
+\end_inset
+
+Sobald man eingeloggt ist, kann man hier seine angebebenen Daten auch wieder
+ ändern.
+ Hierfür sind die Felder dann bereits mit den entsprechenden Angaben vorausgefül
+lt.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Admin eingeloggt
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset space \quad{}
+\end_inset
+
+Sollten Sie als Admin eingeloggt sein, so lassen sich auch die Daten anderen
+ Nutzer ändern oder diese ebenfalls zum Admin befördern.
+ Die zu ändernde Person lässt sich über ein Drop-Down-Menü auswählen.
+ Als Admin lässt sich hier ebenfalls ein neues Passwort für andere Nutzer
+ generieren, sollte diese ihres vergessen haben.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Hierzu sei gesagt, dass nur Daten angegeben werden müssen, die innerhalb
+ einer Firma sowieso öffentlich zugänglich sind, wie Name, Email und Telefonnumm
+er.
+ Beim Ändern werden ebenfalls nur diese Daten angezeigt, Passwörter bleiben
+ verschlüsselt und werden nicht sichtbar.
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsubsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Einstellungen:"
+
+\end_inset
+
 Einstellungen:
 \end_layout
 
 \begin_layout Standard
-Auf dieser Seite können Sie Ihre Standardeinstellungen ändern.
+Auf dieser Seite können die Standardeinstellungen geändert werden.
 \end_layout
 
 \begin_layout Standard
-Kamera spiegeln: Beim Code einscannen ist es für die meisten User einfacher
- wenn das Kamerabild gespiegelt wird, da sich so das Bild in die selbe Richtung
- wie auch der das zu einscannende Bauteil bewegt.
- Sollte dies nicht gewünscht sein, so kann es hier abgestellt werden.
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
+\begin_layout Itemize
+Kamera spiegeln:
+\end_layout
+
+\begin_deeper
 \begin_layout Standard
-Time Out Delay: Hier wird eingestellt, nach wie viel Minuten ohne Nutzerinterakt
-ion der User automatisch ausgeloggt wird.
- Aus Sicherheitsgründen kann hier minimal ein wert von 2 Minuten eingestellt
+\begin_inset space \quad{}
+\end_inset
+
+Beim Code einscannen ist es für die meisten User einfacher, wenn das Kamerabild
+ gespiegelt wird, da sich so das Bild in die selbe Richtung wie auch das
+ zu einscannende Bauteil bewegt.
+ Sollte dies nicht gewünscht sein, so kann dies hier abgestellt werden.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+Time Out Delay:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset space \quad{}
+\end_inset
+
+Hier lässt sich einstellen, nach wie viel Minuten ohne aktive Nutzerinteraktion
+ der User automatisch ausgeloggt wird.
+ Aus Sicherheitsgründen kann hier minimal ein Wert von 2 Minuten eingestellt
  werden.
+ Wird ein User nach Ablauf dieser Zeit ausgeloggt, so öffnet sich ein neues
+ Fenster mit dem Grund für das Ausloggen, sodass der User weiß, warum er
+ ausgeloggt wurde.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Itemize
+QR-Code Ablage:
+\end_layout
+
+\begin_deeper
+\begin_layout Standard
+\begin_inset space \quad{}
+\end_inset
+
+Die generierten QR-Codes werden unter diesem Pfad angelegt.
+ Der Pfad kann auch händisch geändert werden, beim abspeichern der Einstellungen
+ wird dieser, je nach Betriebssystem, auf die richtige Schreibweise überprüft.
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\end_deeper
+\begin_layout Subsection
+Statusbar
 \end_layout
 
 \begin_layout Standard
-QR-Code Ablage: Die generierten QR-Codes werden unter diesem Pfad angelegt.
+Da es bei einer Software mit Benutzeroberfläche dem Benutzer immer wieder,
+ unterschiedliche Informationen übermittelt werden müssen entschieden wir
+ uns eine Statusbar einzufügen.
+ Hier werden Nachrichten angezeigt, wie zum Beispiel beim Erkennen eines
+ Barcodes in der Kamera 
+\begin_inset Quotes gld
+\end_inset
+
+Barcode erkannt
+\begin_inset Quotes grd
+\end_inset
+
+.
+ Die meisten Meldungen sind jedoch sozusagen Fehlermeldungen, z.B.
+ wenn ein User beim Einloggen ein falsches Passwort eingibt, oder beim Benutzer
+ anlegen nicht alle Felder ausgefüllt werden.
+ Um bereits auf den ersten Blick klar zu machen, ob diese Meldunge jetzt
+ gut oder schlecht ist, wurden die unterschiedlichen Meldungen in unterschiedlic
+hen Farben ausgeführt.
+ Fehlermeldungen werden immer in rot angezeigt, einfache Information in
+ grün.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Werden gerade keine Meldungen in der Statusbar angezeigt, so fällt ihr Vorhanden
+sein nicht auf, da der Hintergrund transparent gehalten wurde.
+ Durch die farbige Schrift fallen Meldungen trotzdem sofort auf.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
