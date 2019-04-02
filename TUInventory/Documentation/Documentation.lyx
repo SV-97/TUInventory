@@ -1219,22 +1219,22 @@ Planung
 \end_layout
 
 \begin_layout Standard
-Bevor die Planung richtig beginnen konnte, musste ein geeigneter Raum gefunden
- werden.
- Wir entschieden uns, in Absprache mit der Firma, für einen leer stehenden
- Abstellraum an der Nordseite des Entwicklungs- und Verpackungszentrums.
- Durch die Lage an der Nordseite wurde es im Sommer nicht zu warm und es
- war trotz der Fenster keine direkte Sonneneinstrahlung vorhanden, was zu
- ungleichmäßigen Tests führen könnte.
+Bevor die Planung aufgenommen werden konnte, musste ein geeigneter Raum
+ gefunden werden.
+ Hier entschieden wir uns, in Absprache mit der Firma, für einen leer stehenden
+ Abstellraum in einem Anbau am Entwicklungs- und Verpackungszentrum.
+ Durch die optimale Lage an der Nordseite wurde es im Sommer nicht zu warm
+ und es war, trotz eines Fensters, keine direkte Sonneneinstrahlung vorhanden,
+ welche zu ungleichmäßigen Tests führen könnte.
 \end_layout
 
 \begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
-Trotz alledem wurde eine Standklimaanlage mit eingeplant, um die Temperatur
- konstant zu halten.
- Dies wurde vorallem auch in anbetracht des erweiterbaren Servers getan,
+Trotz alledem wurde eine kleinere Standklimaanlage mit eingeplant, um die
+ Temperatur konstant zu halten.
+ Dies wurde vorallem auch in Anbetracht des erweiterbaren Servers getan,
  um hier in Zukunft nicht an Temperaturgrenzen zu stoßen.
 \end_layout
 
@@ -1255,10 +1255,10 @@ Um einen besseren Überblick über den verfügbaren Platz zu gewinnen wurde
 \begin_inset VSpace bigskip
 \end_inset
 
-Mit Hilfe dieses 3D-Modells wurde bereits im Laufe der Planung mehrere Render
- erstellt.
- Diese dienten des Öfteren als Grundlage bei Argumentationen über die Finanzieru
-ng einzelner Komponenten.
+Mit Hilfe dieses 3D-Modells wurden bereits im Laufe der Planung mehrere
+ Render erstellt.
+ Diese dienten des Öfteren auch als Grundlage bei Argumentationen über die
+ Finanzierung einzelner Komponenten.
 \end_layout
 
 \begin_layout Standard
@@ -1288,61 +1288,117 @@ Iteration 1
 
 \begin_layout Standard
 Dies stellt den ersten Entwurf des Test- und Integrationsraumes dar.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+theenumi}{(
+\backslash
+alph{enumi})}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+labelenumi}{
+\backslash
+theenumi}
+\end_layout
+
+\end_inset
+
+
 \begin_inset VSpace medskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(a) In der Abbildung sind an der rechten Seite (1) bereits drei Testplätze
- zu sehen.
+\begin_layout Enumerate
+In der Abbildung sind an der rechten Seite (1) bereits drei Testplätze zu
+ sehen.
  Jeder dieser Testplätze erhält eine kleine Unterverteilung, in der die
  Kleinspannungsversorgung, also Netzteile und Klemmen, untergebracht sein
  soll.
  Als Befestigung für die Testgeräte sind drei Hutschienen, fest an der Wand
  angeschraubt, vorgesehen.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(b) Unter den Testplätzen verläuft über die komplette Seite ein Installationskan
-al, in dem die Steckdosen und Netzwerkdosen untergebracht sind.
+\begin_layout Enumerate
+Unter den Testplätzen verläuft über die komplette Seite ein Installationskanal,
+ in dem die Steckdosen und Netzwerkdosen untergebracht sind.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(c) In der linken Ecke (2) ist die neue Unterverteilung zu sehen.
+\begin_layout Enumerate
+In der linken Ecke (2) ist die neue Unterverteilung zu sehen.
  In ihr ist die Niederspannungsabsicherung untergebracht.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(d) Rechts daneben (3) wurden als Beispiel mehrere IPCs angebracht, diese
- sollen für die Langzeittests der Software dienen.
- Darunter (4) ist ein Arbeitsplatz angedacht, an dem kleinere Hardwarearbeiten
+\begin_layout Enumerate
+Rechts daneben (3) wurden als Beispiel mehrere IPCs fest an der Wand angebracht,
+ diese sollen für die Langzeittests der Software dienen und müssen so nicht
+ modular sein.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Darunter (4) ist ein Arbeitsplatz angedacht, an dem kleinere Hardwarearbeiten
  durchgeführt werden können.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(f) Unten in der Mitte (5) ist ein Doppeltisch vorgesehen, an diesem werden
+\begin_layout Enumerate
+Unten in der Mitte (5) ist ein Doppeltisch vorgesehen, an diesem werden
  zwei Officearbeitsplätze aufgebaut.
  So kann, während die Tests laufen, auch an anderen Aufgaben gearbeitet
  werden.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(g) Unter der Unterverteilung (6) wurde das Serverrack für das rauminterne
- Netzwerk platziert.
+\begin_layout Enumerate
+Unter der Unterverteilung (6) wurde das Serverrack für das rauminterne Netzwerk
+ platziert.
  In ihm sind die Patchfelder und Switche untergebracht.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(h) In der linken unteren Ecke (7) ist noch ein Schrank zu sehen, dieser
+\begin_layout Enumerate
+In der linken unteren Ecke (7) ist noch ein Standschrank zu sehen, dieser
  dient als Abstellplatz, in den nicht benötigte Geräte verräumt werden können.
 \begin_inset Newpage newpage
 \end_inset
@@ -1412,46 +1468,68 @@ In der zweiten Iteration des Raumes sind bereits einige Änderungen zu sehen.
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(a) Die wichtigste Änderung ist hier die Unterverteilung (1), diese sitzt
- nun neben der Eingangstür.
+\begin_layout Enumerate
+Die wichtigste Änderung ist hier die Unterverteilung (1), diese sitzt nun
+ neben der Eingangstür.
  Gewählt wurde dieser Platz, da nun feststand von wo aus die Zuleitung in
  den Raum kommen würde - über der aktuellen Position der Unterverteilung.
  So wurde für die Zuleitung ein möglichst kurzer Weg gewählt.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(b) Links daneben (2) ist nun anstatt des festen Testplatzes ein Regal enstanden.
+\begin_layout Enumerate
+Links daneben (2) ist nun anstatt des festen Testplatzes ein Regal enstanden.
  In diesem sollen nun die Langzeittests stattfinden.
  Dank des Regals ist man deutlich flexibler als bei einer festen Installation
  der IPCs.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(c) Wiederum links daneben sind nun nurnoch zwei weitere Testplätze zu sehen.
+\begin_layout Enumerate
+Wiederum links daneben sind nun nurnoch zwei weitere Testplätze zu sehen.
  Diese sind mittlerweile modular aufgebaut, das heißt man kann, durch die
  Aluminiumprofile an der Wand, die Höhe und Anzahl der Hutschienen ganz
  nach den eigenen Bedürfnissen anpassen.
- Außerdem lassen sich weitere Kabelkanäle oder auch bereits vorinstallierte
- und verdrahtete Montageplatten anbringen.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(d) Zwischen den beiden Testplätzen wurde der Installationskanal bis unter
- die Decke nach oben gezogen, um auch neben den höher angebrachten Hutschienen
+\begin_layout Enumerate
+An diese Profile lassen sich ebenfalls weitere Kabelkanäle oder auch bereits
+ vorinstallierte und verdrahtete Montageplatten anbringen.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Zwischen den beiden Testplätzen wurde der Installationskanal bis unter die
+ Decke nach oben gezogen, um auch neben den höher angebrachten Hutschienen
  noch Steck- und Netzwerkdosen zu haben.
- Beide Testplätze haben zusätzlich jeweils ein Regal bekommen, in diesem
- lassen sich nicht-hutschienengeeignete Geräte unterbringen.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(e) Das Serverrack hat seinen Platz behalten, da es an anderer Stelle zu
- viel Platz vereinnahmt hätte.
+\begin_layout Enumerate
+Beide Testplätze haben zusätzlich jeweils ein Regal bekommen, in diesem
+ lassen sich nicht-hutschienengeeignete Geräte wie zum Beispiel ein Netzwerkswit
+ch, oder Ähnliches unterbringen.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+Das Serverrack hat seinen Platz behalten, da es an möglichen andereren Stellen
+ im Raum zu viel Platz vereinnahmt hätte.
 \begin_inset Newpage newpage
 \end_inset
 
@@ -1523,56 +1601,74 @@ eachtet.
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(a) Das Regal für die Langzeittest-IPCs (1) wurde auf die andere Seite,
- über einen Officearbeitsplatz (2) verlegt, somit enstand auf der anderen
- Seite Platz für einen weiteren Testplatz.
- Dieser wurde im Gegensatz zu den übrigen gespiegelt konzeptioniert, da
- ansonsten das Regal in der Ecke hängen würde, was nicht besonders optimal/benut
-zerfreundlich ist.
+\begin_layout Enumerate
+Das Regal für die Langzeittest-IPCs (1) wurde auf die andere Seite, über
+ einen Officearbeitsplatz (2) verlegt, somit enstand auf der anderen Seite
+ Platz für einen weiteren Testplatz.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(b) Die ursprünglichen beiden Testplätze (3,4) konnten somit weiter in die
- Ecke rutschen, was wiederum Platz für noch einen weiteren Testplatz enstehen
- lies.
+\begin_layout Enumerate
+Dieser neu entstandene Platz wurde, im Gegensatz zu den übrigen, gespiegelt
+ konzeptioniert, da ansonsten das Regal in der Ecke angebracht wäre, was
+ nicht besonders benutzerfreundlich ist.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(d) Desweiteren wurde der dritte Arbeitstisch weggelassen und durch eine
- verlängerte Ablage (5) ersetzt, da sich herauskristallisierte, dass im
- Testraum kaum Arbeiten duchgeführt werden müssen.
+\begin_layout Enumerate
+Die ursprünglichen beiden Testplätze (3,4) wanderten somit ebenfalls weiter
+ in die Ecke, wodurch wiederum Platz für noch einen weiteren Testplatz (5)
+ antstand.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-() Die vertikalen Installationskanäle sind nun an allen Testplätzen, jeweils
- neben den Regalen für die losen Geräte, vorhanden.
+\begin_layout Enumerate
+Desweiteren wurde der dritte Arbeitstisch weggelassen und durch eine verlängerte
+ Ablage (6) ersetzt, da sich herauskristallisierte, dass im Testraum kaum
+ Arbeiten duchgeführt werden müssen.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-() In ihnen sind bereits die ersten Layout-Entwürfe für die Steckdosen und
+\begin_layout Enumerate
+Die bereits in der vorherigen Version etablierten, vertikalen Installationskanäl
+e sind nun an allen Testplätzen, jeweils neben den Regalen für die losen
+ Geräte, vorhanden.
+\begin_inset VSpace medskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Enumerate
+In ihnen sind bereits die ersten Layout-Entwürfe für die Steckdosen und
  Netzwerkdosen zu sehen, hier wurde auch festgelegt, dass die schaltbaren
  Steckdosen eine andere Abdeckungsfarbe erhalten.
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-() Der Abstellschrank ist in dieser Version noch enthalten, jedoch war bereits
+\begin_layout Enumerate
+Der Abstellschrank ist in dieser Version noch enthalten, jedoch war bereits
  hier nicht sicher ob er denn benötigt wird, da die Geräte alle im richtigen
  Lager aufbewahrt werden und somit der Officearbeitsplatz gedreht werden
  könnte und nicht so weit in den Raum stünde.
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace bigskip
-\end_inset
-
-
 \begin_inset Newpage newpage
 \end_inset
 
@@ -1638,9 +1734,8 @@ Dies stellt die finale, vierte Version dar.
 
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(a) Erstmals taucht hier in der Planung der Serverschrank für die firmeneigenen
+\begin_layout Enumerate
+Erstmals taucht hier in der Planung der Serverschrank für die firmeneigenen
  Server auf.
  Dieser war vorher leider noch nicht vorgesehen.
  Da das Testnetzwerk jedoch nicht mit dem firmeninternen Servern in einen
@@ -1650,64 +1745,55 @@ Dies stellt die finale, vierte Version dar.
  untergebracht.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(b) Das Serverrack wurde jedoch um 90° gedreht, somit ragt es nichtmehr
- über die Heizung hinaus.
+\begin_layout Enumerate
+Das Serverrack wurde jedoch um 90° gedreht, somit ragt es nichtmehr über
+ die Heizung hinaus.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(c) Testplatz drei und vier (1) wurden zusammengelegt, um auch größere Aufbauten
+\begin_layout Enumerate
+Testplatz drei und vier (1) wurden zusammengelegt, um auch größere Aufbauten
  zu ermöglichen.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(d) Das Regal für die Langzeittests ist weggefallen, diese Tests werden
- nun an einem normalen Testplatz druchgeführt.
+\begin_layout Enumerate
+Das Regal für die Langzeittests ist weggefallen, diese Tests werden nun
+ an einem normalen Testplatz druchgeführt.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(e) An dieser Stelle wurde ein neuer, großer Testplatz (2) konzeptioniert.
+\begin_layout Enumerate
+An dieser Stelle wurde ein neuer, großer Testplatz (2) konzeptioniert.
  Dieser ist für die firmeneigenen PCBs gedacht.
  Da diese meist eine dedizierte Spannungsversorgung benötigen wurde hier
  auf die Kleinspannungsversorgung verzichtet.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(f) Durch den enormen Platzverbrauch des neuen Servers musste der Officeplatz
+\begin_layout Enumerate
+Durch den enormen Platzverbrauch des neuen Servers musste der Officeplatz
  unter diesen Testplatz wandern.
  So kann dieser auch gleichzeitig für Hardwarearbeiten mitbenutzt werden,
  da an ihm einzig die Inventarsoftware benutzt wird.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(g) Die Unterverteilung hat nun ihre finale Größe, dies hat Testplatz 1
- leider etwas Platz weggenommen.
+\begin_layout Enumerate
+Die Unterverteilung hat nun ihre finale Größe, dies hat Testplatz 1 leider
+ etwas Platz weggenommen.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(h) An den Installationskanälen ist das finale Layout der Steckdosen und
- Netzwerkdosen zu sehen.
+\begin_layout Enumerate
+An den Installationskanälen ist das finale Layout der Steckdosen und Netzwerkdos
+en zu sehen.
  Die Kleinspannungsversorgung wird mittels Klemmen auf den Hutschienen angebrach
 t und ist auf dem Bild nicht zu sehen.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(i) In der linken unteren Ecke (3) ist zusätzlich noch eine Klimaanlage
- platziert worden, um den, durch den Server entstehenden, höheren Temperaturen
- entgegen zu wirken.
+\begin_layout Enumerate
+In der linken unteren Ecke (3) ist zusätzlich noch eine Klimaanlage platziert
+ worden, um den, durch den Server entstehenden, höheren Temperaturen entgegen
+ zu wirken.
 \end_layout
 
-\begin_layout Labeling
-\labelwidthstring 00.00.0000
-(j) An den Testplätzen 1-4 wurde jeweils zwischen Aluprofilen und vertikalem
+\begin_layout Enumerate
+An den Testplätzen 1-4 wurde jeweils zwischen Aluprofilen und vertikalem
  Installationskanal etwas Platz gelassen um hier Regale anzubringen.
  Da jedoch noch nicht zu 100% fest stand ob diese wirklich montiert werden,
  wurden sie auf dem Render weggelassen.
@@ -1757,6 +1843,37 @@ Iteration 4 Raum final
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+theenumi}{(
+\backslash
+arabic{enumi})}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+renewcommand{
+\backslash
+labelenumi}{
+\backslash
+theenumi.}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
 
@@ -1765,6 +1882,13 @@ Iteration 4 Raum final
 
 \begin_layout Section
 Elektrische Umsetzung
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1778,7 +1902,7 @@ Austattung der einzelnen Bereiche
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace medskip
+\begin_inset VSpace bigskip
 \end_inset
 
 
@@ -1897,13 +2021,15 @@ Als Zuleitung wurde auf eine bereits vorhandene Reserve in der Hauptverteilung
 \end_layout
 
 \begin_layout Standard
-\begin_inset VSpace medskip
+\begin_inset VSpace smallskip
 \end_inset
 
 
 \end_layout
 
-\begin_layout Paragraph
+\begin_layout Standard
+
+\series bold
 Absicherung:
 \end_layout
 
@@ -1924,6 +2050,10 @@ Um die Leistungsaufnahme zu berechnen wurden alle Verbraucher zusammengerechnet.
 
 \begin_layout Standard
 \begin_inset VSpace bigskip
+\end_inset
+
+
+\begin_inset VSpace medskip
 \end_inset
 
 
@@ -2037,7 +2167,15 @@ cdot 45m
 \backslash
 cdot 35A 
 \backslash
-cdot 1} {56 
+cdot 1} {56
+\backslash
+ (
+\backslash
+frac{m}{
+\backslash
+Omega 
+\backslash
+cdot mm^2}) 
 \backslash
 cdot 6,9V}
 \backslash
@@ -2078,10 +2216,6 @@ end{align*}
 \end_inset
 
 
-\begin_inset VSpace bigskip
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -2105,10 +2239,6 @@ $
 \begin_layout Plain Layout
 
  Legende:
-\backslash
-
-\backslash
-
 \end_layout
 
 \begin_layout Plain Layout
@@ -2205,6 +2335,295 @@ status open
 
 $U_a = Spannungsfall$
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="7" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Legende:$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$A $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Leitungsquerschnitt $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$L $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$einfache
+\backslash
+ Leitungslaenge $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$I $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Leiterstrom $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$
+\backslash
+cos(
+\backslash
+varphi) $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Wirkungsgrad $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$y $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Leitfaehigkeit $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$U_a $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Spannungsfall $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
 
 \end_inset
 
@@ -2593,7 +3012,7 @@ $
 
 \begin_layout Plain Layout
 
-Legende:
+
 \backslash
 
 \backslash
@@ -2602,9 +3021,26 @@ Legende:
 
 \begin_layout Plain Layout
 
+Legende:
+\end_layout
 
-\backslash
-qquad Q = Waermeabgabe
+\begin_layout Plain Layout
+
+$
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$ Q = Waermeabgabe
 \backslash
  der
 \backslash
@@ -2612,18 +3048,21 @@ qquad Q = Waermeabgabe
 \backslash
  (in
 \backslash
- W)
-\backslash
+ W)$
+\end_layout
 
-\backslash
+\end_inset
+
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
 \begin_layout Plain Layout
 
-
-\backslash
-qquad U = Waermedurchgangskoeffizient
+$ U = Waermedurchgangskoeffizient
 \backslash
  (in
 \backslash
@@ -2631,73 +3070,432 @@ qquad U = Waermedurchgangskoeffizient
 \backslash
 frac {W}{m 
 \backslash
-cdot K} 
-\backslash
+cdot K} $
+\end_layout
 
-\backslash
+\end_inset
+
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
 \begin_layout Plain Layout
 
-
-\backslash
-qquad A = effektive
+$ A = effektive
 \backslash
  Schaltschrankoberflaeche
 \backslash
  (in
 \backslash
- m)
-\backslash
+ m) $
+\end_layout
 
-\backslash
+\end_inset
+
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
 \begin_layout Plain Layout
 
-
-\backslash
-qquad T= Schaltschrankinnentemperatur
+$ T_i = Schaltschrankinnentemperatur
 \backslash
  (in
 \backslash
- °C)
-\backslash
+ °C) $
+\end_layout
 
-\backslash
+\end_inset
+
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status open
+
 \begin_layout Plain Layout
 
-
-\backslash
-qquad T= Umgebungstemperatur
+$ T_u = Umgebungstemperatur
 \backslash
  (in
 \backslash
- °C)
-\backslash
+ °C) $
+\end_layout
 
-\backslash
+\end_inset
+
 
 \end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
+$Legende:$
+\end_layout
 
-\backslash
+\end_inset
 
-\backslash
 
 \end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Q $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Waermeabgabe
+\backslash
+ der
+\backslash
+ Schrankoberflaeche
+\backslash
+ $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$W $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$U $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Waermedurchgangskoeffizient
+\backslash
+ $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
 
 \begin_layout Plain Layout
 
 $
+\backslash
+frac {W}{m 
+\backslash
+cdot K} $
 \end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$A $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$effektive
+\backslash
+ Schaltschrankoberflaeche
+\backslash
+ $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$m $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$T_i $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Schaltschrankinnentemperatur
+\backslash
+ $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$°C $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$T_u $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$Umgebungstemperatur
+\backslash
+ $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$°C $
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
 
 \end_inset
 
@@ -3352,6 +4150,13 @@ STI 2,5-PE/L/N als Klemmen für die Stromkreise
 
 \begin_layout Itemize
 PT 1.5/S-QUATTRO RD als Klemmen für die Kleinspannungskreise
+\end_layout
+
+\begin_layout Itemize
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10751,6 +11556,10 @@ cute
 Signale und Slots
 \end_layout
 
+\begin_layout Subsubsection
+Signal
+\end_layout
+
 \begin_layout Standard
 Im Gegensatz zu Kommandozeilen-Interfaces sind UI-Anwendungen immer ereignisgest
 euert.
@@ -10776,8 +11585,53 @@ Text geändert
  Diese Ereignisse senden in PyQt sogenannte Signale, welche dann mit Slots
  verbunden werden müssen, um bei einem bestimmten Ereignis, eine bestimmte
  Funktion auszuführen.
- Solche Events enthalten folgende Informationen: Event-Quelle, Event-Objekt
- und Event-Ziel
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Signale können auch mit mehreren Slots und ebenso können Slots mit mehreren
+ Signalen verbunden werden.
+ Dies kann von Vorteil sein, wenn zum Beispiel mehrere Buttons die selbe
+ Funktion auslösen sollen.
+ Signale können ebenfalls mit anderen Signalen verbunden werden, dies war
+ in unserem Fall jedoch nicht nötig und wird hier nicht weiter behandelt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace bigskip
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+Slot
+\end_layout
+
+\begin_layout Standard
+Ein Slot wird aufgerufen, wenn das an ihn verbundene Signal ausgelöst wird.
+ Slots stellen normale Funktionen dar mit dem einzigen Unterschied, dass
+ Signale an sie gebunden werden können.
+\end_layout
+
+\begin_layout Subsubsection
+Signale und Slots
+\end_layout
+
+\begin_layout Standard
+Im folgenden finden findet sich ein Beispiel, wie ein Sginal mit einem Slot
+ verbunden wird.
+\end_layout
+
+\begin_layout Standard
+Solche sogenannten Events enthalten folgende Informationen: Event-Quelle,
+ Event-Objekt und Event-Ziel
 \end_layout
 
 \begin_layout Standard
@@ -10806,6 +11660,13 @@ widget.signal.connect(slot)
 
 \begin_layout Standard
 ein Beispiel dafür wäre:
+\end_layout
+
+\begin_layout Standard
+\begin_inset VSpace medskip
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -10852,30 +11713,6 @@ button_click
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Signale können auch mit mehreren Slots und ebenso können Slots mit mehreren
- Signalen verbunden werden.
- Dies kann von Vorteil sein, wenn zum Beispiel mehrere Buttons die selbe
- Funktion auslösen sollen.
-\end_layout
-
-\begin_layout Standard
-Signale können ebenfalls mit anderen Signalen verbunden werden, dies war
- in unserem Fall jedoch nicht nötig und wird hier nicht weiter behandelt.
-\end_layout
-
-\begin_layout Subsubsection
-Signal
-\end_layout
-
-\begin_layout Standard
-Ein Signal kann von Unterschiedlichsten Objekten ausgehen
-\end_layout
-
-\begin_layout Subsubsection
-Slot
 \end_layout
 
 \begin_layout Section
