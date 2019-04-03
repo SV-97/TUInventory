@@ -84,7 +84,6 @@ figs-within-sections
 \html_math_output 0
 \html_css_as_file 0
 \html_be_strict false
-\author 274824651 "sv-97"
 \end_header
 
 \begin_body
@@ -210,8 +209,165 @@ von Stefan Volz & Yannis Köhler
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+pagenumbering{arabic} % enable page numbering
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Part
+Einführung
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[&&]
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Sämtliche Diagramme, Bilder, etc.
+ sind, sofern nicht anders angegeben, selbst erstellt.
+ Flussdiagramme wurden nach DIN 66001 erstellt
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "S. 114f"
+key "HandbuchFuerSoftwareEntwickler"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+, mit der Erweiterung, dass Zylinder als lokaler Speicher des Rechners und
+ Datenbank eingesetzt werden.
+\end_layout
+
+\begin_layout Standard
+Programmlistings wurden teils notwendigerweise automatisch vom Texteditor
+ explizit mittels 
+\begin_inset Quotes gld
+\end_inset
+
+
+\backslash
+
+\begin_inset Quotes grd
+\end_inset
+
+ umgebrochen.
+ Dies ist zwar valide Python 3 Syntax, jedoch nicht in jedem Fall konform
+ zu gängigen Format-Konventionen.
+\end_layout
+
+\begin_layout Section
+Die Firma Padcon
+\end_layout
+
+\begin_layout Standard
+Die Firma Padcon GmbH, ein Tochterunternehmen des deutschen Netzbetreibers
+ RWE, ist ein weltweit agierendes IT-Unternehmen mit Sitz in Kitzingen.
+ Zu ihren Produkten gehören Systeme zur Überwachung von Groß-Photovoltaikanlagen.
+ Diese fallen in die Kategorie der SCADA-Systeme.
+ Besonders nennenswert ist der „Pavagada Solar Park“ in Indien, welcher,
+ nach Bauabschluss, mit knapp 2GW die aktuell größte Photovoltaikanlage
+ der Welt darstellt.
+\end_layout
+
+\begin_layout Section
+Aufgabenstellung
+\end_layout
+
+\begin_layout Standard
+Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
+ werden.
+ Dies umfasst die Dimensionierung und Installation von vier sogenannten
+ Testplätzen in einem dafür vorgesehenen Raum.
+ Hierfür muss auch eine neue Unterverteilung gebaut werden.
+ An den Testplätzen wird man verschiedene Hardware wie IPC‘s, Router, Switches,
+ etc.
+ testen können.
+ Ebenfalls sollen neue Versionen der firmeneigenen SCADA-Software, welche
+ die Photovoltaik-Anlagen überwacht und Daten ausliest/aufzeichnet, getestet
+ werden können, bevor diese an den Kunden ausgeliefert werden.
+ Desweiteren soll eine Inventarsoftware erstellt werden, welche ein Einscannen
+ von Barcodes ermöglicht und somit eine schnelle Zuordnung von Geräten zu
+ Testplatz und zugehörigem Verantwortlichen zulässt.
+\end_layout
+
+\begin_layout Subsection*
+Markierungsschema
+\end_layout
+
+\begin_layout Standard
+Zur Markierung, welcher Projektpartner welche Teile verfasst hat, werden
+ Tags als Randnotizen im Inhaltsverzeichnis und an Überschriften genutzt.
+ Dabei gilt, dass alle einem getaggten Abschnitt hierarchisch untergeordneten
+ Abschnitte das übergeordnete Tag tragen, sofern sie nicht selbst eines
+ besitzen.
+ Der tatsächliche Verfasser ist über die Initialen im Tag codiert (Volle
+ Namen im Inhaltsverzeichnis).
+ Ein mit 
+\emph on
+&&
+\emph default
+ getaggter Abschnitt wurde kollaborativ vom ganzen Projektteam erstellt.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 \begin_inset CommandInset toc
 LatexCommand tableofcontents
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList figure
+
+\end_inset
+
+
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset FloatList algorithm
 
 \end_inset
 
@@ -819,25 +975,6 @@ Yannis Köhler
 
 \end_layout
 
-\begin_layout Subsection*
-Markierungsschema
-\end_layout
-
-\begin_layout Standard
-Zur Markierung, welcher Projektpartner welche Teile verfasst hat, werden
- Tags als Randnotizen im Inhaltsverzeichnis und an Überschriften genutzt.
- Dabei gilt, dass alle einem getaggten Abschnitt hierarchisch untergeordneten
- Abschnitte das übergeordnete Tag tragen, sofern sie nicht selbst eines
- besitzen.
- Der tatsächliche Verfasser ist über die Initialen im Tag codiert (Volle
- Namen im Inhaltsverzeichnis).
- Ein mit 
-\emph on
-&&
-\emph default
- getaggter Abschnitt wurde kollaborativ vom ganzen Projektteam erstellt.
-\end_layout
-
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -845,48 +982,347 @@ Zur Markierung, welcher Projektpartner welche Teile verfasst hat, werden
 
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-
-\backslash
-pagenumbering{arabic} % enable page numbering
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Part
-Einführung
-\begin_inset Marginal
-status open
-
-\begin_layout Plain Layout
-[&&]
-\end_layout
-
-\end_inset
-
-
+\begin_layout Section*
+Begriffsdefinitionen
 \end_layout
 
 \begin_layout Standard
-Sämtliche Diagramme, Bilder, etc.
- sind, sofern nicht anders angegeben, selbst erstellt.
- Flussdiagramme wurden nach DIN 66001 erstellt
+\paragraph_spacing single
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="18" columns="2">
+<features islongtable="true" longtabularalignment="center">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="center" valignment="middle" width="50page%">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Begriff
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Definition
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Duck-Typing
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Der Typ einer Instanz wird dadurch beschrieben/festgelegt, welche Member
+ sie besitzt (Von eng.: 
+\begin_inset Quotes eld
+\end_inset
+
+If it looks like a duck, swims like a duck, and quacks like a duck, then
+ it probably is a duck.
+\begin_inset Quotes erd
+\end_inset
+
+)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Dynamisch Typisiert
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Typüberprüfung zur Laufzeit
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Frame
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Einzelnes Bild einer Videosequenz, hier synonym für Bildmatrix eingesetzt
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Function Decorator
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ist Funktionsdefinition mit @decorator vorgestellt - Stellt im Prinzip eine
+ Definition der Funktion f dar, der ein f = decorator (f) nachgestellt ist.
+ Hierbei wird eine Funktion i.d.R.
+ um weitere Funktionalität (z.B.
+ ein Cache oder die Möglichkeit Vektoren zu verarbeiten) erweitert
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Immutabel / immutable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Unveränderbar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Kontext-Manager / Context Manager
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Klasse, die __enter__ und __exit__ implementiert.
+ Erlaubt es Objekte auch im Fehlerfall sauber zu deinitialisieren, bzw.
+ zu schließen (entspricht einem try-finally-Block).
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Lazy evaluation
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Die Auswertung eines Ausdrucks erfolgt nur soweit sie gerade nötig ist.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Magic Method
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Eine i.d.R.
+ implizit aufgerufene Methode, welche einer Klasse besondere Fähigkeiten
+ verleiht
 \begin_inset Foot
 status open
 
 \begin_layout Plain Layout
 \begin_inset CommandInset citation
 LatexCommand cite
-after "S. 114f"
-key "HandbuchFuerSoftwareEntwickler"
+after "S. 369"
+key "Python3"
+literal "true"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mutabel / mutable
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Veränderbar
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Mutex
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Gegenseitig ausschließend (von engl.
+ mutual exclusion)
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ORM
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Programmiertechnik um Daten zwischen inkompatiblen Typsystemen (hier Datenbank
+ in SQLite3 und Python) zu konvertieren und somit eine virtuelle Objektdatenbank
+ zu schaffen
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Pythonic
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Idiomatisch im Bezug auf Python
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Race-Condition
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Im Falle einer Race-Condition ist das Ergebnis einer Operation nicht determinist
+isch, es wird beeinflusst durch äußere Gegebenheiten wie z.B.
+ Prozessorlast.
+\end_layout
+
+\begin_layout Plain Layout
+Der Name stammt von der Vorstellung, dass Signale wettlaufen, um die Ausgabe
+ als erstes zu beeinflussen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "24.12.18 - 01:25 Uhr"
+key "Wiki_RaceCondition"
 literal "false"
 
 \end_inset
@@ -896,60 +1332,138 @@ literal "false"
 
 \end_inset
 
-, mit der Erweiterung, dass Zylinder als lokaler Speicher des Rechners und
- Datenbank eingesetzt werden.
+.
+ Probleme einer Race-Condition sind beispielsweise, dass sie oftmals verschwinde
+t, wenn das Programm mittels Debugger betrachtet wird.
 \end_layout
 
-\begin_layout Standard
-Programmlistings wurden teils notwendigerweise automatisch vom Texteditor
- explizit mittels 
-\begin_inset Quotes gld
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Salt
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Zufällige Zeichenfolge, die in der Kryptografie u.A.
+ bei Hash-Funktionen eingesetzt wird, um die Entropie der Eingabe zu erhöhen
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+\begin_inset CommandInset citation
+LatexCommand cite
+after "06.03.19 - 12:07 Uhr"
+key "Wiki_Salt"
+literal "false"
+
 \end_inset
 
 
-\backslash
+\end_layout
 
-\begin_inset Quotes grd
 \end_inset
 
- umgebrochen.
- Dies ist zwar valide Python 3 Syntax, jedoch nicht in jedem Fall konform
- zu gängigen Format-Konventionen.
+.
 \end_layout
 
-\begin_layout Section
-Die Firma Padcon
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Singleton
 \end_layout
 
-\begin_layout Standard
-Die Firma Padcon GmbH, ein Tochterunternehmen des deutschen Netzbetreibers
- RWE, ist ein weltweit agierendes IT-Unternehmen mit Sitz in Kitzingen.
- Zu ihren Produkten gehören Systeme zur Überwachung von Groß-Photovoltaikanlagen.
- Diese fallen in die Kategorie der SCADA-Systeme.
- Besonders nennenswert ist der „Pavagada Solar Park“ in Indien, welcher,
- nach Bauabschluss, mit knapp 2GW die aktuell größte Photovoltaikanlage
- der Welt darstellt.
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Ein Singleton ist ein Entwurfsmuster, bei dem sichergestellt ist, dass nur
+ eine einzige Instanz einer Klasse existiert (z.B.
+ in Python 
+\emph on
+None
+\emph default
+).
 \end_layout
 
-\begin_layout Section
-Aufgabenstellung
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Thread
 \end_layout
 
-\begin_layout Standard
-Für die Firma Padcon GmbH soll ein Test- und Integrationssystem erstellt
- werden.
- Dies umfasst die Dimensionierung und Installation von vier sogenannten
- Testplätzen in einem dafür vorgesehenen Raum.
- Hierfür muss auch eine neue Unterverteilung gebaut werden.
- An den Testplätzen wird man verschiedene Hardware wie IPC‘s, Router, Switches,
- etc.
- testen können.
- Ebenfalls sollen neue Versionen der firmeneigenen SCADA-Software, welche
- die Photovoltaik-Anlagen überwacht und Daten ausliest/aufzeichnet, getestet
- werden können, bevor diese an den Kunden ausgeliefert werden.
- Desweiteren soll eine Inventarsoftware erstellt werden, welche ein Einscannen
- von Barcodes ermöglicht und somit eine schnelle Zuordnung von Geräten zu
- Testplatz und zugehörigem Verantwortlichen zulässt.
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ (dt.: Faden, Strang) Threads sind im Grunde genommen leichtgewichtige Prozesse
+ (Ein Prozess kann mehrere Threads besitzen).
+ In CPython (erläutert in Abschnitt 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Python-3"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) ist der GIL (Global Interpreter Lock) zu beachten: Threads steigern hier
+ nicht die Performance!
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Thread-Safe
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+ (dt.: Threadsicherheit) Mehrere Threads können gleichzeitig auf eine Komponente
+ zugreifen ohne sich gegenseitig zu behindern oder race-conditions auszulösen.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -1719,7 +2233,7 @@ Iteration 3 Raum
 \end_layout
 
 \begin_layout Subsubsection
-Iteration 4 FINAL
+Iteration 4
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1825,7 +2339,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Iteration 4 Raum final
+Iteration 4 Raum
 \end_layout
 
 \end_inset
@@ -1909,7 +2423,7 @@ Austattung der einzelnen Bereiche
 \end_layout
 
 \begin_layout Subsubsection
-Testplatz 1-4:
+Testplatz 1-4
 \end_layout
 
 \begin_layout Itemize
@@ -2093,7 +2607,21 @@ Netzteil_12V - Testplatz 2: ABB CP-E 12/10.0 = 0,83A
 \begin_layout Standard
 Da die Testplätze jedoch kaum belastet werden, kann man hier von einem Gleichzei
 tigkeitsfaktor von 0,5 ausgehen.
- Dies ergibt also 16A + (16A + 0,83A * 2 * 0,5) = 32,83A.
+ Dies ergibt also 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+$$16A + (16A + 0,83A 
+\backslash
+cdot 2 
+\backslash
+cdot 0,5)=32,83A.$$
+\end_layout
+
+\end_inset
+
  
 \begin_inset VSpace smallskip
 \end_inset
@@ -2169,13 +2697,13 @@ cdot 35A
 \backslash
 cdot 1} {56
 \backslash
- (
+ 
 \backslash
 frac{m}{
 \backslash
 Omega 
 \backslash
-cdot mm^2}) 
+cdot mm^2} 
 \backslash
 cdot 6,9V}
 \backslash
@@ -2196,8 +2724,6 @@ cdot 6,9V}
 \begin_layout Plain Layout
 
 	&= 8,15mm^2 
-\backslash
-sim 10mm^2 
 \backslash
 approx 10mm^2 
 \backslash
@@ -2273,7 +2799,9 @@ status open
 
 $L = einfache
 \backslash
- Leitungslaenge $
+ Leitungsl
+\backslash
+ddot{a}nge $
 \end_layout
 
 \end_inset
@@ -2319,7 +2847,9 @@ status open
 
 \begin_layout Plain Layout
 
-$y = Leitfaehigkeit$
+$y = Leitf
+\backslash
+ddot{a}higkeit$
 \end_layout
 
 \end_inset
@@ -2448,7 +2978,9 @@ status open
 
 $einfache
 \backslash
- Leitungslaenge $
+ Leitungsl
+\backslash
+ddot{a}nge $
 \end_layout
 
 \end_inset
@@ -2572,7 +3104,9 @@ status open
 
 \begin_layout Plain Layout
 
-$Leitfaehigkeit $
+$Leitf
+\backslash
+ddot{a}higkeit $
 \end_layout
 
 \end_inset
@@ -2861,7 +3395,9 @@ T
 \end_inset
 
 = maximale Umgebungstemperatur -> max.
- 20°C
+ 20^
+\backslash
+circ C
 \end_layout
 
 \begin_layout Itemize
@@ -2875,7 +3411,9 @@ T
 \end_inset
 
  = maximale Schaltschrankinnentemperatur -> max.
- 40°C
+ 40^
+\backslash
+circ C
 \end_layout
 
 \begin_layout Itemize
@@ -3002,139 +3540,7 @@ end{align*}
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-$
-\end_layout
-
-\begin_layout Plain Layout
-
-
-\backslash
-
-\backslash
-
-\end_layout
-
-\begin_layout Plain Layout
-
-Legende:
-\end_layout
-
-\begin_layout Plain Layout
-
-$
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-$ Q = Waermeabgabe
-\backslash
- der
-\backslash
- Schrankoberflaeche
-\backslash
- (in
-\backslash
- W)$
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-$ U = Waermedurchgangskoeffizient
-\backslash
- (in
-\backslash
- 
-\backslash
-frac {W}{m 
-\backslash
-cdot K} $
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-$ A = effektive
-\backslash
- Schaltschrankoberflaeche
-\backslash
- (in
-\backslash
- m) $
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-$ T_i = Schaltschrankinnentemperatur
-\backslash
- (in
-\backslash
- °C) $
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status open
-
-\begin_layout Plain Layout
-
-$ T_u = Umgebungstemperatur
-\backslash
- (in
-\backslash
- °C) $
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="6" columns="3">
 <features tabularvalignment="middle">
@@ -3146,17 +3552,9 @@ $ T_u = Umgebungstemperatur
 \begin_inset Text
 
 \begin_layout Plain Layout
-\begin_inset ERT
-status open
 
-\begin_layout Plain Layout
-
-$Legende:$
-\end_layout
-
-\end_inset
-
-
+\noun on
+Symbol
 \end_layout
 
 \end_inset
@@ -3166,6 +3564,8 @@ $Legende:$
 
 \begin_layout Plain Layout
 
+\noun on
+Beschreibung
 \end_layout
 
 \end_inset
@@ -3175,6 +3575,8 @@ $Legende:$
 
 \begin_layout Plain Layout
 
+\noun on
+Einheit
 \end_layout
 
 \end_inset
@@ -3209,11 +3611,15 @@ status open
 
 \begin_layout Plain Layout
 
-$Waermeabgabe
+$W
+\backslash
+ddot{a}rmeabgabe
 \backslash
  der
 \backslash
- Schrankoberflaeche
+ Schrankoberfl
+\backslash
+ddot{a}che
 \backslash
  $
 \end_layout
@@ -3274,7 +3680,9 @@ status open
 
 \begin_layout Plain Layout
 
-$Waermedurchgangskoeffizient
+$W
+\backslash
+ddot{a}rmedurchgangskoeffizient
 \backslash
  $
 \end_layout
@@ -3339,9 +3747,11 @@ status open
 
 \begin_layout Plain Layout
 
-$effektive
+$Effektive
 \backslash
- Schaltschrankoberflaeche
+ Schaltschrankoberfl
+\backslash
+ddot{a}che
 \backslash
  $
 \end_layout
@@ -3423,7 +3833,9 @@ status open
 
 \begin_layout Plain Layout
 
-$°C $
+$^
+\backslash
+circ C $
 \end_layout
 
 \end_inset
@@ -3484,7 +3896,9 @@ status open
 
 \begin_layout Plain Layout
 
-$°C $
+$^
+\backslash
+circ C $
 \end_layout
 
 \end_inset
@@ -3546,7 +3960,11 @@ cdot K}
 \backslash
 cdot 1,996m^2 
 \backslash
-cdot (40°C-20°C) = 219,56W 
+cdot (40^
+\backslash
+circ C-20^
+\backslash
+circ C) = 219,56W 
 \end_layout
 
 \begin_layout Plain Layout
@@ -3606,6 +4024,7 @@ sideways false
 status open
 
 \begin_layout Plain Layout
+\align center
 \begin_inset Tabular
 <lyxtabular version="3" rows="12" columns="4">
 <features tabularvalignment="middle">
@@ -4781,21 +5200,6 @@ Thread-Safe
 </cell>
 </row>
 </lyxtabular>
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset FloatList algorithm
 
 \end_inset
 
@@ -13447,7 +13851,44 @@ name "sec:SETUID-ABSCHNITT"
 
 \end_inset
 
-SETUID-ABSCHNITT
+Schutz vor unauthorisiertem Zugriff durch 
+\emph on
+setuid
+\emph default
+
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+[yk]
+\end_layout
+
+\end_inset
+
+
+\begin_inset Marginal
+status open
+
+\begin_layout Plain Layout
+TODO
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+blablabla setuid bei linux um unauthorisierte änderungen am quellcode und
+ datenbank zu verhindern.
+ was ist setuid.
+ ein nutzer für starten(ist quasi das programm).
+ ein nutzer zum ausführen.
+\end_layout
+
+\begin_layout Standard
+braucht geiles kompiliertes file.
+ deshalb launcher
 \end_layout
 
 \begin_layout Standard
@@ -13469,6 +13910,13 @@ status open
 lstset{numbers=left, numberblanklines=true}
 \end_layout
 
+\begin_layout Plain Layout
+
+
+\backslash
+setcounter{page}{1} % Seitennummerierung ab 1 neu starten
+\end_layout
+
 \end_inset
 
 
@@ -13476,21 +13924,6 @@ lstset{numbers=left, numberblanklines=true}
 
 \begin_layout Part
 Anhang
-\end_layout
-
-\begin_layout Section
-Literatur- und Quellenverzeichnis
-\end_layout
-
-\begin_layout Standard
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "Literaturverzeichnis"
-options "alphadin"
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
@@ -13737,6 +14170,36 @@ filename "../utils.py"
 
 \end_layout
 
+\begin_layout Subsection
+main.rs
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../launcher/src/main.rs"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+cargo.toml
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../launcher/cargo.toml"
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -13768,6 +14231,28 @@ Als .html auf beiliegendem USB-Stick, alternativ über pydoc.sh aus dem Quellcod
 \end_layout
 
 \begin_layout Section
+Literatur- und Quellenverzeichnis
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "Literaturverzeichnis"
+options "alphadin"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
 Eidesstattliche Erklärung
 \end_layout
 
@@ -13777,16 +14262,12 @@ status open
 
 \begin_layout Plain Layout
 
-
+% 
 \backslash
 pagenumbering{gobble} % disable page numbering
-\change_inserted 274824651 1551459897
-
 \end_layout
 
 \begin_layout Plain Layout
-
-\change_inserted 274824651 1551459900
 
 
 \backslash
@@ -13918,11 +14399,6 @@ frac{}{Datum}}$$
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout LyX-Code
-\align center
 
 \end_layout
 
