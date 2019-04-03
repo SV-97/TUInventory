@@ -1,0 +1,290 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass tufte-handout
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine natbib
+\cite_engine_type authoryear
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+
+\lang ngerman
+TUI - Test and Integration System for SCADA-Software
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Subsection*
+
+\lang ngerman
+Test-Room
+\end_layout
+
+\begin_layout Itemize
+
+\lang ngerman
+4 Test-units - each equipped with
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang ngerman
+230V mains supply (supervised and controllable via network)
+\end_layout
+
+\begin_layout Itemize
+
+\lang ngerman
+centralized 24VDC and 12VDC supplies (supervised via network)
+\end_layout
+
+\begin_layout Itemize
+mechanically modular
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Built to state-of-the-art standards
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang ngerman
+Completely equipped with AFDDs (Arc Fault Detection Devices).
+\end_layout
+
+\begin_layout Itemize
+
+\lang ngerman
+All units can be switched into seperate VLANs.
+\end_layout
+
+\begin_layout Itemize
+
+\lang ngerman
+All units wired independently and protected by seperate breakers.
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Box Shadowbox
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+thickness "0.4pt"
+separation "3pt"
+shadowsize "4pt"
+framecolor "black"
+backgroundcolor "none"
+status open
+
+\begin_layout Subsection*
+
+\lang ngerman
+Inventory Software
+\end_layout
+
+\begin_layout Itemize
+
+\lang ngerman
+Tech-Stack
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+
+\lang ngerman
+Python3
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+User Interface: PyQt5
+\end_layout
+
+\begin_layout Itemize
+Object Relational Mapper/Database API: SQLAlchemy
+\end_layout
+
+\begin_layout Itemize
+Camera API: OpenCV
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Rust
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Cross-platform
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+tested on Windows 10 and Linux Mint
+\end_layout
+
+\end_deeper
+\begin_layout Itemize
+Additional Command-line interface
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+provides QR-code detection as service for Padcon's internal mobile app
+\end_layout
+
+\end_deeper
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\align center
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TUInventory/Documentation/Bilder/Admin-PW-Reset.png
+	width 50page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example process of the software: admin-password reset
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -39,6 +39,17 @@ figs-within-sections
 \paperfontsize 11
 \spacing onehalf
 \use_hyperref false
+\pdf_title "Test- und Integrationssystem für SCADA Software"
+\pdf_author "Stefan Volz & Yannis Köhler"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 1
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks false
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize a4paper
 \use_geometry true
 \use_package amsmath 1
@@ -1814,9 +1825,9 @@ status open
 \backslash
 renewcommand{
 \backslash
-theenumi}{(
+theenumi}{
 \backslash
-alph{enumi})}
+alph{enumi}}
 \end_layout
 
 \begin_layout Plain Layout
@@ -1825,9 +1836,9 @@ alph{enumi})}
 \backslash
 renewcommand{
 \backslash
-labelenumi}{
+labelenumi}{(
 \backslash
-theenumi}
+theenumi)}
 \end_layout
 
 \end_inset
@@ -2366,9 +2377,9 @@ status open
 \backslash
 renewcommand{
 \backslash
-theenumi}{(
+theenumi}{
 \backslash
-arabic{enumi})}
+arabic{enumi}}
 \end_layout
 
 \begin_layout Plain Layout
