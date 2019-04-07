@@ -1,5 +1,6 @@
 use std::process::Command;
 
+/// Launcher for TUInvetory
 fn main() {
     
     // execute from "launcher/" or change path accordingly

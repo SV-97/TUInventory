@@ -337,7 +337,7 @@ Zur Markierung, welcher Projektpartner welche Teile verfasst hat, werden
  Abschnitte das übergeordnete Tag tragen, sofern sie nicht selbst eines
  besitzen.
  Der tatsächliche Verfasser ist über die Initialen im Tag codiert (Volle
- Namen im Inhaltsverzeichnis).
+ Namen im Abkürzungsverzeichnis).
  Ein mit 
 \emph on
 &&
@@ -350,6 +350,10 @@ Zur Markierung, welcher Projektpartner welche Teile verfasst hat, werden
 \end_inset
 
 
+\end_layout
+
+\begin_layout Part
+Verzeichnisse
 \end_layout
 
 \begin_layout Standard
@@ -395,7 +399,7 @@ Abkürzungsverzeichnis
 
 \begin_layout Standard
 \begin_inset Tabular
-<lyxtabular version="3" rows="29" columns="2">
+<lyxtabular version="3" rows="30" columns="2">
 <features tabularvalignment="middle">
 <column alignment="center" valignment="top">
 <column alignment="center" valignment="top">
@@ -894,6 +898,26 @@ SHA
 
 \begin_layout Plain Layout
 Secure Hash Algorithm
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+SNR
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Signal-to-noise ratio (Signal-Rausch-Verhältnis, Rauschabstand)
 \end_layout
 
 \end_inset
@@ -1616,7 +1640,7 @@ Ursprüngliche Anforderungen
 \end_layout
 
 \begin_layout Standard
-Die sind die vom Auftraggeber vorgegebenen Anforderungen an den Test- und
+Dies sind die vom Auftraggeber vorgegebenen Anforderungen an den Test- und
  Integrationsraum.
  Diese haben sich jedoch im Verlauf des Projekts mehrfach geändert.
  Die finale Ausführung finden Sie unter 
@@ -1737,6 +1761,9 @@ Serverrack für das Netzwerk - Patchfeld und Switch
 
 \begin_layout Subsection
 Planung
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -1801,6 +1828,12 @@ Mit Hilfe dieses 3D-Modells wurden bereits im Laufe der Planung mehrere
 \end_layout
 
 \begin_layout Subsubsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Iteration-1"
+
+\end_inset
+
 Iteration 1
 \end_layout
 
@@ -1955,7 +1988,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Iteration 1 Raum
+Iteration 1 des Raums
 \end_layout
 
 \end_inset
@@ -1981,6 +2014,9 @@ Iteration 1 Raum
 
 \begin_layout Subsubsection
 Iteration 2
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -2092,7 +2128,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Iteration 2 Raum
+Iteration 2 des Raums
 \end_layout
 
 \end_inset
@@ -2118,6 +2154,9 @@ Iteration 2 Raum
 
 \begin_layout Subsubsection
 Iteration 3
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -2229,7 +2268,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Iteration 3 Raum
+Iteration 3 des Raums
 \end_layout
 
 \end_inset
@@ -2255,6 +2294,9 @@ Iteration 3 Raum
 
 \begin_layout Subsubsection
 Iteration 4
+\end_layout
+
+\begin_layout Standard
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -2362,7 +2404,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Iteration 4 Raum
+Iteration 4 des Raums
 \end_layout
 
 \end_inset
@@ -2474,6 +2516,18 @@ Netzwerkanbindung
 \end_layout
 
 \begin_layout Subsubsection
+Die Unterverteilung
+\end_layout
+
+\begin_layout Itemize
+400V 35A Zuleitung
+\end_layout
+
+\begin_layout Itemize
+Netzwerkanbindung
+\end_layout
+
+\begin_layout Subsubsection
 Der Serverschrank
 \end_layout
 
@@ -2491,18 +2545,6 @@ Das Serverrack
 
 \begin_layout Itemize
 Spannungsversorgung 230V, überwacht
-\end_layout
-
-\begin_layout Itemize
-Netzwerkanbindung
-\end_layout
-
-\begin_layout Subsubsection
-Die Unterverteilung
-\end_layout
-
-\begin_layout Itemize
-400V 35A Zuleitung
 \end_layout
 
 \begin_layout Itemize
@@ -3073,9 +3115,19 @@ Um die Kleinspannung an den Testplätzen möglichst einfach zugänglich zu
 \begin_layout Standard
 Diese Lösung wurde jedoch, da immer Kabel mit Laborstecker benötigt werden,
  als zu umständlich und auch deutlich zu teuer angesehen.
- So fiehl unsere Wahl auf normale Reihenklemmen.
+ So fiel unsere Wahl auf normale Reihenklemmen.
  Um diese nicht frei an einen Testplatz hängen zu müssen wurden, wie in
- Iteration 1 () zu sehen, kleine Schaltschränke vorgesehen.
+ Iteration 1 (siehe Abschnitt 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Iteration-1"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+) zu sehen, kleine Schaltschränke vorgesehen.
  Diese wurden jedoch auch als zu umständlich abgetan.
 \end_layout
 
@@ -4451,497 +4503,6 @@ status open
 \begin_layout Plain Layout
 [sv]
 \end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage newpage
-\end_inset
-
-
-\end_layout
-
-\begin_layout Section
-Begriffsdefinitionen
-\end_layout
-
-\begin_layout Standard
-\paragraph_spacing single
-\align center
-\begin_inset Tabular
-<lyxtabular version="3" rows="18" columns="2">
-<features islongtable="true" longtabularalignment="center">
-<column alignment="center" valignment="top" width="0pt">
-<column alignment="center" valignment="middle" width="50page%">
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Begriff
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Definition
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Duck-Typing
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Der Typ einer Instanz wird dadurch beschrieben/festgelegt, welche Member
- sie besitzt  (Von eng.: 
-\begin_inset Quotes eld
-\end_inset
-
-If it looks like a duck, swims like a duck, and quacks like a duck, then
- it probably is a duck.
-\begin_inset Quotes erd
-\end_inset
-
-)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Dynamisch Typisiert
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Typüberprüfung zur Laufzeit
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Frame
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Einzelnes Bild einer Videosequenz, hier synonym für Bildmatrix eingesetzt
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Function Decorator
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Ist Funktionsdefinition mit @decorator vorgestellt - Stellt im Prinzip eine
- Definition der Funktion f dar, der ein f = decorator (f) nachgestellt ist.
- Hierbei wird eine Funktion i.d.R.
- um weitere Funktionalität  (z.B.
- ein Cache oder die Möglichkeit Vektoren zu verarbeiten) erweitert
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Immutabel / immutable
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Unveränderbar
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Kontext-Manager / Context Manager
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Klasse, die __enter__ und __exit__ implementiert.
- Erlaubt es Objekte auch im Fehlerfall sauber zu deinitialisieren, bzw.
- zu schließen  (entspricht einem try-finally-Block).
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Lazy evaluation
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Die Auswertung eines Ausdrucks erfolgt nur soweit sie gerade nötig ist.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Magic Method
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Eine i.d.R.
- implizit aufgerufene Methode, welche einer Klasse besondere Fähigkeiten
- verleiht
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset citation
-LatexCommand cite
-after "S. 369"
-key "Python3"
-literal "true"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Mutabel / mutable
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Veränderbar
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Mutex
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Gegenseitig ausschließend  (von engl.
- mutual exclusion)
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-ORM
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Programmiertechnik um Daten zwischen inkompatiblen Typsystemen  (hier Datenbank
- in SQLite3 und Python) zu konvertieren und somit eine virtuelle Objektdatenbank
- zu schaffen
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Pythonic
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Idiomatisch im Bezug auf Python
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Race-Condition
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Im Falle einer Race-Condition ist das Ergebnis einer Operation nicht determinist
-isch, es wird beeinflusst durch äußere Gegebenheiten wie z.B.
- Prozessorlast.
-\end_layout
-
-\begin_layout Plain Layout
-Der Name stammt von der Vorstellung, dass Signale wettlaufen, um die Ausgabe
- als erstes zu beeinflussen
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset citation
-LatexCommand cite
-after "24.12.18 - 01:25 Uhr"
-key "Wiki_RaceCondition"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-.
- Probleme einer Race-Condition sind beispielsweise, dass sie oftmals verschwinde
-t, wenn das Programm mittels Debugger betrachtet wird.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Salt
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Zufällige Zeichenfolge, die in der Kryptografie u.A.
- bei Hash-Funktionen eingesetzt wird, um die Entropie der Eingabe zu erhöhen
-\begin_inset Foot
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset citation
-LatexCommand cite
-after "06.03.19 - 12:07 Uhr"
-key "Wiki_Salt"
-literal "false"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Singleton
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Ein Singleton ist ein Entwurfsmuster, bei dem sichergestellt ist, dass nur
- eine einzige Instanz einer Klasse existiert  (z.B.
- in Python 
-\emph on
-None
-\emph default
-).
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Thread
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
- (dt.: Faden, Strang) Threads sind im Grunde genommen leichtgewichtige Prozesse
-  (Ein Prozess kann mehrere Threads besitzen).
- In CPython  (erläutert in Abschnitt 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Python-3"
-plural "false"
-caps "false"
-noprefix "false"
-
-\end_inset
-
-) ist der GIL  (Global Interpreter Lock) zu beachten: Threads steigern hier
- nicht die Performance!
-\end_layout
-
-\end_inset
-</cell>
-</row>
-<row>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
-Thread-Safe
-\end_layout
-
-\end_inset
-</cell>
-<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
-\begin_inset Text
-
-\begin_layout Plain Layout
- (dt.: Threadsicherheit) Mehrere Threads können gleichzeitig auf eine Komponente
- zugreifen ohne sich gegenseitig zu behindern oder race-conditions auszulösen.
-\end_layout
-
-\end_inset
-</cell>
-</row>
-</lyxtabular>
 
 \end_inset
 
@@ -6341,7 +5902,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Entity-Relationship-Diagramm
+Entity-Relationship-Diagramm der Datenbank
 \end_layout
 
 \end_inset
@@ -6388,7 +5949,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-UML-Diagramm
+UML-Diagramm der Umsetzung des ERD
 \end_layout
 
 \end_inset
@@ -6834,7 +6395,18 @@ map
  anzuwenden und aus den Ergebnissen eine Liste zu erstellen.
  Hier wird die Ergebnisliste jedoch verworfen, map wird lediglich für die
  Seiteneffekte genutzt.
- 
+ Das war allerdings nicht die erste Lösung.
+ In Abschnitt 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:ContextSession-Cache-Refresh"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ wird ein Vergleich verschiedener Lösungen behandelt.
 \end_layout
 
 \end_inset
@@ -7038,7 +6610,7 @@ first
 \emph on
 expunge
 \emph default
-, zu deutsch auslöschen der Session genutzt, um das Objekt von der Session
+, zu deutsch auslöschen, der Session genutzt, um das Objekt von der Session
  zu trennen, sodass es auch außerhalb von ihr seine Gültigkeit behält.
  Ein Grund, wieso dies nötig ist, ist die Tatsache, dass SQLAlchemy hier,
  wie auch in vielen anderen Bereichen sehr 
@@ -7074,7 +6646,17 @@ password
 expunge
 \emph default
  von der Session getrennt wird, erfolgt eine Abfrage aller restlichen Attribute,
- sodass das Objekt vollständig ist.
+ sodass das Objekt vollständig ist
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Jedenfalls wenn die Klasse und ihre Relationships so konfiguriert wurden.
+\end_layout
+
+\end_inset
+
+.
  Wer mit SQL vertraut ist, hat sicherlich bereits erkannt, dass die Methoden
  dieselben Namen wie einige Operationen in SQL tragen.
  Analog stehen auch zu weiteren SQL Operationen Methoden bereit, um komplexere
@@ -7180,7 +6762,7 @@ Paralleles Printen
 \begin_layout Standard
 Beim Debuggen ist es oftmals hilfreich sich kleinere Nachrichten an Schlüsselpun
 kten ausgeben zu lassen.
- Da diese Nachrichten oftmals jedoch aus verschiedenen Threads kommen, kann
+ Da diese Nachrichten jedoch aus verschiedenen Threads kommen können, kann
  sich hier eine race-condition auf der Konsole abbilden, bei der mehrere
  Nachrichten gleichzeitig ausgegeben werden, wodurch sie schwer bis garnicht
  zu verwerten sind.
@@ -7387,6 +6969,46 @@ put
 Dateitools - Pfadvalidierung und Normalisierung von Dateinamen
 \end_layout
 
+\begin_layout Standard
+Beim Speichern der QR-Codes gibt es einige mögliche Fehlerquellen.
+ So ist es möglich, dass ein Dateiname (der automatisch generiert wurde)
+ ungültige Zeichen enthält, die Datei bereits existiert oder der Speicherort
+ Verzeichnisse enthält, die noch nicht existieren.
+ Daher wurden einige kleine Utilities geschrieben:
+\end_layout
+
+\begin_layout Description
+check_if_file_exists Überprüft ob eine Datei bereits existiert, und ob der
+ Pfad valide ist.
+ Sollte eine Datei nicht existieren, im Pfad jedoch Ordner enthalten sein
+ die es nicht gibt, so werden alle benötigten Ordner erzeugt und 
+\emph on
+True
+\emph default
+ zurückgegeben.
+\end_layout
+
+\begin_layout Description
+normalize_filename Auf Linux gibt es kaum Einschränkungen in Sachen Zeichensatz
+ für Dateinamen - auf Windows hingegen schon.
+ Daher entfernt diese Funktion alle Sonder-, Whitespace- und nicht ASCII-konform
+en Zeichen aus dem übergebenen String (Also Pfad).
+ Hierzu werden Regular Expressions eingesetzt.
+\end_layout
+
+\begin_layout Description
+umlaut_converter Diese Funktion wandelt alle Umlaute im Dateinamen in den
+ zugehörigen Digrafen um (
+\emph on
+ä
+\emph default
+ zu 
+\emph on
+ae
+\emph default
+ etc.).
+\end_layout
+
 \begin_layout Subsection
 Logging
 \end_layout
@@ -7474,7 +7096,7 @@ Es ist zu sehen, dass sich die Datei spaltenweise gut lesen lässt und leicht
 <module>
 \emph default
  im Funktionsslot zu sehen; dies bedeutet, dass die Nachricht nicht aus
- einer Unterfunktion sondern vom Modul selbst stammt.
+ einer Unterfunktion, sondern vom Modul selbst stammt.
  Die beiden Nachrichten aus 
 \emph on
 main
@@ -7496,6 +7118,10 @@ info
  Microsekunden etc.) wurde verzichtet, da der Nutzer die Anwendung eher im
  Sekundentakt bedient und sich somit die Zeile nicht unnötig überlädt.
  Aus demselben Grund wäre es denkbar, auf die Jahreszahl zu verzichten.
+ Im Hinblick auf Datenschutz wurde darauf geachtet, dass alle mitgeloggten
+ Events anonymisiert sind.
+ So wird z.B.
+ anstatt eines Nutzernamens, die Zugehörige Datenbank UID geloggt.
 \end_layout
 
 \begin_layout Subsection
@@ -8740,8 +8366,20 @@ reshape
 arrays
 \emph default
  effizient umzuformen (z.B.
- würde ein a.reshape(2 * len(a)) aus einem Array wie unserem, ein 1-dimensionales
- Array bilden).
+ würde ein 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinline{a.reshape(2 * len(a))}
+\end_layout
+
+\end_inset
+
+ aus einem Array wie unserem, ein 1-dimensionales Array bilden).
  Über die -1 im übergebenen Tupel, teilen wir Numpy mit, dass es uns egal
  ist, was es mit dieser Dimension macht, uns interessieren lediglich die
  anderen beiden, welche wir dann auf 1 bzw.
@@ -11791,7 +11429,19 @@ Dies sieht dann wie folgt aus:
 \begin_layout Standard
 
 \emph on
-widget.signal.connect(slot)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinline{widget.signal.connect(slot)}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -11815,7 +11465,19 @@ ein Beispiel dafür wäre:
 \begin_layout Standard
 
 \emph on
-self.button.clicked.connect(button_click)
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+lstinline{self.button.clicked.connect(button_click)}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
@@ -12364,7 +12026,7 @@ Beim Klicken auf den Login-Button öffnet sich ein neues Fenster, in dem
  man seine Anmeldedaten, also Email und Passwort, eingeben kann.
  Wurden diese Angaben alle richtig gemacht, so schließt sich das Fenster
  wieder und im Hauptfenster sieht man oben rechts nun den Namen des eingeloggten
- Users, sowie einen Button zum ausloggen.
+ Users, sowie einen Button zum Ausloggen.
 \end_layout
 
 \begin_layout Standard
@@ -12744,8 +12406,8 @@ Sollten Sie als Admin eingeloggt sein, so lassen sich auch die Daten anderen
 Hierzu sei gesagt, dass nur Daten angegeben werden müssen, die innerhalb
  einer Firma sowieso öffentlich zugänglich sind, wie Name, Email und Telefonnumm
 er.
- Beim Ändern werden ebenfalls nur diese Daten angezeigt, Passwörter bleiben
- verschlüsselt und werden nicht sichtbar.
+ Beim Ändern werden ebenfalls nur diese Daten angezeigt, die Passwörter
+ bleiben verschlüsselt und werden nicht sichtbar.
 \begin_inset VSpace bigskip
 \end_inset
 
@@ -12876,7 +12538,7 @@ QR-Code Ablage:
 \end_inset
 
 Die generierten QR-Codes werden unter diesem Pfad angelegt.
- Der Pfad kann auch händisch geändert werden, beim abspeichern der Einstellungen
+ Der Pfad kann auch händisch geändert werden, beim Abspeichern der Einstellungen
  wird dieser, je nach Betriebssystem, auf die richtige Schreibweise überprüft.
 \begin_inset VSpace bigskip
 \end_inset
@@ -13192,8 +12854,7 @@ status open
 \begin_inset Caption Standard
 
 \begin_layout Plain Layout
-Vergleich von dict lookup und hasattr  (jeweiliger Durchschnitt der Versuchsreih
-e in Legende)
+Vergleich von dict lookup und hasattr
 \end_layout
 
 \end_inset
@@ -13207,9 +12868,19 @@ e in Legende)
 \end_layout
 
 \begin_layout Standard
-Da hier zu sehen ist, dass beide Varianten praktisch gleich sind, könnte
- man hier bereits eine Entscheidung treffen, es wird jedoch noch das letzte
- Werkzeug herangezogen, um die Varianten zu vergleichen: Bytecode
+Da hier zu sehen ist, dass beide Varianten praktisch gleich schnell sind
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+In Legende der Legende ist der jeweilige Durchschnitt der Versuchsreihe
+ aufgeführt
+\end_layout
+
+\end_inset
+
+, könnte man hier bereits eine Entscheidung treffen, es wird jedoch noch
+ das letzte Werkzeug herangezogen, um die Varianten zu vergleichen: Bytecode
 \end_layout
 
 \begin_layout Standard
@@ -13583,6 +13254,12 @@ hasattr
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:ContextSession-Cache-Refresh"
+
+\end_inset
+
 ContextSession Cache Refresh
 \end_layout
 
@@ -13980,6 +13657,21 @@ filename "../classes.py"
 \end_layout
 
 \begin_layout Subsection
+config.py
+\end_layout
+
+\begin_layout Standard
+\align left
+\begin_inset CommandInset include
+LatexCommand lstinputlisting
+filename "../config.py"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 keys.py
 \end_layout
 
@@ -14138,7 +13830,7 @@ cargo.toml
 \align left
 \begin_inset CommandInset include
 LatexCommand lstinputlisting
-filename "../launcher/cargo.toml"
+filename "../launcher/Cargo.toml"
 
 \end_inset
 

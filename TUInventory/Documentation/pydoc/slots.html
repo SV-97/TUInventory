@@ -1,0 +1,68 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html><head><title>Python: module slots</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head><body bgcolor="#f0f0f8">
+
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="heading">
+<tr bgcolor="#7799ee">
+<td valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial">&nbsp;<br><big><big><strong>slots</strong></big></big></font></td
+><td align=right valign=bottom
+><font color="#ffffff" face="helvetica, arial"><a href=".">index</a><br><a href="file:/home/sv-97/GitHub/TUInventory/TUInventory/slots.py">/home/sv-97/GitHub/TUInventory/TUInventory/slots.py</a></font></td></tr></table>
+    <p></p>
+<p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#aa55cc">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Modules</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#aa55cc"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><table width="100%" summary="list"><tr><td width="25%" valign=top><a href="classes.html">classes</a><br>
+</td><td width="25%" valign=top><a href="keys.html">keys</a><br>
+</td><td width="25%" valign=top><a href="sqlalchemy.html">sqlalchemy</a><br>
+</td><td width="25%" valign=top></td></tr></table></td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#eeaa77">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Functions</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#eeaa77"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><dl><dt><a name="-compare_digest"><strong>compare_digest</strong></a> = _compare_digest(...)</dt><dd><tt><a href="#-compare_digest">compare_digest</a>(a,&nbsp;b)&nbsp;-&gt;&nbsp;bool<br>
+&nbsp;<br>
+Return&nbsp;'a&nbsp;==&nbsp;b'.&nbsp;&nbsp;This&nbsp;function&nbsp;uses&nbsp;an&nbsp;approach&nbsp;designed&nbsp;to&nbsp;prevent<br>
+timing&nbsp;analysis,&nbsp;making&nbsp;it&nbsp;appropriate&nbsp;for&nbsp;cryptography.<br>
+a&nbsp;and&nbsp;b&nbsp;must&nbsp;both&nbsp;be&nbsp;of&nbsp;the&nbsp;same&nbsp;type:&nbsp;either&nbsp;str&nbsp;(ASCII&nbsp;only),<br>
+or&nbsp;any&nbsp;bytes-like&nbsp;object.<br>
+&nbsp;<br>
+Note:&nbsp;If&nbsp;a&nbsp;and&nbsp;b&nbsp;are&nbsp;of&nbsp;different&nbsp;lengths,&nbsp;or&nbsp;if&nbsp;an&nbsp;error&nbsp;occurs,<br>
+a&nbsp;timing&nbsp;attack&nbsp;could&nbsp;theoretically&nbsp;reveal&nbsp;information&nbsp;about&nbsp;the<br>
+types&nbsp;and&nbsp;lengths&nbsp;of&nbsp;a&nbsp;and&nbsp;b--but&nbsp;not&nbsp;their&nbsp;values.</tt></dd></dl>
+ <dl><dt><a name="-create_admin"><strong>create_admin</strong></a>(*args, **kwargs)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;admin</tt></dd></dl>
+ <dl><dt><a name="-create_article"><strong>create_article</strong></a>(*args, **kwargs)</dt></dl>
+ <dl><dt><a name="-create_device"><strong>create_device</strong></a>(article)</dt></dl>
+ <dl><dt><a name="-create_location"><strong>create_location</strong></a>(*args, **kwargs)</dt></dl>
+ <dl><dt><a name="-create_producer"><strong>create_producer</strong></a>(*args, **kwargs)</dt></dl>
+ <dl><dt><a name="-create_user"><strong>create_user</strong></a>(*args, **kwargs)</dt><dd><tt>Create&nbsp;a&nbsp;new&nbsp;user</tt></dd></dl>
+ <dl><dt><a name="-generate_password"><strong>generate_password</strong></a>(len_=15)</dt><dd><tt>Generate&nbsp;an&nbsp;human&nbsp;readable&nbsp;password&nbsp;of&nbsp;given&nbsp;length</tt></dd></dl>
+ <dl><dt><a name="-login"><strong>login</strong></a>(e_mail, password)</dt><dd><tt>Log&nbsp;user&nbsp;into&nbsp;application<br>
+Checks&nbsp;if&nbsp;there's&nbsp;a&nbsp;user&nbsp;of&nbsp;given&nbsp;name&nbsp;in&nbsp;the&nbsp;database,<br>
+if&nbsp;the&nbsp;given&nbsp;password&nbsp;is&nbsp;correct&nbsp;and&nbsp;returns&nbsp;the&nbsp;user&nbsp;if&nbsp;both&nbsp;is&nbsp;the&nbsp;case<br>
+Args:<br>
+&nbsp;&nbsp;&nbsp;&nbsp;e_mail&nbsp;(str):&nbsp;e_mail&nbsp;of&nbsp;the&nbsp;user&nbsp;that&nbsp;wants&nbsp;to&nbsp;log&nbsp;in<br>
+&nbsp;&nbsp;&nbsp;&nbsp;password&nbsp;(str):&nbsp;user&nbsp;provided&nbsp;password&nbsp;to&nbsp;check&nbsp;against</tt></dd></dl>
+ <dl><dt><a name="-logout"><strong>logout</strong></a>()</dt><dd><tt>Log&nbsp;user&nbsp;out&nbsp;of&nbsp;application</tt></dd></dl>
+ <dl><dt><a name="-reset_admin_password"><strong>reset_admin_password</strong></a>(user, path_public, path_private)</dt></dl>
+ <dl><dt><a name="-reset_password"><strong>reset_password</strong></a>(user)</dt></dl>
+ <dl><dt><a name="-save_to_db"><strong>save_to_db</strong></a>(instance)</dt><dd><tt>Save&nbsp;instance&nbsp;to&nbsp;it's&nbsp;corresponding&nbsp;table</tt></dd></dl>
+ <dl><dt><a name="-synchronized"><strong>synchronized</strong></a>(function)</dt><dd><tt>Function-decorator&nbsp;to&nbsp;automatically&nbsp;add&nbsp;the&nbsp;instance&nbsp;a&nbsp;function&nbsp;returns&nbsp;to&nbsp;DB</tt></dd></dl>
+</td></tr></table><p>
+<table width="100%" cellspacing=0 cellpadding=2 border=0 summary="section">
+<tr bgcolor="#55aa55">
+<td colspan=3 valign=bottom>&nbsp;<br>
+<font color="#ffffff" face="helvetica, arial"><big><strong>Data</strong></big></font></td></tr>
+    
+<tr><td bgcolor="#55aa55"><tt>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</tt></td><td>&nbsp;</td>
+<td width="100%"><strong>ascii_letters</strong> = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'<br>
+<strong>digits</strong> = '0123456789'<br>
+<strong>logger</strong> = &lt;RootLogger root (INFO)&gt;</td></tr></table>
+</body></html>
