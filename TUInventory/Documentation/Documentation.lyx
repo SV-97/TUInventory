@@ -13598,7 +13598,7 @@ Netzwerkplan nach EN81346
 \begin_layout Standard
 \begin_inset External
 	template PDFPages
-	filename Pläne/Netzwerkplan.pdf
+	filename Pläne/Netzwerkplan_EN81346.pdf
 	extra LaTeX "pages=-"
 	rotateAngle 90
 
