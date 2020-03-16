@@ -15,4 +15,4 @@ The software part of the project involved writing an inventory management softwa
 * Cross platform
 * Native launcher in case it's needed
 
-The accompanying thesis is available [Link to thesis](https://github.com/SV-97/TUInventory/blob/master/TUInventory/Documentation/Documentation.pdf "here")
+The accompanying thesis is available [here](https://github.com/SV-97/TUInventory/blob/master/TUInventory/Documentation/Documentation.pdf)
